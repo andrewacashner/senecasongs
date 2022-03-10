@@ -7,23 +7,38 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
 
-  width: 40em;
+  font-family: 'Petrona', serif;
+  font-size: 22px;
+  hyphens: auto;
+  text-align: justify;
+}
+
+header {
+  text-align: center;
+}
+
+header h2.author {
+  font-size: 125%;
+}
+
+header nav ul {
+  list-style: none;
+}
+
+main {
+  width: 35em;
   line-height: 1.5em;
   margin-left: auto;
   margin-right: auto;
-
-  font-family: 'PT Sans', sans-serif;
-  font-size: 24px;
 }
 
 p {
-  text-indent: 2em;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-p.first, footer p {
-  text-indent: 0;
+p + p, footer p {
+  text-indent: 2em;
 }
 
 cite {
@@ -34,14 +49,20 @@ q {
   quotes : "“" "”" "‘" "’"
 }
 
+a {
+  color: DimGray;
+  text-decoration: none;
+}
+
 ul.biblio {
   list-style: none;
   line-height: 1.5em;
+  text-indent: -2em;
+  padding-left: 2em;
 }
 
 ul.biblio li {
   margin-bottom: 1ex;
-  text-indent: -2em;
 }
 
 
