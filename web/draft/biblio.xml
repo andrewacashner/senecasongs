@@ -1,28 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<bibList>
-  <bibItem id="Diamond:NativeAmericanNortheast" type="book">
-    <bibAuthor>Diamond, Beverley</bibAuthor>
-    <bibYear>2008</bibYear>
-    <bibWorkTitle>Native American Music in Eastern North America: 
-      Experiencing Music, Expressing Culture</bibWorkTitle>
-    <bibPlace>New York</bibPlace>
-    <bibPublisher>Oxford University Press</bibPublisher>
+<listBibl xmlns="http://www.tei-c.org/ns/1.0">
+  <head>Bibliography</head>
+  <biblStruct xml:id="Diamond:NativeAmericanNortheast">
+    <monogr>
+      <author>Diamond, Beverley</author>
+      <title>Native American Music in Eastern North America: 
+        Experiencing Music, Expressing Culture</title>
+      <imprint>
+        <pubPlace>New York</pubPlace>
+        <publisher>Oxford University Press</publisher>
+        <date when="2008"/>
+      </imprint>
+    </monogr>
+  </biblStruct>
+  <biblStruct xml:id="Morgan:League">
+    <monogr>
+      <author>Morgan, Lewis Henry</author>
+      <title>League of the Ho-de’-no-sau-nee or Iroquois</title>
+      <imprint>
+        <pubPlace>Rochester, NY</pubPlace>
+        <publisher>Sage &amp; Brother</publisher>
+        <date when="1851"/>
+      </imprint>
+    </monogr>
+  </biblStruct>
+  <biblStruct xml:id="Richter:Ordeal">
+    <monogr>
+      <author>Richter, Daniel K.</author>
+      <title>The Ordeal of the Longhouse: The Peoples of the Iroquois
+        League in the Era of European Colonization</title>
+      <imprint>
+        <pubPlace>Chapel Hill, NC</pubPlace>
+        <publisher>Omohundro Institute of Early American History and
+          Culture, University of North Carolina Press</publisher>
+        <date when="1992"/>
+      </imprint>
+    </monogr>
   </bibItem>
-  <bibItem id="Morgan:League" type="book">
-    <bibAuthor>Morgan, Lewis Henry</bibAuthor>
-    <bibYear>1851</bibYear>
-    <bibWorkTitle>League of the Ho-de’-no-sau-nee or Iroquois</bibWorkTitle>
-    <bibPlace>Rochester, NY</bibPlace>
-    <bibPublisher>Sage &amp; Brother</bibPublisher>
-  </bibItem>
-  <bibItem id="Richter:Ordeal" type="book">
-    <bibAuthor>Richter, Daniel K.</bibAuthor>
-    <bibYear>1992</bibYear>
-    <bibWorkTitle>The Ordeal of the Longhouse: The Peoples of the Iroquois
-      League in the Era of European Colonization</bibWorkTitle>
-    <bibPlace>Chapel Hill, NC</bibPlace>
-    <bibPublisher>Omohundro Institute of Early American History and
-      Culture, University of North Carolina Press</bibPublisher>
-  </bibItem>
-</bibList>
+</listBibl>
 

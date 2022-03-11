@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xml>
-  <head>
-    <title>Proposal</title>
-    <author>Andrew Cashner</author>
-  </head>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Proposal</title>
+        <author>Andrew A. Cashner</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Andrew A. Cashner</publisher>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <front>
+    </front>
+    <body>
+      <div1 type="section" n="1">
+        <head>Proposal</head>
+      </div>
+    </body>
+    <back>
+    </back>
+  </text>
   <body>
     <main>
       <section>
@@ -93,8 +114,8 @@
         and blessing of indigenous experts and their communities.
         Beverley Diamond’s introduction to Haudenosaunee music is sound but
         very brief, and it models the collaborative approach between
-        non-Native scholars Native experts that we will be using
-        <a href="#Diamond2008">(Diamond 2008)</a>.
+            non-Native scholars Native experts that we will be using
+          <bibl corresp="#Diamond:NativeAmericanNortheast"/>.
         We hope that our work will be able to correct the serious errors and
         shortcomings in the few more detailed works of published scholarship
         on this topic.
@@ -213,10 +234,8 @@
       </section>
     </main>
     <footer>
-      <p>
-      Copyright © 2022 Andrew Cashner. All rights reserved.
-      </p>
+      <p>Copyright © 2022 Andrew Cashner. All rights reserved.</p>
     </footer>
-</xml>
+  </TEI>
 
 
