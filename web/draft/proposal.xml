@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="woods_edge.css">
     <title>Proposal</title>
+    <author>Andrew Cashner</author>
   </head>
   <body>
-    <header>
-      <h1>Proposal</h1>
-      <h2 class="author">Andrew Cashner</h2>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-        </ul>
-      </nav>
-    </header>
     <main>
       <section>
         <p>
@@ -105,7 +94,7 @@
         Beverley Diamond’s introduction to Haudenosaunee music is sound but
         very brief, and it models the collaborative approach between
         non-Native scholars Native experts that we will be using
-        <a href="#Diamond:NativeAmericanNortheast">(Diamond 2008)</a>.
+        <a href="#Diamond2008">(Diamond 2008)</a>.
         We hope that our work will be able to correct the serious errors and
         shortcomings in the few more detailed works of published scholarship
         on this topic.
@@ -114,12 +103,12 @@
           Iroquois</cite>, published here in Rochester in 1851, and based on
         his first-hand observations of Seneca practices with the help of
         Seneca informants
-        <a href="#Morgan:League">(Morgan 1851)</a>.
+        <a href="#Morgan1851">(Morgan 1851)</a>.
         He describes dances as so central to Haudenosaunee culture that
         <q>they contain within themselves a picture and a realization of
           Indian life</q>, to the extent that when the dance <q>loses its
           attractions, they will cease to be Indians</q>
-        <a href="#Morgan:League">(Morgan 1851: 261, 263)</a>.
+        <a href="#Morgan1851">(Morgan 1851: 261, 263)</a>.
         He later argues, however, that Native Americans will only be able to
         survive in <q>civilization</q> if they give up their traditional ways,
         and so his book is at once a tribute to indigenous culture and an
@@ -213,26 +202,14 @@
       </section>
       <section id="bibliography">
         <h1>Bibliography</h1>
-        <ul class="biblio">
-          <li id="Diamond:NativeAmericanNortheast">
-            Diamond, Beverley. 2008.
-            <cite>Native American Music in Eastern North America: Experiencing
-              Music, Expressing Culture</cite>. 
-            New York: Oxford University Press.
-          </li>
-          <li id="Morgan:League">
-            Morgan, Lewis Henry. 1851. 
-            <cite>League of the Ho-de’-no-sau-nee or Iroquois</cite>.
-            Rochester, NY: Sage &amp; Brother.
-          </li>
-          <li id="Richter:Ordeal">
-            Richter, Daniel K. 1992.
-            <cite>The Ordeal of the Longhouse: The Peoples of the Iroquois
-              League in the Era of European Colonization</cite>. 
-            Chapel Hill, NC: Omohundro Institute of Early American History and
-            Culture, University of North Carolina Press.
-          </li>
-        </ul>
+        <bibList>
+          <bibCite id="#Diamond2008" 
+            href="biblio.xml#Diamond:NativeAmericanNortheast"/>
+          <bibCite id="#Morgan1851"
+            href="biblio.xml#Morgan:League"/>
+          <bibCite id="#Richter1992"
+            href="biblio.xml#Richter:Ordeal"/>
+        </bibList>
       </section>
     </main>
     <footer>
@@ -240,6 +217,6 @@
       Copyright © 2022 Andrew Cashner. All rights reserved.
       </p>
     </footer>
-</html>
+</xml>
 
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bibList>
+  <bibItem id="Diamond:NativeAmericanNortheast" type="book">
+    <bibAuthor>Diamond, Beverley</bibAuthor>
+    <bibYear>2008</bibYear>
+    <bibWorkTitle>Native American Music in Eastern North America: 
+      Experiencing Music, Expressing Culture</bibWorkTitle>
+    <bibPlace>New York</bibPlace>
+    <bibPublisher>Oxford University Press</bibPublisher>
+  </bibItem>
+  <bibItem id="Morgan:League" type="book">
+    <bibAuthor>Morgan, Lewis Henry</bibAuthor>
+    <bibYear>1851</bibYear>
+    <bibWorkTitle>League of the Ho-de’-no-sau-nee or Iroquois</bibWorkTitle>
+    <bibPlace>Rochester, NY</bibPlace>
+    <bibPublisher>Sage &amp; Brother</bibPublisher>
+  </bibItem>
+  <bibItem id="Richter:Ordeal" type="book">
+    <bibAuthor>Richter, Daniel K.</bibAuthor>
+    <bibYear>1992</bibYear>
+    <bibWorkTitle>The Ordeal of the Longhouse: The Peoples of the Iroquois
+      League in the Era of European Colonization</bibWorkTitle>
+    <bibPlace>Chapel Hill, NC</bibPlace>
+    <bibPublisher>Omohundro Institute of Early American History and
+      Culture, University of North Carolina Press</bibPublisher>
+  </bibItem>
+</bibList>
+

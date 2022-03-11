@@ -7,10 +7,20 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
 
-  font-family: 'Petrona', serif;
-  font-size: 22px;
+  /* Clara, VenturisSans ADF */
+/*  font-family: 'Gillius ADF No2', sans-serif; */
+  font-family: 'VenturisSans ADF', sans-serif;
+  font-size: 24px;
   hyphens: auto;
   text-align: justify;
+}
+
+h1 {
+  font-family: 'Venturis ADF Goth Titling', serif; 
+}
+
+h2, h3, h4, h5 {
+  font-family: 'VenturisSans ADF No2 Ex', serif;
 }
 
 header {
@@ -19,6 +29,10 @@ header {
 
 header h2.author {
   font-size: 125%;
+}
+
+header nav a {
+  color: DimGray;
 }
 
 header nav ul {
@@ -50,8 +64,13 @@ q {
 }
 
 a {
-  color: DimGray;
-  text-decoration: none;
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: LightGray;
+}
+
+a:hover {
+  background: LightGray;
 }
 
 ul.biblio {
