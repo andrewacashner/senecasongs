@@ -1,16 +1,14 @@
-html {
-  height: 100vh;
-}
 
 body {
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  height: 100%;
+  max-width: 40em;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 
-  /* Clara, VenturisSans ADF */
-/*  font-family: 'Gillius ADF No2', sans-serif; */
+  /* Clara, VenturisSans ADF, Gillius ADF No2 */
   font-family: 'VenturisSans ADF', sans-serif;
-  font-size: 24px;
+  font-size: 125%;
   hyphens: auto;
   text-align: justify;
 }
@@ -20,30 +18,56 @@ h1 {
 }
 
 h2, h3, h4, h5 {
-  font-family: 'VenturisSans ADF No2 Ex', serif;
+  font-family: 'VenturisSans ADF Ex', serif;
 }
 
 header {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1.5em;
 }
 
-header h2.author {
+header section.title {
+  display: block;
+}
+
+section.title h1 {
+  font-size: 200%;
+}
+
+section.title h2 {
+  font-weight: normal;
+}
+
+section.title p.author {
   font-size: 125%;
+  padding-top: 0.25em;
+  margin-left: 1em;
 }
 
-header nav a {
-  color: DimGray;
+header nav {
+  display: block;
+  margin-left: auto;
+  height: 100%;
 }
 
 header nav ul {
+  height: 100%;
   list-style: none;
 }
 
+header nav ul li {
+  margin: 0.25em;
+}
+
+
+header nav a {
+  color: DimGray;
+  text-decoration: none;
+}
+
 main {
-  width: 35em;
   line-height: 1.5em;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 p {
@@ -51,7 +75,7 @@ p {
   margin-bottom: 0;
 }
 
-p + p, footer p {
+p + p {
   text-indent: 2em;
 }
 
