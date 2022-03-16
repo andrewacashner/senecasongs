@@ -1,46 +1,75 @@
-\documentclass{article}
+\documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{mlmodern}
+\usepackage{newtxmath, newtxtext}
 \setlength{\parindent}{0pt}
-\usepackage{parskip}
 \usepackage{url}
+\urlstyle{sf}
 \usepackage{tabularx}
 \usepackage{semantic-markup}
+\usepackage[none]{hyphenat}
+\setcounter{secnumdepth}{0}
+
+\usepackage{sectsty}
+\allsectionsfont{\normalfont\sffamily}
 
 \newlength{\datewd}
-\settowidth{\datewd}{2017--Present}
-\NewDocumentCommand{\cvItem}{ m m }{%
-    \begin{tabularx}{\textwidth}{p{\datewd}X}
+\AtBeginDocument{\settowidth{\datewd}{2017--Present}}
+\NewDocumentCommand{\cvItem}{ m m o }{%
+    \begin{tabularx}{\textwidth}{@{}p{\datewd} X}
         #1 & #2
-    \end{tabularx}
+    \end{tabularx}%
+    \IfValueTF{#3}{\par
+        \smallskip\hspace{\dimexpr\datewd + 3em}%
+        \parbox{\dimexpr\textwidth-\datewd-3em}{#3}\par
+        \smallskip}
+        {\par}
 }
 
+\NewDocumentEnvironment{cvAddress}{}
+{\begin{tabular}{@{}l}}
+{\end{tabular}}
+
+\NewDocumentCommand{\cvName}{ m }{%
+    \noindent{\huge #1\par
+    \addvspace{0.5\baselineskip}}%
+}
 \begin{document}
+\cvName{Andrew A. Cashner, PhD}
+
+\begin{cvAddress}
+125 Brookdale Ave., Rochester, New York 14619 USA \\
+(773) 844-5864, \url{andrew.cashner@rochester.edu}
+\end{cvAddress}
+
 \section{Positions}
 \cvItem{2017--Present}
 {Assistant professor of music,
 Arthur Satz Department of Music, University of Rochester}
 
 \cvItem{2015--2017}
-{Assistant professor of musicology
+{Assistant professor of musicology,
 Thornton School of Music, University of Southern California}
 
 \section{Education}
 \cvItem{2015}
-{University of Chicago
+{University of Chicago,
 Doctor of Philosophy, History and theory of music}
+[Dissertation: \ptitle{Faith, Hearing, and the Power of Music in Hispanic
+Villancicos, 1600--1700} (Robert Kendrick, advisor)]
 
 \cvItem{2009}
-{University of Notre Dame
+{University of Notre Dame,
 Master of Sacred Music, Theology and organ performance}
+[Thesis: \ptitle{The Reception of Paul Gerhardt's Hymns in the Seventeenth
+Century} (Mary Frandsen, advisor)]
 
 \cvItem{2003--2004}
-{New England Conservatory of Music
+{New England Conservatory of Music,
 Graduate study, Piano performance}
 
 \cvItem{2003}
-{Lawrence University of Wisconsin
+{Lawrence University of Wisconsin,
 Bachelor of Music \emph{cum laude}, Piano performance}
 
 \section{Awards and Honors}
@@ -51,8 +80,7 @@ Bachelor of Music \emph{cum laude}, Piano performance}
 {Alfred Einstein Award, American Musicological Society}
 
 \cvItem{2014}
-{Dissertation Completion Fellowship, Mellon Foundation, American Council of
-Learned Societies}
+{ACLS/Mellon Dissertation Completion Fellowship}
 
 \cvItem{2012}
 {Eugene K. Wolf Travel Grant, American Musicological Society}
@@ -72,9 +100,8 @@ Brill)}
 
 \subsection{Articles}
 \cvItem{Under review}
-{\ptitle{Forgetting about \quoted{Indian Town}: George Henry Harris and the
-Historical Fictions of the University of Rochester's Indigenous Past},
-\wtitle{Ethnohistory}}
+{\ptitle{Forgetting about \quoted{Indian Town}: Historical Fictions of a
+University's Indigenous Past}, \wtitle{Ethnohistory}}
 
 \cvItem{Under review}
 {\ptitle{Kircherizers and Trisectors: Athanasius Kircher's Automatic
@@ -91,19 +118,20 @@ published online March 2022)}
 
 \cvItem{2021}
 {\ptitle{Imitating Africans, Listening for Angels: A Slaveholder’s Fantasy of
-Social Harmony in an <q>Ethnic Villancico</q> from Colonial Puebla (1652)},
-\wtitle{The Journal of Musicology}, vol. 38, issue 2, 141--182}
+Social Harmony in an \soCalled{Ethnic Villancico} from Colonial Puebla (1652)},
+\wtitle{The Journal of Musicology}, vol. 38, no. 2, 141--182}
 
 \cvItem{2014}
 {\ptitle{Playing Cards at the Eucharistic Table: Music, Theology, and Society
 in a Corpus Christi Villancico from Colonial Mexico, 1628}, 
-\wtitle{Journal of Early Modern History}, vol. 18, no. 4, 383--419}
+\wtitle{Journal of Early Modern History}, vol. 18, no. 4, 383--419
+(recipient of the 2015 AMS Einstein Award)}
  
 \subsection{Critical Editions}
 \cvItem{2021}
 {\wtitle{Villancicos about Music from Seventeenth-Century Spain and New Spain},
 vol. 2, Web Library of Seventeenth-Century Music no. 36 (Society for
-Seventeenth-Century Music, \url{http://www.sscm-wlscm.org/})}
+Seventeenth-Century Music, \url{www.sscm-wlscm.org})}
 
 \cvItem{2017}
 {\wtitle{Villancicos about Music from Seventeenth-Century Spain and New Spain}
@@ -112,41 +140,54 @@ Seventeenth-Century Music, \url{http://www.sscm-wlscm.org/})}
 \subsection{Websites and Software}
 
 \cvItem{2014--Present}
-{\url{http://www.andrewcashner.com}, Personal website}
+{Personal website for research, teaching, performance (\url{www.andrewcashner.com})}
 
 \cvItem{2021--Present}
-{\url{http://www.arca1650.info}, \wtitle{Arca musarithmica: A Device for
-Automatic Music Composition from 1650}}
+{\wtitle{Arca musarithmica: A Device for Automatic Music Composition from
+1650} (web interface to Haskell implementation of Kircher's
+music-composition device, \url{www.arca1650.info})}
 
 \cvItem{2018--Present}
 {\LaTeX{} packages: \wtitle{semantic-markup}, \wtitle{musicography},
-\wtitle{octave} (\url{https://ctan.org/author/cashner})}
+\wtitle{octave} (\url{ctan.org/author/cashner})}
 
 \section{Professional Activities and Accomplishments}
 \cvItem{2019--Present}
-{Catalyst (Director) for Worship and Creative Arts
+{Catalyst for Worship and Creative Arts
 New Hope Free Methodist Church, Rochester, NY}
 
 \cvItem{2014--2015}
-{Organist, St. Peter's Episcopal Church, Chicago, IL}
+{Organist, St.\ Peter's Episcopal Church, Chicago, IL}
 
 \cvItem{2006--2013}
 {Assistant editor, \wtitle{INSIGHT} periodical, International Council on
 Systems Engingeering}
     
 \cvItem{2007--2009}
-{Organist and choir director, St. Paul's Lutheran Church, Chesterton, IN}
+{Organist and choir director, St.\ Paul's Lutheran Church, Chesterton, IN}
     
-\cvItem{2004--06}
+\cvItem{2004--2006}
 {Director of Music, Grace Presbyterian Church, Fort Wayne, IN}
 
 
 \section{Skills}
-\subsection{Programming Languages and Digital Tools}
-C, Object Pascal, Scheme LISP, Haskell, \LaTeX, HTML, CSS, XML, XSLT, 
-Lilypond, Dorico, Reaper, Adobe Premiere Pro
+\subsection{Digital Tools}
+\begin{tabular}{ll}
+    General-purpose programming languages 
+    & C, Object Pascal, Scheme LISP, Haskell \\
+    Document markup languages and software
+    & \LaTeX, HTML, CSS, XML, XSLT, Pandoc \\
+    Music-notation software 
+    & Lilypond, Dorico \\
+    Audio and video editing software
+    & Reaper, Adobe Premiere Pro
+\end{tabular}
 
 \subsection{Languages}
-Spanish (fluent); German (proficient); Latin, French, Italian,
-Biblical Greek (reading); Seneca (intermediate beginner)
+\begin{tabular}{ll}
+    High proficiency & Spanish, German \\
+    Proficient reading & Latin, Italian, French, Biblical Greek \\
+    Basic proficiency & Seneca \\
+\end{tabular}
+
 \end{document}
