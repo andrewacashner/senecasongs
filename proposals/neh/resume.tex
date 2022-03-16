@@ -1,0 +1,152 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{mlmodern}
+\setlength{\parindent}{0pt}
+\usepackage{parskip}
+\usepackage{url}
+\usepackage{tabularx}
+\usepackage{semantic-markup}
+
+\newlength{\datewd}
+\settowidth{\datewd}{2017--Present}
+\NewDocumentCommand{\cvItem}{ m m }{%
+    \begin{tabularx}{\textwidth}{p{\datewd}X}
+        #1 & #2
+    \end{tabularx}
+}
+
+\begin{document}
+\section{Positions}
+\cvItem{2017--Present}
+{Assistant professor of music,
+Arthur Satz Department of Music, University of Rochester}
+
+\cvItem{2015--2017}
+{Assistant professor of musicology
+Thornton School of Music, University of Southern California}
+
+\section{Education}
+\cvItem{2015}
+{University of Chicago
+Doctor of Philosophy, History and theory of music}
+
+\cvItem{2009}
+{University of Notre Dame
+Master of Sacred Music, Theology and organ performance}
+
+\cvItem{2003--2004}
+{New England Conservatory of Music
+Graduate study, Piano performance}
+
+\cvItem{2003}
+{Lawrence University of Wisconsin
+Bachelor of Music \emph{cum laude}, Piano performance}
+
+\section{Awards and Honors}
+\cvItem{2020}
+{Humanities Center Fellowship, University of Rochester}
+
+\cvItem{2015}
+{Alfred Einstein Award, American Musicological Society}
+
+\cvItem{2014}
+{Dissertation Completion Fellowship, Mellon Foundation, American Council of
+Learned Societies}
+
+\cvItem{2012}
+{Eugene K. Wolf Travel Grant, American Musicological Society}
+
+\cvItem{2012}
+{Pre-Dissertation Research Fellowship, Columbia University, Council for
+European Studies}
+
+\cvItem{2010--2014}
+{Jacob K. Javits Fellowship, United States Department of Education}
+
+\section{Publications}
+\subsection{Monograph}
+\cvItem{2020}
+{\wtitle{Hearing Faith: Music as Theology in the Spanish Empire} (Leiden:
+Brill)}
+
+\subsection{Articles}
+\cvItem{Under review}
+{\ptitle{Forgetting about \quoted{Indian Town}: George Henry Harris and the
+Historical Fictions of the University of Rochester's Indigenous Past},
+\wtitle{Ethnohistory}}
+
+\cvItem{Under review}
+{\ptitle{Kircherizers and Trisectors: Athanasius Kircher's Automatic
+Composition Device in the Spanish Empire}, \wtitle{Anuario musical}}
+
+\cvItem{Under review}
+{\ptitle{Athanasius Kircher's Arca musarithmica (1650) as a Computational
+System}, \wtitle{Computer Music Journal}}
+
+\cvItem{2022}
+{\ptitle{Bringing Heavenly Music down to Earth: Global Exchange and Local
+Devotion at Segovia Cathedral, 1678}, \wtitle{Music \&{} Letters} (in press,
+published online March 2022)}
+
+\cvItem{2021}
+{\ptitle{Imitating Africans, Listening for Angels: A Slaveholder’s Fantasy of
+Social Harmony in an <q>Ethnic Villancico</q> from Colonial Puebla (1652)},
+\wtitle{The Journal of Musicology}, vol. 38, issue 2, 141--182}
+
+\cvItem{2014}
+{\ptitle{Playing Cards at the Eucharistic Table: Music, Theology, and Society
+in a Corpus Christi Villancico from Colonial Mexico, 1628}, 
+\wtitle{Journal of Early Modern History}, vol. 18, no. 4, 383--419}
+ 
+\subsection{Critical Editions}
+\cvItem{2021}
+{\wtitle{Villancicos about Music from Seventeenth-Century Spain and New Spain},
+vol. 2, Web Library of Seventeenth-Century Music no. 36 (Society for
+Seventeenth-Century Music, \url{http://www.sscm-wlscm.org/})}
+
+\cvItem{2017}
+{\wtitle{Villancicos about Music from Seventeenth-Century Spain and New Spain}
+(vol. 1), Web Library of Seventeenth-Century Music no. 32}
+
+\subsection{Websites and Software}
+
+\cvItem{2014--Present}
+{\url{http://www.andrewcashner.com}, Personal website}
+
+\cvItem{2021--Present}
+{\url{http://www.arca1650.info}, \wtitle{Arca musarithmica: A Device for
+Automatic Music Composition from 1650}}
+
+\cvItem{2018--Present}
+{\LaTeX{} packages: \wtitle{semantic-markup}, \wtitle{musicography},
+\wtitle{octave} (\url{https://ctan.org/author/cashner})}
+
+\section{Professional Activities and Accomplishments}
+\cvItem{2019--Present}
+{Catalyst (Director) for Worship and Creative Arts
+New Hope Free Methodist Church, Rochester, NY}
+
+\cvItem{2014--2015}
+{Organist, St. Peter's Episcopal Church, Chicago, IL}
+
+\cvItem{2006--2013}
+{Assistant editor, \wtitle{INSIGHT} periodical, International Council on
+Systems Engingeering}
+    
+\cvItem{2007--2009}
+{Organist and choir director, St. Paul's Lutheran Church, Chesterton, IN}
+    
+\cvItem{2004--06}
+{Director of Music, Grace Presbyterian Church, Fort Wayne, IN}
+
+
+\section{Skills}
+\subsection{Programming Languages and Digital Tools}
+C, Object Pascal, Scheme LISP, Haskell, \LaTeX, HTML, CSS, XML, XSLT, 
+Lilypond, Dorico, Reaper, Adobe Premiere Pro
+
+\subsection{Languages}
+Spanish (fluent); German (proficient); Latin, French, Italian,
+Biblical Greek (reading); Seneca (intermediate beginner)
+\end{document}
