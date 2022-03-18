@@ -8,14 +8,14 @@
 
 \RequirePackage{semantic-markup}
 \RequirePackage{microtype}
-
-\RequirePackage{sectsty}
-\allsectionsfont{\normalfont\sffamily}
 \RequirePackage{url}
 \urlstyle{sf}
 
-\RequirePackage{booktabs}
+\RequirePackage{sectsty}
+\allsectionsfont{\normalfont\sffamily}
+\setcounter{secnumdepth}{0}
 
+\RequirePackage{booktabs}
 
 \RequirePackage[authordate]{biblatex-chicago}
 \addbibresource{indigenous.bib}
@@ -23,6 +23,16 @@
 
 \RequirePackage{newunicodechar}
 \newunicodechar{ħ}{$\mathrm{\hbar}$}
-\setcounter{secnumdepth}{0}
+
+\RequirePackage{graphicx}
+\graphicspath{{include/}}
+\NewDocumentCommand{\cvGraphicsBox}{ O{0.9\textheight} m }{%
+    \fbox{\includegraphics[height=#1]{#2}}%
+}
+
+\RequirePackage{pdfpages}
+\NewDocumentCommand{\cvIncludePDF}{ O{pages={1-}} m }{%
+    \includepdf[#1]{#2}%
+}
 
 \endinput
