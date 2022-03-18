@@ -1,46 +1,4 @@
-\documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{newtxmath, newtxtext}
-\setlength{\parindent}{0pt}
-\usepackage{url}
-\urlstyle{sf}
-\usepackage{tabularx}
-\usepackage{semantic-markup}
-\usepackage{microtype}
-\raggedright
-\usepackage[none]{hyphenat}
-\setcounter{secnumdepth}{0}
-
-\usepackage{sectsty}
-\allsectionsfont{\normalfont\sffamily}
-
-\newlength{\datewd}
-\AtBeginDocument{\settowidth{\datewd}{2017--Present}}
-\NewDocumentCommand{\cvItem}{ m m o }{%
-    \begin{tabularx}{\textwidth}{@{}p{\datewd} X@{}}
-        #1 & #2
-    \end{tabularx}%
-    \IfValueTF{#3}{\par
-        \smallskip\hspace{\dimexpr\datewd+2em}%
-        \parbox{\dimexpr\textwidth-\datewd-2em}{#3}\par
-        \smallskip}
-        {\par}
-}
-
-\NewDocumentCommand{\cvName}{ m }{%
-    \noindent{\huge #1\par
-    \addvspace{0.5\baselineskip}}%
-}
-
-\NewDocumentEnvironment{cvAddress}{}
-{\begin{tabular}{@{}l}}
-{\end{tabular}}
-
-\NewDocumentEnvironment{cvSkillTable}{}
-{\tabularx{\textwidth}{@{}l X@{}}}
-{\endtabularx}
-
+\documentclass{neh-resume}
 \begin{document}
 \cvName{Andrew A. Cashner, PhD}
 
