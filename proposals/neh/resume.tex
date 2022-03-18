@@ -7,6 +7,8 @@
 \urlstyle{sf}
 \usepackage{tabularx}
 \usepackage{semantic-markup}
+\usepackage{microtype}
+\raggedright
 \usepackage[none]{hyphenat}
 \setcounter{secnumdepth}{0}
 
@@ -16,24 +18,29 @@
 \newlength{\datewd}
 \AtBeginDocument{\settowidth{\datewd}{2017--Present}}
 \NewDocumentCommand{\cvItem}{ m m o }{%
-    \begin{tabularx}{\textwidth}{@{}p{\datewd} X}
+    \begin{tabularx}{\textwidth}{@{}p{\datewd} X@{}}
         #1 & #2
     \end{tabularx}%
     \IfValueTF{#3}{\par
-        \smallskip\hspace{\dimexpr\datewd + 3em}%
-        \parbox{\dimexpr\textwidth-\datewd-3em}{#3}\par
+        \smallskip\hspace{\dimexpr\datewd+2em}%
+        \parbox{\dimexpr\textwidth-\datewd-2em}{#3}\par
         \smallskip}
         {\par}
+}
+
+\NewDocumentCommand{\cvName}{ m }{%
+    \noindent{\huge #1\par
+    \addvspace{0.5\baselineskip}}%
 }
 
 \NewDocumentEnvironment{cvAddress}{}
 {\begin{tabular}{@{}l}}
 {\end{tabular}}
 
-\NewDocumentCommand{\cvName}{ m }{%
-    \noindent{\huge #1\par
-    \addvspace{0.5\baselineskip}}%
-}
+\NewDocumentEnvironment{cvSkillTable}{}
+{\tabularx{\textwidth}{@{}l X@{}}}
+{\endtabularx}
+
 \begin{document}
 \cvName{Andrew A. Cashner, PhD}
 
@@ -152,9 +159,25 @@ music-composition device, \url{www.arca1650.info})}
 \wtitle{octave} (\url{ctan.org/author/cashner})}
 
 \section{Professional Activities and Accomplishments}
+\cvItem{2017--Present}
+{University of Rochester undergraduate teaching}
+[Select courses: 
+History of Western Music 1600--Present, 
+Experiencing Music, 
+Music in Christian Worship, 
+Opera and Musical Theater, 
+Arranging, 
+Music in New Worlds: Global Encounters in the Age of Discoveries]
+
 \cvItem{2019--Present}
-{Catalyst for Worship and Creative Arts
+{Catalyst for Worship and Creative Arts,
 New Hope Free Methodist Church, Rochester, NY}
+
+\cvItem{2015--2017}
+{University of Southern California, undergraduate and graduate teaching}
+[Select courses:
+History of Western  Music (all periods), Baroque Music, Research Methods,
+Popular Song in Religious Devotion]
 
 \cvItem{2014--2015}
 {Organist, St.\ Peter's Episcopal Church, Chicago, IL}
@@ -170,24 +193,22 @@ Systems Engingeering}
 {Director of Music, Grace Presbyterian Church, Fort Wayne, IN}
 
 
-\section{Skills}
-\subsection{Digital Tools}
-\begin{tabular}{ll}
-    General-purpose programming languages 
+\section{Skills: Digital Tools and Languages}
+\begin{cvSkillTable}
+    Programming languages 
     & C, Object Pascal, Scheme LISP, Haskell \\
-    Document markup languages and software
+    
+    Publishing (web, print)
     & \LaTeX, HTML, CSS, XML, XSLT, Pandoc \\
-    Music-notation software 
-    & Lilypond, Dorico \\
-    Audio and video editing software
-    & Reaper, Adobe Premiere Pro
-\end{tabular}
 
-\subsection{Languages}
-\begin{tabular}{ll}
-    High proficiency & Spanish, German \\
-    Proficient reading & Latin, Italian, French, Biblical Greek \\
-    Basic proficiency & Seneca \\
-\end{tabular}
-
+    Media production
+    & Lilypond, Dorico (music notation); 
+    Reaper (audio); 
+    Adobe Premiere Pro (video)\\[1ex]
+   
+    Languages 
+    & Spanish, German (High proficiency); 
+    Latin, Italian, French, Biblical Greek (Reading proficiency); 
+    Seneca (Basic proficiency)
+\end{cvSkillTable}
 \end{document}
