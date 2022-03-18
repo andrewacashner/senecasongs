@@ -9,9 +9,13 @@
 \RequirePackage{semantic-markup}
 \RequirePackage{url}
 \urlstyle{sf}
+
 \RequirePackage[authordate]{biblatex-chicago}
 \addbibresource{indigenous.bib}
+\setlength{\bibitemsep}{0pt}
+
 \RequirePackage{newunicodechar}
 \newunicodechar{ħ}{$\mathrm{\hbar}$}
 \setcounter{secnumdepth}{0}
+
 \endinput
