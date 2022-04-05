@@ -16,6 +16,7 @@
 \setcounter{secnumdepth}{0}
 
 \RequirePackage{booktabs}
+\RequirePackage{tabularx}
 
 \RequirePackage[authordate]{biblatex-chicago}
 \addbibresource{indigenous.bib}
