@@ -11,6 +11,10 @@
 \RequirePackage{url}
 \urlstyle{sf}
 
+\RenewDocumentCommand{\maketitle}{}{%
+    \noindent{\sffamily\LARGE\@title\par\addvspace{1em}}%
+}
+
 \RequirePackage{sectsty}
 \allsectionsfont{\normalfont\sffamily}
 \setcounter{secnumdepth}{0}
