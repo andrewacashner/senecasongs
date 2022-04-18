@@ -5,7 +5,7 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage{newtxmath, newtxtext}
 \RequirePackage[margin=1in]{geometry}
-
+\frenchspacing
 \RequirePackage{semantic-markup}
 \RequirePackage{microtype}
 \RequirePackage{url}
