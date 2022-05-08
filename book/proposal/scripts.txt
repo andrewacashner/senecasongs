@@ -1,0 +1,8 @@
+# From Markdown to HTML5, processing citations
+pandoc -C -t html5 --section-divs -o narrative-md-auto.html narrative.md
+
+# From HTML5 to HTML5, processing citations
+pandoc -C --bibliography indigenous.bib -f markdown -t html5 -o narrative-citeabbrevs-auto.html --section-divs narrative-citeabbrevs.html
+
+# From Markdown to LaTeX, processing citations
+pandoc -C -t latex -o narrative-auto.tex narrative.md

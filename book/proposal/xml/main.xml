@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+  <head>
+    <title>Project Proposal</title>
+  </head>
+  <body>
+    <header>
+      <h1>Project Proposal</h1>
+      <h2 class="author">Andrew A. Cashner</h2>
+    </header>
+    <main>
+      <xi:include href="narrative.xml"/>
+      <xi:include href="indigenous.bltxml"/>
+    </main>
+    <footer>
+      <p>Copyright © 2022 Andrew A. Cashner</p>
+    </footer>
+  </body>
+</document>

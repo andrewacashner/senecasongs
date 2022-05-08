@@ -1,0 +1,97 @@
+/* CSS for senecasongs.earth, 2022/05/05 */
+
+/* SPACING, LAYOUT */
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 90%;
+  max-width: 40em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+header {
+  position: relative;
+  margin-bottom: 1.5em;
+}
+
+main {
+  line-height: 1.5em;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+p + p {
+  text-indent: 2em;
+}
+
+/* FONT, STYLE */
+
+body {
+  font-family: 'Linux Libertine O', serif;
+  font-size: 125%;
+  hyphens: auto;
+  text-align: justify;
+}
+h1, h2, h3 {
+  font-family: 'Linux Biolinum O', sans-serif;
+}
+
+
+cite {
+  font-style: italic;
+}
+
+em.foreign {
+  font-style: italic;
+}
+
+q {
+  quotes : "“" "”" "‘" "’"
+}
+
+/* a */
+
+a.citation {
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: LightGray;
+}
+
+a.citation:hover {
+  background: LightGray;
+}
+
+
+ul.bibliography {
+  list-style: none;
+  line-height: 1.5em;
+  text-indent: -2em;
+  padding-left: 2em;
+}
+
+ul.bibliography li {
+  margin-bottom: 1ex;
+}
+
+footer {
+  margin-top: 3em;
+  margin-bottom: 1em;
+
+  color: DimGray;
+  font-size: 80%;
+}
+
+footer p {
+  text-align: center;
+}
+

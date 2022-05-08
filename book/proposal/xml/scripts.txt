@@ -1,0 +1,12 @@
+# XML to HTML5
+
+saxon -xi:on -xsl:to_html.xsl -s:main.xml -o:main.html
+
+# XML to LaTeX to PDF
+
+saxon -xi:on -xsl:to_latex.xsl -s:main.xml -o:main.tex
+latexmk -outdir=aux -pdf main
+
+# Generate XML bibliography from BibLaTeX via biber
+
+biber --tool --output-format=biblatexml indigenous.bib
