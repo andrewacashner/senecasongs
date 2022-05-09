@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TEI version="4.4.0" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:aac="aac.xsd">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Songs at the Woods' Edge: Project Proposal</title>
+        <author>Andrew A. Cashner</author>
+      </titleStmt>
+      <publicationStmt>
+        <pubPlace>Rochester, New York</pubPlace>
+        <publisher>Musurgia Publishing</publisher>
+        <date when="2022" />
+        <availability>
+          <p>Copyright © 2022 Andrew A. Cashner. All rights reserved.</p>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Born digital and published on the web at <ref target="http://www.senecasongs.earth/"> www.senecasongs.earth </ref>.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <titlePage>
+        <docTitle>
+          <titlePart type="main">Songs at the Woods' Edge</titlePart>
+          <titlePart type="sub">Project Proposal</titlePart>
+        </docTitle>
+        <docAuthor>Andrew A. Cashner</docAuthor>
+      </titlePage>
+    </front>
+    <body>
+      <xi:include href="narrative.xml"/>
+    </body>
+    <back>
+      <!--
+        <xi:include href="indigenous.bltxml"/>
+      -->
+    </back>
+  </text>
+</TEI>
