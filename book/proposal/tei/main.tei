@@ -30,7 +30,7 @@
       </titlePage>
     </front>
     <body>
-      <xi:include href="narrative.xml"/>
+      <xi:include href="narrative.tei"/>
     </body>
     <back>
       <!--
