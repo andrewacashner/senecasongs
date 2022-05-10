@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TEI version="4.4.0" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:aac="aac.xsd">
+<TEI version="4.4.0" xmlns="http://www.tei-c.org/ns/1.0" xmlns:aac="aac.xsd">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -7,7 +7,7 @@
         <author>Andrew A. Cashner</author>
       </titleStmt>
       <publicationStmt>
-        <pubPlace>Rochester, New York</pubPlace>
+        <pubPlace>Rochester, NY</pubPlace>
         <publisher>Musurgia Publishing</publisher>
         <date when="2022" />
         <availability>
@@ -30,7 +30,8 @@
       </titlePage>
     </front>
     <body>
-      <xi:include href="narrative.tei"/>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" 
+        href="include/narrative.tei"/>
     </body>
     <back>
       <!--

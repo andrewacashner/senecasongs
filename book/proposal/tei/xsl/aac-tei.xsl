@@ -3,9 +3,9 @@
   version="2.0" 
   xmlns="http://www.tei-c.org/ns/1.0" 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-  xmlns:xi="http://www.w3.org/2001/XInclude" 
-  xmlns:aac="aac.xsd" 
-  exclude-result-prefixes="xi aac">
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:aac="aac.xsd"
+  exclude-result-prefixes="xi">
 
   <xsl:output method="xml" encoding="utf-8" indent="yes" />
 
@@ -17,15 +17,20 @@
     </xsl:copy>
   </xsl:template>
 
-  <!-- TODO normalize space -->
+  <xsl:template match="text()" priority="1">
+    <xsl:value-of select="replace(replace(replace(.,
+    '''', '’'),
+    '---', '—'),
+    '--', '–')" />
+  </xsl:template>
+
+  <xsl:template match="comment()" priority="1" />
 
   <!-- TODO placeholder for fetching bib label -->
   <xsl:template name="parencite">
     <xsl:variable name="bibKey" select="@key" />
     <link target="#{$bibKey}">
-      <hi rend="bold">
-        <xsl:value-of select="$bibKey" />
-      </hi>
+      <hi><xsl:value-of select="$bibKey" /></hi>
       <xsl:if test="string(.)">
         <xsl:text>, </xsl:text>
       </xsl:if>
@@ -59,4 +64,5 @@
     <xsl:text>$</xsl:text>
     <xsl:apply-templates />
   </xsl:template>
+
 </xsl:stylesheet>
