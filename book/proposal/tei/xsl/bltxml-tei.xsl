@@ -3,19 +3,20 @@
   version="2.0"
   xmlns="http://www.tei-c.org/ns/1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:bltx="http://biblatex-biber.sourceforge.net/biblatexml">
+  xmlns:bltx="http://biblatex-biber.sourceforge.net/biblatexml"
+  exclude-result-prefixes="bltx">
 
   <xsl:output method="xml" encoding="utf-8" indent="yes" />
 
   <xsl:strip-space elements="*" />
 
-  <xsl:template match="@* | node()">
-    <xsl:copy>
-      <xsl:apply-templates select="@* | node()" />
-    </xsl:copy>
+  <xsl:template match="/">
+    <xsl:apply-templates select="bltx:entries"/>
   </xsl:template>
 
-  <xsl:template match="text()" priority="0.1">
+  <xsl:template match="comment()" priority="0.8" />
+
+  <xsl:template match="text()" priority="0.9">
     <xsl:call-template name="expand-tex-macros" />
   </xsl:template>
 
@@ -76,41 +77,152 @@
     <xsl:value-of select="replace(., '\\', '')" />
   </xsl:template>
 
+  <xsl:template match="bltx:entries">
+    <listBibl>
+      <xsl:apply-templates />
+    </listBibl>
+  </xsl:template>
+
+  <!-- TODO match type=collection-->
   <xsl:template match="bltx:entry[@entrytype='book']">
-    <monogr>
-      <xsl:call-template name="biblStruct" />
-    </monogr>
+    <biblStruct id="{@id}" type="book">
+      <monogr>
+        <xsl:apply-templates select="bltx:names" />
+        <title level="m"><xsl:value-of select="bltx:title" /></title>
+        <imprint>
+          <xsl:apply-templates select="bltx:location" />
+          <xsl:apply-templates select="bltx:publisher" />
+          <xsl:apply-templates select="bltx:date" />
+        </imprint>
+      </monogr>
+    </biblStruct>
   </xsl:template>
 
   <xsl:template match="bltx:entry[@entrytype='article']">
-    <analytic>
-      <xsl:call-template name="biblStruct" />
-    </analytic>
+    <biblStruct id="{@id}" type="article">
+      <analytic>
+        <xsl:apply-templates select="bltx:names" />
+        <title><xsl:value-of select="bltx:title" /></title>
+      </analytic>
+      <monogr>
+        <title level="j"><xsl:value-of select="bltx:journaltitle" /></title>
+        <imprint>
+          <xsl:apply-templates select="bltx:date" />
+        </imprint>
+        <xsl:apply-templates select="bltx:volume" />
+        <xsl:apply-templates select="bltx:number" />
+        <xsl:apply-templates select="bltx:pages" />
+      </monogr>
+    </biblStruct>
   </xsl:template>
 
-  <!-- TODO start here -->
-  <xsl:template name="biblStruct">
-    <xsl:call-template name="biblStruct-author">
-      <xsl:with-param name="author" select="bltx:names[@type='author']" />
-    </xsl:call-template>
-    <xsl:call-template name="biblStruct-editor">
-      <xsl:with-param name="author" select="bltx:names[@type='editor']" />
-    </xsl:call-template>
-    <title level="m"><xsl:apply-templates select="bltx:title" /></title>
-    <imprint>
-      <publisher>
-        <xsl:apply-templates select="bltx:publisher/bltx:list/bltx:item" />
-      </publisher>
-      <pubPlace>
-        <xsl:apply-templates select="bltx:location/bltx:list/bltx:item" />
-      </pubPlace>
-      <xsl:variable name="date" select="bltx:date" />
-      <date when={$date} />
-    </imprint>
-
-
+  <xsl:template match="bltx:entry[@entrytype='incollection']">
+    <biblStruct id="{@id}" type="inCollection">
+      <analytic>
+        <xsl:apply-templates select="bltx:names[@type='author']" />
+        <title level="a"><xsl:value-of select="bltx:title" /></title>
+      </analytic>
+      <monogr>
+        <title level="m"><xsl:value-of select="bltx:booktitle" /></title>
+        <xsl:apply-templates select="bltx:names[@type='editor']" />
+        <imprint>
+          <xsl:apply-templates select="bltx:location" />
+          <xsl:apply-templates select="bltx:publisher" />
+          <xsl:apply-templates select="bltx:date" />
+        </imprint>
+        <xsl:apply-templates select="bltx:pages" />
+      </monogr>
+    </biblStruct>
   </xsl:template>
 
+  <xsl:template match="bltx:names[@type='author']">
+    <author>
+      <xsl:apply-templates select="bltx:name" />
+    </author>
+  </xsl:template>
+  
+  <xsl:template match="bltx:names[@type='editor']">
+    <editor>
+      <xsl:apply-templates select="bltx:name" />
+    </editor>
+  </xsl:template>
+
+  <xsl:template match="bltx:name">
+    <persName>
+      <forename>
+        <xsl:call-template name="names">
+          <xsl:with-param name="namepart" select="bltx:namepart[@type='given']" />
+        </xsl:call-template>
+      </forename>
+      <surname>
+        <xsl:call-template name="names">
+          <xsl:with-param name="namepart" select="bltx:namepart[@type='family']" />
+        </xsl:call-template>
+      </surname>
+    </persName>
+  </xsl:template>
+
+  <xsl:template name="names">
+    <xsl:param name="namepart" />
+    <xsl:choose>
+      <xsl:when test="$namepart/bltx:namepart">
+        <xsl:value-of select="$namepart/bltx:namepart" separator=" " />
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$namepart" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="bltx:publisher">
+    <publisher>
+      <xsl:call-template name="and-list" />
+    </publisher>
+  </xsl:template>
+
+  <xsl:template match="bltx:location">
+    <pubPlace>
+      <xsl:call-template name="and-list" />
+    </pubPlace>
+  </xsl:template>
+
+  <xsl:template name="and-list">
+    <xsl:apply-templates select="bltx:list">
+      <xsl:with-param name="separator"> and </xsl:with-param>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="bltx:list">
+    <xsl:param name="separator" />
+    <xsl:value-of select="bltx:item" separator="$separator" />
+  </xsl:template>
+
+  <xsl:template match="bltx:date">
+    <xsl:variable name="date" select="." />
+    <date when="{$date}" />
+  </xsl:template>
+
+  <xsl:template match="bltx:journaltitle">
+    <title level="j">
+      <xsl:apply-templates />
+    </title>
+  </xsl:template>
+
+  <xsl:template match="bltx:volume">
+    <biblScope unit="volume"><xsl:apply-templates /></biblScope>
+  </xsl:template>
+
+  <xsl:template match="bltx:number">
+    <biblScope unit="issue"><xsl:apply-templates /></biblScope>
+  </xsl:template>
+
+  <xsl:template match="bltx:pages">
+    <xsl:variable name="start" select="bltx:list/bltx:item/bltx:start" />
+    <xsl:variable name="end" select="bltx:list/bltx:item/bltx:end" />
+    <biblScope unit="page" from="{$start}" to="{$end}" />
+  </xsl:template>
+
+  <!-- TODO replace TeX dash macros -->
 
 </xsl:stylesheet>
 
