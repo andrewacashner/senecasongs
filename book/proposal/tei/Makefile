@@ -33,6 +33,13 @@ build/%.html : aux/%.tei xsl/tei-html.xsl
 aux/%.tei : %.tei $(tei_include) xsl/aac-tei.xsl | $(dirs)
 	$(saxon) -xi:on -xsl:xsl/aac-tei.xsl -s:main.tei -o:$@
 
+aux/%.bcf : aux/%.tex
+	biber $< -O $@
+
+aux/%.bltxml : aux/%.bcf xsl/bibexpand.sed
+	biber --output-format=biblatexml $@ -O $@
+	sed -f xsl/bibexpand.sed -i $@
+
 view : view-web view-book
 
 view-web : $(html_out)
