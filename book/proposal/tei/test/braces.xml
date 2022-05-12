@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <bookList>
+    <book>
+      <title>{This is the Year}</title>
+    </book>
+    <book>
+      <title>{This {Is the Year {Of Jason's} Bar Mitvah}!}</title>
+    </book>
+    <book>
+      <title>We're More Excited than We Should Be</title>
+    </book>
+  </bookList>
+</xml>

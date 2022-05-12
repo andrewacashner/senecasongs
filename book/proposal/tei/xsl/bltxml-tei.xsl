@@ -224,6 +224,41 @@
 
   <!-- TODO replace TeX dash macros -->
 
+  <!-- recursive match-braces function
+    - start at level 0, find open brace
+    - copy from open brace at level 0 to close brace at level 0
+    - after finding open brace, increase level if another brace is found and decrease when closing one is found
+    - when inner open brace is found, do the match-brace function for the substring starting there
+  -->
+  <xsl:template name="match-braces">
+    <xsl:param name="string" />
+    <xsl:choose>
+      <xsl:when test="contains($string, '\{{') and contains($string, '\}}')">
+        <xsl:variable name="after-open-brace" select="substring-after($string, '\{{')" />
+        <xsl:choose>
+          <xsl:when test="contains($after-open-brace, '\{{')">
+            <xsl:call-template name="inner-match-braces">
+              <xsl:with-param name="string" select="$after-open-brace" />
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="substring-before($after-open-brace, '\}}')" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$string" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="match-braces">
+    <xsl:call-template name="inner-match-braces">
+      <xsl:with-param name="string" select="string()" />
+      <xsl:with-param name="braceLevel" select="0" />
+    </xsl:call-template>
+  </xsl:template>
+
 </xsl:stylesheet>
 
 
