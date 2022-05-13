@@ -2,10 +2,10 @@
 <xml>
   <bookList>
     <book>
-      <title>{This is the Year}</title>
+      <title>\mkbibemph{This is the Year}</title>
     </book>
     <book>
-      <title>{This {Is the Year {Of Jason's} Bar Mitvah}!}</title>
+      <title>\mkbibquote{This {Is the Year {Of Jason's} Bar Mitvah}!}</title>
     </book>
     <book>
       <title>We're More Excited than We Should Be</title>
