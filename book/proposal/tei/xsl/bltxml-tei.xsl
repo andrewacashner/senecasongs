@@ -14,67 +14,98 @@
     <xsl:apply-templates select="bltx:entries"/>
   </xsl:template>
 
-  <xsl:template match="comment()" priority="0.8" />
+  <xsl:template match="comment()" />
 
-  <xsl:template match="text()" priority="0.9">
-    <xsl:call-template name="expand-tex-macros" />
-  </xsl:template>
-
-  <!-- TODO note, this does not handle nested brace expressions -->
-  <xsl:template name="expand-tex-macros">
-    <xsl:call-template name="expand-mkbibquote" />
+  <xsl:template match="text()">
+    <!-- TODO note, this does not handle nested brace expressions -->
+    <xsl:variable name="quoted">
+      <xsl:call-template name="expand-mkbibquote">
+        <xsl:with-param name="string" select="." />
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:value-of select="$quoted" />
+    <!--
+    <xsl:variable name="emphasized">
+      <xsl:call-template name="expand-mkbibemph">
+        <xsl:with-param name="string" select="$quoted" />
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="parenthesized">
+      <xsl:call-template name="expand-mkbibparens">
+        <xsl:with-param name="string" select="$emphasized" />
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="debraced">
+      <xsl:call-template name="remove-tex-braces">
+        <xsl:with-param name="string" select="$parenthesized" />
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="debackslashed">
+      <xsl:call-template name="remove-tex-backslashes">
+        <xsl:with-param name="string" select="$debraced" />
+      </xsl:call-template>
+    </xsl:variable>
+      <xsl:value-of select="$debackslashed" />
+    -->
   </xsl:template>
   
-  <xsl:variable name="within-braces">\{([^\{\}]*)\}</xsl:variable>
+  <xsl:variable name="within-braces">\{([^\}]*)\}</xsl:variable>
 
   <xsl:template name="expand-mkbibquote">
-    <xsl:analyze-string select="string()" regex="\\mkbibquote{$within-braces}">
+    <xsl:param name="string" />
+    <xsl:analyze-string select="$string" regex="\\mkbibquote{$within-braces}"> 
       <xsl:matching-substring>
-        <q><xsl:value-of select="regex-group(1)" /></q>
+        <xsl:element name="q"> <!-- TODO doesn't come through -->
+          <xsl:value-of select="concat('[RACCOON]', regex-group(1))" />
+          </xsl:element>
       </xsl:matching-substring>
-      <xsl:non-matching-substring>
-        <xsl:call-template name="expand-mkbibemph" />
+      <xsl:non-matching-substring> <!-- TODO also copies matched strings? -->
+        <xsl:value-of select="concat('[SQUIRREL]', $string)" />
       </xsl:non-matching-substring>
     </xsl:analyze-string>
   </xsl:template>
 
   <xsl:template name="expand-mkbibemph">
-    <xsl:analyze-string select="string()" regex="\\mkbibemph{$within-braces}">
+    <xsl:param name="string" />
+    <xsl:analyze-string select="$string" regex="\\mkbibemph{$within-braces}">
       <xsl:matching-substring>
         <emph><xsl:value-of select="regex-group(1)" /></emph>
       </xsl:matching-substring>
       <xsl:non-matching-substring>
-        <xsl:call-template name="expand-mkbibparens" />
+        <xsl:value-of select="$string" />
       </xsl:non-matching-substring>
     </xsl:analyze-string>
   </xsl:template>
 
   <xsl:template name="expand-mkbibparens">
-    <xsl:analyze-string select="string()" regex="\\mkbibparens{$within-braces}">
+    <xsl:param name="string" />
+    <xsl:analyze-string select="$string" regex="\\mkbibparens{$within-braces}">
       <xsl:matching-substring>
         <xsl:text>(</xsl:text>
         <xsl:value-of select="regex-group(1)" />
         <xsl:text>)</xsl:text>
       </xsl:matching-substring>
       <xsl:non-matching-substring>
-        <xsl:call-template name="remove-tex-braces" />
+        <xsl:value-of select="$string" />
       </xsl:non-matching-substring>
     </xsl:analyze-string>
   </xsl:template>
 
   <xsl:template name="remove-tex-braces">
-    <xsl:analyze-string select="string()" regex="{$within-braces}">
+    <xsl:param name="string" />
+    <xsl:analyze-string select="$string" regex="{$within-braces}">
       <xsl:matching-substring>
         <xsl:value-of select="regex-group(1)" />
       </xsl:matching-substring>
       <xsl:non-matching-substring>
-        <xsl:call-template name="remove-tex-backslashes" />
+        <xsl:value-of select="$string" />
       </xsl:non-matching-substring>
     </xsl:analyze-string>
   </xsl:template>
 
   <xsl:template name="remove-tex-backslashes">
-    <xsl:value-of select="replace(., '\\', '')" />
+    <xsl:param name="string" />
+    <xsl:value-of select="replace($string, '\\', '')" />
   </xsl:template>
 
   <xsl:template match="bltx:entries">
@@ -88,7 +119,7 @@
     <biblStruct id="{@id}" type="book">
       <monogr>
         <xsl:apply-templates select="bltx:names" />
-        <title level="m"><xsl:value-of select="bltx:title" /></title>
+        <title level="m"><xsl:apply-templates select="bltx:title" /></title>
         <imprint>
           <xsl:apply-templates select="bltx:location" />
           <xsl:apply-templates select="bltx:publisher" />
@@ -102,10 +133,10 @@
     <biblStruct id="{@id}" type="article">
       <analytic>
         <xsl:apply-templates select="bltx:names" />
-        <title><xsl:value-of select="bltx:title" /></title>
+        <title><xsl:apply-templates select="bltx:title" /></title>
       </analytic>
       <monogr>
-        <title level="j"><xsl:value-of select="bltx:journaltitle" /></title>
+        <title level="j"><xsl:apply-templates select="bltx:journaltitle" /></title>
         <imprint>
           <xsl:apply-templates select="bltx:date" />
         </imprint>
@@ -120,10 +151,10 @@
     <biblStruct id="{@id}" type="inCollection">
       <analytic>
         <xsl:apply-templates select="bltx:names[@type='author']" />
-        <title level="a"><xsl:value-of select="bltx:title" /></title>
+        <title level="a"><xsl:apply-templates select="bltx:title" /></title>
       </analytic>
       <monogr>
-        <title level="m"><xsl:value-of select="bltx:booktitle" /></title>
+        <title level="m"><xsl:apply-templates select="bltx:booktitle" /></title>
         <xsl:apply-templates select="bltx:names[@type='editor']" />
         <imprint>
           <xsl:apply-templates select="bltx:location" />
@@ -169,7 +200,7 @@
         <xsl:value-of select="$namepart/bltx:namepart" separator=" " />
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$namepart" />
+        <xsl:apply-templates select="$namepart" />
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -223,41 +254,6 @@
   </xsl:template>
 
   <!-- TODO replace TeX dash macros -->
-
-  <!-- recursive match-braces function
-    - start at level 0, find open brace
-    - copy from open brace at level 0 to close brace at level 0
-    - after finding open brace, increase level if another brace is found and decrease when closing one is found
-    - when inner open brace is found, do the match-brace function for the substring starting there
-  -->
-  <xsl:template name="match-braces">
-    <xsl:param name="string" />
-    <xsl:choose>
-      <xsl:when test="contains($string, '\{{') and contains($string, '\}}')">
-        <xsl:variable name="after-open-brace" select="substring-after($string, '\{{')" />
-        <xsl:choose>
-          <xsl:when test="contains($after-open-brace, '\{{')">
-            <xsl:call-template name="inner-match-braces">
-              <xsl:with-param name="string" select="$after-open-brace" />
-            </xsl:call-template>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="substring-before($after-open-brace, '\}}')" />
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$string" />
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
-  <xsl:template name="match-braces">
-    <xsl:call-template name="inner-match-braces">
-      <xsl:with-param name="string" select="string()" />
-      <xsl:with-param name="braceLevel" select="0" />
-    </xsl:call-template>
-  </xsl:template>
 
 </xsl:stylesheet>
 
