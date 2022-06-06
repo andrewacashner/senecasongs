@@ -176,6 +176,7 @@
     <xsl:text>\LaTeX{}</xsl:text>
   </xsl:template>
 
+  <!-- TODO doesn't work -->
   <xsl:template match="aac:usd">
     <xsl:text>\$</xsl:text>
     <xsl:apply-templates />

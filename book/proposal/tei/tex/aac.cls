@@ -10,7 +10,7 @@ XSLT]
 \RequirePackage{semantic-markup}
 
 \RequirePackage[authordate]{biblatex-chicago}
-\addbibresource{indigenous.bib}
+\addbibresource{main.bib}
 
 \RequirePackage{hyperref}
 \endinput

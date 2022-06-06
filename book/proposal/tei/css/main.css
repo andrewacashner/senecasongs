@@ -1,0 +1,185 @@
+/* CSS for "Songs at the Woods' Edge"
+    Andrew Cashner, 2022/03/14
+*/
+/* SPACING, LAYOUT */
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 90%;
+  max-width: 40em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img.cover {
+  opacity: 0.4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 300px;
+  min-width: 100%;
+  object-fit: cover;
+  object-position: 50%;
+}
+
+
+/* Header */
+header {
+  position: relative;
+  height: 300px;
+  margin-bottom: 1.5em;
+}
+
+header h1 {
+  margin-top: 0.5em;
+  margin-bottom: 0.25em;
+}
+
+header h2 {
+  margin-top: 0;
+}
+
+header p.author {
+  margin-left: 1em;
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+/* Navigation links */
+header nav {
+  max-width: 40em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  margin-top: auto;
+  text-align: right;
+}
+header nav ul {
+  list-style: none;
+}
+header nav ul li {
+  padding-bottom: 0.25em;
+}
+
+
+
+/* Main */
+main {
+  line-height: 1.5em;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+p + p {
+  text-indent: 2em;
+}
+
+ul.biblio {
+  list-style: none;
+  line-height: 1.5em;
+  text-indent: -2em;
+  padding-left: 2em;
+}
+
+ul.biblio li {
+  margin-bottom: 1ex;
+}
+
+/* Footer */
+
+footer {
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+
+footer p.copyright {
+  margin-top: 2em;
+  text-align: center;
+}
+
+/* FONTS, TYPOGRAPHY */
+
+body {
+  font-family: 'VenturisSans ADF', sans-serif;
+  /* other options: Clara, VenturisSans ADF, Gillius ADF No2 */
+  font-size: 125%;
+  hyphens: auto;
+  text-align: justify;
+}
+
+cite {
+  font-style: italic;
+}
+
+q {
+  quotes : "“" "”" "‘" "’"
+}
+
+h1 {
+  font-family: 'Venturis ADF Goth Titling', serif; 
+  font-size: 200%;
+}
+
+h2, h3, h4, h5 {
+  font-family: 'VenturisSans ADF Ex', serif;
+  font-weight: normal;
+  font-size: 150%;
+}
+
+header h1 {
+  font-size: 200%;
+}
+
+header h2 {
+  font-weight: normal;
+  font-size: 140%;
+}
+
+/* LINKS */
+a {
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: LightGray;
+}
+
+a:hover {
+  background: LightGray;
+}
+
+header nav a {
+  color: MidnightBlue;
+  text-decoration: none;
+}
+
+blockquote {
+  font-style: italic;
+}
+
+footer {
+  color: DimGray;
+  font-size: 80%;
+}
+
+/* MEDIA */
+
+audio, video {
+  width: 100%;
+}
+
+embed.pdf {
+  display: block;
+  height: 500px;
+  width: 100%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
+}
