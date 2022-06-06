@@ -20,7 +20,7 @@ biber_bcf   = aux/$(project).bcf
 biber_xml   = aux/$(project)-bib.bltxml
 
 tei_out     = build/$(project).tei
-tei_bib_out = build/$(project)-bib.tei
+tei_bib     = aux/$(project)-bib.tei
 
 pdf_out     = build/$(project).pdf
 html_out    = build/$(project).html
@@ -34,7 +34,7 @@ saxon       = java net.sf.saxon.Transform
 
 all : pdf tei html
 
-tei : $(tei_out) $(tei_bib_out)
+tei : $(tei_out) $(tei_bib)
 
 pdf : $(pdf_out)
 
@@ -61,11 +61,11 @@ aux/%-bib.bltxml : aux/%.bcf $(tex_bib)
 
 # AAC XML to TEI
 ## Main document
-build/%.tei : %.xml $(aac_include) xsl/aac-tei.xsl | $(dirs)
+build/%.tei : %.xml $(aac_include) aux/%-bib.tei xsl/aac-tei.xsl | $(dirs)
 	$(saxon) -xi:on -xsl:xsl/aac-tei.xsl -s:main.xml -o:build/main.tei
 
 ## Bibliography
-build/%-bib.tei : aux/%-bib.bltxml xsl/bltxml-tei.xsl | $(dirs)
+aux/%-bib.tei : aux/%-bib.bltxml xsl/bltxml-tei.xsl | $(dirs)
 	$(saxon) -xsl:xsl/bltxml-tei.xsl -s:$< -o:$@
 
 # TEI to HTML

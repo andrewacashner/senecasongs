@@ -151,4 +151,6 @@
     <strong><xsl:apply-templates /></strong>
   </xsl:template>
 
+  <xsl:include href="tei-html_bib.xsl" />
+
 </xsl:stylesheet>

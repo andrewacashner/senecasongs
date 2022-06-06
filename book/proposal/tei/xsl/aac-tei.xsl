@@ -17,6 +17,7 @@
     </xsl:copy>
   </xsl:template>
 
+
   <xsl:template match="text()" priority="1">
     <xsl:value-of select="replace(replace(replace(.,
     '''', '’'),

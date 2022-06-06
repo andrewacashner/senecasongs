@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TEI version="4.4.0" xmlns="http://www.tei-c.org/ns/1.0" xmlns:aac="aac.xsd">
+<TEI version="4.4.0" 
+  xmlns="http://www.tei-c.org/ns/1.0" 
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:aac="aac.xsd">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -15,7 +18,7 @@
         </availability>
       </publicationStmt>
       <sourceDesc>
-        <p>Born digital and published on the web at <ref target="http://www.senecasongs.earth/"> www.senecasongs.earth </ref>.</p>
+        <p>Born digital and published on the web at <ref target="http://www.senecasongs.earth/">www.senecasongs.earth</ref>.</p>
       </sourceDesc>
     </fileDesc>
   </teiHeader>
@@ -30,13 +33,13 @@
       </titlePage>
     </front>
     <body>
-      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" 
-        href="include/narrative.xml"/>
+      <xi:include href="include/narrative.xml"/>
     </body>
     <back>
-      <!--
-        <xi:include href="indigenous.bltxml"/>
-      -->
+      <div1 id="references">
+        <head>References</head>
+        <xi:include href="aux/main-bib.tei" />
+      </div1>
     </back>
   </text>
 </TEI>
