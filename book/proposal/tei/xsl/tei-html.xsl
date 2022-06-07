@@ -126,7 +126,7 @@
     <p><xsl:apply-templates /></p>
   </xsl:template>
 
-  <xsl:template match="tei:link">
+  <xsl:template match="tei:bibl/tei:link">
     <a href="{@target}"><xsl:apply-templates /></a>
   </xsl:template>
 
