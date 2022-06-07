@@ -29,9 +29,15 @@
 
   <!-- TODO placeholder for fetching bib label -->
   <xsl:template name="parencite">
+    <xsl:param name="bibref" />
     <xsl:variable name="bibKey" select="@key" />
+    <xsl:variable name="author" select="$bibref/monogr/author/persName/surname" />
+    <xsl:variable name="date" select="$bibref/monogr/imprint/date/@when" />
     <link target="#{$bibKey}">
-      <hi><xsl:value-of select="$bibKey" /></hi>
+      <xsl:value-of select="$author" />
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$date" />
+      <!-- pages -->
       <xsl:if test="string(.)">
         <xsl:text>, </xsl:text>
       </xsl:if>
@@ -42,7 +48,9 @@
   <xsl:template match="aac:cite">
     <xsl:variable name="bibKey" select="@key" />
     <xsl:text> (</xsl:text>
-    <xsl:call-template name="parencite" />
+    <xsl:call-template name="parencite">
+      <xsl:with-param name="bibref" select="//biblStruct[@id=$bibKey]" />
+    </xsl:call-template>
     <xsl:text>)</xsl:text>
   </xsl:template>
 

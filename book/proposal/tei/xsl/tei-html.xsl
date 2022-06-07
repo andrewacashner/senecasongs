@@ -9,11 +9,14 @@
 
   <xsl:strip-space elements="*" />
 
+  <xsl:include href="tei-html_bib.xsl" />
+
   <xsl:template match="/">
     <xsl:variable name="title" select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title" />
     <xsl:variable name="titlePage" select="tei:TEI/tei:text/tei:front/tei:titlePage" />
     <xsl:variable name="body" select="tei:TEI/tei:text/tei:body" />
     <xsl:variable name="fileDesc" select="tei:TEI/tei:teiHeader/tei:fileDesc" />
+    <xsl:variable name="back" select="tei:TEI/tei:text/tei:back" />
 
     <html lang="en-us">
       <head>
@@ -29,6 +32,7 @@
         </header>
         <main>
           <xsl:apply-templates select="$body" />
+          <xsl:apply-templates select="$back" />
         </main>
         <footer>
           <hr />
@@ -122,6 +126,10 @@
     <p><xsl:apply-templates /></p>
   </xsl:template>
 
+  <xsl:template match="tei:link">
+    <a href="{@target}"><xsl:apply-templates /></a>
+  </xsl:template>
+
   <xsl:template match="tei:title[@type='m' or @type='']">
     <cite><xsl:apply-templates /></cite>
   </xsl:template>
@@ -151,6 +159,5 @@
     <strong><xsl:apply-templates /></strong>
   </xsl:template>
 
-  <xsl:include href="tei-html_bib.xsl" />
 
 </xsl:stylesheet>

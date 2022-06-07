@@ -69,7 +69,7 @@ aux/%-bib.tei : aux/%-bib.bltxml xsl/bltxml-tei.xsl | $(dirs)
 	$(saxon) -xsl:xsl/bltxml-tei.xsl -s:$< -o:$@
 
 # TEI to HTML
-build/%.html : build/%.tei xsl/tei-html.xsl | $(dirs)
+build/%.html : build/%.tei xsl/tei-html.xsl xsl/tei-html_bib.xsl | $(dirs)
 	$(saxon) -xsl:xsl/tei-html.xsl -s:build/main.tei -o:build/main.html
 
 build/%.css : css/%.css
