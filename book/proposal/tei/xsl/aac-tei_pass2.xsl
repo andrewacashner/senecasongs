@@ -27,10 +27,6 @@
 
   <xsl:template match="comment()" priority="1" />
 
-  <xsl:template match="aac:bibliography">
-    <xi:include href="main-bib.tei" />
-  </xsl:template>
-
   <!-- TODO placeholder for fetching bib label -->
   <xsl:template name="parencite">
     <xsl:variable name="bibKey" select="@key" />

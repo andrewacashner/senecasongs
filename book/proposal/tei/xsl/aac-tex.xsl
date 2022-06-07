@@ -14,12 +14,15 @@
   </xsl:variable>
 
   <xsl:template match="/">
-    <xsl:variable name="title" select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title" />
-    <xsl:variable name="titlePage" select="tei:TEI/tei:text/tei:front/tei:titlePage" />
-    <xsl:variable name="body" select="tei:TEI/tei:text/tei:body" />
-    <xsl:variable name="fileDesc" select="tei:TEI/tei:teiHeader/tei:fileDesc" />
+    <xsl:variable name="title" select="//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title" />
+    <xsl:variable name="titlePage" select="//tei:text/tei:front/tei:titlePage" />
+    <xsl:variable name="body" select="//tei:text/tei:body" />
+    <xsl:variable name="fileDesc" select="//tei:teiHeader/tei:fileDesc" />
 
     <xsl:text>\documentclass{tex/aac}&#xA;</xsl:text>
+    <xsl:call-template name="bibresource">
+      <xsl:with-param name="bibfile" select="//aac:bibliography/@src" />
+    </xsl:call-template>
     <xsl:call-template name="maketitle">
       <xsl:with-param name="titlePage" select="$titlePage" />
       <xsl:with-param name="fileDesc" select="$fileDesc" />
@@ -29,6 +32,15 @@
     <xsl:apply-templates select="$body" />
     <xsl:text>\printbibliography&#xA;</xsl:text>
     <xsl:text>\end{document}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="bibresource">
+    <xsl:param name="bibfile" />
+    <xsl:if test="$bibfile">
+      <xsl:text>\addbibresource{</xsl:text>
+      <xsl:value-of select="$bibfile" />
+      <xsl:text>}&#xA;</xsl:text>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template name="maketitle">

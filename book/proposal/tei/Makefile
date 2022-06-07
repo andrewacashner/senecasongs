@@ -13,11 +13,9 @@ dirs        = aux build
 aac_in      = $(project).xml
 aac_include = $(wildcard include/*.xml)
 
-tex_lib	    = $(wildcard tex/*.cls) 
 tex_bib	    = tex/$(project).bib
-tex_tmp     = aux/$(project).xml
-biber_bcf   = aux/$(project).bcf
-biber_xml   = aux/$(project)-bib.bltxml
+tex_lib	    = $(wildcard tex/*.cls) 
+biber_conf  = tex/biber-sort.conf
 
 tei_out     = build/$(project).tei
 tei_bib     = aux/$(project)-bib.tei
@@ -34,11 +32,11 @@ saxon       = java net.sf.saxon.Transform
 
 all : pdf tei html
 
-tei : $(tei_out) $(tei_bib)
-
 pdf : $(pdf_out)
 
-html : $(html_out) $(css_out)
+tei : $(tei_out) $(tei_bib) 
+
+html : $(html_out) $(css_out) 
 
 $(dirs) : 
 	mkdir -p $(dirs)
@@ -56,37 +54,30 @@ build/%.pdf : aux/%.pdf
 	cp -ur $< $@
 
 ## LaTeX bibliography to TEI bibliography
-aux/%-bib.bltxml : $(tex_bib) 
-	biber --tool --output-format=biblatexml -O $@ $<
+### Generate sorted subset biblatex file of only works cited in latex file
+aux/%.bib : aux/%.bcf $(biber_conf)
+	biber $< --quiet --configfile=$(biber_conf) --output_format=bibtex -O $@
+
+### Convert subset bib file to XML
+aux/%.bltxml : aux/%.bib
+	biber --tool --quiet --output-format=biblatexml --no-bltxml-schema -O $@ $<
 
 # AAC XML to TEI
-## First pass
-aux/%.tei : %.xml $(aac_include) xsl/aac-tei.xsl | $(dirs)
-	$(saxon) -xi:on -xsl:xsl/aac-tei.xsl -s:$< -o:$@
-
-## TODO
-# - process tex file, generate bcf
-#
-# - generate subset of bib file from bcf and sort it:
-# `biber aux/main.bcf -O aux/main.bib --configfile=tex/biber.conf --output_format=bibtex`
-#
-# - generate XML of selected bib:
-# `biber --tool --output-format=biblatexml -O aux/main-bib.bltxml
-# aux/main.bib`
-#
-# - then generate TEI from bltxml with saxon, and include that TEI in main doc
-# - process main doc to convert TEI -> HTML
+## First pass, add xi:include for tei bibliography to main
+aux/%.tei : %.xml $(aac_include) xsl/aac-tei_pass1.xsl | $(dirs)
+	$(saxon) -xi:on -xsl:xsl/aac-tei_pass1.xsl -s:$< -o:$@
 
 ## Bibliography
-aux/%.tei : aux/%.bltxml xsl/bltxml-tei.xsl | $(dirs)
+aux/%-bib.tei : aux/%.bltxml xsl/bltxml-tei.xsl | $(dirs)
 	$(saxon) -xsl:xsl/bltxml-tei.xsl -s:$< -o:$@
 
 ## Second pass: Main document with bibliography
-build/%.tei : aux/%.tei xsl/aac-tei.xsl | aux/%-bib.tei
-	$(saxon) -xi:on -xsl:xsl/aac-tei.xsl -s:$< -o:$@
+build/%.tei : aux/%.tei aux/%-bib.tei xsl/aac-tei_pass2.xsl 
+	$(saxon) -xi:on -xsl:xsl/aac-tei_pass2.xsl -s:$< -o:$@
 
 
 # TEI to HTML
+## (TEI complete document including bibliography and resolved citations)
 build/%.html : build/%.tei xsl/tei-html.xsl xsl/tei-html_bib.xsl | $(dirs)
 	$(saxon) -xsl:xsl/tei-html.xsl -s:$< -o:$@
 
