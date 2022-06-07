@@ -17,3 +17,8 @@
 # To LaTeX
 - (DONE) create tei-tex.xsl
 - (DONE) create LaTeX class
+
+# Bibliography
+- Deal with handline of "Jr." in both TeX and TEI
+- Trailing punctuation with `<q>`, including in bibliographies (or break with
+  Chicago style)

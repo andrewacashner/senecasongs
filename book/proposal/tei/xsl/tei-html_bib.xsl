@@ -15,10 +15,17 @@
     <li id="{@id}">
       <xsl:choose>
         <xsl:when test="tei:monogr/tei:author">
-          <xsl:apply-templates select="tei:monogr/tei:author" />
+          <xsl:call-template name="name-list">
+            <xsl:with-param name="names" select="tei:monogr/tei:author" />
+            <xsl:with-param name="type">lastname-first</xsl:with-param>
+          </xsl:call-template>
         </xsl:when>
         <xsl:when test="tei:monogr/tei:editor">
-          <xsl:apply-templates select="tei:monogr/tei:editor" />
+          <xsl:call-template name="name-list">
+            <xsl:with-param name="names" select="tei:monogr/tei:editor" />
+            <xsl:with-param name="type">lastname-first</xsl:with-param>
+          </xsl:call-template>
+          <xsl:text>, ed</xsl:text>
         </xsl:when>
         <xsl:otherwise>
           <xsl:text>Anonymous</xsl:text>
@@ -34,29 +41,107 @@
     </li>
   </xsl:template>
 
-  <xsl:template match="tei:title[@level='m']">
+  <xsl:template match="tei:biblStruct[@type='article']">
+    <li id="{@id}">
+      <xsl:call-template name="name-list">
+        <xsl:with-param name="names" select="tei:analytic/tei:author" />
+      </xsl:call-template>
+      <xsl:text>. </xsl:text>
+      <xsl:value-of select="tei:monogr/tei:imprint/tei:date/@when" />
+      <xsl:text>. </xsl:text>
+      <xsl:apply-templates select="tei:analytic/tei:title" />
+      <xsl:text>. </xsl:text>
+      <xsl:call-template name="journal-imprint">
+        <xsl:with-param name="imprint" select="tei:monogr" />
+      </xsl:call-template>
+      <xsl:text>.</xsl:text>
+    </li>
+  </xsl:template>
+  
+  <xsl:template match="tei:biblStruct[@type='inCollection']">
+    <li id="{@id}">
+      <xsl:call-template name="name-list">
+        <xsl:with-param name="names" select="tei:analytic/tei:author" />
+      </xsl:call-template>
+      <xsl:text>. </xsl:text>
+      <xsl:value-of select="tei:monogr/tei:imprint/tei:date/@when" />
+      <xsl:text>. </xsl:text>
+      <xsl:apply-templates select="tei:analytic/tei:title[@level='a']" />
+      <xsl:text>. In </xsl:text>
+      <xsl:apply-templates select="tei:monogr/tei:title[@level='m']" />
+      <xsl:text>, edited by </xsl:text>
+      <xsl:call-template name="name-list">
+        <xsl:with-param name="names" select="tei:monogr/tei:editor" />
+        <xsl:with-param name="type">firstname-first</xsl:with-param>
+      </xsl:call-template>
+      <xsl:text>, </xsl:text>
+      <xsl:apply-templates select="tei:monogr/tei:biblScope[@unit='page']" />
+      <xsl:text>. </xsl:text>
+      <xsl:apply-templates select="tei:monogr/tei:imprint/tei:pubPlace" />
+      <xsl:text>: </xsl:text>
+      <xsl:apply-templates select="tei:monogr/tei:imprint/tei:publisher" />
+      <xsl:text>.</xsl:text>
+    </li>
+  </xsl:template>
+
+  <xsl:template name="name-list">
+    <xsl:param name="names" />
+    <xsl:param name="type" />
+    <xsl:variable name="nameCount" select="count($names/tei:persName)" />
+    <xsl:for-each select="$names/tei:persName">
+      <xsl:if test="$nameCount > 2 and not(position()=1) and not(position()=last())">
+        <xsl:text>, </xsl:text>
+      </xsl:if>
+      <xsl:if test="$nameCount > 1 and position()=last()">
+        <xsl:text> and </xsl:text>
+      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="not($type='firstname-first') and position()=1">
+          <xsl:apply-templates select="tei:surname" />
+          <xsl:text>, </xsl:text>
+          <xsl:apply-templates select="tei:forename" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="tei:forename" />
+          <xsl:text> </xsl:text>
+          <xsl:apply-templates select="tei:surname" />
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="tei:title[@level='m' or @level='j']">
     <cite><xsl:apply-templates /></cite>
-  </xsl:template>
-
-  <xsl:template match="tei:monogr/tei:author">
-    <xsl:value-of select="tei:persName/tei:surname" />
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="tei:persName/tei:forename" />
-  <!-- list of names -->
-  </xsl:template>
-
-  <xsl:template match="tei:monogr/tei:editor">
-  <!-- list of names -->
-    <xsl:value-of select="tei:persName/tei:surname" />
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="tei:persName/tei:forename" />
-    <xsl:text>, ed</xsl:text>
   </xsl:template>
 
   <xsl:template match="tei:monogr/tei:imprint">
     <xsl:apply-templates select="tei:pubPlace" />
     <xsl:text>: </xsl:text>
     <xsl:apply-templates select="tei:publisher" />
+  </xsl:template>
+
+  <xsl:template match="tei:analytic/tei:title">
+    <q><xsl:apply-templates /></q>
+  </xsl:template>
+
+  <xsl:template name="journal-imprint">
+    <xsl:param name="imprint" />
+    <xsl:apply-templates select="$imprint/tei:title[@level='j']" />
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$imprint/tei:biblScope[@unit='volume']" />
+    <xsl:if test="$imprint/tei:biblScope[@unit='issue']">
+      <xsl:text> (</xsl:text>
+      <xsl:value-of select="$imprint/tei:biblScope[@unit='issue']" />
+      <xsl:text>)</xsl:text>
+    </xsl:if>
+    <xsl:text>: </xsl:text>
+    <xsl:apply-templates select="$imprint/tei:biblScope[@unit='page']" />
+  </xsl:template>
+
+  <xsl:template match="tei:biblScope[@unit='page']">
+    <xsl:value-of select="@from" />
+    <xsl:text>–</xsl:text>
+    <xsl:value-of select="@to" />
   </xsl:template>
 
 </xsl:stylesheet>
