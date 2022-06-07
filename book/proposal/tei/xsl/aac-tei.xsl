@@ -27,12 +27,17 @@
 
   <xsl:template match="comment()" priority="1" />
 
+  <xsl:template match="aac:bibliography">
+    <xi:include href="main-bib.tei" />
+  </xsl:template>
+
   <!-- TODO placeholder for fetching bib label -->
   <xsl:template name="parencite">
-    <xsl:param name="bibref" />
     <xsl:variable name="bibKey" select="@key" />
-    <xsl:variable name="author" select="$bibref/monogr/author/persName/surname" />
-    <xsl:variable name="date" select="$bibref/monogr/imprint/date/@when" />
+    <xsl:variable name="pages" select="@pages" />
+    <xsl:variable name="ref" select="//biblStruct[@id=$bibKey]" />
+    <xsl:variable name="author" select="$ref/monogr/author/persName/surname" />
+    <xsl:variable name="date" select="$ref/monogr/imprint/date/@when" />
     <link target="#{$bibKey}">
       <xsl:value-of select="$author" />
       <xsl:text> </xsl:text>
@@ -41,20 +46,17 @@
       <xsl:if test="string(.)">
         <xsl:text>, </xsl:text>
       </xsl:if>
-      <xsl:apply-templates />
     </link>
   </xsl:template>
 
   <xsl:template match="aac:cite">
-    <xsl:variable name="bibKey" select="@key" />
     <xsl:text> (</xsl:text>
-    <xsl:call-template name="parencite">
-      <xsl:with-param name="bibref" select="//biblStruct[@id=$bibKey]" />
-    </xsl:call-template>
+    <xsl:call-template name="parencite" />
     <xsl:text>)</xsl:text>
   </xsl:template>
 
   <xsl:template match="aac:citeList">
+    <xsl:variable name="bibKey" select="@key" />
     <xsl:text> (</xsl:text>
     <xsl:for-each select="aac:cite">
       <xsl:call-template name="parencite" />

@@ -38,7 +38,7 @@
     <back>
       <div1 id="references">
         <head>References</head>
-        <xi:include href="aux/main-bib.tei" />
+        <aac:bibliography src="tex/main.bib" />
       </div1>
     </back>
   </text>

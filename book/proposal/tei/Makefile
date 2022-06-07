@@ -14,7 +14,7 @@ aac_in      = $(project).xml
 aac_include = $(wildcard include/*.xml)
 
 tex_lib	    = $(wildcard tex/*.cls) 
-tex_bib	    = $(project).bib
+tex_bib	    = tex/$(project).bib
 tex_tmp     = aux/$(project).xml
 biber_bcf   = aux/$(project).bcf
 biber_xml   = aux/$(project)-bib.bltxml
@@ -56,21 +56,39 @@ build/%.pdf : aux/%.pdf
 	cp -ur $< $@
 
 ## LaTeX bibliography to TEI bibliography
-aux/%-bib.bltxml : aux/%.bcf $(tex_bib)
-	biber --output-format=biblatexml -O $@ $<
+aux/%-bib.bltxml : $(tex_bib) 
+	biber --tool --output-format=biblatexml -O $@ $<
 
 # AAC XML to TEI
-## Main document
-build/%.tei : %.xml $(aac_include) aux/%-bib.tei xsl/aac-tei.xsl | $(dirs)
-	$(saxon) -xi:on -xsl:xsl/aac-tei.xsl -s:main.xml -o:build/main.tei
+## First pass
+aux/%.tei : %.xml $(aac_include) xsl/aac-tei.xsl | $(dirs)
+	$(saxon) -xi:on -xsl:xsl/aac-tei.xsl -s:$< -o:$@
+
+## TODO
+# - process tex file, generate bcf
+#
+# - generate subset of bib file from bcf and sort it:
+# `biber aux/main.bcf -O aux/main.bib --configfile=tex/biber.conf --output_format=bibtex`
+#
+# - generate XML of selected bib:
+# `biber --tool --output-format=biblatexml -O aux/main-bib.bltxml
+# aux/main.bib`
+#
+# - then generate TEI from bltxml with saxon, and include that TEI in main doc
+# - process main doc to convert TEI -> HTML
 
 ## Bibliography
-aux/%-bib.tei : aux/%-bib.bltxml xsl/bltxml-tei.xsl | $(dirs)
+aux/%.tei : aux/%.bltxml xsl/bltxml-tei.xsl | $(dirs)
 	$(saxon) -xsl:xsl/bltxml-tei.xsl -s:$< -o:$@
+
+## Second pass: Main document with bibliography
+build/%.tei : aux/%.tei xsl/aac-tei.xsl | aux/%-bib.tei
+	$(saxon) -xi:on -xsl:xsl/aac-tei.xsl -s:$< -o:$@
+
 
 # TEI to HTML
 build/%.html : build/%.tei xsl/tei-html.xsl xsl/tei-html_bib.xsl | $(dirs)
-	$(saxon) -xsl:xsl/tei-html.xsl -s:build/main.tei -o:build/main.html
+	$(saxon) -xsl:xsl/tei-html.xsl -s:$< -o:$@
 
 build/%.css : css/%.css
 	cp -ur $< $@
