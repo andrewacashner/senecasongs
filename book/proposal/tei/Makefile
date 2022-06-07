@@ -48,7 +48,7 @@ aux/%.tex : %.xml $(aac_include) xsl/aac-tex.xsl | $(dirs)
 
 ## LaTeX to PDF
 aux/%.pdf aux/%.bcf : aux/%.tex $(tex_lib) $(tex_bib)
-	latexmk -outdir=aux -pdf -silent $*
+	latexmk -outdir=aux -pdf -quiet $*
 
 build/%.pdf : aux/%.pdf
 	cp -ur $< $@
@@ -56,7 +56,8 @@ build/%.pdf : aux/%.pdf
 ## LaTeX bibliography to TEI bibliography
 ### Generate sorted subset biblatex file of only works cited in latex file
 aux/%.bib : aux/%.bcf $(biber_conf)
-	biber $< --quiet --configfile=$(biber_conf) --output_format=bibtex -O $@
+	biber $< --quiet --configfile=$(biber_conf) --output_format=bibtex \
+		--output-resolve-crossrefs -O $@
 
 ### Convert subset bib file to XML
 aux/%.bltxml : aux/%.bib

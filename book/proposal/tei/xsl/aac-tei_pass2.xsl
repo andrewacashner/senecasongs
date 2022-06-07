@@ -32,18 +32,26 @@
     <xsl:variable name="bibKey" select="@key" />
     <xsl:variable name="pages" select="@pages" />
     <xsl:variable name="ref" select="//tei:biblStruct[@id=$bibKey]" />
-    <xsl:variable name="author" select="$ref//tei:author/tei:persName/tei:surname" />
+
+    <xsl:variable name="author-list">
+      <xsl:call-template name="author-cite">
+        <xsl:with-param name="ref" select="$ref" />
+      </xsl:call-template>
+    </xsl:variable>
+
     <xsl:variable name="date" select="$ref//tei:imprint/tei:date/@when" />
 
     <bibl>
       <link target="#{$bibKey}">
         <xsl:choose>
           <xsl:when test="$ref">
-            <xsl:value-of select="$author" />
-            <!-- TODO multiple authors, editors -->
+            <xsl:value-of select="$author-list" />
             <xsl:text> </xsl:text>
             <xsl:value-of select="$date" />
-            <!-- TODO pages -->
+            <xsl:if test="$pages">
+              <xsl:text>, </xsl:text>
+              <xsl:value-of select="$pages" />
+            </xsl:if>
           </xsl:when>
           <xsl:otherwise>
             <hi><xsl:value-of select="$bibKey" /></hi>
@@ -52,6 +60,50 @@
       </link>
     </bibl>
   </xsl:template>
+
+  <xsl:template name="author-cite">
+    <xsl:param name="ref" />
+    <xsl:choose>
+      <xsl:when test="$ref[@type='book']">
+        <xsl:call-template name="author-or-editor">
+          <xsl:with-param name="work" select="$ref/tei:monogr" />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$ref[@type='inCollection' or @type='article']">
+        <xsl:call-template name="author-or-editor">
+          <xsl:with-param name="work" select="$ref/tei:analytic" />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>RACCOON</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="author-or-editor">
+    <xsl:param name="work" />
+    <xsl:choose>
+      <xsl:when test="$work/tei:editor and not($work/tei:author)">
+        <xsl:call-template name="name-list">
+          <xsl:with-param name="names" select="$work/tei:editor/tei:persName" />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$work/tei:author">
+        <xsl:call-template name="name-list">
+          <xsl:with-param name="names" select="$work/tei:author/tei:persName" />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>SQUIRREL</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="name-list">
+    <xsl:param name="names" />
+    <xsl:value-of select="$names/tei:surname" separator=" and " />
+  </xsl:template>
+
 
   <xsl:template match="aac:cite">
     <xsl:text> (</xsl:text>
@@ -70,6 +122,7 @@
     </xsl:for-each>
     <xsl:text>)</xsl:text>
   </xsl:template>
+
 
   <xsl:template match="aac:LaTeX">
     <xsl:text>LaTeX</xsl:text>
