@@ -14,6 +14,7 @@
   <xsl:template match="/">
     <xsl:variable name="title" select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title" />
     <xsl:variable name="titlePage" select="tei:TEI/tei:text/tei:front/tei:titlePage" />
+    <xsl:variable name="cover-image" select="$titlePage/tei:figure" />
     <xsl:variable name="body" select="tei:TEI/tei:text/tei:body" />
     <xsl:variable name="fileDesc" select="tei:TEI/tei:teiHeader/tei:fileDesc" />
     <xsl:variable name="back" select="tei:TEI/tei:text/tei:back" />
@@ -25,6 +26,7 @@
         <title><xsl:apply-templates select="$title" /></title>
       </head>
       <body>
+        <xsl:apply-templates select="$cover-image" />
         <header>
           <xsl:call-template name="titlePage-header">
             <xsl:with-param name="titlePage" select="$titlePage" />
@@ -159,5 +161,15 @@
     <strong><xsl:apply-templates /></strong>
   </xsl:template>
 
+  <xsl:template match="tei:figure[@type='cover']">
+    <img class="cover">
+      <xsl:attribute name="src">
+        <xsl:value-of select="tei:graphic/@url" />
+      </xsl:attribute>
+      <xsl:attribute name="alt">
+        <xsl:value-of select="tei:figDesc" />
+      </xsl:attribute>
+    </img>
+  </xsl:template>
 
 </xsl:stylesheet>

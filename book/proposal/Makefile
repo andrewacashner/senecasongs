@@ -8,10 +8,10 @@
 # converting that to TEI.
 
 project     = main
-dirs        = aux build
+dirs        = aux build build/media
 
 aac_in      = $(project).xml
-aac_include = $(wildcard include/*.xml)
+aac_include = $(wildcard include/*.aac.xml)
 
 tex_bib	    = tex/$(project).bib
 tex_lib	    = $(wildcard tex/*.cls) 
@@ -26,6 +26,9 @@ html_out    = build/$(project).html
 css_in      = css/$(project).css
 css_out     = build/$(project).css
 
+media_in    = $(wildcard media/*.*)
+media_out   = $(addprefix build/,$(media_in))
+
 saxon       = java net.sf.saxon.Transform
 
 .PHONY: all tei pdf html clean
@@ -36,7 +39,7 @@ pdf : $(pdf_out)
 
 tei : $(tei_out) $(tei_bib) 
 
-html : $(html_out) $(css_out) 
+html : $(html_out) $(css_out) $(media_out)
 
 $(dirs) : 
 	mkdir -p $(dirs)
@@ -79,10 +82,13 @@ build/%.tei : aux/%.tei aux/%-bib.tei xsl/aac-tei_pass2.xsl
 
 # TEI to HTML
 ## (TEI complete document including bibliography and resolved citations)
-build/%.html : build/%.tei xsl/tei-html.xsl xsl/tei-html_bib.xsl | $(dirs)
+build/%.html : build/%.tei xsl/tei-html.xsl xsl/tei-html_bib.xsl build/%.css $(media_out) | $(dirs)
 	$(saxon) -xsl:xsl/tei-html.xsl -s:$< -o:$@
 
 build/%.css : css/%.css
+	cp -ur $< $@
+
+build/media/% : media/%
 	cp -ur $< $@
 
 # View output and clean up

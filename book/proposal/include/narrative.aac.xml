@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- vim: set noindent noautoindent nosmartindent -->
-<div type="chapter" n="1" xmlns="http://www.tei-c.org/ns/1.0" xmlns:aac="aac.xsd">
+<div type="chapter" n="1" xmlns="http://www.tei-c.org/ns/1.0" xmlns:aac="aac.xsd"> 
 <div1 id="significance">
 <head>Significance and Contribution</head>
 <div2 id="overview">
 <p>
-<title type="m">Songs at the Woods' Edge: The Earth Songs of the Seneca Nation</title> is a digital-humanities project on the subject of the traditional social-dance songs of the Onöndowa’ga:’ people.
-The project is a collaboration between Seneca singer and faithkeeper Bill Crouse, Sr., and musicologist Andrew Cashner, PhD, of the University of Rochester.
-</p>
-<p>
+<title type="m">Songs at the Woods' Edge: The Earth Songs of the Seneca Nation</title> is a digital-humanities project on the subject of the traditional social-dance songs of the Onöndowa’ga:’ people, created in collaboration with Bill Crouse, Sr., the renowned Seneca singer and faithkeeper.
 The original inhabitants of the land now occupied by western New York, the Senecas are one of the Six Nations of the Haudenosaunee (Iroquois) Confederacy.
 Traditional Seneca music is primarily vocal, supported by water drum and rattle, and usually combined with dance; the songs are divided into ceremonial and social functions.
 Ceremonial songs hold sacred power as part of longhouse ceremonies including healing rituals; they are closed to non-Senecas and many are even kept private within the Seneca community, reserved only for those who need them.
@@ -23,9 +19,9 @@ To sing at the woods' edge means to stand at the boundary between indigenous tra
 As an ancient oral tradition that practitioners are constantly finding new ways to employ to meet present needs, the Earth Songs sung in that space connect history and tradition, memory and creativity.
 </p>
 <p>
-Working together with Bill Crouse and other Seneca practitioners, this project will present Seneca Earth Songs to the academic community and general public for the first time accurately, sensitively, and on Seneca terms.
+With the ongoing collaboration of Bill Crouse and other Seneca practitioners, this project will present Seneca Earth Songs to the academic community and general public for the first time accurately, sensitively, and on Seneca terms.
 Through a website and digital book of public scholarship, the project will present high-quality videos of the songs and dances with information about the songs' origins, structure, and significance.
-It will draw on Bill Crouse's expertise as a practitioner of the oral tradition, and Andrew Cashner's archival research into historic accounts of Seneca dance from the Jesuit Relations through Lewis Henry Morgan and William Fenton.
+It will draw on Bill Crouse's expertise as a practitioner of the oral tradition, and my archival research into historic accounts of Seneca song and dance from the Jesuit Relations through Lewis Henry Morgan and William Fenton.
 </p> 
 </div2>
 <div2 id="existing studies">
@@ -58,7 +54,7 @@ and with a growing literature that emphasizes the modernity and creativity of Na
   <aac:cite key="LevineRobinson:MusicModernity" />
 </aac:citeList>.
 This project has a more historical focus than those, however, as it combines ethnographic fieldwork with archival research, including seeking out indigenous perspectives on the archival documents.
-Even the best historical studies of early American music that focus on interactions with Native people are based on on Euro-American documents and do not incorporate traditional indigenous knowledge and oral tradition
+Even the best historical studies of early American music that include Native peoples focus primarily on archival documents from Euro-American colonial communities rather than drawing from traditional indigenous knowledge and oral tradition
 <aac:citeList>
   <aac:cite key="Goodman:IndianPsalmody" />
   <aac:cite key="Eyerly:Moravian" />
@@ -84,13 +80,14 @@ The digital format will allow the book/website to be freely accessible to a wide
 The key concepts in this project are three pairs of terms: Earth/land, relationship/reciprocity, and tradition/history.
 Seneca social songs celebrate and enact a relationship with the Earth in both ecological and spiritual terms, while also connecting Seneca people to the land of their ancestry
 <aac:citeList>
-  <aac:cite key="Deloria:BrokenTreaties" />
   <aac:cite key="BasicCall" />
+  <aac:cite key="Deloria:BrokenTreaties" />
 </aac:citeList>.
 Relationship and reciprocity are widely acknowledged core values for Native North Americans, and they define the way Haudenosaunee people teach and present songs.
-The concept of the Covenant Chain---linking the first European ship to the Haudenosaunee longhouse---recurs throughout colonial treaty negotiations.
+The concept of the Covenant Chain---linking the first European ship to the Haudenosaunee longhouse---recurs throughout colonial treaty negotiations
+<aac:cite key="Richter:Ordeal" />.
 Both sides had an obligation to keep it free from rust.
-For me as an Indiana native descended from German settler-colonialists, this project provides a way to take up the long-overdue work of polishing the chain of friendship, working toward restoration of mutually beneficial relationships between indigenous and settler Americans. 
+For me, an Indiana native descended from German settler-colonialists, this project provides a way to take up the long-overdue work of polishing the chain of friendship, working toward restoration of mutually beneficial relationships between indigenous and settler Americans. 
 Exploring the complex relationship between history and tradition in both indigenous and Western conceptions, this project will demonstrate that Native song is neither stuck in a primitive present tense nor lost to the past.
 At the same time, the goal is not simply to fit Native music into a Western historical framework; for indigenous North Americans, singing itself constitutes a form of historical knowledge and provides its own ways of connecting past, present, and future
 <aac:cite key="Diamond:NativeAmericanHistory" />.
@@ -116,41 +113,34 @@ The final chapter will look at the earth songs within the context of a long hist
 </p>
 </div2>
 </div1>
-<div1 id="competencies">
-<head>Competencies, Skills, and Access</head>
-<p>
-I began exploring this new research area with the support of a Humanities Center Fellowship from my university in 2020, with the goal of understanding patterns of intercultural exchange among different communities of colonial-era New York.
-This interest grew out of my previous studies of sacred song in early modern Germany Lutheran and Spanish Catholic communities, which led me into colonial and decolonial studies.
-In this project I will draw on my experience in archive-based historical research while extending into the new research methods of ethnographic fieldwork.
-My graduate studies did include ethnomusicology and ritual studies, and I have sought out mentorship from ethnomusicologist Ellen Koskoff.
-As a professional church musician I have ample experience learning traditional songs by ear.
-I have attained intermediate novice ability in the Seneca language, studying with Ja:no’s Bowen of the Seneca Nation Language Department.
-</p>
-<p>
-My experience with digital humanities technologies prepares me to ensure the highest standards of typography and design in a robust software system.
-I worked for seven years as a copy editor, I typeset two published volumes of critical music editions in <aac:LaTeX /> and Lilypond, and I created all the diagrams, tables, and music examples for my monograph.
-I have designed and maintained websites for research projects and teaching since 2012.
-From my institution I have access to <aac:usd>5,000</aac:usd> of research funding for start-up funding, and I hope to collaborate with our Audio Music
-Engineering and Computer Science departments.
-</p>
-</div1>
 <div1 id="product">
 <head>Final Product and Dissemination</head>
 <p>
 The final product will a born-digital book and website (<ref target="http://www.senecasongs.earth">www.senecasongs.earth</ref>).
 Readers may experience the book as an online, non-linear, experience or as a more traditional book, downloadable as a PDF.
-The book and website will be generated from the same sources, using a sustainable workflow based on free and open-source technology.
 The website will be built on the core standards supported in every browser (HTML5 and CSS3), minimizing scripts and plugins that can break or become obsolete; the print form of the book will be typeset with the stable <aac:LaTeX /> document-preparation system.
 Through adaptive design the site will be equally accessible and ADA-compliant on desktop and mobile devices and via screen readers.
-I will host and maintain the website, but I will also seek out a Seneca webmaster and provide channels for community feedback.
+The website will be regularly updated subject to new discoveries and community feedback.
+</p>
+<p>
+The book and website will be generated from the same sources, using a sustainable workflow based on free and open-source technology.
 Using open-source software is essential when serving an economically under-privileged community, and provides the <q>liberation technologies</q> that Haudenosaunee activists have demanded to give them control over their own representation
 <aac:cite key="BasicCall">123</aac:cite>.
+The source files are written in the XML vocabulary of the <ref target="https://tei-c.org/">Text Encoding Initiative</ref>, with custom extensions for automatic bibliography and citation generation.
+The build system converts the source files to three output formats: fully-compliant TEI, HTML5, and PDF (via <aac:LaTeX />).
 </p>
 <p>
 Given the collaborative nature of a project focused on protected indigenous cultural heritage, the review process must necessarily be distinct from the traditional academic model.
 I plan to assemble a panel of consultants, including both indigenous academics and non-academic experts.
 After their own initial peer review, the panel will be empowered to seek out additional, potentially anonymous reviews.
 I will hire proficient Seneca-language speakers to review the linguistic elements and I will invite Seneca community members to test the site.
+</p>
+</div1>
+<div1 id="contact">
+<head>Get Involved</head>
+<p>
+If you would like to help with this project in any way, please reach out to me at <ref target="mailto:andrew.cashner@rochester.edu">andrew.cashner@rochester.edu</ref>.
+I welcome feedback and ideas, especially from Seneca Nation members.
 </p>
 </div1>
 </div>
