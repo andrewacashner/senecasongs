@@ -2,16 +2,17 @@
 <TEI version="4.4.0" 
   xmlns="http://www.tei-c.org/ns/1.0" 
   xmlns:xi="http://www.w3.org/2001/XInclude"
-  xmlns:aac="aac.xsd">
+  xmlns:aac="aac.xsd"
+  xml:base="index.tei">
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>Songs at the Woods' Edge: Project Proposal</title>
+        <title>Songs at the Woods' Edge: The Earth Songs of the Seneca Nation</title>
         <author>Andrew A. Cashner</author>
       </titleStmt>
       <publicationStmt>
         <pubPlace>Rochester, NY</pubPlace>
-        <publisher>Okdeägë:n (White Roots of Peace)</publisher>
+        <publisher>Covenant Chain Press</publisher>
         <date when="2022" />
         <availability>
           <p>Copyright © 2022 Andrew A. Cashner. All rights reserved.</p>
@@ -27,23 +28,18 @@
       <titlePage>
         <docTitle>
           <titlePart type="main">Songs at the Woods' Edge</titlePart>
-          <titlePart type="sub">Project Proposal</titlePart>
+          <titlePart type="sub">The Earth Songs of the Seneca Nation</titlePart>
         </docTitle>
         <docAuthor>Andrew A. Cashner, PhD</docAuthor>
         <figure type="cover">
-          <graphic url="media/Genesee_Valley_Park_Golf_Course.jpg" />
-          <figDesc>A small patch of forest on the south edge of Genesee Valley Park Golf Course in Rochester, NY, in early spring 2022</figDesc>
+          <graphic url="media/Mendon_Ponds.jpg" />
+          <figDesc>Light breaks through clouds over the edge of snowy woods at Mendon Ponds Park in Monroe County, NY, January 2022</figDesc>
         </figure>
       </titlePage>
     </front>
     <body>
-      <xi:include href="include/narrative.aac.xml"/>
+      <xi:include href="include/welcome.tei" />
     </body>
-    <back>
-      <div1 id="references">
-        <head>References</head>
-        <aac:bibliography src="tex/main.bib" />
-      </div1>
-    </back>
+    <back />
   </text>
 </TEI>

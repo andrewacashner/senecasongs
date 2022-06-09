@@ -21,7 +21,7 @@
 
     <xsl:text>\documentclass{tex/aac}&#xA;</xsl:text>
     <xsl:call-template name="bibresource">
-      <xsl:with-param name="bibfile" select="//aac:bibliography/@src" />
+      <xsl:with-param name="bibfile" select="//aac:bibliography/@bibtex" />
     </xsl:call-template>
     <xsl:call-template name="maketitle">
       <xsl:with-param name="titlePage" select="$titlePage" />

@@ -22,7 +22,7 @@
     <html lang="en-us">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="main.css" />
+        <link rel="stylesheet" href="woods_edge.css" />
         <title><xsl:apply-templates select="$title" /></title>
       </head>
       <body>
@@ -30,6 +30,9 @@
         <header>
           <xsl:call-template name="titlePage-header">
             <xsl:with-param name="titlePage" select="$titlePage" />
+          </xsl:call-template>
+          <xsl:call-template name="nav">
+            <xsl:with-param name="filename" select="tei:TEI/@xml:base" />
           </xsl:call-template>
         </header>
         <main>
@@ -75,6 +78,25 @@
     </xsl:if>
   </xsl:template>
 
+  <!-- TODO expand as site grows -->
+  <xsl:template name="nav">
+    <xsl:param name="filename" />
+    <xsl:variable name="basename" select="substring($filename, 1, string-length($filename) - 3)" />
+    <xsl:variable name="pdf-file" select="concat($basename, 'pdf')" />
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="{$pdf-file}">Download PDF</a></li>
+        <li><a href="{$filename}">Download TEI</a></li>
+      </ul>
+    </nav>
+  </xsl:template>
+
+  <xsl:template name="pdf-download">
+    <xsl:param name="filename" />
+  </xsl:template>
+
   <xsl:template name="fileDesc-footer">
     <xsl:param name="fileDesc" />
     <xsl:variable name="author" select="$fileDesc/tei:titleStmt/tei:author" />
@@ -98,6 +120,7 @@
         <xsl:text>.</xsl:text>
       </xsl:if>
     </p>
+    <xsl:call-template name="fonts" />
     <xsl:apply-templates select="$copyright" />
   </xsl:template>
 
@@ -128,8 +151,8 @@
     <p><xsl:apply-templates /></p>
   </xsl:template>
 
-  <xsl:template match="tei:bibl/tei:link">
-    <a href="{@target}"><xsl:apply-templates /></a>
+  <xsl:template match="tei:bibl/tei:ref">
+    <a class="citation" href="{@target}"><xsl:apply-templates /></a>
   </xsl:template>
 
   <xsl:template match="tei:title[@type='m' or @type='']">
@@ -170,6 +193,16 @@
         <xsl:value-of select="tei:figDesc" />
       </xsl:attribute>
     </img>
+  </xsl:template>
+
+  <xsl:template match="tei:availability/tei:p">
+    <p class="copyright">
+      <xsl:apply-templates />
+    </p>
+  </xsl:template>
+
+  <xsl:template name="fonts">
+    <p>This document is typeset in Crimson Pro, by Jacques Le Bailly (distributed under the terms of the <a href="https://scripts.sil.org/OFL_web">SIL Open Font License</a>), with headings in Venturis Gothic Titling and Venturis Sans by Arkandis Digital Foundry (distributed under a <a href="https://ctan.org/tex-archive/fonts/venturisadf">free license</a>).</p>
   </xsl:template>
 
 </xsl:stylesheet>

@@ -4,8 +4,10 @@ XSLT]
 
 \LoadClass{article}
 \RequirePackage[T1]{fontenc}
-\RequirePackage{mlmodern}
+\RequirePackage{crimson}
 \RequirePackage{microtype}
+
+\RequirePackage{geometry}
 
 \RequirePackage{semantic-markup}
 

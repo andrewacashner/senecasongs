@@ -1,6 +1,32 @@
 /* CSS for "Songs at the Woods' Edge"
     Andrew Cashner, 2022/03/14
 */
+/* FONTS */
+
+@font-face {
+  font-family: "Venturis ADF Goth Titling";
+  src: url("fonts/VenturisADFGothTitling.otf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "VenturisSans ADF";
+  src: url("fonts/VenturisSansADF-Regular.otf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("fonts/CrimsonPro-VariableFont_wght.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("fonts/CrimsonPro-Italic-VariableFont_wght.ttf");
+  font-style: italic;
+}
+
 /* SPACING, LAYOUT */
 html {
   height: 100%;
@@ -100,6 +126,11 @@ footer {
   margin-bottom: 1em;
 }
 
+footer p {
+  text-indent: 0;
+  margin-bottom: 0.2em;
+}
+
 footer p.copyright {
   margin-top: 2em;
   text-align: center;
@@ -108,8 +139,7 @@ footer p.copyright {
 /* FONTS, TYPOGRAPHY */
 
 body {
-  font-family: 'VenturisSans ADF', sans-serif;
-  /* other options: Clara, VenturisSans ADF, Gillius ADF No2 */
+  font-family: 'Crimson Pro', Georgia, serif;
   font-size: 125%;
   hyphens: auto;
   text-align: justify;
@@ -124,18 +154,25 @@ q {
 }
 
 h1 {
-  font-family: 'Venturis ADF Goth Titling', serif; 
+  font-family: 'Venturis ADF Goth Titling', Verdana, sans-serif; 
+  font-weight: normal;
   font-size: 200%;
+  text-align: left;
 }
 
 h2, h3, h4, h5 {
-  font-family: 'VenturisSans ADF Ex', serif;
+  font-family: 'VenturisSans ADF', Verdana, sans-serif;
   font-weight: normal;
   font-size: 150%;
+  text-align: left;
 }
 
-header h1 {
+header h1.maintitle {
   font-size: 200%;
+}
+
+header h1.subtitle {
+  font-size: 180%;
 }
 
 header h2 {
@@ -145,17 +182,23 @@ header h2 {
 
 /* LINKS */
 a {
-  color: black;
+  color: darkgreen;
   text-decoration: underline;
   text-decoration-color: LightGray;
 }
 
-a:hover {
+a.citation {
+  color: black;
+}
+
+a.citation:hover {
   background: LightGray;
 }
 
+
 header nav a {
-  color: MidnightBlue;
+  color: darkgreen;
+  font-weight: bold;
   text-decoration: none;
 }
 
@@ -166,6 +209,10 @@ blockquote {
 footer {
   color: DimGray;
   font-size: 80%;
+}
+
+footer a {
+  color: dimgray;
 }
 
 /* MEDIA */

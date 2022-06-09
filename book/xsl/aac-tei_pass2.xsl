@@ -42,7 +42,7 @@
     <xsl:variable name="date" select="$ref//tei:imprint/tei:date/@when" />
 
     <bibl>
-      <link target="#{$bibKey}">
+      <ref target="#{$bibKey}">
         <xsl:choose>
           <xsl:when test="$ref">
             <xsl:value-of select="$author-list" />
@@ -57,7 +57,7 @@
             <hi><xsl:value-of select="$bibKey" /></hi>
           </xsl:otherwise>
         </xsl:choose>
-      </link>
+      </ref>
     </bibl>
   </xsl:template>
 
