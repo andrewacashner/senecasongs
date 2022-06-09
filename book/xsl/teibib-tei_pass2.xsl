@@ -5,8 +5,7 @@
   xmlns:tei="http://www.tei-c.org/ns/1.0" 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
   xmlns:xi="http://www.w3.org/2001/XInclude"
-  xmlns:aac="aac.xsd"
-  exclude-result-prefixes="aac xi tei">
+  exclude-result-prefixes="xi tei">
 
   <xsl:output method="xml" encoding="utf-8" indent="yes" />
 
@@ -29,8 +28,8 @@
 
   <!-- TODO placeholder for fetching bib label -->
   <xsl:template name="parencite">
-    <xsl:variable name="bibKey" select="@key" />
-    <xsl:variable name="pages" select="@pages" />
+    <xsl:variable name="bibKey" select="substring(@corresp, 2)" />
+    <xsl:variable name="pages" select="string()" />
     <xsl:variable name="ref" select="//tei:biblStruct[@id=$bibKey]" />
 
     <xsl:variable name="author-list">
@@ -64,18 +63,15 @@
   <xsl:template name="author-cite">
     <xsl:param name="ref" />
     <xsl:choose>
-      <xsl:when test="$ref[@type='book']">
-        <xsl:call-template name="author-or-editor">
-          <xsl:with-param name="work" select="$ref/tei:monogr" />
-        </xsl:call-template>
-      </xsl:when>
       <xsl:when test="$ref[@type='inCollection' or @type='article']">
         <xsl:call-template name="author-or-editor">
           <xsl:with-param name="work" select="$ref/tei:analytic" />
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:text>RACCOON</xsl:text>
+        <xsl:call-template name="author-or-editor">
+          <xsl:with-param name="work" select="$ref/tei:monogr" />
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -88,13 +84,10 @@
           <xsl:with-param name="names" select="$work/tei:editor/tei:persName" />
         </xsl:call-template>
       </xsl:when>
-      <xsl:when test="$work/tei:author">
+      <xsl:otherwise>
         <xsl:call-template name="name-list">
           <xsl:with-param name="names" select="$work/tei:author/tei:persName" />
         </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>SQUIRREL</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -105,32 +98,21 @@
   </xsl:template>
 
 
-  <xsl:template match="aac:cite">
+  <xsl:template match="tei:bibl[@type='auto']">
     <xsl:text> (</xsl:text>
     <xsl:call-template name="parencite" />
     <xsl:text>)</xsl:text>
   </xsl:template>
 
-  <xsl:template match="aac:citeList">
-    <xsl:variable name="bibKey" select="@key" />
+  <xsl:template match="tei:listBibl[@type='auto']">
     <xsl:text> (</xsl:text>
-    <xsl:for-each select="aac:cite">
+    <xsl:for-each select="tei:bibl">
       <xsl:call-template name="parencite" />
       <xsl:if test="not(position() = last())">
         <xsl:text>; </xsl:text>
       </xsl:if>
     </xsl:for-each>
     <xsl:text>)</xsl:text>
-  </xsl:template>
-
-
-  <xsl:template match="aac:LaTeX">
-    <xsl:text>LaTeX</xsl:text>
-  </xsl:template>
-
-  <xsl:template match="aac:usd">
-    <xsl:text>$</xsl:text>
-    <xsl:apply-templates />
   </xsl:template>
 
 </xsl:stylesheet>

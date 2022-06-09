@@ -9,8 +9,8 @@
 
 dirs        = aux build build/media build/fonts
 
-aac_in      = $(wildcard *.aactei)
-aac_include = $(wildcard include/*.aactei)
+teibib_in      = $(wildcard *.teibib)
+teibib_include = $(wildcard include/*.teibib)
 
 tei_in      = $(wildcard *.tei)
 tei_include = $(wildcard include/*.tei)
@@ -21,8 +21,8 @@ tex_bib	    = $(wildcard tex/*.bib)
 tex_lib	    = $(wildcard tex/*.cls) 
 biber_conf  = tex/biber-sort.conf
 
-tei_out     = $(addprefix build/,$(aac_in:%.aactei=%.tei) $(tei_in))
-tei_bib     = $(addprefix aux/,$(aac_in:%.aactei=%-bib.tei))
+tei_out     = $(addprefix build/,$(teibib_in:%.teibib=%.tei) $(tei_in))
+tei_bib     = $(addprefix aux/,$(teibib_in:%.teibib=%-bib.tei))
 
 pdf_out     = $(tei_out:%.tei=%.pdf)
 html_out    = $(tei_out:%.tei=%.html)
@@ -53,11 +53,11 @@ $(dirs) :
 
 # AAC XML to PDF via LaTeX
 ## XML to LaTeX
-aux/%.tex : %.tei $(aac_include) $(xsl) | $(dirs)
-	$(saxon) -xi:on -xsl:xsl/aac-tex.xsl -s:$< -o:$@
+aux/%.tex : %.tei $(teibib_include) $(xsl) | $(dirs)
+	$(saxon) -xi:on -xsl:xsl/teibib-tex.xsl -s:$< -o:$@
 
-aux/%.tex : %.aactei $(aac_include) $(xsl) | $(dirs)
-	$(saxon) -xi:on -xsl:xsl/aac-tex.xsl -s:$< -o:$@
+aux/%.tex : %.teibib $(teibib_include) $(xsl) | $(dirs)
+	$(saxon) -xi:on -xsl:xsl/teibib-tex.xsl -s:$< -o:$@
 
 ## LaTeX to PDF
 aux/%.pdf aux/%.bcf : aux/%.tex $(tex_lib) $(tex_bib)
@@ -78,19 +78,19 @@ aux/%.bltxml : aux/%.bib
 
 # AAC XML to TEI
 ## First pass, add xi:include for tei bibliography to main
-aux/%.aactei : %.aactei $(aac_include) $(xsl) | $(dirs)
-	$(saxon) -xi:on -xsl:xsl/aac-tei_pass1.xsl -s:$< -o:$@
+aux/%.teibib : %.teibib $(teibib_include) $(xsl) | $(dirs)
+	$(saxon) -xi:on -xsl:xsl/teibib-tei_pass1.xsl -s:$< -o:$@
 
 ## Bibliography
 aux/%-bib.tei : aux/%.bltxml $(xsl) | $(dirs)
 	$(saxon) -xsl:xsl/bltxml-tei.xsl -s:$< -o:$@
 
 ## Second pass: Main document with bibliography
-build/%.tei : aux/%.aactei aux/%-bib.tei $(xsl)
-	$(saxon) -xi:on -xsl:xsl/aac-tei_pass2.xsl -s:$< -o:$@
+build/%.tei : aux/%.teibib aux/%-bib.tei $(xsl)
+	$(saxon) -xi:on -xsl:xsl/teibib-tei_pass2.xsl -s:$< -o:$@
 
 build/%.tei : %.tei $(xsl)
-	$(saxon) -xi:on -xsl:xsl/aac-tei_pass2.xsl -s:$< -o:$@
+	$(saxon) -xi:on -xsl:xsl/teibib-tei_pass2.xsl -s:$< -o:$@
 
 # TEI to HTML
 ## (TEI complete document including bibliography and resolved citations)

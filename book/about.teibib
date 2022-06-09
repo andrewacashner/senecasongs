@@ -2,7 +2,6 @@
 <TEI version="4.4.0" 
   xmlns="http://www.tei-c.org/ns/1.0" 
   xmlns:xi="http://www.w3.org/2001/XInclude"
-  xmlns:aac="aac.xsd"
   xml:base="about.tei">
   <teiHeader>
     <fileDesc>
@@ -38,10 +37,10 @@
       </titlePage>
     </front>
     <body>
-      <xi:include href="include/about.aactei"/>
+      <xi:include href="include/about.teibib"/>
     </body>
     <back>
-      <aac:bibliography bibtex="tex/indigenous.bib" />
+      <listBibl type="auto-reflist" source="tex/indigenous.bib" />
     </back>
   </text>
 </TEI>

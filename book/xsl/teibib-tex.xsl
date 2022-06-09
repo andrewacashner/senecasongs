@@ -3,8 +3,7 @@
   version="2.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:tei="http://www.tei-c.org/ns/1.0" 
-  xmlns:aac="aac.xsd"
-  exclude-result-prefixes="tei aac">
+  exclude-result-prefixes="tei">
 
   <xsl:output method="text" encoding="utf-8" indent="no" />
   <xsl:strip-space elements="*" />
@@ -21,7 +20,7 @@
 
     <xsl:text>\documentclass{tex/aac}&#xA;</xsl:text>
     <xsl:call-template name="bibresource">
-      <xsl:with-param name="bibfile" select="//aac:bibliography/@bibtex" />
+      <xsl:with-param name="bibfile" select="//tei:listBibl[@type='auto-reflist']/@source" />
     </xsl:call-template>
     <xsl:call-template name="maketitle">
       <xsl:with-param name="titlePage" select="$titlePage" />
@@ -184,25 +183,15 @@
     <xsl:text>}</xsl:text>
   </xsl:template>
 
-  <xsl:template match="aac:LaTeX">
-    <xsl:text>\LaTeX{}</xsl:text>
-  </xsl:template>
-
-  <!-- TODO doesn't work -->
-  <xsl:template match="aac:usd">
-    <xsl:text>\$</xsl:text>
-    <xsl:apply-templates />
-  </xsl:template>
-
   <xsl:template name="citeKey">
     <xsl:text>{</xsl:text>
-    <xsl:value-of select="@key" />
+    <xsl:value-of select="substring(@corresp, 2)" />
     <xsl:text>}</xsl:text>
   </xsl:template>
 
-  <xsl:template match="aac:cite">
+  <xsl:template match="tei:bibl[@type='auto']">
     <xsl:text> \Autocite</xsl:text>
-    <xsl:if test="string(.)">
+    <xsl:if test="string()">
       <xsl:text>[</xsl:text>
       <xsl:apply-templates />
       <xsl:text>]</xsl:text>
@@ -210,9 +199,9 @@
     <xsl:call-template name="citeKey" />
   </xsl:template>
 
-  <xsl:template match="aac:citeList">
+  <xsl:template match="tei:listBibl[@type='auto']">
     <xsl:text> \Autocites</xsl:text>
-    <xsl:for-each select="aac:cite">
+    <xsl:for-each select="tei:bibl">
       <xsl:call-template name="citeKey" />
     </xsl:for-each>
   </xsl:template>
