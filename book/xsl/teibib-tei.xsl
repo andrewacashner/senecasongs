@@ -17,19 +17,6 @@
     </xsl:copy>
   </xsl:template>
 
-  <!-- TODO could you use this instead of xi:include?
-    <xsl:apply-templates select="document($tei-bib)/" />
-  -->
-  <xsl:template match="tei:listBibl[@type='auto' and @subtype='biblio']">
-    <xsl:variable name="bibtex-source" select="@source" />
-    <xsl:variable name="file-basename" select="/tei:TEI/@xml:base" />
-    <xsl:if test="$file-basename">
-      <xsl:variable name="bib-basename" select="substring($file-basename, 1, string-length($file-basename) - 4)" />
-      <xsl:variable name="tei-bib" select="concat($bib-basename, '-bib.tei')" />
-      <xi:include href="{$tei-bib}" />
-    </xsl:if>
-  </xsl:template>
-
   <xsl:template match="text()" priority="1">
     <xsl:value-of select="replace(replace(replace(.,
     '''', '’'),
@@ -39,11 +26,28 @@
 
   <xsl:template match="comment()" priority="1" />
 
+  <!-- TODO something like this to read in the TEI bibliography and use its contents in one pass; but this doesn't work -->
+  <xsl:variable name="bibliography">
+    <xsl:variable name="file-basename" select="/tei:TEI/@xml:base" />
+    <xsl:if test="$file-basename">
+      <xsl:variable name="bib-basename" select="substring($file-basename, 1, string-length($file-basename) - 4)" />
+      <xsl:variable name="tei-bib" select="concat($bib-basename, '-bib.tei')" />
+      <xsl:value-of select="document(aux/$tei-bib)/*" />
+      <xsl:if test="document(aux/$tei-bib)">
+        <xsl:text>RACCOON</xsl:text>
+      </xsl:if>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:template match="tei:listBibl[@type='auto' and @subtype='biblio']">
+    <xsl:value-of select="$bibliography" />
+  </xsl:template>
+
   <!-- TODO placeholder for fetching bib label -->
   <xsl:template name="parencite">
     <xsl:variable name="bibKey" select="substring(@corresp, 2)" />
     <xsl:variable name="pages" select="string()" />
-    <xsl:variable name="ref" select="//tei:biblStruct[@id=$bibKey]" />
+    <xsl:variable name="ref" select="$bibliography/tei:biblStruct[@id=$bibKey]" />
 
     <xsl:variable name="author-list">
       <xsl:call-template name="author-cite">
