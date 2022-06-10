@@ -38,7 +38,7 @@ In the first scholarly description of Haudenosaunee dance (based on Seneca sourc
 <bibl type="auto" corresp="#Morgan:League">262, 263</bibl>.
 Morgan viewed the dances as static relics of a traditional past that Native people would have to surrender in the face of progressive <q>civilization.</q> 
 Twentieth-century ethnographers William Fenton and Gertrude Kurath made no distinction between privileged ceremonial songs and social-dance songs, and as a result their books are full of information that Seneca faithkeepers today do not want to share with the public---not to mention the inaccuracies and non-indigenous categories of their analyses
-<listBibl type="auto">
+<listBibl type="auto" subtype="intext">
   <bibl type="auto" corresp="#Fenton:GreatLaw" />
   <bibl type="auto" corresp="#FentonKurath:EagleDance" />
   <bibl type="auto" corresp="#Kurath:IroquoisMusic" />
@@ -51,14 +51,14 @@ The proposed project differs from these previous studies because it focuses on m
 The methodology follows the model of recent collaborative work between non-Native scholars and Native experts, such as Beverley Diamond's excellent though brief introduction to Haudenosaunee music 
 <bibl type="auto" corresp="#Diamond:NativeAmericanNortheast" />
 and with a growing literature that emphasizes the modernity and creativity of Native music as a contemporary practice 
-<listBibl type="auto">
+<listBibl type="auto" subtype="intext">
   <bibl type="auto" corresp="#Browner:Heartbeat" />
   <bibl type="auto" corresp="#Browner:FirstNations" />
   <bibl type="auto" corresp="#LevineRobinson:MusicModernity" />
 </listBibl>.
 This project has a more historical focus than those, however, as it combines ethnographic fieldwork with archival research, including seeking out indigenous perspectives on the archival documents.
 Even the best historical studies of early American music that include Native peoples focus primarily on archival documents from Euro-American colonial communities rather than drawing from traditional indigenous knowledge and oral tradition
-<listBibl type="auto">
+<listBibl type="auto" subtype="intext">
   <bibl type="auto" corresp="#Goodman:IndianPsalmody" />
   <bibl type="auto" corresp="#Eyerly:Moravian" />
 </listBibl>.
@@ -82,7 +82,7 @@ The digital format will allow the book/website to be freely accessible to a wide
 <p>
 The key concepts in this project are three pairs of terms: Earth/land, relationship/reciprocity, and tradition/history.
 Seneca social songs celebrate and enact a relationship with the Earth in both ecological and spiritual terms, while also connecting Seneca people to the land of their ancestry
-<listBibl type="auto">
+<listBibl type="auto" subtype="intext">
   <bibl type="auto" corresp="#BasicCall" />
   <bibl type="auto" corresp="#Deloria:BrokenTreaties" />
 </listBibl>.

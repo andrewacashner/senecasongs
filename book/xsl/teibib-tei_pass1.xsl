@@ -17,17 +17,13 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="tei:listBibl[@type='auto-reflist']">
+  <xsl:template match="tei:listBibl[@type='auto' and @subtype='biblio']">
     <xsl:variable name="bibtex-source" select="@source" />
     <xsl:variable name="file-basename" select="/tei:TEI/@xml:base" />
     <xsl:if test="$file-basename">
       <xsl:variable name="bib-basename" select="substring($file-basename, 1, string-length($file-basename) - 4)" />
       <xsl:variable name="tei-bib" select="concat($bib-basename, '-bib.tei')" />
-
-      <div1 id="references">
-        <head>References</head>
         <xi:include href="{$tei-bib}" />
-      </div1>
     </xsl:if>
   </xsl:template>
 

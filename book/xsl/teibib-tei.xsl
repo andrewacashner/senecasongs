@@ -5,7 +5,7 @@
   xmlns:tei="http://www.tei-c.org/ns/1.0" 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
   xmlns:xi="http://www.w3.org/2001/XInclude"
-  exclude-result-prefixes="xi tei">
+  exclude-result-prefixes="tei xi">
 
   <xsl:output method="xml" encoding="utf-8" indent="yes" />
 
@@ -15,6 +15,19 @@
     <xsl:copy>
       <xsl:apply-templates select="@* | node()" />
     </xsl:copy>
+  </xsl:template>
+
+  <!-- TODO could you use this instead of xi:include?
+    <xsl:apply-templates select="document($tei-bib)/" />
+  -->
+  <xsl:template match="tei:listBibl[@type='auto' and @subtype='biblio']">
+    <xsl:variable name="bibtex-source" select="@source" />
+    <xsl:variable name="file-basename" select="/tei:TEI/@xml:base" />
+    <xsl:if test="$file-basename">
+      <xsl:variable name="bib-basename" select="substring($file-basename, 1, string-length($file-basename) - 4)" />
+      <xsl:variable name="tei-bib" select="concat($bib-basename, '-bib.tei')" />
+      <xi:include href="{$tei-bib}" />
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="text()" priority="1">

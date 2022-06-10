@@ -20,7 +20,7 @@
 
     <xsl:text>\documentclass{tex/aac}&#xA;</xsl:text>
     <xsl:call-template name="bibresource">
-      <xsl:with-param name="bibfile" select="//tei:listBibl[@type='auto-reflist']/@source" />
+      <xsl:with-param name="bibfile" select="//tei:listBibl[@type='auto' and @subtype='biblio']/@source" />
     </xsl:call-template>
     <xsl:call-template name="maketitle">
       <xsl:with-param name="titlePage" select="$titlePage" />
@@ -199,7 +199,7 @@
     <xsl:call-template name="citeKey" />
   </xsl:template>
 
-  <xsl:template match="tei:listBibl[@type='auto']">
+  <xsl:template match="tei:listBibl[@type='auto' and @subtype='intext']">
     <xsl:text> \Autocites</xsl:text>
     <xsl:for-each select="tei:bibl">
       <xsl:call-template name="citeKey" />
