@@ -30,9 +30,9 @@
           <titlePart type="sub">About the Project</titlePart>
         </docTitle>
         <docAuthor>Andrew A. Cashner, PhD</docAuthor>
-        <figure type="cover">
-          <graphic url="media/Genesee_Valley_Park_Golf_Course.jpg" />
-          <figDesc>A small patch of woods on the south edge of Genesee Valley Park Golf Course in Rochester, NY, just east of the Genesee River, in early spring 2022</figDesc>
+        <figure type="cover" xml:id="fig:mendon">
+          <graphic url="media/Mendon_Ponds.jpg" />
+          <figDesc>Light breaks through clouds over the edge of snowy woods at Mendon Ponds Park in Monroe County, NY, January 2022</figDesc>
         </figure>
       </titlePage>
     </front>
@@ -40,10 +40,10 @@
       <xi:include href="include/about.teibib"/>
     </body>
     <back>
-      <div1 id="references">
+      <div id="references">
         <head>References</head>
         <listBibl type="auto" subtype="biblio" source="tex/indigenous.bib" />
-      </div1>
+      </div>
     </back>
   </text>
 </TEI>

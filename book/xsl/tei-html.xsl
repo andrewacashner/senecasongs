@@ -81,14 +81,11 @@
   <!-- TODO expand as site grows -->
   <xsl:template name="nav">
     <xsl:param name="filename" />
-    <xsl:variable name="basename" select="substring($filename, 1, string-length($filename) - 3)" />
-    <xsl:variable name="pdf-file" select="concat($basename, 'pdf')" />
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="{$pdf-file}">Download PDF</a></li>
-        <li><a href="{$filename}">Download TEI</a></li>
+        <!--  <li><a href="{$filename}">Download TEI</a></li> -->
       </ul>
     </nav>
   </xsl:template>

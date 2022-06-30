@@ -94,7 +94,7 @@ build/%.tei : %.tei $(xsl)
 
 # TEI to HTML
 ## (TEI complete document including bibliography and resolved citations)
-build/%.html : build/%.tei $(xsl) $(css_out) $(media_out) $(fonts_out) | $(dirs)
+build/%.html : build/%.tei $(xsl) | $(dirs)
 	$(saxon) -xsl:xsl/tei-html.xsl -s:$< -o:$@
 
 build/%.css : css/%.css

@@ -3,23 +3,24 @@
   xmlns="http://www.tei-c.org/ns/1.0" 
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:aac="aac.xsd"
-  xml:base="index.tei">
+  xml:base="book.tei">
   <teiHeader>
     <fileDesc>
       <titleStmt>
         <title>Songs at the Woods' Edge: The Earth Songs of the Seneca Nation</title>
         <author>Andrew A. Cashner</author>
+        <author>Bill Crouse, Sr.</author>
       </titleStmt>
       <publicationStmt>
         <pubPlace>Rochester, NY</pubPlace>
-        <publisher>Covenant Chain Press</publisher>
+        <publisher>Okdeä:gën (White Roots of Peace)</publisher>
         <date when="2022" />
         <availability>
-          <p>Copyright © 2022 Andrew A. Cashner. All rights reserved.</p>
+          <p>Copyright © 2022 Andrew A. Cashner and Bill Crouse, Sr. All rights reserved.</p>
         </availability>
       </publicationStmt>
       <sourceDesc>
-        <p>Born digital and published on the web at <ref target="http://www.senecasongs.earth/">www.senecasongs.earth</ref>.</p>
+        <p>Born digital, as the book version of the website <ref target="http://www.senecasongs.earth/">www.senecasongs.earth</ref>.</p>
       </sourceDesc>
     </fileDesc>
   </teiHeader>
@@ -31,15 +32,27 @@
           <titlePart type="sub">The Earth Songs of the Seneca Nation</titlePart>
         </docTitle>
         <docAuthor>Andrew A. Cashner, PhD</docAuthor>
-        <figure type="cover" xml:id="fig:genesee-park">
+        <figure type="cover">
           <graphic url="media/Genesee_Valley_Park_Golf_Course.jpg" />
           <figDesc>A small patch of woods on the south edge of Genesee Valley Park Golf Course in Rochester, NY, just east of the Genesee River, in early spring 2022</figDesc>
         </figure>
       </titlePage>
     </front>
     <body>
-      <xi:include href="include/welcome.tei" />
+      <div type="chapter" n="1" xml:id="preface">
+        <head>Welcome</head>
+        <xi:include href="include/welcome.tei" />
+      </div>
+      <div type="chapter" n="2" xml:id="intro">
+        <head>Introduction</head>
+        <xi:include href="include/about.teibib" />
+      </div>
     </body>
-    <back />
+    <back>
+      <div id="references">
+        <head>References</head>
+        <listBibl type="auto" subtype="biblio" source="tex/indigenous.bib" />
+      </div>
+    </back>
   </text>
 </TEI>

@@ -17,20 +17,47 @@
     <xsl:variable name="titlePage" select="//tei:text/tei:front/tei:titlePage" />
     <xsl:variable name="body" select="//tei:text/tei:body" />
     <xsl:variable name="fileDesc" select="//tei:teiHeader/tei:fileDesc" />
+    <xsl:variable name="bibliography" select="//tei:listBibl[@type='auto' and @subtype='biblio']" />
+    <xsl:variable name="refList" select="//tei:div[@id='references']" />
 
     <xsl:text>\documentclass{tex/aac}&#xA;</xsl:text>
     <xsl:call-template name="bibresource">
-      <xsl:with-param name="bibfile" select="//tei:listBibl[@type='auto' and @subtype='biblio']/@source" />
+      <xsl:with-param name="bibfile" select="$bibliography/@source" />
     </xsl:call-template>
     <xsl:call-template name="maketitle">
       <xsl:with-param name="titlePage" select="$titlePage" />
       <xsl:with-param name="fileDesc" select="$fileDesc" />
     </xsl:call-template>
-    <xsl:text>\begin{document}&#xA;\maketitle</xsl:text>
+    <xsl:text>\begin{document}&#xA;</xsl:text>
+    <xsl:call-template name="makeTitlePage">
+      <xsl:with-param name="titleData" select="$titlePage" />
+    </xsl:call-template>
     <xsl:value-of select="$par" />
     <xsl:apply-templates select="$body" />
-    <xsl:text>\printbibliography&#xA;</xsl:text>
+    <xsl:text>\printbibliography</xsl:text>
+    <xsl:if test="$refList">
+      <xsl:text>[title={</xsl:text>
+      <xsl:value-of select="$refList/tei:head" />
+      <xsl:text>}]</xsl:text>
+    </xsl:if>
+    <xsl:value-of select="$par" />
     <xsl:text>\end{document}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="makeTitlePage">
+    <xsl:param name="titleData" />
+    <xsl:text>\begin{titlepage}&#xA;</xsl:text>
+    <xsl:text>\displayTitle{}&#xA;</xsl:text>
+    <xsl:text>\displayAuthor{}&#xA;</xsl:text>
+    <xsl:if test="$titleData/tei:figure[@type='cover']">
+      <xsl:text>\includegraphics[width=\textwidth]{</xsl:text>
+      <xsl:value-of select="$titleData/tei:figure[@type='cover']/tei:graphic/@url" />
+      <xsl:text>}&#xA;</xsl:text>
+    </xsl:if>
+      <!-- TODO publisher copyright
+      <xsl:text>\displayPublisher</xsl:text>
+    -->
+    <xsl:text>\end{titlepage}&#xA;</xsl:text>
   </xsl:template>
 
   <xsl:template name="bibresource">
@@ -64,12 +91,15 @@
     </xsl:choose>
     <xsl:text>}&#xA;</xsl:text>
     <xsl:text>\author{</xsl:text>
-    <xsl:apply-templates select="$author" />
+    <xsl:value-of select="$author" separator=" and "/>
+    <!-- move to title page
     <xsl:text>\thanks{</xsl:text>
     <xsl:call-template name="fileDesc-footer">
       <xsl:with-param name="fileDesc" select="$fileDesc" />
     </xsl:call-template>
-    <xsl:text>}}&#xA;</xsl:text>
+      <xsl:text>}}&#xA;</xsl:text>
+    -->
+      <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
 
   <xsl:template name="fileDesc-footer">
@@ -109,7 +139,30 @@
     <xsl:apply-templates />
   </xsl:template>
 
-  <!-- todo chapter -->
+  <xsl:template name="enbrace">
+    <xsl:param name="contents" />
+    <xsl:text>{</xsl:text>
+    <xsl:apply-templates select="$contents" />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="section-heading">
+    <xsl:param name="csname" />
+    <xsl:param name="contents" />
+    <xsl:text>\</xsl:text>
+    <xsl:value-of select="$csname" />
+    <xsl:call-template name="enbrace">
+      <xsl:with-param name="contents" select="$contents" />
+    </xsl:call-template>
+    <xsl:value-of select="$par" />
+  </xsl:template>
+
+  <xsl:template match="tei:div[@type='chapter']/tei:head">
+    <xsl:call-template name="section-heading">
+      <xsl:with-param name="csname">chapter</xsl:with-param>
+      <xsl:with-param name="contents" select="node()" />
+    </xsl:call-template>
+  </xsl:template>
 
   <xsl:template match="tei:div1/tei:head">
     <xsl:text>\section{</xsl:text>
@@ -206,4 +259,20 @@
     </xsl:for-each>
   </xsl:template>
 
+  <!-- TODO add id as label-->
+  <xsl:template match="tei:figure">
+    <xsl:text>\begin{figure}&#xA;</xsl:text>
+    <xsl:text>\includegraphics[width=\textwidth]{</xsl:text>
+    <xsl:value-of select="tei:graphic/@url" />
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:text>\caption{</xsl:text>
+    <xsl:apply-templates select="tei:figDesc" />
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:text>\label{</xsl:text>
+    <xsl:value-of select="@xml:id" />
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:value-of select="$par" />
+    <xsl:text>\end{figure}</xsl:text>
+    <xsl:value-of select="$par" />
+  </xsl:template>
 </xsl:stylesheet>
