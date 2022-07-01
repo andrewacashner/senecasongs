@@ -13,7 +13,7 @@
       </titleStmt>
       <publicationStmt>
         <pubPlace>Rochester, NY</pubPlace>
-        <publisher>Okdeä:gën (White Roots of Peace)</publisher>
+        <publisher>Peacemaker Press</publisher>
         <date when="2022" />
         <availability>
           <p>Copyright © 2022 Andrew A. Cashner and Bill Crouse, Sr. All rights reserved.</p>
@@ -31,7 +31,8 @@
           <titlePart type="main">Songs at the Woods' Edge</titlePart>
           <titlePart type="sub">The Earth Songs of the Seneca Nation</titlePart>
         </docTitle>
-        <docAuthor>Andrew A. Cashner, PhD</docAuthor>
+        <docAuthor>Andrew A. Cashner</docAuthor>
+        <docAuthor>Bill Crouse, Sr.</docAuthor>
         <figure type="cover">
           <graphic url="media/Genesee_Valley_Park_Golf_Course.jpg" />
           <figDesc>A small patch of woods on the south edge of Genesee Valley Park Golf Course in Rochester, NY, just east of the Genesee River, in early spring 2022</figDesc>

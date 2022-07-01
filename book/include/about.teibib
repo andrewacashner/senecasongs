@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<div type="unit">
-<div1 id="significance" xmlns="http://www.tei-c.org/ns/1.0">
+<div type="unit" xmlns="http://www.tei-c.org/ns/1.0">
+<div1 id="significance">
 <head>Significance and Contribution</head>
 <div2 id="overview">
 <p>

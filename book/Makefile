@@ -40,6 +40,8 @@ saxon       = java net.sf.saxon.Transform
 
 .PHONY: all tei pdf html clean
 
+.SECONDARY:
+
 all : pdf tei html
 
 pdf : $(pdf_out)
