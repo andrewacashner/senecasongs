@@ -19,6 +19,8 @@
 - (DONE) create LaTeX class
 
 # Bibliography
-- Deal with handline of "Jr." in both TeX and TEI
+- Deal with handling of "Jr." in both TeX and TEI
+    - the main issue is how BibLaTeX input should be written
+    - and consistency between TeX and TEI-bib bib treatment
 - Trailing punctuation with `<q>`, including in bibliographies (or break with
   Chicago style)

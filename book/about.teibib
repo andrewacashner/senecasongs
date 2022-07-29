@@ -40,10 +40,10 @@
       <xi:include href="include/about.teibib"/>
     </body>
     <back>
-      <div id="references">
+      <div1 id="references">
         <head>References</head>
         <listBibl type="auto" subtype="biblio" source="tex/indigenous.bib" />
-      </div>
+      </div1>
     </back>
   </text>
 </TEI>

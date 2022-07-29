@@ -89,11 +89,13 @@
 
   <xsl:template match="bltx:name">
     <persName>
-      <forename>
-        <xsl:call-template name="names">
-          <xsl:with-param name="namepart" select="bltx:namepart[@type='given']" />
-        </xsl:call-template>
-      </forename>
+      <xsl:if test="bltx:namepart[@type='given']">
+        <forename>
+          <xsl:call-template name="names">
+            <xsl:with-param name="namepart" select="bltx:namepart[@type='given']" />
+          </xsl:call-template>
+        </forename>
+      </xsl:if>
       <surname>
         <xsl:call-template name="names">
           <xsl:with-param name="namepart" select="bltx:namepart[@type='family']" />
