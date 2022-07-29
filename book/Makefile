@@ -21,6 +21,9 @@ tex_bib	    = $(wildcard tex/*.bib)
 tex_lib	    = $(wildcard tex/*.cls) 
 biber_conf  = tex/biber-sort.conf
 
+web_include = $(wildcard web-include/*)
+web_include_out = $(addprefix build/,$(notdir $(web_include)))
+
 tei_out     = $(addprefix build/,$(teibib_in:%.teibib=%.tei) $(tei_in))
 tei_bib     = $(addprefix aux/,$(teibib_in:%.teibib=%-bib.tei))
 
@@ -48,7 +51,7 @@ pdf : $(pdf_out)
 
 tei : $(tei_out) $(tei_bib) 
 
-html : $(html_out) $(css_out) $(media_out) $(fonts_out)
+html : $(html_out) $(css_out) $(media_out) $(fonts_out) $(web_include_out) 
 
 $(dirs) : 
 	mkdir -p $(dirs)
@@ -108,6 +111,9 @@ build/media/% : media/%
 build/fonts/% : fonts/%
 	cp -ur $< $@
 
+build/% : web-include/%
+	cp -ur $< $@
+
 # View output and clean up
 view-book : pdf
 	evince $(pdf_out) &
@@ -117,3 +123,6 @@ view-web : html
 
 clean :
 	rm -rf $(dirs)
+
+deploy :
+	rsync -avuzh --delete ./build/ $(HOME)/Websites/senecasongs.earth/www/
