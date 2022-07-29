@@ -71,11 +71,9 @@
         </h1>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:if test="$author">
-      <h2 class="author">
-        <xsl:apply-templates select="$author" />
-      </h2>
-    </xsl:if>
+    <h2 class="author">
+      <xsl:value-of select="$titlePage/tei:docAuthor" separator=" and " />
+    </h2>
   </xsl:template>
 
   <!-- TODO expand as site grows -->
@@ -85,7 +83,9 @@
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <!--  <li><a href="{$filename}">Download TEI</a></li> -->
+        <!-- <li><a href="{$filename}">Download TEI</a></li> -->
+        <li><a href="{replace($filename, '.tei', '.pdf')}">Download PDF page</a></li>
+        <li><a href="book.pdf">Download PDF book</a></li>
       </ul>
     </nav>
   </xsl:template>
@@ -103,7 +103,7 @@
     <xsl:variable name="publisher" select="$fileDesc/tei:publicationStmt/tei:publisher" />
     <xsl:variable name="copyright" select="$fileDesc/tei:publicationStmt/tei:availability" />
     <p>
-      <xsl:apply-templates select="$author" />
+      <xsl:value-of select="$author" separator=" and "/>
       <xsl:text>. </xsl:text>
       <xsl:value-of select="$date" />
       <xsl:text>. </xsl:text>
@@ -175,6 +175,11 @@
 
   <xsl:template match="tei:ref">
     <a href="{@target}"><xsl:apply-templates /></a>
+  </xsl:template>
+
+  <xsl:template match="tei:ref[@type='internal']">
+    <xsl:variable name="html-ref" select="replace(@target, '.tei', '.html')" />
+    <a href="{$html-ref}"><xsl:apply-templates /></a>
   </xsl:template>
 
   <xsl:template match="tei:hi">

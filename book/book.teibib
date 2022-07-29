@@ -8,15 +8,15 @@
     <fileDesc>
       <titleStmt>
         <title>Songs at the Woods' Edge: The Earth Songs of the Seneca Nation</title>
-        <author>Andrew A. Cashner</author>
         <author>Bill Crouse, Sr.</author>
+        <author>Andrew A. Cashner</author>
       </titleStmt>
       <publicationStmt>
         <pubPlace>Rochester, NY</pubPlace>
         <publisher>Peacemaker Press</publisher>
         <date when="2022" />
         <availability>
-          <p>Copyright © 2022 Andrew A. Cashner and Bill Crouse, Sr. All rights reserved.</p>
+          <p>Copyright © 2022 Bill Crouse, Sr., and Andrew A. Cashner. All rights reserved.</p>
         </availability>
       </publicationStmt>
       <sourceDesc>
@@ -31,20 +31,22 @@
           <titlePart type="main">Songs at the Woods' Edge</titlePart>
           <titlePart type="sub">The Earth Songs of the Seneca Nation</titlePart>
         </docTitle>
-        <docAuthor>Andrew A. Cashner</docAuthor>
         <docAuthor>Bill Crouse, Sr.</docAuthor>
+        <docAuthor>Andrew A. Cashner</docAuthor>
         <figure type="cover">
           <graphic url="media/Genesee_Valley_Park_Golf_Course.jpg" />
           <figDesc>A small patch of woods on the south edge of Genesee Valley Park Golf Course in Rochester, NY, just east of the Genesee River, in early spring 2022</figDesc>
         </figure>
       </titlePage>
+      <div type="chapter" n="0" xml:id="preface">
+        <head>Welcome</head>
+        <div1 xml:id="book-welcome">
+          <xi:include href="include/welcome.tei" />
+        </div1>
+      </div>
     </front>
     <body>
-      <div type="chapter" n="1" xml:id="preface">
-        <head>Welcome</head>
-        <xi:include href="include/welcome.tei" />
-      </div>
-      <div type="chapter" n="2" xml:id="intro">
+      <div type="chapter" n="1" xml:id="intro">
         <head>Introduction</head>
         <xi:include href="include/about.teibib" />
       </div>

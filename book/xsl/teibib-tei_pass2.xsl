@@ -26,7 +26,6 @@
 
   <xsl:template match="comment()" priority="1" />
 
-  <!-- TODO placeholder for fetching bib label -->
   <xsl:template name="parencite">
     <xsl:variable name="bibKey" select="substring(@corresp, 2)" />
     <xsl:variable name="pages" select="string()" />

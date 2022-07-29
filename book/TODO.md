@@ -18,6 +18,11 @@
 - (DONE) create tei-tex.xsl
 - (DONE) create LaTeX class
 
+## Book
+- Create true internal references with labels?
+- frontmatter, mainmatter, backmatter
+
+
 # Bibliography
 - Deal with handling of "Jr." in both TeX and TEI
     - the main issue is how BibLaTeX input should be written

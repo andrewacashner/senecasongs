@@ -1,8 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{tex/aac}[2022/05/10 Test class for TEI documents converted via
-XSLT]
+\ProvidesPackage{tex/senecasongs}[2022/07/29 Style for
+Seneca Songs book and website page PDFs]
 
-\LoadClass{book}
 \RequirePackage[T1]{fontenc}
 
 \RequirePackage{venturis}
@@ -59,34 +58,5 @@ XSLT]
     \RenewExpandableDocumentCommand{\@aacCoverImage}{}{#1}%
 }
 
-\RenewDocumentCommand{\maketitle}{}{
-    \begin{titlepage}
-        \begin{center}
-            \vspace*{1em}
-            {\huge \MakeUppercase{\@aacMainTitle}}
-
-            \vspace{2em}
-            {\huge \emph{\@aacSubTitle}}
-
-            \vspace*{4em}
-            {\large \@aacAuthor}
-
-            \vspace{\fill}
-            \includegraphics[width=\textwidth]{\@aacCoverImage}
-
-            \vspace{\fill}
-            {\large \@aacPublisher}
-        \end{center}
-    \end{titlepage}
-
-    \clearpage
-    \vspace*{\fill}
-    \begin{center}
-        \@aacCopyright
-    \end{center}
-    \vspace*{\fill}
-    \clearpage
-}
-
-\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{hyperref}
 \endinput

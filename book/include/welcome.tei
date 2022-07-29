@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<div1 id="welcome" xmlns="http://www.tei-c.org/ns/1.0">
+<div type="unit" xmlns="http://www.tei-c.org/ns/1.0">
 <p>
 <foreign lang="see">Nya:wëh sgë:nö’</foreign> (Greetings, I am thankful that you are well).
-This site creates a space for sharing traditional music and dance of the Onöndowa’ga:’ (Seneca) Nation, one of the Six Nations of the Haudenosaunee (Iroquois) Confederacy.
-The site will feature video and audio recordings of Seneca Earth Songs (<foreign lang="see">yöëdza’ge:ka:’ gaë:nö’shö’</foreign>) together with traditional teaching and historical information.
-For a full description of the project's goals, see <ref target="about.html">the About page</ref>.
+This project creates a space for sharing traditional music and dance of the Onöndowa’ga:’ (Seneca) Nation, one of the Six Nations of the Haudenosaunee (Iroquois) Confederacy.
+The project will feature video and audio recordings of Seneca Earth Songs (<foreign lang="see">yöëdza’ge:ka:’ gaë:nö’shö’</foreign>) in the context of traditional teaching and historical information.
+For a full description of the project's goals, see the <ref type="internal" target="about.tei">proposal</ref>.
+The whole book is available as a <ref target="book.pdf">printable PDF</ref> or in <ref target="book.tei">TEI-XML</ref>.
 </p>
 <p>
 This project is a collaboration between Andrew Cashner, PhD, musician and musicologist at the University of Rochester, and Bill Crouse, Sr., Seneca faithkeeper and singer.
-Please check back as we are building this site and <ref target="mailto:andrew.cashner@rochester.edu">get in touch</ref> if you would like to offer help or feedback.
+Please check back as we are building this project and <ref target="mailto:andrew.cashner@rochester.edu">get in touch</ref> if you would like to offer help or feedback.
 </p>
-</div1>
+</div>
 
 

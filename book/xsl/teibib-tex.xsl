@@ -49,14 +49,24 @@
     <xsl:variable name="bibliography" select="//tei:listBibl[@type='auto' and @subtype='biblio']" />
     <xsl:variable name="refList" select="//tei:div[@id='references']" />
 
-    <xsl:call-template name="tex-command">
-      <xsl:with-param name="csname">documentclass</xsl:with-param>
-      <xsl:with-param name="arg">tex/aac</xsl:with-param>
-    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="//tei:div[@type='chapter']">
+        <xsl:call-template name="tex-command">
+          <xsl:with-param name="csname">documentclass</xsl:with-param>
+          <xsl:with-param name="arg">tex/senecasongs-book</xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="tex-command">
+          <xsl:with-param name="csname">documentclass</xsl:with-param>
+          <xsl:with-param name="arg">tex/senecasongs-article</xsl:with-param>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:call-template name="bibresource">
       <xsl:with-param name="bibfile" select="$bibliography/@source" />
     </xsl:call-template>
-    <xsl:call-template name="maketitle">
+    <xsl:call-template name="setupTitle">
       <xsl:with-param name="titlePage" select="$titlePage" />
       <xsl:with-param name="fileDesc" select="$fileDesc" />
     </xsl:call-template>
@@ -64,15 +74,42 @@
       <xsl:with-param name="csname">begin</xsl:with-param>
       <xsl:with-param name="arg">document</xsl:with-param>
     </xsl:call-template>
-    <xsl:call-template name="makeTitlePage">
-      <xsl:with-param name="titleData" select="$titlePage" />
+
+    <xsl:if test="//tei:div[@type='chapter']">
+      <xsl:call-template name="tex-command">
+        <xsl:with-param name="csname">frontmatter</xsl:with-param>
+        <xsl:with-param name="arg" />
+      </xsl:call-template>
+    </xsl:if>
+
+    <xsl:call-template name="tex-command">
+      <xsl:with-param name="csname">maketitle</xsl:with-param>
+      <xsl:with-param name="arg" />
     </xsl:call-template>
-    <xsl:value-of select="$par" />
 
-    <xsl:text>\tableofcontents&#xA;</xsl:text>
+    <xsl:if test="//tei:div1">
+      <xsl:call-template name="tex-command">
+        <xsl:with-param name="csname">tableofcontents</xsl:with-param>
+        <xsl:with-param name="arg" />
+      </xsl:call-template>
+    </xsl:if>
 
+    <xsl:apply-templates select="//tei:front/tei:div" />
+
+    <xsl:if test="//tei:div[@type='chapter']">
+      <xsl:call-template name="tex-command">
+        <xsl:with-param name="csname">mainmatter</xsl:with-param>
+        <xsl:with-param name="arg" />
+      </xsl:call-template>
+    </xsl:if>
     <xsl:apply-templates select="$body" />
-
+    
+    <xsl:if test="//tei:div[@type='chapter']">
+      <xsl:call-template name="tex-command">
+        <xsl:with-param name="csname">backmatter</xsl:with-param>
+        <xsl:with-param name="arg" />
+      </xsl:call-template>
+    </xsl:if>
     <xsl:text>\printbibliography</xsl:text>
     <xsl:if test="$refList">
       <xsl:text>[title={</xsl:text>
@@ -88,8 +125,6 @@
 
   <xsl:template name="makeTitlePage">
     <xsl:param name="titleData" />
-    <xsl:text>\maketitle</xsl:text>
-    <xsl:value-of select="$par" />
   </xsl:template>
 
   <xsl:template name="bibresource">
@@ -102,7 +137,7 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template name="maketitle">
+  <xsl:template name="setupTitle">
     <xsl:param name="titlePage" />
     <xsl:param name="fileDesc" />
 
@@ -245,6 +280,15 @@
   <xsl:template match="tei:ref">
     <xsl:text>\href{</xsl:text>
     <xsl:value-of select="@target" />
+    <xsl:text>}{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+
+  <!-- Make internal links point to website. TODO true internal references with labels? --> 
+  <xsl:template match="tei:ref[@type='internal']">
+    <xsl:text>\href{</xsl:text>
+    <xsl:value-of select="concat('https://www.senecasongs.earth/', replace(@target, '.tei', '.html'))" />
     <xsl:text>}{</xsl:text>
     <xsl:apply-templates />
     <xsl:text>}</xsl:text>
