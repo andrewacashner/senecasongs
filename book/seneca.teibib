@@ -1,0 +1,48 @@
+<TEI version="4.4.0" 
+  xmlns="http://www.tei-c.org/ns/1.0" 
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xml:base="seneca.tei">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Songs at the Woods' Edge: What is the Seneca Nation?</title>
+        <author>Andrew A. Cashner</author>
+      </titleStmt>
+      <publicationStmt>
+        <pubPlace>Rochester, NY</pubPlace>
+        <publisher>Peacemaker Press</publisher>
+        <date when="2022" />
+        <availability>
+          <p>Copyright © 2022 Andrew A. Cashner. All rights reserved.</p>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Born digital and published on the web at <ref target="http://www.senecasongs.earth/seneca.html">www.senecasongs.earth/seneca.html</ref>.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <titlePage>
+        <docTitle>
+          <titlePart type="main">Songs at the Woods' Edge</titlePart>
+          <titlePart type="sub">What is the Seneca Nation?</titlePart>
+        </docTitle>
+        <docAuthor>Andrew A. Cashner</docAuthor>
+        <figure type="cover" xml:id="fig:mendon">
+          <graphic url="media/Mendon_Ponds.jpg" />
+          <figDesc>Light breaks through clouds over the edge of snowy woods at Mendon Ponds Park in Monroe County, NY, January 2022</figDesc>
+        </figure>
+      </titlePage>
+    </front>
+    <body>
+      <xi:include href="include/seneca.teibib"/>
+    </body>
+    <back>
+      <div1 id="references">
+        <head>References</head>
+        <listBibl type="auto" subtype="biblio" source="tex/indigenous.bib" />
+      </div1>
+    </back>
+  </text>
+</TEI>

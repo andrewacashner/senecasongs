@@ -340,4 +340,36 @@
       <xsl:with-param name="arg">figure</xsl:with-param>
     </xsl:call-template>
   </xsl:template>
+
+  <xsl:template match="tei:list[@rend='numbered']">
+    <xsl:call-template name="tex-command">
+      <xsl:with-param name="csname">begin</xsl:with-param>
+      <xsl:with-param name="arg">enumerate</xsl:with-param>
+    </xsl:call-template>
+    <xsl:apply-templates />
+    <xsl:call-template name="tex-command">
+      <xsl:with-param name="csname">end</xsl:with-param>
+      <xsl:with-param name="arg">enumerate</xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="tei:list[@rend='bulleted']">
+    <xsl:call-template name="tex-command">
+      <xsl:with-param name="csname">begin</xsl:with-param>
+      <xsl:with-param name="arg">itemize</xsl:with-param>
+    </xsl:call-template>
+    <xsl:apply-templates />
+    <xsl:call-template name="tex-command">
+      <xsl:with-param name="csname">end</xsl:with-param>
+      <xsl:with-param name="arg">itemize</xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="tei:item">
+    <xsl:call-template name="tex-command">
+      <xsl:with-param name="csname">item</xsl:with-param>
+      <xsl:with-param name="arg"><xsl:apply-templates /></xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
 </xsl:stylesheet>

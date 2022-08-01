@@ -207,4 +207,20 @@
     <p>This document is typeset in Crimson Pro, by Jacques Le Bailly (distributed under the terms of the <a href="https://scripts.sil.org/OFL_web">SIL Open Font License</a>), with headings in Venturis Gothic Titling and Venturis Sans by Arkandis Digital Foundry (distributed under a <a href="https://ctan.org/tex-archive/fonts/venturisadf">free license</a>).</p>
   </xsl:template>
 
+  <xsl:template match="tei:list[@rend='numbered']">
+    <ol>
+      <xsl:apply-templates />
+    </ol>
+  </xsl:template>
+
+  <xsl:template match="tei:list[@rend='bulleted']">
+    <ul>
+      <xsl:apply-templates />
+    </ul>
+  </xsl:template>
+
+  <xsl:template match="tei:item">
+    <li><xsl:apply-templates /></li>
+  </xsl:template>
+
 </xsl:stylesheet>
