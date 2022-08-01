@@ -182,10 +182,13 @@
     <a href="{$html-ref}"><xsl:apply-templates /></a>
   </xsl:template>
 
-  <xsl:template match="tei:hi">
-    <strong><xsl:apply-templates /></strong>
+  <xsl:template match="tei:hi[@type='TODO']">
+    <strong class="alert"><xsl:apply-templates /></strong>
   </xsl:template>
 
+  <xsl:template match="tei:hi[@type='']">
+    <strong><xsl:apply-templates /></strong>
+  </xsl:template>
   <xsl:template match="tei:figure[@type='cover']">
     <img class="cover">
       <xsl:attribute name="src">

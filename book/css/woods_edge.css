@@ -153,6 +153,11 @@ q {
   quotes : "“" "”" "‘" "’"
 }
 
+strong.alert {
+  color: red;
+  border: 1px solid red;
+}
+
 h1 {
   font-family: 'Venturis ADF Goth Titling', Verdana, sans-serif; 
   font-weight: normal;

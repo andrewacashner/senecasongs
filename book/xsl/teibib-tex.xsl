@@ -270,11 +270,17 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="tei:hi">
+  <xsl:template match="tei:hi[@type='']">
     <xsl:call-template name="tex-command-inline">
       <xsl:with-param name="csname">strong</xsl:with-param>
       <xsl:with-param name="arg" select="." />
     </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="tei:hi[@type='TODO']">
+    <xsl:text>\XXX[</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>]</xsl:text>
   </xsl:template>
 
   <xsl:template match="tei:ref">
