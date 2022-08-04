@@ -47,8 +47,13 @@
     </front>
     <body>
       <div type="chapter" n="1" xml:id="intro">
-        <head>Introduction</head>
+        <head>Proposal</head>
         <xi:include href="include/about.teibib" />
+      </div>
+      <div type="chapter" n="2" xml:id="concepts">
+        <head>Introduction to the Songs of the Seneca Nation</head>
+        <xi:include href="include/seneca.teibib" />
+        <xi:include href="include/songs.teibib" />
       </div>
     </body>
     <back>
