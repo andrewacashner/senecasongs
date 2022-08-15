@@ -1,51 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.tei-c.org/ns/1.0">
-<div1 xml:id="seneca-who">
-<head>What is the Seneca Nation? Who are the Senecas?</head>
+<div1 xml:id="intro">
+<p>
+This project focuses on a particular type of traditional song and dance of the Onöndowa’ga:’ or Seneca Nation.
+Bill Crouse is a member of the Seneca Nation of Indians and lives in Salamanca, New York, on the Seneca Nation's Allegany Territory.
+Though much of what we present here will be similar to song and dance practices of Seneca people elsewhere, 
+Bill's expertise is specific to the practices on his own territory.
+</p>
+<p>
+What is the Seneca Nation? 
+Where did it come from and where do Seneca people live today?
+</p>
+</div1>
+<div1 xml:id="today">
+<head>The Onöndowa’ga:’ People: A Living Community with Deep Roots</head>
 <p>
 The Seneca Nation is a living community of people, indigenous to northeastern North America, 
 who share kinship, culture, language, and history
 <listBibl type="auto" subtype="intext">
-  <bibl type="auto" corresp="#Hauptman:Circle" />
   <bibl type="auto" corresp="#Hauptman:ConspiracyOfInterests" />
+  <bibl type="auto" corresp="#Hauptman:Circle" />
+  <bibl type="auto" corresp="#Hauptman:CivilWar" />
+  <bibl type="auto" corresp="#Hauptman:NewDeal" />
+  <bibl type="auto" corresp="#Hauptman:Struggle" />
   <bibl type="auto" corresp="#Hauptman:Kinzua" />
 </listBibl>.
-</p>
-<p>
 Seneca people continue to live in their ancestral homelands as well as many other places.
 For at least a thousand years before Euro-American settler-colonialists invaded, 
 Senecas were the caretakers of more than six million acres of land:
 its approximate bounds stretched from Lake Ontario on the north to the Allegany River in the south, 
-and from the Niagara River and Lake Erie on the west to Seneca Lake on the east.
-<!-- Seneca names for all these -->
-The Seneca Nation is one member of a confederacy of indigenous nations 
-known by the English as the Six Nations and by the French as the Iroquois.
+and from the Niagara River and Lake Erie on the west to Seneca Lake on the east
 <listBibl type="auto" subtype="intext">
   <bibl type="auto" corresp="#Richter:Ordeal" />
   <bibl type="auto" corresp="#Fenton:GreatLaw" />
-</listBibl>
-With the conception of most of the territory of present-day New York as one large longhouse, 
-the Senecas are the Keepers of the Western Door for the confederacy, 
-which also includes (moving west to east) the Cayugas, the Onondagas (keepers of the central fire),
-the Oneidas, and the Mohawks.
+</listBibl>.
 </p>
+</div1>
+<div1 xml:id="haudenosaunee">
+<head>The Haudenosaunee (Iroquois) Confederacy</head>
+<p>
+When Europeans arrived in the sixteenth century, 
+the Seneca Nation was one member of a longstanding confederacy of indigenous nations 
+who called themselves <foreign lang="see">Ho:dinóhšo:ni’</foreign> (<q>They Extend the Longhouse</q>).
+Following the teachings of the Peacemaker, they governed themselves through a representative democracy, 
+which today is the oldest continuously operating democratic government in the world
+<bibl type="auto" corresp="#BasicCall" />.
+</p>
+<p>
+These nations lived in longhouses, with multiple families arranged along a row of fires. 
+Peacemaker taught them to see themselves as all living in one longhouse stretching across the territory claimed today by New York State:
+the Senecas were the Keepers of the Western Door for the confederacy, 
+which also included (moving west to east) the Cayugas, 
+the Onondagas (keepers of the central fire), the Oneidas, and the Mohawks.
+The Tuscaroras were added in the eighteenth century
+<!-- date -->
+<listBibl type="auto" subtype="intext">
+  <bibl type="auto" corresp="#Tehanetorens:Roots" />
+  <bibl type="auto" corresp="#Hertzberg:GreatTree" />
+</listBibl>.
+</p>
+</div1>
+<div1 xml:id="names">
+<head>Names and Identities</head>
 <p>
 These are the names imposed by Euro-American based on their mishearings and distortions; 
 in their own language Seneca people call themselves <hi><foreign lang="see">Onöndowa’ga:’</foreign></hi> (people of the great hill).
 The Seneca word for the Six Nations Confederacy is <foreign lang="see">Ho:dinóhšo:ni’</foreign>, 
 which means <q>they extend the longhouse</q>.
 Because there are six related but distinct languages in the confederacy, 
-many writers today use the Anglicized spelling <hi><mentioned>Haudenosaunee</mentioned></hi>
-(though most pronounce the S as an English SH sound, and the AU like English OH).
+many writers today use the Anglicized spelling <mentioned>Haudenosaunee</mentioned>.
+</p>
+<p>
 Seneca people differ on whether they prefer to be called Native American, Indian or American Indian, or First Nation, 
 but it is usually preferable to use someone's tribal or national name 
 (in this case Onöndowa’ga:’/Seneca and Haudenosaunee/Iroquois).
 The Seneca language does not have a term for Native Americans as a race or category of people;
-instead a Seneca person is an <foreign lang="see">Ögwe’ o:we’</foreign>, a <q>real person</q>.
+instead a Seneca person is an <foreign lang="see">Ögwe’ o:we’</foreign>, a <q>real person</q>
+<listBibl type="auto" subtype="intext">
+  <bibl type="auto" corresp="#Bardeau:Dictionary" />
+  <bibl type="auto" corresp="#Chafe:Grammar" />
+</listBibl>.
 </p>
+</div1>
+<div1 xml:id="seneca-polities-today">
+<head>Tribal Governments since Colonization</head>
 <p>
 Through the colonialist policies of Great Britain, the United States, and Canada, 
-settlers stole most of the historic Seneca land-base, forced many Seneca people to emigrate, 
+Euro-American settlers stole most of the historic Seneca land-base through forced treaties and fraudulent land deals.
+The US and Canadian governments forced many Seneca people to emigrate, 
 and instituted their own governments that fragmented the Seneca nation.
 Nevertheless today more than two thousand Seneca people still live on their ancestral territory, 
 while <hi type="TODO">a large number</hi> more live elsewhere across North America.
@@ -60,18 +102,37 @@ Today there are four distinct political entities that represent Seneca people li
 <item><ref target="https://www.sixnations.ca">Six Nations of the Grand River</ref>, 
   one territory in Ontario (Canada) shared with the other Haudenosaunee nations, headquarters in Ohsweken, ON</item>
 </list>
+</p>
+<p>
 The Tonawanda Band of Senecas maintain their traditional form of government by male chiefs, appointed by clan mothers, 
 and send representatives to the Haudenosaunee Confederacy councils at Onondaga.
 The Seneca Nation of Indians was founded after a revolution in 1848 in which the people rejected the traditional government by chiefs and adopted a representative democracy.
 <!-- what is SNI relationship to Haudenosaunee Confederacy? -->
 <!-- what about the Oklahoma and Ontario polities? -->
 </p>
+</div1>
+<div1 xml:id="seneca-nation-concept">
+<head>Belonging to the Seneca Nation</head>
 <p>
 Beyond the administrative reality of the tribal governments, though, 
 Seneca people have a broader sense of belonging to a Seneca Nation that includes all Seneca people, 
 as well as an affiliation to the other five Haudenosaunee nations.
+This attitude is rooted in the belief that indigenous peoples have the right, affirmed by the United Nations, to determine their own identity, independent of the history of colonization
+<bibl type="auto" corresp="#UN:DeclarationIndigenous" />.
 </p>
-<!-- ? check following -->
+<p>
+At the same time, this broader sense of identity is important because the United States did not negotiate its federal treaties with the tribal governments listed above but with the Seneca Nation as part of the Haudenosaunee Confederacy.
+The Canandaigua Treaty of 1794 was an agreement between the United States (under
+President George Washington) and <q>The Six Nations</q>, including <q>The Seneka Nation</q>
+<bibl type="auto" corresp="#Nehdowes:OnondowagaTreaties" />.
+This treaty is still the only legally valid treaty between the Haudenosaunee and the United States: unlike later treaties, this one alone was ratified by both the consensus of the Haudenosaunee Council and a two-thirds majority of the US Senate, as required in the US Constitution
+<listBibl type="auto" subtype="intext">
+  <bibl type="auto" corresp="#Hauptman:ConspiracyOfInterests" />
+  <bibl type="auto" corresp="#Deloria:BrokenTreaties" />
+</listBibl>.
+That treaty provided all the territory now in New York west of the Genesee River to the Seneca Nation.
+Pretending the Seneca Nation no longer exists is one way for the US government to dodge its historic treaty obligations.
+</p>
 <p>
 Seneca identity is not determined by blood quantum or family legend, but by community standards of establishing genealogical kinship.
 A person is a member of the Seneca Nation if they are an enrolled member of a tribal government that represents the Seneca people.
