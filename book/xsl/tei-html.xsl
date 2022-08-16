@@ -11,10 +11,12 @@
 
   <xsl:include href="tei-html_bib.xsl" />
 
+  <xsl:template match="comment()" priority="1" />
+
   <xsl:template match="/">
     <xsl:variable name="title" select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title" />
     <xsl:variable name="titlePage" select="tei:TEI/tei:text/tei:front/tei:titlePage" />
-    <xsl:variable name="cover-image" select="$titlePage/tei:figure" />
+    <xsl:variable name="cover-image" select="$titlePage/tei:figure[@type='cover']" />
     <xsl:variable name="body" select="tei:TEI/tei:text/tei:body" />
     <xsl:variable name="fileDesc" select="tei:TEI/tei:teiHeader/tei:fileDesc" />
     <xsl:variable name="back" select="tei:TEI/tei:text/tei:back" />
@@ -39,12 +41,10 @@
           <xsl:apply-templates select="$body" />
           <xsl:apply-templates select="$back" />
         </main>
-        <footer>
-          <hr />
-          <xsl:call-template name="fileDesc-footer">
-            <xsl:with-param name="fileDesc" select="$fileDesc" />
-          </xsl:call-template>
-        </footer>
+        <xsl:call-template name="footer">
+          <xsl:with-param name="fileDesc" select="$fileDesc" />
+          <xsl:with-param name="image" select="$cover-image" />
+        </xsl:call-template>
       </body>
     </html>
   </xsl:template>
@@ -94,31 +94,40 @@
     <xsl:param name="filename" />
   </xsl:template>
 
-  <xsl:template name="fileDesc-footer">
+  <xsl:template name="footer">
     <xsl:param name="fileDesc" />
+    <xsl:param name="image" />
     <xsl:variable name="author" select="$fileDesc/tei:titleStmt/tei:author" />
     <xsl:variable name="date" select="$fileDesc/tei:publicationStmt/tei:date/@when" />
     <xsl:variable name="title" select="$fileDesc/tei:titleStmt/tei:title" />
     <xsl:variable name="place" select="$fileDesc/tei:publicationStmt/tei:pubPlace" />
     <xsl:variable name="publisher" select="$fileDesc/tei:publicationStmt/tei:publisher" />
     <xsl:variable name="copyright" select="$fileDesc/tei:publicationStmt/tei:availability" />
-    <p>
-      <xsl:value-of select="$author" separator=" and "/>
-      <xsl:text>. </xsl:text>
-      <xsl:value-of select="$date" />
-      <xsl:text>. </xsl:text>
-      <cite><xsl:apply-templates select="$title" /></cite>
-      <xsl:text>.</xsl:text>
-      <xsl:if test="$place and $publisher">
-        <xsl:text> </xsl:text>
-        <xsl:apply-templates select="$place" />
-        <xsl:text>: </xsl:text>
-        <xsl:apply-templates select="$publisher" />
+    <footer>
+      <hr />
+        <!--
+          <p>
+        <xsl:value-of select="$author" separator=" and "/>
+        <xsl:text>. </xsl:text>
+        <xsl:value-of select="$date" />
+        <xsl:text>. </xsl:text>
+        <cite><xsl:apply-templates select="$title" /></cite>
         <xsl:text>.</xsl:text>
-      </xsl:if>
-    </p>
-    <xsl:call-template name="fonts" />
-    <xsl:apply-templates select="$copyright" />
+        <xsl:if test="$place and $publisher">
+          <xsl:text> </xsl:text>
+          <xsl:apply-templates select="$place" />
+          <xsl:text>: </xsl:text>
+          <xsl:apply-templates select="$publisher" />
+          <xsl:text>.</xsl:text>
+        </xsl:if>
+          </p>
+        -->
+      <xsl:call-template name="cover-image-caption">
+        <xsl:with-param name="image" select="$image" />
+      </xsl:call-template>
+      <xsl:call-template name="fonts" />
+      <xsl:apply-templates select="$copyright" />
+    </footer>
   </xsl:template>
 
   <xsl:template match="tei:div | tei:div1 | tei:div2 | tei:div3 | tei:div4">
@@ -146,10 +155,6 @@
 
   <xsl:template match="tei:p">
     <p><xsl:apply-templates /></p>
-  </xsl:template>
-
-  <xsl:template match="tei:bibl/tei:ref">
-    <a class="citation" href="{@target}"><xsl:apply-templates /></a>
   </xsl:template>
 
   <xsl:template match="tei:title[@type='m' or @type='']">
@@ -182,13 +187,22 @@
     <a href="{$html-ref}"><xsl:apply-templates /></a>
   </xsl:template>
 
+  <xsl:template match="tei:bibl/tei:ref">
+    <a class="citation" href="{@target}"><xsl:apply-templates /></a>
+  </xsl:template>
+
   <xsl:template match="tei:hi[@type='TODO']">
     <strong class="alert"><xsl:apply-templates /></strong>
   </xsl:template>
 
-  <xsl:template match="tei:hi[@type='']">
+  <xsl:template match="tei:hi">
     <strong><xsl:apply-templates /></strong>
   </xsl:template>
+
+  <xsl:template match="tei:mentioned">
+    <em><xsl:apply-templates /></em>
+  </xsl:template>
+
   <xsl:template match="tei:figure[@type='cover']">
     <img class="cover">
       <xsl:attribute name="src">
@@ -224,6 +238,29 @@
 
   <xsl:template match="tei:item">
     <li><xsl:apply-templates /></li>
+  </xsl:template>
+
+  <xsl:template name="cover-image-caption">
+    <xsl:param name="image" />
+    <p>Background image: <xsl:apply-templates select="$image/tei:figDesc" /></p>
+  </xsl:template>
+
+  <xsl:template match="tei:table">
+    <table id="{@xml:id}">
+      <xsl:apply-templates />
+    </table>
+  </xsl:template>
+
+  <xsl:template match="tei:table/tei:head">
+    <caption><xsl:apply-templates /></caption>
+  </xsl:template>
+
+  <xsl:template match="tei:table/tei:row">
+    <tr><xsl:apply-templates /></tr>
+  </xsl:template>
+
+  <xsl:template match="tei:table/tei:row/tei:cell">
+    <td><xsl:apply-templates /></td>
   </xsl:template>
 
 </xsl:stylesheet>

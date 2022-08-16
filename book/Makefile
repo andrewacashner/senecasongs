@@ -87,7 +87,7 @@ aux/%.teibib : %.teibib $(teibib_include) $(xsl) | $(dirs)
 	$(saxon) -xi:on -xsl:xsl/teibib-tei_pass1.xsl -s:$< -o:$@
 
 ## Bibliography
-aux/%-bib.tei : aux/%.bltxml $(xsl) | $(dirs)
+aux/%-bib.tei : aux/%.bltxml $(xsl) $(tex_bib) | $(dirs)
 	$(saxon) -xsl:xsl/bltxml-tei.xsl -s:$< -o:$@
 
 ## Second pass: Main document with bibliography

@@ -42,8 +42,8 @@
     <body>
       <xi:include href="include/welcome.tei" />
       <list rend="bulleted">
-        <item><ref target="#seneca-who">Who are the Senecas?</ref></item>
-        <item><ref target="#music-concepts">How do Seneca people think of music?</ref></item>
+        <item><ref target="seneca.tei" type="internal">What is the Seneca Nation?</ref></item>
+        <item><ref target="songs.tei" type="internal">How do Seneca people think of music?</ref></item>
       </list>
     </body>
     <back />

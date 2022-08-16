@@ -18,10 +18,22 @@
   </xsl:template>
 
   <xsl:template match="text()" priority="1">
-    <xsl:value-of select="replace(replace(replace(.,
-    '''', '’'),
-    '---', '—'),
-    '--', '–')" />
+    <xsl:variable name="quote">
+      <xsl:value-of select="replace(., '''', '’')" />
+    </xsl:variable>
+    <xsl:variable name="em-dash">
+      <xsl:value-of select="replace($quote, '---', '—')" />
+    </xsl:variable>
+    <xsl:variable name="en-dash">
+      <xsl:value-of select="replace($em-dash, '--', '–')" />
+    </xsl:variable>
+    <xsl:variable name="newline">
+      <xsl:value-of select="replace($en-dash, '&#10;', ' ')" />
+    </xsl:variable>
+    <xsl:variable name="space">
+      <xsl:value-of select="replace($newline, '  ', ' ')" />
+    </xsl:variable>
+    <xsl:value-of select="$space" />
   </xsl:template>
 
   <xsl:template match="comment()" priority="1" />
@@ -113,5 +125,15 @@
     </xsl:for-each>
     <xsl:text>)</xsl:text>
   </xsl:template>
+
+  <xsl:template match="tei:ref[@type='auto']">
+    <ref target="{@target}">
+      <xsl:apply-templates />
+      <!-- TODO ref number?
+        <xsl:value-of select="autoref-@target" />
+      -->
+    </ref>
+  </xsl:template>
+
 
 </xsl:stylesheet>

@@ -50,7 +50,9 @@
       <xsl:apply-templates select="tei:monogr/tei:title[@level='m']" />
       <xsl:text>. </xsl:text>
       <xsl:apply-templates select="tei:monogr/tei:imprint" />
-      <xsl:text>.</xsl:text>
+      <xsl:call-template name="bib-url">
+        <xsl:with-param name="url" select="tei:monogr/tei:ref" />
+      </xsl:call-template>
     </li>
   </xsl:template>
 
@@ -75,6 +77,9 @@
         <xsl:with-param name="imprint" select="tei:monogr" />
       </xsl:call-template>
       <xsl:text>.</xsl:text>
+      <xsl:call-template name="bib-url">
+        <xsl:with-param name="url" select="tei:analytic/tei:ref" />
+      </xsl:call-template>
     </li>
   </xsl:template>
   
@@ -107,6 +112,9 @@
       <xsl:text>: </xsl:text>
       <xsl:apply-templates select="tei:monogr/tei:imprint/tei:publisher" />
       <xsl:text>.</xsl:text>
+      <xsl:call-template name="bib-url">
+        <xsl:with-param name="url" select="tei:analytic/tei:ref" />
+      </xsl:call-template>
     </li>
   </xsl:template>
 
@@ -145,9 +153,18 @@
   </xsl:template>
 
   <xsl:template match="tei:monogr/tei:imprint">
-    <xsl:apply-templates select="tei:pubPlace" />
-    <xsl:text>: </xsl:text>
-    <xsl:apply-templates select="tei:publisher" />
+    <xsl:if test="tei:pubPlace">
+      <xsl:apply-templates select="tei:pubPlace" />
+      <xsl:if test="tei:publisher">
+        <xsl:text>: </xsl:text>
+      </xsl:if>
+    </xsl:if>
+    <xsl:if test="tei:publisher">
+      <xsl:apply-templates select="tei:publisher" />
+    </xsl:if>
+    <xsl:if test="tei:pubPlace or tei:publisher">
+      <xsl:text>.</xsl:text>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="tei:analytic/tei:title">
@@ -172,6 +189,16 @@
     <xsl:value-of select="@from" />
     <xsl:text>–</xsl:text>
     <xsl:value-of select="@to" />
+  </xsl:template>
+
+  <xsl:template name="bib-url">
+    <xsl:param name="url" />
+    <xsl:if test="$url">
+      <a href="{$url/@href}">
+        <xsl:value-of select="$url" />
+      </a>
+      <xsl:text>.</xsl:text>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>

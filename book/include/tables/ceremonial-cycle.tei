@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table xmlns="http://www.tei-c.org/ns/1.0" xml:id="tab:ceremonial-cycle" cols="2">
+  <head>The Annual Ceremonial Cycle</head>
+  <row>
+    <cell role="season">Winter</cell>
+    <cell role="ceremony">Midwinter Ceremonies</cell>
+  </row>
+  <row>
+    <cell role="season" />
+    <cell role="ceremony">
+      <foreign xml:lang="see">Okhi:we’</foreign> (Remembrance of those who have died)
+    </cell>
+  </row>
+  <row>
+    <cell role="season">Spring</cell>
+    <cell role="ceremony">Thunder Dance</cell>
+  </row>
+  <row>
+    <cell role="season" />
+    <cell role="ceremony">False Faces (House-to-house cleansing)</cell>
+  </row>
+  <row>
+    <cell role="season" />
+    <cell role="ceremony">Seed Dance</cell>
+  </row>
+  <row>
+    <cell role="season">Summer</cell>
+    <cell role="ceremony">Strawberry Festival</cell>
+  </row>
+  <row>
+    <cell role="season" />
+    <cell role="ceremony">Green Corn Ceremonies</cell>
+  </row>
+  <row>
+    <cell role="season">Fall</cell>
+    <cell role="ceremony">Harvest Dance</cell>
+  </row>
+  <row>
+    <cell role="season" />
+    <cell role="ceremony">False Faces (House-to-house cleansing)</cell>
+  </row>
+  <row>
+    <cell role="season" />  
+    <cell role="ceremony">Thunder Dance</cell>
+  </row>
+  <row>
+    <cell role="season" />
+    <cell role="ceremony">
+      <foreign xml:lang="see">Gaiwi:yo:h</foreign> (Code of Handsome Lake)
+    </cell>
+  </row>
+</table>

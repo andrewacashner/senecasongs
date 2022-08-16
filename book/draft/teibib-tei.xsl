@@ -18,10 +18,20 @@
   </xsl:template>
 
   <xsl:template match="text()" priority="1">
-    <xsl:value-of select="replace(replace(replace(.,
-    '''', '’'),
-    '---', '—'),
-    '--', '–')" />
+    <xsl:variable name="quote">
+      <xsl:value-of select="replace(., '''', '’')" />
+    </xsl:value-of>
+    <xsl:variable name="em-dash">
+      <xsl:value-of select="replace($quote, '---', '—')" />
+    </xsl:variable>
+    <xsl:variable name="en-dash">
+      <xsl:value-of select="replace($em-dash, '--', '–')" />
+    </xsl:variable>
+    <xsl:variable name="newline">
+      <xsl:value-of select="replace($en-dash, 'Seneca', 'RACCOON')" />
+      <!--'&#xA;&#xA;', 'RACCOON')" /> -->
+    </xsl:variable>
+    <xsl:value-of select="RACOON" />
   </xsl:template>
 
   <xsl:template match="comment()" priority="1" />

@@ -1,31 +1,57 @@
-(2022/05/10)
+(Last updated 2022/08/15)
 
 - (DONE) create Makefile
 
+- version number and plan
+
+# Content
+- glossary
+- Seneca words pronounced on click
+- chapter titles vs section titles vs web-page titles
+
 # To TEI
-## AAC namespace
-- Create aac.xsd
+## AAC namespace (TEIBIB)
+- (DONE) Create aac.xsd
+- Automatic table, figure reference numbers in TEI (and thence HTML)
 
 ## Bibliography (for HTML conversion only)
-- convert biblatexml to TEI
-- select only cited entries and include in document
-- pull out label strings and insert in citations
+- (DONE) convert biblatexml to TEI
+- (DONE) select only cited entries and include in document
+- (DONE) pull out label strings and insert in citations
 
 # To HTML
-- create CSS for HTML
+- (DONE) cover image alt text and/or caption
+- colophon text: include from file rather than putting it directly in XSL
+    - also, use it in LaTeX somewhere
+- footer citation: 
+    - should be '"Page Name" in *Book Name*'
+    - no period after titles ending with questions
+- docAuthor separated by commas after "Sr."
+    - in TEI: one docAuthor field ("Author A and Author B") or two?
+## CSS
+- (DONE) create CSS for HTML
+- Make author less prominent
+- Why is index page smaller scaled than rest?
 
 # To LaTeX
 - (DONE) create tei-tex.xsl
 - (DONE) create LaTeX class
+- complex tables with styling (also to HTML)
 
 ## Book
 - Create true internal references with labels?
 - frontmatter, mainmatter, backmatter
+- cover images 
 
 
 # Bibliography
-- Deal with handling of "Jr." in both TeX and TEI
+- Author names in parenthesis
+- Successive citations of same author (combine into one citation with
+  years in date order)
+- Handling of "Jr." in both TeX and TEI
     - the main issue is how BibLaTeX input should be written
     - and consistency between TeX and TEI-bib bib treatment
 - Trailing punctuation with `<q>`, including in bibliographies (or break with
   Chicago style)
+- page range: can we have free range like "1-4, 5, 19-20" or must everything
+  use @start and @end?

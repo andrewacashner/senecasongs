@@ -6,9 +6,20 @@
   exclude-result-prefixes="tei">
 
   <xsl:output method="text" encoding="utf-8" indent="no" />
+
   <xsl:strip-space elements="*" />
 
-  <xsl:template match="comment()" />
+  <xsl:template match="text()" priority="1">
+    <xsl:variable name="newline">
+      <xsl:value-of select="replace(., '&#10;', ' ')" />
+    </xsl:variable>
+    <xsl:variable name="space">
+      <xsl:value-of select="replace($newline, '  ', ' ')" />
+    </xsl:variable>
+    <xsl:value-of select="$space" />
+  </xsl:template>
+ 
+  <xsl:template match="comment()" priority="1" />
 
   <xsl:variable name="newline"><xsl:text>&#xA;</xsl:text></xsl:variable>
   
@@ -237,6 +248,7 @@
   </xsl:template>
 
   <xsl:template match="tei:p">
+    <xsl:value-of select="$par" />
     <xsl:apply-templates />
     <xsl:value-of select="$par" />
   </xsl:template>
@@ -263,6 +275,14 @@
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match="tei:mentioned">
+    <xsl:call-template name="tex-command-inline">
+      <xsl:with-param name="csname">mentioned</xsl:with-param>
+      <xsl:with-param name="arg" select="." />
+    </xsl:call-template>
+  </xsl:template>
+
+
   <xsl:template match="tei:q">
     <xsl:call-template name="tex-command-inline">
       <xsl:with-param name="csname">quoted</xsl:with-param>
@@ -270,7 +290,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="tei:hi[@type='']">
+  <xsl:template match="tei:hi">
     <xsl:call-template name="tex-command-inline">
       <xsl:with-param name="csname">strong</xsl:with-param>
       <xsl:with-param name="arg" select="." />
@@ -353,7 +373,7 @@
       <xsl:with-param name="arg">enumerate</xsl:with-param>
     </xsl:call-template>
     <xsl:apply-templates />
-    <xsl:call-template name="tex-command">
+    <xsl:call-template name="tex-command-inline">
       <xsl:with-param name="csname">end</xsl:with-param>
       <xsl:with-param name="arg">enumerate</xsl:with-param>
     </xsl:call-template>
@@ -365,7 +385,7 @@
       <xsl:with-param name="arg">itemize</xsl:with-param>
     </xsl:call-template>
     <xsl:apply-templates />
-    <xsl:call-template name="tex-command">
+    <xsl:call-template name="tex-command-inline">
       <xsl:with-param name="csname">end</xsl:with-param>
       <xsl:with-param name="arg">itemize</xsl:with-param>
     </xsl:call-template>
@@ -375,6 +395,64 @@
     <xsl:call-template name="tex-command">
       <xsl:with-param name="csname">item</xsl:with-param>
       <xsl:with-param name="arg"><xsl:apply-templates /></xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <!-- TODO more complex tables require much more than this; or you could generate tables with TeX and just include graphics -->
+  <xsl:template match="tei:table">
+    <xsl:call-template name="tex-command">
+      <xsl:with-param name="csname">begin</xsl:with-param>
+      <xsl:with-param name="arg">table</xsl:with-param>
+    </xsl:call-template>
+    <xsl:call-template name="tex-command">
+      <xsl:with-param name="csname">caption</xsl:with-param>
+      <xsl:with-param name="arg"><xsl:apply-templates select="tei:head" /></xsl:with-param>
+    </xsl:call-template>
+    <xsl:call-template name="tex-command">
+      <xsl:with-param name="csname">label</xsl:with-param>
+      <xsl:with-param name="arg"><xsl:value-of select="@xml:id" /></xsl:with-param>
+    </xsl:call-template>
+    <xsl:call-template name="tex-command-inline">
+      <xsl:with-param name="csname">begin</xsl:with-param>
+      <xsl:with-param name="arg">tabular</xsl:with-param>
+    </xsl:call-template>
+    <xsl:text>{</xsl:text>
+    <xsl:for-each select="1 to @cols">l</xsl:for-each>
+    <xsl:text>}</xsl:text>
+    <xsl:text>\toprule</xsl:text>
+    <xsl:value-of select="$newline" />
+    <xsl:apply-templates select="tei:row" />
+    <xsl:text>\bottomrule</xsl:text>
+    <xsl:value-of select="$newline" />
+    <xsl:call-template name="tex-command">
+      <xsl:with-param name="csname">end</xsl:with-param>
+      <xsl:with-param name="arg">tabular</xsl:with-param>
+    </xsl:call-template>
+    <xsl:call-template name="tex-command-inline">
+      <xsl:with-param name="csname">end</xsl:with-param>
+      <xsl:with-param name="arg">table</xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="tei:row">
+    <xsl:apply-templates />
+    <xsl:text> \\</xsl:text>
+    <xsl:value-of select="$newline" />
+  </xsl:template>
+
+  <xsl:template match="tei:cell">
+    <xsl:apply-templates />
+    <xsl:if test="not(position()=last())">
+      <xsl:text> &amp; </xsl:text>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="tei:ref[@type='auto']">
+    <xsl:apply-templates />
+    <xsl:text>~</xsl:text>
+    <xsl:call-template name="tex-command-inline">
+      <xsl:with-param name="csname">ref</xsl:with-param>
+      <xsl:with-param name="arg" select="replace(@target, '#', '')" />
     </xsl:call-template>
   </xsl:template>
 

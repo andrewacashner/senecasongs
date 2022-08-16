@@ -7,14 +7,14 @@
     <fileDesc>
       <titleStmt>
         <title>Songs at the Woods' Edge: What is the Seneca Nation?</title>
-        <author>Andrew A. Cashner</author>
+        <author>Bill Crouse, Sr., and Andrew A. Cashner</author>
       </titleStmt>
       <publicationStmt>
         <pubPlace>Rochester, NY</pubPlace>
         <publisher>Peacemaker Press</publisher>
         <date when="2022" />
         <availability>
-          <p>Copyright © 2022 Andrew A. Cashner. All rights reserved.</p>
+          <p>Copyright © 2022 Bill Crouse, Sr., and Andrew A. Cashner. All rights reserved.</p>
         </availability>
       </publicationStmt>
       <sourceDesc>
@@ -29,10 +29,12 @@
           <titlePart type="main">Songs at the Woods' Edge</titlePart>
           <titlePart type="sub">What is the Seneca Nation?</titlePart>
         </docTitle>
-        <docAuthor>Andrew A. Cashner</docAuthor>
-        <figure type="cover" xml:id="fig:mendon">
-          <graphic url="media/Mendon_Ponds.jpg" />
-          <figDesc>Light breaks through clouds over the edge of snowy woods at Mendon Ponds Park in Monroe County, NY, January 2022</figDesc>
+        <docAuthor>Bill Crouse, Sr., and Andrew A. Cashner</docAuthor>
+        <figure type="cover" xml:id="fig:powwow">
+          <graphic url="media/Salamanca-powwow-crop.jpg" />
+          <figDesc>Bill Crouse (in green) prepares to compete in the Marvin <q>Joe</q> Curry Memorial Veterans Pow-Wow 
+            on the Allegany Territory of the Seneca Nation of Indians 
+            (photograph by Andrew Cashner, Salamanca, NY, July 2022).</figDesc>
         </figure>
       </titlePage>
     </front>

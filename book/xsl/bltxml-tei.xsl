@@ -29,6 +29,7 @@
       <monogr>
         <xsl:apply-templates select="bltx:names" />
         <title level="m"><xsl:apply-templates select="bltx:title" /></title>
+        <xsl:apply-templates select="bltx:url" />
         <imprint>
           <xsl:apply-templates select="bltx:location" />
           <xsl:apply-templates select="bltx:publisher" />
@@ -43,6 +44,7 @@
       <analytic>
         <xsl:apply-templates select="bltx:names" />
         <title><xsl:apply-templates select="bltx:title" /></title>
+        <xsl:apply-templates select="bltx:url" />
       </analytic>
       <monogr>
         <xsl:apply-templates select="bltx:journaltitle" />
@@ -61,6 +63,7 @@
       <analytic>
         <xsl:apply-templates select="bltx:names[@type='author']" />
         <title level="a"><xsl:apply-templates select="bltx:title" /></title>
+        <xsl:apply-templates select="bltx:url" />
       </analytic>
       <monogr>
         <title level="m"><xsl:apply-templates select="bltx:booktitle" /></title>
@@ -175,6 +178,15 @@
     <xsl:variable name="start" select="bltx:list/bltx:item/bltx:start" />
     <xsl:variable name="end" select="bltx:list/bltx:item/bltx:end" />
     <biblScope unit="page" from="{$start}" to="{$end}" />
+  </xsl:template>
+
+  <xsl:template match="bltx:url">
+    <ref>
+      <xsl:attribute name="target">
+        <xsl:value-of select="." />
+      </xsl:attribute>
+      <xsl:value-of select="." />
+    </ref>
   </xsl:template>
 
 </xsl:stylesheet>
