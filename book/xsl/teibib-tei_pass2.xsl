@@ -7,7 +7,7 @@
   xmlns:xi="http://www.w3.org/2001/XInclude"
   exclude-result-prefixes="xi tei">
 
-  <xsl:output method="xml" encoding="utf-8" indent="yes" />
+  <xsl:output method="xml" encoding="utf-8" indent="yes" include-content-type="no"/>
 
   <xsl:strip-space elements="*" />
 
