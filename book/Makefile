@@ -1,11 +1,30 @@
 # Makefile for Songs at the Woods' Edge book and website
-# Andrew Cashner, 2022/06/06
+# Andrew Cashner, 2022/09
 #
 # Written in TEI-XML with some custom elements (= "AAC-XML")
 # Output to (1) full TEI, (2) PDF, (3) HTML.
 #
 # We use LaTeX to process the bibliography and convert to Biblatexml before
 # converting that to TEI.
+#
+# In detail:
+# 1. Convert TEI-bib to LaTeX (teibib-tex.xsl)
+# 2. Compile LaTeX to PDF; along the way Biber generates bcf bibliography file
+# 3. Use Biber to generate subset bibliography
+# 4. Use Biber to convert that bibliography to bltxml using bcf file
+# 5. Convert bltxml to TEI (bltxml-tei.xsl)
+# 6. Convert TEI-bib to TEI, first pass: add command to include TEI bibliography file
+# 	(teibib-tei_pass1.xsl)
+# 7. Convert TEI-bib to TEI, second pass: replace citations with text linked
+# 	to bibliography (teibib-tei_pass2.xsl)
+# 8. Convert generated TEI to HTML5 including bibliography (tei-html.xsl)
+#
+# - LaTeX generates the bibliography, citations, and automatic numbering for
+#   the PDF version, all from the original TEI-bib input format.
+# - The XSL-generated TEI includes the expanded bibliography and citations but not
+#   the automatic numbering. (TODO should it?)
+# - The XSL-generated HTML5 includes automatic numbering, generated from the
+#   TEI.
 
 dirs        = aux build build/media build/fonts
 

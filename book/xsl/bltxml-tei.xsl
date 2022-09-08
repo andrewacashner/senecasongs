@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- XSL transformation for bibliography from Biber's XML format to TEI
+
+Andrew A. Cashner, 2022/09
+
+Starting with a BibLaTeX master bibliography file, we first extract the 
+relevant bibliography items:
+
+biber -\-output_format=bibtex -\-output-resolve-cross-refs -O selection.bib master.bib
+
+Then we convert that file to Biber's bltxml format:
+
+biber -\-tool -\-output-format=biblatexml -\-no-bltxml-schema -O biblio.bltxml selection.bib
+
+This stylesheet converts the whole bltxml file to a single TEI listBibl tree.
+
+It also uses the include bltxml-tei_macros to do a basic replacement of TeX macros still present in the bltxml fields, e.g., \makebibemph{} or {Title text}.
+-->
 <xsl:stylesheet
   version="2.0"
   xmlns="http://www.tei-c.org/ns/1.0"

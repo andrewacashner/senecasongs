@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- XSL transformation from TEI with custom bibliography extensions to standard TEI: First pass
+
+For Seneca Songs website
+
+Andrew A. Cashner, 2022/09
+
+The input file is in TEI-XML but used listBibl[@type='auto'] as placeholders for
+bibliography entries and bibl[@type='auto'] for in-text citations.
+In a first pass, we use this stylesheet to replace the listBibl[@type='auto']
+with an xi:include command to pull in the actual bibliography file.
+The bibliography is generated from a BibTeX sourcefile via Biber (to bltxml)
+and via our bltxml_tei stylesheet.
+-->
 <xsl:stylesheet 
   version="2.0" 
   xmlns="http://www.tei-c.org/ns/1.0" 

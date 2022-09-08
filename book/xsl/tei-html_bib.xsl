@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- XSL transformation from TEI bibliography to HTML5
+
+Andrew A. Cashner, 2022/09
+
+Convert TEI listBibl to HTML5 reference list
+-->
 <xsl:stylesheet
   version="2.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"

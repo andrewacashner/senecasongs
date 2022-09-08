@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- XSL transformation from TEI with custom bibliography extension to LaTeX
+
+For Seneca Songs book
+
+Andrew A. Cashner, 2022/09
+
+Input is a TEI file that uses listBibl[@type='auto'] and bibl[@type='auto'] as placeholders for bibliography entries and citations, and convert to a LaTeX file using the same citation keys.
+LaTeX does the rest of the bibliography processsing.
+
+The LaTeX is written for the local TeX classes and packages (in the tex/ directory).
+-->
 <xsl:stylesheet
   version="2.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"

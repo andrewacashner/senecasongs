@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- XSL transformation from TEI-XML to HTML5
+For Seneca songs website
+
+Andrew A. Cashner, 2022/09/08
+
+The input for this stylesheet is the TEI output produced by the two teibib_tei stylesheets.
+
+It uses the tei-html_bib stylesheet to convert the listBibl bibliography to an HTML5 reference list.
+
+This stylesheet also inserts automatic numbers for tables, figures, etc., and references to them (ref[@type='auto' and @subtype='table'] for example).
+-->
 <xsl:stylesheet
   version="2.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -177,18 +188,43 @@
   <xsl:template match="tei:q">
     <q><xsl:apply-templates /></q>
   </xsl:template>
-
+  
   <xsl:template match="tei:ref">
-    <a href="{@target}"><xsl:apply-templates /></a>
+    <a href="{@target}">
+      <xsl:apply-templates />
+    </a>
   </xsl:template>
 
   <xsl:template match="tei:ref[@type='internal']">
-    <xsl:variable name="html-ref" select="replace(@target, '.tei', '.html')" />
-    <a href="{$html-ref}"><xsl:apply-templates /></a>
+    <a href="replace(@target, '.tei', '.html')">
+      <xsl:apply-templates />
+    </a>
   </xsl:template>
 
-  <xsl:template match="tei:bibl/tei:ref">
-    <a class="citation" href="{@target}"><xsl:apply-templates /></a>
+  <xsl:template match="tei:ref[@type='citation']">
+    <a class="citation" href="{@target}">
+      <xsl:apply-templates />
+    </a>
+  </xsl:template>
+
+  <xsl:variable name="tables">
+    <xsl:for-each select="//tei:table">
+      <xsl:copy>
+        <xsl:copy-of select="@xml:id" />
+        <xsl:attribute name="n">
+          <xsl:number count="tei:table" />
+        </xsl:attribute>
+      </xsl:copy>
+    </xsl:for-each>
+  </xsl:variable>
+
+  <xsl:template match="tei:ref[@type='auto' and @subtype='table']">
+    <xsl:variable name="label" select="substring(@target, 2)" />
+    <a class="{@subtype}" href="{@target}">
+      <xsl:apply-templates />
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$tables/tei:table[@xml:id=$label]/@n" />
+    </a>
   </xsl:template>
 
   <xsl:template match="tei:hi[@type='TODO']">
@@ -252,7 +288,11 @@
   </xsl:template>
 
   <xsl:template match="tei:table/tei:head">
-    <caption><xsl:apply-templates /></caption>
+    <caption>
+      <xsl:text>Table </xsl:text>
+      <xsl:number format="1. " count="tei:table" />
+      <xsl:apply-templates />
+    </caption>
   </xsl:template>
 
   <xsl:template match="tei:table/tei:row">

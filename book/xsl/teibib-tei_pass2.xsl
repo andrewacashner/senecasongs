@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- XSL transformation from TEI with custom bibliography extensions to standard TEI: First pass
+
+For Seneca Songs website
+
+Andrew A. Cashner, 2022/09
+
+The input file is in TEI-XML but uses bibl[@type='auto'] as placeholders for in-text citations.
+In the first pass, we used the teibib-tei_pass1 stylesheet to insert a bibliography file.
+Now we substitute in-text citations (Chicago author-date format) for the bibl[@type='auto'] elements.
+We pull the information for these from the bibliography file using the xml:ids, and link the citation to the bibliography.
+
+The bibliography was generated from a BibTeX sourcefile via Biber (to bltxml)
+and via our bltxml_tei stylesheet.
+Here we convert the bibliography data to the appropriate format for the reference list.
+
+The stylesheet also cleans up the input text and processes TeX-style character "macros": straight apostrophes, TeX dashes.
+
+Output is a standard TEI format. 
+We still omit automatic reference numbers (e.g., tables, figures), since these may be added in a future XSL transformation. 
+(We do it in the tei-html stylesheet.)
+-->
 <xsl:stylesheet 
   version="2.0" 
   xmlns="http://www.tei-c.org/ns/1.0" 
@@ -52,7 +73,7 @@
     <xsl:variable name="date" select="$ref//tei:imprint/tei:date/@when" />
 
     <bibl>
-      <ref target="#{$bibKey}">
+      <ref type="citation" target="#{$bibKey}">
         <xsl:choose>
           <xsl:when test="$ref">
             <xsl:value-of select="$author-list" />
@@ -125,15 +146,5 @@
     </xsl:for-each>
     <xsl:text>)</xsl:text>
   </xsl:template>
-
-  <xsl:template match="tei:ref[@type='auto']">
-    <ref target="{@target}">
-      <xsl:apply-templates />
-      <!-- TODO ref number?
-        <xsl:value-of select="autoref-@target" />
-      -->
-    </ref>
-  </xsl:template>
-
 
 </xsl:stylesheet>
