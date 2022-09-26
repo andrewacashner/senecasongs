@@ -11,6 +11,8 @@ In a first pass, we use this stylesheet to replace the listBibl[@type='auto']
 with an xi:include command to pull in the actual bibliography file.
 The bibliography is generated from a BibTeX sourcefile via Biber (to bltxml)
 and via our bltxml_tei stylesheet.
+
+The stylesheet also cleans up the input text and processes TeX-style character "macros": straight apostrophes, TeX dashes.
 -->
 <xsl:stylesheet 
   version="2.0" 
@@ -28,6 +30,25 @@ and via our bltxml_tei stylesheet.
     <xsl:copy>
       <xsl:apply-templates select="@* | node()" />
     </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="text()" priority="1">
+    <xsl:variable name="quote">
+      <xsl:value-of select="replace(., '''', '’')" />
+    </xsl:variable>
+    <xsl:variable name="em-dash">
+      <xsl:value-of select="replace($quote, '---', '—')" />
+    </xsl:variable>
+    <xsl:variable name="en-dash">
+      <xsl:value-of select="replace($em-dash, '--', '–')" />
+    </xsl:variable>
+    <xsl:variable name="newline">
+      <xsl:value-of select="replace($en-dash, '&#10;', ' ')" />
+    </xsl:variable>
+    <xsl:variable name="space">
+      <xsl:value-of select="replace($newline, '  ', ' ')" />
+    </xsl:variable>
+    <xsl:value-of select="$space" />
   </xsl:template>
 
   <xsl:template match="tei:listBibl[@type='auto' and @subtype='biblio']">

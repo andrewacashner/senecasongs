@@ -54,6 +54,7 @@
         <head>Introduction to the Songs of the Seneca Nation</head>
         <xi:include href="include/seneca.teibib" />
         <xi:include href="include/songs.teibib" />
+        <xi:include href="include/foundations.teibib" />
       </div>
     </body>
     <back>

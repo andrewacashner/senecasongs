@@ -196,7 +196,7 @@ This stylesheet also inserts automatic numbers for tables, figures, etc., and re
   </xsl:template>
 
   <xsl:template match="tei:ref[@type='internal']">
-    <a href="replace(@target, '.tei', '.html')">
+    <a href="{replace(@target, '.tei', '.html')}">
       <xsl:apply-templates />
     </a>
   </xsl:template>

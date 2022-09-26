@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TEI version="4.4.0" 
-  xmlns="http://www.tei-c.org/ns/1.0" 
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xml:base="songs.tei">
+<TEI version="4.4.0" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:base="foundations.tei">
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>Songs at the Woods' Edge: Seneca Songs and Dances</title>
+        <title>Songs at the Woods' Edge: Foundations of Seneca Worldview</title>
         <author>Bill Crouse, Sr., and Andrew A. Cashner</author>
       </titleStmt>
       <publicationStmt>
@@ -18,7 +15,7 @@
         </availability>
       </publicationStmt>
       <sourceDesc>
-        <p>Born digital and published on the web at <ref target="http://www.senecasongs.earth/seneca.tei">www.senecasongs.earth/songs.tei</ref>.</p>
+        <p>Born digital and published on the web at <ref target="http://www.senecasongs.earth/foundations.tei">www.senecasongs.earth/foundations.tei</ref>.</p>
       </sourceDesc>
     </fileDesc>
   </teiHeader>
@@ -27,17 +24,17 @@
       <titlePage>
         <docTitle>
           <titlePart type="main">Songs at the Woods' Edge</titlePart>
-          <titlePart type="sub">Seneca Song and Dance Overview</titlePart>
+          <titlePart type="sub">Foundations of Seneca Worldview</titlePart>
         </docTitle>
         <docAuthor>Bill Crouse, Sr., and Andrew A. Cashner</docAuthor>
-        <figure type="cover" xml:id="fig:genesee-park-oaks">
-          <graphic url="media/Genesee_Valley_Park_oaks.jpg" />
-          <figDesc>Oak trees line the walking path on the east bank of the Genesee River in Rochester's Genesee Valley Park; the trail probably follows an ancient Seneca path (photograph by Andrew Cashner, May 2022).</figDesc>
+        <figure type="cover" xml:id="fig:ohiyo-salamanca">
+          <graphic url="media/Ohiyo-Salamanca.jpg" />
+          <figDesc><foreign xml:lang="see">Ohi:yo’</foreign> (<q>Beautiful River</q>, the Allegheny River), in Salamanca, NY (photograph by Andrew Cashner, September 2022).</figDesc>
         </figure>
       </titlePage>
     </front>
     <body>
-      <xi:include href="include/songs.teibib" />
+      <xi:include href="include/foundations.teibib" />
     </body>
     <back>
       <div1 id="references">
@@ -47,3 +44,5 @@
     </back>
   </text>
 </TEI>
+
+

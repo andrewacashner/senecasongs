@@ -14,8 +14,6 @@ The bibliography was generated from a BibTeX sourcefile via Biber (to bltxml)
 and via our bltxml_tei stylesheet.
 Here we convert the bibliography data to the appropriate format for the reference list.
 
-The stylesheet also cleans up the input text and processes TeX-style character "macros": straight apostrophes, TeX dashes.
-
 Output is a standard TEI format. 
 We still omit automatic reference numbers (e.g., tables, figures), since these may be added in a future XSL transformation. 
 (We do it in the tei-html stylesheet.)
@@ -36,25 +34,6 @@ We still omit automatic reference numbers (e.g., tables, figures), since these m
     <xsl:copy>
       <xsl:apply-templates select="@* | node()" />
     </xsl:copy>
-  </xsl:template>
-
-  <xsl:template match="text()" priority="1">
-    <xsl:variable name="quote">
-      <xsl:value-of select="replace(., '''', '’')" />
-    </xsl:variable>
-    <xsl:variable name="em-dash">
-      <xsl:value-of select="replace($quote, '---', '—')" />
-    </xsl:variable>
-    <xsl:variable name="en-dash">
-      <xsl:value-of select="replace($em-dash, '--', '–')" />
-    </xsl:variable>
-    <xsl:variable name="newline">
-      <xsl:value-of select="replace($en-dash, '&#10;', ' ')" />
-    </xsl:variable>
-    <xsl:variable name="space">
-      <xsl:value-of select="replace($newline, '  ', ' ')" />
-    </xsl:variable>
-    <xsl:value-of select="$space" />
   </xsl:template>
 
   <xsl:template match="comment()" priority="1" />

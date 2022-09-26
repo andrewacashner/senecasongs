@@ -43,7 +43,8 @@
       <xi:include href="include/welcome.tei" />
       <list rend="bulleted">
         <item><ref target="seneca.tei" type="internal">What is the Seneca Nation?</ref></item>
-        <item><ref target="songs.tei" type="internal">How do Seneca people think of music?</ref></item>
+        <item><ref target="songs.tei" type="internal">What kind of songs do Seneca people sing?</ref></item>
+        <item><ref target="foundations.tei" type="internal">How do the songs relate to traditional Seneca worldview?</ref></item>
       </list>
     </body>
     <back />

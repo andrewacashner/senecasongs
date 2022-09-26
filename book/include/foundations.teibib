@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<div xmlns="http://www.tei-c.org/ns/1.0">
+<div1 xml:id="foundations">
+<head>Foundations of Seneca Worldview</head>
+<div2 xml:id="overview">
+<p>
+The living tradition of Earth Songs is one way that Seneca people have preserved their worldview and system of values, 
+and the songs should be understood in connection with those cultural foundations.
+The core elements of Seneca philosophy or theology are still taught through story in the oral tradition, 
+and any other form such as this written document is necessarily incomplete and lacking in authority.
+All the same, a short summary will be helpful to orient outsiders and deepen their understanding of what Seneca songs mean and why they are important.
+</p>
+</div2>
+<div2 xml:id="skywoman">
+<head>Sky Woman and Turtle Island</head>
+<p>
+The story of Sky Woman tells how our world came to be.
+This account is an extremely simplified and abridged version that Bill Crouse has approved.
+It draws on the longer versions by Hertzberg and Fenton, which give a sense of the varying details in different tellings 
+<listBibl type="auto" subtype="intext">
+  <bibl type="auto" corresp="#Hertzberg:GreatTree">12--22</bibl>
+  <bibl type="auto" corresp="#Fenton:GreatLaw">34--50</bibl>
+  <bibl type="auto" corresp="#Richter:Ordeal">8--11</bibl>
+</listBibl>.
+</p>
+<p>
+They say that a long time ago there was no land but only a great sea, and above it another world in the sky where the sky people lived.
+In the center of the sky world was a great tree.
+Sky Woman lived in the sky world with her husband, Sky Chief.
+She became pregnant.
+Sky Chief had a dream in which he uprooted the tree and found empty space underneath, and in the dream he and Sky Woman sat on the edge of the hole and ate together.
+He did what he saw in the dream, but when they sat on the hole, he pushed Sky Woman into the hole and she fell from the sky world.
+In her hands she held a few practical items like ears of corn, firewood, or a small pot.
+</p>
+<p>
+She fell a long time.
+The birds saw her falling and flew close to each other to try to break her fall, but she kept falling.
+Turtle swam below her and Sky Woman fell onto the turtle's shell.
+The animals saw that Sky Woman had fallen and tried to help her by giving her some land to rest on.
+Many animals tried diving down into the water, but they could not swim that deep, or they could not carry much soil.
+Finally muskrat swam all the way down to the bottom and began to bring up mud.
+He piled the earth up on the turtle's back until it formed our world, Turtle Island.
+</p>
+<p>
+Sky Woman walked all around the turtle shell, always moving in a counter-clockwise circle.
+Some tellers say that as she walked she planted the corn and other seeds she brought with her from the sky world.
+</p>
+<p>
+Sky Woman gave birth to a daughter.
+Her daughter grew up and met a mysterious man: in one version he is Turtle in disguise; in another version he is the West Wind.
+With him she conceived twin boys, who began to fight even before they were born.
+One tended to the right hand and had a good mind.
+The other tended to the left hand, and was born out of his mother's armpit, killing her.
+Sky Woman, their grandmother, called the right-handed twin Sky Holder (he is also called Sapling), and his devious, violent brother she called Flint.
+</p>
+<p>
+Sapling loved to make things, but his brother loved to destroy the things his brother made.
+When Sapling makes grasses and plants, Flint creates thorns and thistles.
+Flint made plants that could poison people, but could also be used for medicine in the right amounts and at the right time.
+Flint tried to stunt everything Sapling made, but together the two brothers made everything in our world, with their contributions balancing each other out.
+The two began to fight and struggled for a long time, leaving marks of their struggle in upturned hills and piles of rubble all over the earth, until eventually Sapling prevailed.
+</p>
+<p>
+Sapling is also known as <foreign xml:lang="see">Shögwajënö’kda’öh</foreign>, Our Creator.
+He presides over the world of light and day, illuminated by Our Elder Brother, the Sun, who is Sky Woman's brother.
+Flint presides over the world of dark and night, illuminated by Sky Woman, who returned to the sky as Our Grandmother, the Moon.
+As they returned to the sky world, the two brothers left two divergent paths through the heavens, which you can see on a clear night as the Milky Way.
+</p>
+</div2>
+<!-- significance of Sky Woman to Seneca songs -->
+<div2 xml:id="thanksgiving">
+<head><foreign xml:lang="see">Gano:nyök</foreign>, The Thanksgiving Address</head>
+<p>
+Haudenosaunee people preserve a tradition of beginning and ending important
+events, ceremonies, even business meetings with a speech called <foreign xml:lang="see">Gano:nyök</foreign>.
+<!-- Chafe on thanksgiving rituals -->
+<!-- Kimmerer, John Mohawk -->
+This <soCalled>thanksgiving address</soCalled> has nothing to do with the US Thanksgiving holiday, but instead is a daily way of giving thanks to the Creator for all the elements of Creation, or to put it more properly, all the beings on the earth.
+There is not a fixed text of this speech, but instead there is a basic pattern that speakers can use to create their own address, unique to the occasion and the day.
+There is a common list of beings that the address must acknowledge, with some variations from place to place and from one Haudenosaunee nation to another.
+The Seneca Gano:nyök on Allegany Territory begins with acknowledging all the different kinds of people in the world, Our Mother Earth, and the many different kinds of water, then proceeds to the grasses, plants, berries, and trees; followed by animals; the sun, moon, and stars; the winds and the thunder-beings; and the teacher Handsome Lake and the four heavenly messengers who spoke to him; concluding with the Creator.
+Please see <ref target="ganonyok.tei">the Gano:nyök text</ref> to read and hear a Seneca-language version by Ja:no’s Bowen, illustrated by Bill Crouse.
+</p>
+<!-- significance of Gano:nyök to Seneca songs -->
+</div2>
+<div2 xml:id="peacemaker">
+<head>Peacemaker and the Great Law</head>
+</div2>
+<div2 xml:id="covenant-chain">
+<head>The Covenant Chain</head>
+</div2>
+<div2 xml:id="handsome-lake">
+<head>The Teaching of Sganyodai:yo’ (Handsome Lake)</head>
+</div2>
+</div1>
+</div>
+
