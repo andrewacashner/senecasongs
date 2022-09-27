@@ -66,8 +66,23 @@ He presides over the world of light and day, illuminated by Our Elder Brother, t
 Flint presides over the world of dark and night, illuminated by Sky Woman, who returned to the sky as Our Grandmother, the Moon.
 As they returned to the sky world, the two brothers left two divergent paths through the heavens, which you can see on a clear night as the Milky Way.
 </p>
+<div3 xml:id="significance">
+<head>Significance</head>
+<p>
+Even in this simplified form, the Sky Woman story provides important meaning for Seneca songs.
+The story gives meaning to the concepts of earth and relationships.
+The songs connect people to the earth, and to each other and all other beings on the earth.
+Human beings live in a world created to give them life, in which their identity is defined by their relationships with all of the other beings.
+The Seneca words for these beings, as do most Seneca words, express the specific relationship.
+The Creator is <foreign xml:lang="see">Shögwajënö’kda’öh</foreign>, <em>our</em> creator 
+(the <term>shögwa-</term> prefix indicates a relationship between all of us and him).
+The Earth is <foreign xml:lang="see">Etino’ëh yöëdzade’</foreign>, <em>our mother</em> earth 
+(<term>eti-</term> indicates a relationship between us and her).
+There is a family relationship even among the parts of the world that seem opposed or contradictory, as between Sapling and Flint, so that both are in balance.
+<!-- TODO significance of Sky Woman to Seneca songs -->
+</p>
+</div3>
 </div2>
-<!-- significance of Sky Woman to Seneca songs -->
 <div2 xml:id="thanksgiving">
 <head><foreign xml:lang="see">Gano:nyök</foreign>, The Thanksgiving Address</head>
 <p>
@@ -79,12 +94,65 @@ This <soCalled>thanksgiving address</soCalled> has nothing to do with the US Tha
 There is not a fixed text of this speech, but instead there is a basic pattern that speakers can use to create their own address, unique to the occasion and the day.
 There is a common list of beings that the address must acknowledge, with some variations from place to place and from one Haudenosaunee nation to another.
 The Seneca Gano:nyök on Allegany Territory begins with acknowledging all the different kinds of people in the world, Our Mother Earth, and the many different kinds of water, then proceeds to the grasses, plants, berries, and trees; followed by animals; the sun, moon, and stars; the winds and the thunder-beings; and the teacher Handsome Lake and the four heavenly messengers who spoke to him; concluding with the Creator.
-Please see <ref target="ganonyok.tei">the Gano:nyök text</ref> to read and hear a Seneca-language version by Ja:no’s Bowen, illustrated by Bill Crouse.
+Please see <ref target="ganonyok/index.tei">the Gano:nyök text</ref> to read and hear a Seneca-language version by Ja:no’s Bowen, illustrated by Bill Crouse.
 </p>
 <!-- significance of Gano:nyök to Seneca songs -->
 </div2>
 <div2 xml:id="peacemaker">
 <head>Peacemaker and the Great Law</head>
+<p>
+The Peacemaker is the name for the founder of the Haudenosaunee League.
+(Seneca people do not pronounce his name in their language, though scholars continue to disrespect this tradition.)
+Different versions of the oral tradition put the founding of the league around 1450, 1000, or around the first century after Christ.
+(Haudenosaunee spiritual authority Leon Shenandoah said the Peacemaker <em>was</em> Christ.)
+<!-- TODO cite -->
+Astronomical, archeological, linguistic, and folkloric evidence all support a date of 1450 or before, and there is every reason to believe that the story in its main outlines presents historical fact.
+<!-- TODO check, cite -->
+</p>
+<p>
+Peacemaker was born on the north side of Lake Ontario, probably among the Hurons.
+At this time the ancestors of the original Five Nations of the Haudenosaunee had fallen into a period of fighting among themselves and general disorder.
+Peacemaker and his mother, Jikonsase:h,
+<!-- TODO check -->
+travelled south across the lake in a white stone canoe, and he began to preach that the nations needed to join together peaceful in a league for mutual benefit and protection.
+The first village chief he recruited to his cause was Hayonwatha, a Mohawk.
+<!-- check -->
+(There is no connection to Longfellow's poem <title type="m">Song of Hiawatha</title>, which attaches this name to a garbled retelling of Ojibwe legends.)
+</p>
+<p>
+Together Peacemaker, Jikonsase:h, and Hayonwatha began to win over the five nations, one village at a time.
+The last holdout was a chief name Tadoda:hoh, a fierce Onondaga warrior with snakes in his hair and a grotesque giant penis that he could throw over his shoulders and wrap around his body.
+He could not be persuaded until Jikonsase:h began to sing to him.
+The song calmed his mind, the snakes fell out of his head, and his body was restored to natural proportions.
+Peacemaker promised Tadoda:hoh a position of honor in the new league, and thus Tadoda:hoh became its ceremonial and spiritual leader.
+The chiefs began to meet regularly around the council fire tended by Tadoda:h's people, the Onondaga.
+Thus they formed the oldest continually operating democratic form of government in the world.
+</p>
+<p>
+Peacemaker's vision was that the Five Nations who were fighting each other should instead come to see themselves as all living in one extended longhouse.
+All of these nations lived in longhouse, in which multiple families slept in alcoves on either side of a row of central fires; the central family tended the fire and the families on the ends were the doorkeepers for their sides.
+Therefore almost the whole region now claimed by New York State was understood as one longhouse: the Onondaga in the middle were the firekeepers, the Mohawks were the Keepers of the Eastern Door, and the Senecas were the Keepers of the Western Door. 
+In between were the Oneidas (between Mohawks and Onondaga) and Cayugas (between Onondaga and Seneca). 
+The Five Nations would be the <foreign xml:lang="see">Hodinóhso:ni’</foreign>, <q>builders of an extended longhouse</q>.
+</p>
+<p>
+The villages of the Five Nations were already governed by clan mothers, who appointed male chiefs and delegated executive authority to them.
+Peacemaker proposed that all the residents of the Haudenosaunee longhouse would arrange their affairs like one family.
+The nations would appoint chiefs to represent their villages at a central council or congress of fifty chiefs.
+Matters at the council would be determined by consensus according to the fundamental principle of the common good of the whole community.
+When one chief died, another one would be raised up and given the previous chief's title (so that a title like Tadoda:ho’ is still used today, passed down from one office holder to the next). 
+</p>
+<p>
+The Haudenosaunee League, which came to be called the Haudenosaunee Confederacy in the colonial period, was the major political power in northeastern North America through the American Revolution.
+It maintained trade relationships with the Dutch, English, and French, while mostly remaining neutral, and served as a buffer between the English and French empires in North America.
+It expanded its land base to include vast regions reaching into the Susquehanna and Ohio River valleys, and claimed hunting grounds as far west as the Mississipi and as far south as the Carolinas.
+The league still exists today, with regular council meetings are held at Onondaga.
+The Seneca Nation of Indians separated themselves politically from the confederacy in 1848 when they replaced rule by chiefs with a constitutional representative democracy, but there is still a strong sense of affiliation with the broader Haudenosaunee community.
+</p>
+<!-- TODO citations! -->
+<div3 xml:id="significance">
+<head>Significance</head>
+</div3>
 </div2>
 <div2 xml:id="covenant-chain">
 <head>The Covenant Chain</head>
