@@ -13,6 +13,7 @@ All the same, a short summary will be helpful to orient outsiders and deepen the
 </div2>
 <div2 xml:id="skywoman">
 <head>Sky Woman and Turtle Island</head>
+<div3 xml:id="skywoman-story">
 <p>
 The story of Sky Woman tells how our world came to be.
 This account is an extremely simplified and abridged version that Bill Crouse has approved.
@@ -66,7 +67,8 @@ He presides over the world of light and day, illuminated by Our Elder Brother, t
 Flint presides over the world of dark and night, illuminated by Sky Woman, who returned to the sky as Our Grandmother, the Moon.
 As they returned to the sky world, the two brothers left two divergent paths through the heavens, which you can see on a clear night as the Milky Way.
 </p>
-<div3 xml:id="significance">
+</div3>
+<div3 xml:id="skywoman-significance">
 <head>Significance</head>
 <p>
 Even in this simplified form, the Sky Woman story provides important meaning for Seneca songs.
@@ -100,6 +102,7 @@ Please see <ref target="ganonyok/index.tei">the Gano:nyök text</ref> to read an
 </div2>
 <div2 xml:id="peacemaker">
 <head>Peacemaker and the Great Law</head>
+<div3 xml:id="peacemaker-story">
 <p>
 The Peacemaker is the name for the founder of the Haudenosaunee League.
 (Seneca people do not pronounce his name in their language, though scholars continue to disrespect this tradition.)
@@ -143,19 +146,62 @@ Matters at the council would be determined by consensus according to the fundame
 When one chief died, another one would be raised up and given the previous chief's title (so that a title like Tadoda:ho’ is still used today, passed down from one office holder to the next). 
 </p>
 <p>
+Peacemaker uprooted a tall white pine tree at Onondaga (echoing the uprooting of the great tree in the sky world in the Sky Woman story), and the chiefs buried their weapons of war under its roots; then they replanted the tree.
+The tree's four roots extended infinitely in each of the cardinal directions, and anyone no matter how far away could follow the roots to the tree and find a home among the Haudenosaunee, provided they accepted the Peacemaker's teachings.
+Peacemaker kindled a council fire in that place which has never been allowed to go out, even though there have been seasons when someone had to carry the embers to another location for a time.
+</p>
+<p>
 The Haudenosaunee League, which came to be called the Haudenosaunee Confederacy in the colonial period, was the major political power in northeastern North America through the American Revolution.
 It maintained trade relationships with the Dutch, English, and French, while mostly remaining neutral, and served as a buffer between the English and French empires in North America.
 It expanded its land base to include vast regions reaching into the Susquehanna and Ohio River valleys, and claimed hunting grounds as far west as the Mississipi and as far south as the Carolinas.
 The league still exists today, with regular council meetings are held at Onondaga.
 The Seneca Nation of Indians separated themselves politically from the confederacy in 1848 when they replaced rule by chiefs with a constitutional representative democracy, but there is still a strong sense of affiliation with the broader Haudenosaunee community.
 </p>
+<p>
+The Peacemaker's teachings are preserved in the oral tradition known as the Great Law, which is still recited regularly <!-- TODO when? where? --> and continues to function like a constitution for the Haudenosaunee Confederacy.
+Even in the Seneca Nation of Indians, which is no longer governed by chiefs, the moral principles and social values of the Great Law remain centrally important.
+</p>
 <!-- TODO citations! -->
-<div3 xml:id="significance">
+</div3>
+<div3 xml:id="peacemaker-significance">
 <head>Significance</head>
+<p>
+The Peacemaker story outlines the core political and communal values of Haudenosaunee society.
+It tells the origin of these values and outlines the structures by which society was to institute them.
+</p>
+<p>
+The story also shows how Haudenosaunee people are to interact with the rest of the world.
+The 
+<!-- TODO -->
+</p>
 </div3>
 </div2>
 <div2 xml:id="covenant-chain">
-<head>The Covenant Chain</head>
+<head>The Covenant Chain and the Two-Row Wampum</head>
+<p>
+The image of the Covenant Chain developed over the seventeenth and eighteenth centuries through Haudenosaunee treaties and other negotiations with the Euro-American colonial powers.
+The idea was that just as the first European ships to arrive on the Atlantic coast were tied to the land with a chain, the Covenant Chain connected the European ships to the Great Tree of the Haudenosaunee longhouse.
+It expressed the connection between the Haudenosaunee (and by extension, other indigenous peoples) and the Europeans in a reciprocal relationship of mutual benefit and responsibility.
+In early years Haudenosaunee speakers described the chain as being made of reeds; in later years it became iron and later silver. <!-- TODO ? -->
+Both sides had an obligation to keep the chain strong, polishing it to keep it free from rust.
+When one side neglected their commitments or transgressed the limits of the covenant, speakers would say that they had allowed the chain to rust; considerable effort could be required to polish the chain again and restore the relationship.
+The implication was always that the native people had the right to sever the chain and send the Europeans back to the sea, but no one ever did this.
+</p>
+<p>
+A related and contrasting concept is that of the two-row wampum.
+This image was expressed in a wampum belt <!-- when? where? --> depicting two parallel lines across the center.
+One line represented the Euro-Americans, going down the river in their boats.
+The other represented the Haudenosaunee, paddling the same river in their canoes.
+The belt was a vision of both cooperation and non-interference: both groups could travel the same river, but each had their own way of traveling in which the other should not meddle.
+There was no way to pass from one to the other without capsizing the boat and falling in.
+The image reflects the experience of many modern Haudenosaunee people, who feel that they have a foot in both the boat and the canoe and experience a sense of dislocation and internal conflict as a result.
+<!-- TODO etc. -->
+</p>
+<div3 xml:id="covenant_chain-significance-andrew">
+<head>Significance (Andrew)</head>
+<p>
+</p>
+</div3>
 </div2>
 <div2 xml:id="handsome-lake">
 <head>The Teaching of Sganyodai:yo’ (Handsome Lake)</head>
