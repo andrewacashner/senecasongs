@@ -46,7 +46,7 @@
       </div>
     </front>
     <body>
-      <div type="chapter" n="1" xml:id="intro">
+      <div type="chapter" n="1" xml:id="book-intro">
         <head>Proposal</head>
         <xi:include href="include/about.teibib" />
       </div>

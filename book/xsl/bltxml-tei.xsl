@@ -42,7 +42,7 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
   </xsl:template>
 
   <xsl:template match="bltx:entry[@entrytype='book' or @entrytype='collection']">
-    <biblStruct id="{@id}" type="book">
+    <biblStruct xml:id="{@id}" type="book">
       <monogr>
         <xsl:apply-templates select="bltx:names" />
         <title level="m"><xsl:apply-templates select="bltx:title" /></title>
@@ -57,7 +57,7 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
   </xsl:template>
 
   <xsl:template match="bltx:entry[@entrytype='article']">
-    <biblStruct id="{@id}" type="article">
+    <biblStruct xml:id="{@id}" type="article">
       <analytic>
         <xsl:apply-templates select="bltx:names" />
         <title><xsl:apply-templates select="bltx:title" /></title>
@@ -76,7 +76,7 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
   </xsl:template>
 
   <xsl:template match="bltx:entry[@entrytype='incollection']">
-    <biblStruct id="{@id}" type="inCollection">
+    <biblStruct xml:id="{@id}" type="inCollection">
       <analytic>
         <xsl:apply-templates select="bltx:names[@type='author']" />
         <title level="a"><xsl:apply-templates select="bltx:title" /></title>

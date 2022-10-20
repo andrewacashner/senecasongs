@@ -38,6 +38,13 @@ We still omit automatic reference numbers (e.g., tables, figures), since these m
 
   <xsl:template match="comment()" priority="1" />
 
+  <xsl:template match="@xml:id">
+    <xsl:attribute name="xml:id">
+      <xsl:value-of select="replace(., ':', '-')" />
+    </xsl:attribute>
+  </xsl:template>
+
+
   <xsl:template name="parencite">
     <xsl:variable name="bibKey" select="substring(@corresp, 2)" />
     <xsl:variable name="pages" select="string()" />
