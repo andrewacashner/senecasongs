@@ -235,7 +235,7 @@ This stylesheet also inserts automatic numbers for tables, figures, etc., and re
     <strong><xsl:apply-templates /></strong>
   </xsl:template>
 
-  <xsl:template match="tei:mentioned">
+  <xsl:template match="tei:mentioned | tei:term">
     <em><xsl:apply-templates /></em>
   </xsl:template>
 

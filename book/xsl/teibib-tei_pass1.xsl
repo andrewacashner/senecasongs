@@ -61,4 +61,11 @@ The stylesheet also cleans up the input text and processes TeX-style character "
     </xsl:if>
   </xsl:template>
 
+  <xsl:template match="tei:bibl[@type='auto']/@corresp">
+    <xsl:attribute name="corresp">
+      <xsl:value-of select="replace(., ':', '-')" />
+    </xsl:attribute>
+  </xsl:template>
+
+
 </xsl:stylesheet>

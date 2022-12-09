@@ -45,7 +45,7 @@ Convert TEI listBibl to HTML5 reference list
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <li id="{@id}">
+    <li id="{@xml:id}">
       <xsl:value-of select="$authors" />
       <xsl:if test="not(substring($authors, string-length($authors))='.')">
         <xsl:text>.</xsl:text>
@@ -69,7 +69,7 @@ Convert TEI listBibl to HTML5 reference list
         <xsl:with-param name="type">lastname-first</xsl:with-param>
       </xsl:call-template>
     </xsl:variable>
-    <li id="{@id}">
+    <li id="{@xml:id}">
       <xsl:value-of select="$authors" />
       <xsl:if test="not(substring($authors, string-length($authors))='.')">
         <xsl:text>.</xsl:text>
@@ -95,7 +95,7 @@ Convert TEI listBibl to HTML5 reference list
         <xsl:with-param name="names" select="tei:analytic/tei:author" />
       </xsl:call-template>
     </xsl:variable>
-    <li id="{@id}">
+    <li id="{@xml:id}">
       <xsl:value-of select="$authors" />
       <xsl:if test="not(substring($authors, string-length($authors))='.')">
         <xsl:text>.</xsl:text>
