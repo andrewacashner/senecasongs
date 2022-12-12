@@ -35,7 +35,7 @@ This stylesheet also inserts automatic numbers for tables, figures, etc., and re
     <html lang="en-us">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="woods_edge.css" />
+        <link rel="stylesheet" href="css/woods_edge.css" />
         <title><xsl:apply-templates select="$title" /></title>
       </head>
       <body>

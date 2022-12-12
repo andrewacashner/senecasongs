@@ -37,7 +37,7 @@
   </xsl:template>
 
   <xsl:variable name="bibfile" 
-  select="document(concat(environment-variable('PWD'), '/testbib.tei'))/tei:listBibl" />
+  select="document(concat(environment-variable('PWD'), '/build/biblio.tei'))/tei:listBibl" />
 
   <xsl:variable name="citations" select="//tei:bibl[@type='auto']" />
   
@@ -72,7 +72,7 @@
 
   <xsl:template name="parencite">
     <xsl:variable name="bibKey" select="replace(substring(@corresp, 2), ':', '-')" />
-    <xsl:variable name="pages" select="string()" />
+    <xsl:variable name="pages" select="replace(string(), '--', '–')" />
     <xsl:variable name="ref" select="$bibfile//tei:biblStruct[@xml:id=$bibKey]" />
 
     <xsl:variable name="author-list">
