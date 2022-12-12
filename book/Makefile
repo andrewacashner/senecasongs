@@ -90,31 +90,20 @@ aux/%.pdf aux/%.bcf : aux/%.tex $(tex_lib) $(tex_bib)
 build/%.pdf : aux/%.pdf
 	cp -ur $< $@
 
-## LaTeX bibliography to TEI bibliography
-### Generate sorted subset biblatex file of only works cited in latex file
-aux/%.bib : aux/%.bcf $(biber_conf)
-	biber --quiet --configfile=$(biber_conf) --output_format=bibtex \
-		--output-resolve-crossrefs -O $@ $<
+# Bibliography
+## BibTeX to Biblatexml
+aux/biblio.bltxml : $(tex_bib) | $(dirs)
+	biber --tool --quiet --output-format=biblatexml --output-resolve-crossrefs \
+		--no-bltxml-schema -O $@ $< 
 
-### Convert subset bib file to XML
-aux/%.bltxml : aux/%.bib
-	biber --tool --quiet --output-format=biblatexml --no-bltxml-schema -O $@ $<
-
-# AAC XML to TEI
-## First pass, add xi:include for tei bibliography to main
-aux/%.teibib : %.teibib $(teibib_include) $(xsl) | $(dirs)
-	$(saxon) -xi:on -xsl:xsl/teibib-tei_pass1.xsl -s:$< -o:$@
-
-## Bibliography
-aux/%-bib.tei : aux/%.bltxml $(xsl) $(tex_bib) | $(dirs)
+## Biblatexml to TEI
+aux/biblio.tei : aux/biblio.bltxml $(xsl) | $(dirs)
 	$(saxon) -xsl:xsl/bltxml-tei.xsl -s:$< -o:$@
 
-## Second pass: Main document with bibliography
-build/%.tei : aux/%.teibib aux/%-bib.tei $(xsl)
-	$(saxon) -xi:on -xsl:xsl/teibib-tei_pass2.xsl -s:$< -o:$@
-
-build/%.tei : %.tei $(xsl)
-	$(saxon) -xi:on -xsl:xsl/teibib-tei_pass2.xsl -s:$< -o:$@
+# TEIBIB to TEI
+## Main document with bibliography
+build/%.tei : %.tei aux/biblio.tei $(teibib_include) $(xsl)
+	$(saxon) -xi:on -xsl:xsl/teibib-tei.xsl -s:$< -o:$@
 
 # TEI to HTML
 ## (TEI complete document including bibliography and resolved citations)

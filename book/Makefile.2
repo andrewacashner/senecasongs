@@ -1,0 +1,17 @@
+tex_bib	= $(wildcard tex/*.bib)
+
+saxon   = java net.sf.saxon.Transform
+
+build/%.tei : %.tei aux/biblio.tei $(teibib_include) $(xsl)
+	$(saxon) -xi:on -xsl:xsl/teibib-tei.xsl -s:$< -o:$@
+
+aux/biblio.tei : aux/biblio.bltxml $(xsl) | $(dirs)
+	$(saxon) -xsl:xsl/bltxml-tei.xsl -s:$< -o:$@
+
+aux/biblio.bltxml : $(tex_bib) | $(dirs)
+	biber --tool --quiet --output-format=biblatexml --output-resolve-crossrefs \
+		--no-bltxml-schema -O $@ $<
+
+
+
+

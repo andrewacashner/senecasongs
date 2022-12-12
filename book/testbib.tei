@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="utf-8"?>
+<listBibl xmlns="http://www.tei-c.org/ns/1.0">
+   <biblStruct xml:id="UN-DeclarationIndigenous" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <surname>United Nations</surname>
+            </persName>
+         </author>
+         <title level="m">United Nations Declaration on the Rights of Indigenous Peoples</title>
+         <ref target="https://www.un.org/development/desa/indigenouspeoples/declaration-on-the-rights-of-indigenous-peoples.html">https://www.un.org/development/desa/indigenouspeoples/declaration-on-the-rights-of-indigenous-peoples.html</ref>
+         <imprint>
+            <date when="2007"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Amrhein-NativeLandRightsNY" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Cindy</forename>
+               <surname>Amrhein</surname>
+            </persName>
+         </author>
+         <title level="m">A History of Native American Land Rights in Upstate New York</title>
+         <imprint>
+            <pubPlace>Charleston</pubPlace>
+            <publisher>The History Press</publisher>
+            <date when="2016"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Bardeau-Dictionary" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Phyllis Eileen Wms.</forename>
+               <surname>Bardeau</surname>
+            </persName>
+         </author>
+         <editor>
+            <persName>
+               <forename>Jaré</forename>
+               <surname>Cardinal</surname>
+            </persName>
+         </editor>
+         <title level="m">Definitive Seneca: It’s in the Word</title>
+         <imprint>
+            <pubPlace>Salamanca (NY), Allegany Territory, Seneca Nation of Indians</pubPlace>
+            <publisher>RAJ Publications</publisher>
+            <date when="2010"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="BasicCall" type="book">
+      <monogr>
+         <editor>
+            <persName>
+               <surname>Akwesasne Notes</surname>
+            </persName>
+         </editor>
+         <title level="m">Basic Call to Consciousness</title>
+         <imprint>
+            <pubPlace>Summertown, TN</pubPlace>
+            <publisher>Native Voices</publisher>
+            <date when="2005"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Browner-FirstNations" type="book">
+      <monogr>
+         <editor>
+            <persName>
+               <forename>Tara</forename>
+               <surname>Browner</surname>
+            </persName>
+         </editor>
+         <title level="m">Music of the First Nations: Tradition and Innovation in Native North America</title>
+         <imprint>
+            <pubPlace>Urbana, IL</pubPlace>
+            <publisher>University of Illinois Press</publisher>
+            <date when="2009"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Browner-Heartbeat" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Tara</forename>
+               <surname>Browner</surname>
+            </persName>
+         </author>
+         <title level="m">Heartbeat of the People: Music and Dance of the Northern Pow-wow</title>
+         <imprint>
+            <pubPlace>Urbana, IL</pubPlace>
+            <publisher>University of Illinois Press</publisher>
+            <date when="2002"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Caldwell-Kurath" type="article">
+      <analytic>
+         <author>
+            <persName>
+               <forename>Mary Channen</forename>
+               <surname>Caldwell</surname>
+            </persName>
+         </author>
+         <title>
+            <q>The Place of Dance in Human Life</q>: Perspectives on the Fieldwork and Dance Notation of Gertrude P. Kurath</title>
+      </analytic>
+      <monogr>
+         <title level="j">Danse au Canada</title>
+         <imprint>
+            <date when="2008"/>
+         </imprint>
+         <biblScope unit="volume">30</biblScope>
+         <biblScope unit="issue">1</biblScope>
+         <biblScope unit="page" from="21" to="40"/>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Chafe-Grammar" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Wallace</forename>
+               <surname>Chafe</surname>
+            </persName>
+         </author>
+         <title level="m">A Grammar of the Seneca Language</title>
+         <imprint>
+            <pubPlace>Berkeley</pubPlace>
+            <publisher>University of California Press</publisher>
+            <date when="2015"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Chafe-SenecaDictionary" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Alberta</forename>
+               <surname>Chafe</surname>
+            </persName>
+            <persName>
+               <forename>Phyllis et al.</forename>
+               <surname>Bardeau</surname>
+            </persName>
+         </author>
+         <title level="m">English–Seneca Dictionary</title>
+         <ref target="https://senecalanguage.com/english-seneca-dictionary-chafe-1/">https://senecalanguage.com/english-seneca-dictionary-chafe-1/</ref>
+         <imprint>
+            <pubPlace>Salamanca (NY), Allegany Territory, Seneca Nation of Indians</pubPlace>
+            <publisher>Seneca Nation of Indians, Seneca Language Department</publisher>
+            <date when="2019"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Christen-Mukurtu" type="inCollection">
+      <analytic>
+         <author>
+            <persName>
+               <forename>Kimberly</forename>
+               <surname>Christen</surname>
+            </persName>
+         </author>
+         <title level="a">
+            <q>The Songline Is Alive in Mukurtu</q>: Return, Reuse, and Respect</title>
+      </analytic>
+      <monogr>
+         <title level="m">Archival Returns: Central Australia and Beyond</title>
+         <editor>
+            <persName>
+               <forename>Linda Barwick</forename>
+               <surname>Barwick</surname>
+            </persName>
+            <persName>
+               <forename>Jennifer</forename>
+               <surname>Green</surname>
+            </persName>
+            <persName>
+               <forename>Petronella</forename>
+               <surname>Vaarzon-Morel</surname>
+            </persName>
+         </editor>
+         <imprint>
+            <date when="2019"/>
+         </imprint>
+         <biblScope unit="page" from="153" to="172"/>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Christen-RelationshipsNotRecords" type="inCollection">
+      <analytic>
+         <author>
+            <persName>
+               <forename>Kimberly</forename>
+               <surname>Christen</surname>
+            </persName>
+         </author>
+         <title level="a">Relationships, Not Records: Digital Heritage and the Ethics of Sharing Indigenous Knowledge Online</title>
+      </analytic>
+      <monogr>
+         <title level="m">The Routledge Companion to Media Studies and Digital Humanities</title>
+         <editor>
+            <persName>
+               <forename>Jentery</forename>
+               <surname>Sayers</surname>
+            </persName>
+         </editor>
+         <imprint>
+            <pubPlace>New York</pubPlace>
+            <publisher>Routledge</publisher>
+            <date when="2018"/>
+         </imprint>
+         <biblScope unit="page" from="403" to="412"/>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="CHWorldMusic" type="book">
+      <monogr>
+         <editor>
+            <persName>
+               <forename>Philip V.</forename>
+               <surname>Bohlman</surname>
+            </persName>
+         </editor>
+         <title level="m">The Cambridge History of World Music</title>
+         <imprint>
+            <pubPlace>Cambridge</pubPlace>
+            <publisher>Cambridge University Press</publisher>
+            <date when="2013"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Deloria-BrokenTreaties" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Vine</forename>
+               <surname>Deloria, Jr.</surname>
+            </persName>
+         </author>
+         <title level="m">Behind the Trail of Broken Treaties: An Indian Declaration of Independence</title>
+         <imprint>
+            <pubPlace>Austin</pubPlace>
+            <publisher>University of Texas Press</publisher>
+            <date when="1985"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Diamond-NativeAmericanHistory" type="inCollection">
+      <analytic>
+         <author>
+            <persName>
+               <forename>Beverley</forename>
+               <surname>Diamond</surname>
+            </persName>
+         </author>
+         <title level="a">Native American Ways of (Music) History</title>
+      </analytic>
+      <monogr>
+         <title level="m">The Cambridge History of World Music</title>
+         <editor>
+            <persName>
+               <forename>Philip V.</forename>
+               <surname>Bohlman</surname>
+            </persName>
+         </editor>
+         <imprint>
+            <pubPlace>Cambridge</pubPlace>
+            <publisher>Cambridge University Press</publisher>
+            <date when="2013"/>
+         </imprint>
+         <biblScope unit="page" from="155" to="180"/>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Diamond-NativeAmericanNortheast" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Beverley</forename>
+               <surname>Diamond</surname>
+            </persName>
+         </author>
+         <title level="m">Native American Music in Eastern North America: Experiencing Music, Expressing Culture</title>
+         <imprint>
+            <pubPlace>New York</pubPlace>
+            <publisher>Oxford University Press</publisher>
+            <date when="2008"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Eyerly-Moravian" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Sarah Justina</forename>
+               <surname>Eyerly</surname>
+            </persName>
+         </author>
+         <title level="m">Moravian Soundscapes: A Sonic History of the Moravian Missions in Early Pennsylvania</title>
+         <imprint>
+            <pubPlace>Bloomington, IN</pubPlace>
+            <publisher>Indiana University Press</publisher>
+            <date when="2020"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Fenton-GreatLaw" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>William N.</forename>
+               <surname>Fenton</surname>
+            </persName>
+         </author>
+         <title level="m">The Great Law and the Longhouse: A Political History of the Iroquois Confederacy</title>
+         <imprint>
+            <pubPlace>Norman, OK</pubPlace>
+            <publisher>University of Oklahoma Press</publisher>
+            <date when="1998"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Fenton-SongsLonghouse" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>William N.</forename>
+               <surname>Fenton</surname>
+            </persName>
+         </author>
+         <title level="m">Songs from an Iroquois Longhouse: Program Notes for an Album of American Indian Music from the Eastern Woodlands</title>
+         <imprint>
+            <pubPlace>Washington, DC</pubPlace>
+            <publisher>Smithsonian Institution</publisher>
+            <date when="1942"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="FentonKurath-EagleDance" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>William N.</forename>
+               <surname>Fenton</surname>
+            </persName>
+            <persName>
+               <forename>Gertrude Prokosch</forename>
+               <surname>Kurath</surname>
+            </persName>
+         </author>
+         <title level="m">The Iroquois Eagle Dance: An Offshoot of the Calumet Dance</title>
+         <imprint>
+            <pubPlace>Washington, DC</pubPlace>
+            <publisher>United States Government Printing Office</publisher>
+            <date when="1953"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Fox-Repatriation" type="inCollection">
+      <analytic>
+         <author>
+            <persName>
+               <forename>Aaron A.</forename>
+               <surname>Fox</surname>
+            </persName>
+         </author>
+         <title level="a">Repatriation as Reanimation through Reciprocity</title>
+      </analytic>
+      <monogr>
+         <title level="m">The Cambridge History of World Music</title>
+         <editor>
+            <persName>
+               <forename>Philip V.</forename>
+               <surname>Bohlman</surname>
+            </persName>
+         </editor>
+         <imprint>
+            <pubPlace>Cambridge</pubPlace>
+            <publisher>Cambridge University Press</publisher>
+            <date when="2013"/>
+         </imprint>
+         <biblScope unit="page" from="FIXME" to="FIXME"/>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Goodman-IndianPsalmody" type="article">
+      <analytic>
+         <author>
+            <persName>
+               <forename>Glenda</forename>
+               <surname>Goodman</surname>
+            </persName>
+         </author>
+         <title>
+            <q>But They Differ from Us in Sound</q>: Indian Psalmody and the Soundscape of Colonialism, 1651–75</title>
+      </analytic>
+      <monogr>
+         <title level="j">The William and Mary Quarterly</title>
+         <imprint>
+            <date when="2012"/>
+         </imprint>
+         <biblScope unit="volume">69</biblScope>
+         <biblScope unit="issue">4</biblScope>
+         <biblScope unit="page" from="793" to="822"/>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Tehanetorens-Roots" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <surname>Tehanetorens [Ray Fadden]</surname>
+            </persName>
+         </author>
+         <title level="m">Roots of the Iroquois</title>
+         <imprint>
+            <pubPlace>Summertown, TN</pubPlace>
+            <publisher>Native Voices</publisher>
+            <date when="2000"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Nehdowes-OnondowagaTreaties" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <surname>Nëhdöwes [Randy A. John]</surname>
+            </persName>
+         </author>
+         <title level="m">Onöndowa’ga:’ (Seneca) Treaties</title>
+         <imprint>
+            <pubPlace>Salamanca (NY), Allegany Territory, Seneca Nation of Indians</pubPlace>
+            <publisher>RAJ Publications</publisher>
+            <date when="2018"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Hauptman-CivilWar" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Laurence M.</forename>
+               <surname>Hauptman</surname>
+            </persName>
+         </author>
+         <title level="m">The Iroquois in the Civil War: From Battlefield to Reservation</title>
+         <imprint>
+            <pubPlace>Syracuse, NY</pubPlace>
+            <publisher>Syracuse University Press</publisher>
+            <date when="1993"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Hauptman-NewDeal" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Laurence M.</forename>
+               <surname>Hauptman</surname>
+            </persName>
+         </author>
+         <title level="m">The Iroquois &amp; the New Deal</title>
+         <imprint>
+            <pubPlace>Syracuse, NY</pubPlace>
+            <publisher>Syracuse University Press</publisher>
+            <date when="1981"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Hauptman-Struggle" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Laurence M.</forename>
+               <surname>Hauptman</surname>
+            </persName>
+         </author>
+         <title level="m">The Iroquois Struggle for Survival: World War II to Red Power</title>
+         <imprint>
+            <pubPlace>Syracuse, NY</pubPlace>
+            <publisher>Syracuse University Press</publisher>
+            <date when="1986"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Hauptman-Circle" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Laurence M.</forename>
+               <surname>Hauptman</surname>
+            </persName>
+         </author>
+         <title level="m">Coming Full Circle: The Seneca Nation of Indians, 1848–1934</title>
+         <imprint>
+            <pubPlace>Norman, OK</pubPlace>
+            <publisher>University of Oklahoma Press</publisher>
+            <date when="2019"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Hauptman-ConspiracyOfInterests" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Laurence M.</forename>
+               <surname>Hauptman</surname>
+            </persName>
+         </author>
+         <title level="m">Conspiracy of Interests: Iroquois Dispossession and the Rise of New York State</title>
+         <imprint>
+            <pubPlace>Syracuse, NY</pubPlace>
+            <publisher>Syracuse University Press</publisher>
+            <date when="1999"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Hauptman-Kinzua" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Laurence M.</forename>
+               <surname>Hauptman</surname>
+            </persName>
+         </author>
+         <title level="m">In the Shadow of Kinzua: The Seneca Nation of Indians since World War II</title>
+         <imprint>
+            <pubPlace>Syracuse, NY</pubPlace>
+            <publisher>Syracuse University Press</publisher>
+            <date when="2014"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Hertzberg-GreatTree" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Hazel W.</forename>
+               <surname>Hertzberg</surname>
+            </persName>
+         </author>
+         <title level="m">The Great Tree and the Longhouse: The Culture of the Iroquois</title>
+         <imprint>
+            <pubPlace>New York</pubPlace>
+            <publisher>Macmillan</publisher>
+            <date when="1966"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Hill-Clay" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Susan M.</forename>
+               <surname>Hill</surname>
+            </persName>
+         </author>
+         <title level="m">The Clay We Are Made Of: Haudenosaunee Land Tenure on the Grand River</title>
+         <imprint>
+            <pubPlace>Winnipeg</pubPlace>
+            <publisher>University of Manitoba Press</publisher>
+            <date when="2017"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="JesuitRelations2" type="book">
+      <monogr>
+         <editor>
+            <persName>
+               <forename>Reuben</forename>
+               <surname>Gold Thwaites</surname>
+            </persName>
+         </editor>
+         <title level="m">Acadia: 1612–1614</title>
+         <imprint>
+            <pubPlace>Cleveland</pubPlace>
+            <publisher>Burrows Brothers Co.</publisher>
+            <date when="1896"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Krouse-IroquoisSocials" type="article">
+      <analytic>
+         <author>
+            <persName>
+               <forename>Susan Applegate</forename>
+               <surname>Krouse</surname>
+            </persName>
+         </author>
+         <title>Traditional Iroquois Socials: Maintaining Identity in the City</title>
+      </analytic>
+      <monogr>
+         <title level="j">American Indian Quarterly</title>
+         <imprint>
+            <date when="2001"/>
+         </imprint>
+         <biblScope unit="volume">25</biblScope>
+         <biblScope unit="issue">3</biblScope>
+         <biblScope unit="page" from="400" to="408"/>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Kurath-IroquoisMusic" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Gertrude P.</forename>
+               <surname>Kurath</surname>
+            </persName>
+         </author>
+         <title level="m">Iroquois Music and Dance: Ceremonial Arts of Two Seneca Longhouses</title>
+         <imprint>
+            <pubPlace>Washington, DC</pubPlace>
+            <publisher>Smithsonian Institution, Bureau of American Ethnology</publisher>
+            <date when="1964"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="LevineRobinson-MusicModernity" type="book">
+      <monogr>
+         <editor>
+            <persName>
+               <forename>Victoria Lindsay</forename>
+               <surname>Levine</surname>
+            </persName>
+            <persName>
+               <forename>Dylan</forename>
+               <surname>Robinson</surname>
+            </persName>
+         </editor>
+         <title level="m">Music and Modernity among First Peoples of North America</title>
+         <imprint>
+            <pubPlace>Middletown, CT</pubPlace>
+            <publisher>Wesleyan University Press</publisher>
+            <date when="2019"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="McCarthy-Iroquoianist" type="article">
+      <analytic>
+         <author>
+            <persName>
+               <forename>Theresa L.</forename>
+               <surname>McCarthy</surname>
+            </persName>
+         </author>
+         <title>Iroquoian and Iroquoianist: Anthropologists and the Haudenosaunee at Grand River</title>
+      </analytic>
+      <monogr>
+         <title level="j">Histories of Anthropology Annual</title>
+         <imprint>
+            <date when="2008"/>
+         </imprint>
+         <biblScope unit="volume">4</biblScope>
+         <biblScope unit="page" from="135" to="171"/>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Morgan-League" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Lewis Henry</forename>
+               <surname>Morgan</surname>
+            </persName>
+         </author>
+         <title level="m">League of the Ho-de’-no-sau-nee or Iroquois</title>
+         <imprint>
+            <pubPlace>Rochester, NY</pubPlace>
+            <publisher>Sage &amp; Brother</publisher>
+            <date when="1851"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Peck-CentennialHistory" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>William F.</forename>
+               <surname>Peck</surname>
+            </persName>
+         </author>
+         <title level="m">History of Rochester and Monroe County, New York: From the Earliest Historic Times to the Beginning of 1907</title>
+         <imprint>
+            <pubPlace>New York</pubPlace>
+            <publisher>The Pioneer Publishing Company</publisher>
+            <date when="1908"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Peck-SemiCentennialHistory" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>William F.</forename>
+               <surname>Peck</surname>
+            </persName>
+         </author>
+         <title level="m">Semi-Centennial History of the City of Rochester</title>
+         <imprint>
+            <pubPlace>Syracuse</pubPlace>
+            <publisher>D. Mason &amp; Co.</publisher>
+            <date when="1884"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Richter-Ordeal" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Daniel K.</forename>
+               <surname>Richter</surname>
+            </persName>
+         </author>
+         <title level="m">The Ordeal of the Longhouse: The Peoples of the Iroquois League in the Era of European Colonization</title>
+         <imprint>
+            <pubPlace>Chapel Hill, NC</pubPlace>
+            <publisher>Omohundro Institute of Early American History and Culture, University of North Carolina Press</publisher>
+            <date when="1992"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Robinson-HungryListening" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Dylan</forename>
+               <surname>Robinson</surname>
+            </persName>
+         </author>
+         <title level="m">Hungry Listening: Resonant Theory for Indigenous Sound Studies</title>
+         <imprint>
+            <pubPlace>Minneapolis, MN</pubPlace>
+            <publisher>University of Minnesota Press</publisher>
+            <date when="2020"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Smith-Decolonizing" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Linda Tuhiwai</forename>
+               <surname>Smith</surname>
+            </persName>
+         </author>
+         <title level="m">Decolonizing Methodologies: Research and Indigenous Peoples</title>
+         <imprint>
+            <pubPlace>London</pubPlace>
+            <publisher>Zed Books</publisher>
+            <date when="2012"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Spinney-Passamaquoddy" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Ann Morrison</forename>
+               <surname>Spinney</surname>
+            </persName>
+         </author>
+         <title level="m">Passamaquoddy Ceremonial Songs: Aesthetics and Survival</title>
+         <imprint>
+            <pubPlace>Amherst, MA</pubPlace>
+            <publisher>University of Massachusetts Press</publisher>
+            <date when="2010"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Tinker-Liberation" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>George E. \mkbibquote{Tink}</forename>
+               <surname>Tinker</surname>
+            </persName>
+         </author>
+         <title level="m">American Indian Liberation: A Theology of Sovereignty</title>
+         <imprint>
+            <pubPlace>Maryknoll, NY</pubPlace>
+            <publisher>Orbis Books</publisher>
+            <date when="2008"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Turner-PhelpsGorham" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>O.</forename>
+               <surname>Turner</surname>
+            </persName>
+         </author>
+         <title level="m">History of the Pioneer Settlement of Phelps and Gorham’s Purchase and Morris’ Reserve</title>
+         <imprint>
+            <pubPlace>Rochester, NY</pubPlace>
+            <publisher>William Alling</publisher>
+            <date when="1851"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Wall-HumanBeing" type="book">
+      <monogr>
+         <editor>
+            <persName>
+               <forename>Steve</forename>
+               <surname>Wall</surname>
+            </persName>
+         </editor>
+         <title level="m">To Become a Human Being: The Message of Tadodaho Chief Leon Shenandoah</title>
+         <imprint>
+            <pubPlace>Charlottesville, VA</pubPlace>
+            <publisher>Hampton Roads Publishing</publisher>
+            <date when="2001"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Wilson-ResearchCeremony" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Shawn</forename>
+               <surname>Wilson</surname>
+            </persName>
+         </author>
+         <title level="m">Research Is Ceremony: Indigenous Research Methods</title>
+         <imprint>
+            <pubPlace>Halifax</pubPlace>
+            <publisher>Fernwood Publishing</publisher>
+            <date when="2008"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+   <biblStruct xml:id="Wright-SpellingBook" type="book">
+      <monogr>
+         <author>
+            <persName>
+               <forename>Asher</forename>
+               <surname>Wright</surname>
+            </persName>
+         </author>
+         <title level="m">Go ’w\underbar{ă}n\underbar{a} gwa’ih sat’haħ yon de’yunderbarăs dah’gwaħ/A Spelling-Book in the Seneca Language: with English definitions</title>
+         <imprint>
+            <pubPlace>Buffalo-Creek Reservation</pubPlace>
+            <publisher>Mission Press</publisher>
+            <date when="1842"/>
+         </imprint>
+      </monogr>
+   </biblStruct>
+</listBibl>
