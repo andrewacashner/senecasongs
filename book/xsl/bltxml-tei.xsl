@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- XSL transformation for bibliography from Biber's XML format to TEI
 
-Andrew A. Cashner, 2022/09
+Andrew A. Cashner, 2022/12/12
 
-Starting with a BibLaTeX master bibliography file, we first extract the 
-relevant bibliography items:
+Starting with a BibLaTeX master bibliography file, we convert that file to Biber's bltxml format:
 
-biber -\-output_format=bibtex -\-output-resolve-cross-refs -O selection.bib master.bib
-
-Then we convert that file to Biber's bltxml format:
-
-biber -\-tool -\-output-format=biblatexml -\-no-bltxml-schema -O biblio.bltxml selection.bib
+biber -\-tool -\-output-format=biblatexml -\-output-resolve-cross-refs -\-no-bltxml-schema -O biblio.bltxml selection.bib
 
 This stylesheet converts the whole bltxml file to a single TEI listBibl tree.
 
-It also uses the include bltxml-tei_macros to do a basic replacement of TeX macros still present in the bltxml fields, e.g., \makebibemph{} or {Title text}.
+It also uses the include bltxml-tei_macros to do a basic replacement of TeX macros still present in the bltxml fields, e.g., \mkbibemph{} or {Title text}.
 -->
 <xsl:stylesheet
   version="2.0"
@@ -31,6 +26,7 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
     <xsl:apply-templates select="bltx:entries" />
   </xsl:template>
 
+  <!-- Expand TeX macros that remain after conversion by biber -->
   <xsl:import href="bltxml-tei_macros.xsl" />
 
   <xsl:template match="comment()" />
@@ -41,11 +37,16 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
     </listBibl>
   </xsl:template>
 
+  <!-- Book type; standardizing the key by replacing colons with hyphens 
+    - Our bibtex keys are in the format `author:keyword` but the colon can't be used as an `@xml:id`
+  -->
   <xsl:template match="bltx:entry[@entrytype='book' or @entrytype='collection']">
     <biblStruct xml:id="{replace(@id,':','-')}" type="book">
       <monogr>
         <xsl:apply-templates select="bltx:names" />
-        <title level="m"><xsl:apply-templates select="bltx:title" /></title>
+        <title level="m">
+          <xsl:apply-templates select="bltx:title" />
+        </title>
         <xsl:apply-templates select="bltx:url" />
         <imprint>
           <xsl:apply-templates select="bltx:location" />
@@ -56,11 +57,14 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
     </biblStruct>
   </xsl:template>
 
+  <!-- Article type, standardizing the key -->
   <xsl:template match="bltx:entry[@entrytype='article']">
     <biblStruct xml:id="{replace(@id,':','-')}" type="article">
       <analytic>
         <xsl:apply-templates select="bltx:names" />
-        <title><xsl:apply-templates select="bltx:title" /></title>
+        <title>
+          <xsl:apply-templates select="bltx:title" />
+        </title>
         <xsl:apply-templates select="bltx:url" />
       </analytic>
       <monogr>
@@ -75,15 +79,20 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
     </biblStruct>
   </xsl:template>
 
+  <!-- Chapter/article in a collection type, standardizing the key -->
   <xsl:template match="bltx:entry[@entrytype='incollection']">
     <biblStruct xml:id="{replace(@id,':','-')}" type="inCollection">
       <analytic>
         <xsl:apply-templates select="bltx:names[@type='author']" />
-        <title level="a"><xsl:apply-templates select="bltx:title" /></title>
+        <title level="a">
+          <xsl:apply-templates select="bltx:title" />
+        </title>
         <xsl:apply-templates select="bltx:url" />
       </analytic>
       <monogr>
-        <title level="m"><xsl:apply-templates select="bltx:booktitle" /></title>
+        <title level="m">
+          <xsl:apply-templates select="bltx:booktitle" />
+        </title>
         <xsl:apply-templates select="bltx:names[@type='editor']" />
         <imprint>
           <xsl:apply-templates select="bltx:location" />
@@ -95,6 +104,7 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
     </biblStruct>
   </xsl:template>
 
+  <!-- Author/editor names -->
   <xsl:template match="bltx:names[@type='author']">
     <author>
       <xsl:apply-templates select="bltx:name" />
@@ -124,6 +134,7 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
     </persName>
   </xsl:template>
 
+  <!-- Make a list of space-delimited person names -->
   <xsl:template name="names">
     <xsl:param name="namepart" />
     <xsl:choose>
@@ -136,10 +147,12 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
     </xsl:choose>
   </xsl:template>
 
+  <!-- Title -->
   <xsl:template match="bltx:title">
     <xsl:apply-templates />
   </xsl:template>
 
+  <!-- Publication info, using list forms for multiple entries if needed -->
   <xsl:template match="bltx:publisher">
     <publisher>
       <xsl:call-template name="and-list" />
@@ -152,12 +165,14 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
     </pubPlace>
   </xsl:template>
 
+  <!-- Generate a list of strings separated by `and` -->
   <xsl:template name="and-list">
     <xsl:apply-templates select="bltx:list">
       <xsl:with-param name="separator"> and </xsl:with-param>
     </xsl:apply-templates>
   </xsl:template>
 
+  <!-- Convert a `bltx:list` to a string with list items separated by a given `separator` -->
   <xsl:template match="bltx:list">
     <xsl:param name="separator" />
     <xsl:for-each select="bltx:item">
@@ -173,8 +188,7 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
   </xsl:template>
 
   <xsl:template match="bltx:date">
-    <xsl:variable name="date" select="." />
-    <date when="{$date}" />
+    <date when="{.}" />
   </xsl:template>
 
   <xsl:template match="bltx:journaltitle">
@@ -183,12 +197,17 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
     </title>
   </xsl:template>
 
+  <!-- volume, number, page scope -->
   <xsl:template match="bltx:volume">
-    <biblScope unit="volume"><xsl:apply-templates /></biblScope>
+    <biblScope unit="volume">
+      <xsl:apply-templates />
+    </biblScope>
   </xsl:template>
 
   <xsl:template match="bltx:number">
-    <biblScope unit="issue"><xsl:apply-templates /></biblScope>
+    <biblScope unit="issue">
+      <xsl:apply-templates />
+    </biblScope>
   </xsl:template>
 
   <xsl:template match="bltx:pages">
@@ -197,11 +216,9 @@ It also uses the include bltxml-tei_macros to do a basic replacement of TeX macr
     <biblScope unit="page" from="{$start}" to="{$end}" />
   </xsl:template>
 
+  <!-- The URL text is the same as its target (TODO: should it be?) -->
   <xsl:template match="bltx:url">
-    <ref>
-      <xsl:attribute name="target">
-        <xsl:value-of select="." />
-      </xsl:attribute>
+    <ref target="{.}">
       <xsl:value-of select="." />
     </ref>
   </xsl:template>

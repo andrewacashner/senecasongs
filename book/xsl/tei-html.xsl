@@ -4,7 +4,7 @@ For Seneca songs website
 
 Andrew A. Cashner, 2022/09/08
 
-The input for this stylesheet is the TEI output produced by the two teibib_tei stylesheets.
+The input for this stylesheet is the TEI output produced by the teibib_tei stylesheet.
 
 It uses the tei-html_bib stylesheet to convert the listBibl bibliography to an HTML5 reference list.
 
@@ -94,7 +94,7 @@ This stylesheet also inserts automatic numbers for tables, figures, etc., and re
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <!-- <li><a href="{$filename}">Download TEI</a></li> -->
+        <li><a href="{$filename}">Download TEI</a></li>
         <li><a href="{replace($filename, '.tei', '.pdf')}">Download PDF page</a></li>
         <li><a href="book.pdf">Download PDF book</a></li>
       </ul>

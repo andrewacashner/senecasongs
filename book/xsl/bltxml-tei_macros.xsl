@@ -13,6 +13,8 @@ Do a basic replacement of these TeX macros , e.g., \makebibemph{} or {Title text
   xmlns:bltx="http://biblatex-biber.sourceforge.net/biblatexml"
   exclude-result-prefixes="bltx">
 
+  <!-- replace TeX macros everywhere 
+        (no promise of support for complex or nested TeX constructions) -->
   <xsl:template match="text()">
     <xsl:variable name="string">
       <xsl:value-of select="string()" />
@@ -50,6 +52,7 @@ Do a basic replacement of these TeX macros , e.g., \makebibemph{} or {Title text
     <xsl:copy-of select="$deslashed" />
   </xsl:template>
 
+  <!-- TeX letter macros: apostrophe, dashes -->
   <xsl:template name="expand-tex-letter-macros">
     <xsl:param name="string" />
     <xsl:variable name="em-dashes">
@@ -64,8 +67,10 @@ Do a basic replacement of these TeX macros , e.g., \makebibemph{} or {Title text
     <xsl:value-of select="$apostrophes" />
   </xsl:template>
 
+  <!-- regular expression for TeX argument delimited by curly-braces -->
   <xsl:variable name="within-braces">\{([^\}]*)\}</xsl:variable>
 
+  <!-- BibLaTeX-specific commands `\mkbibquote`, `\mkbibemph`, and `\mkbibparens` -->
   <xsl:template name="expand-mkbibquote">
     <xsl:param name="string" />
     <xsl:analyze-string select="$string" regex="(.*)\\mkbibquote{$within-braces}(.*)"> 
@@ -110,6 +115,7 @@ Do a basic replacement of these TeX macros , e.g., \makebibemph{} or {Title text
     </xsl:analyze-string>
   </xsl:template>
 
+  <!-- remove any remaining pairs of curly braces -->
   <xsl:template name="remove-tex-braces">
     <xsl:param name="string" />
     <xsl:analyze-string select="$string" regex="(.*){$within-braces}(.*)">
@@ -124,6 +130,7 @@ Do a basic replacement of these TeX macros , e.g., \makebibemph{} or {Title text
     </xsl:analyze-string>
   </xsl:template>
 
+  <!-- remove any remaining backslashes -->
   <xsl:template name="remove-tex-backslashes">
     <xsl:param name="string" />
     <xsl:analyze-string select="$string" regex="(.*)\\(.*)">
