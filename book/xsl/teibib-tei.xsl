@@ -94,7 +94,7 @@ For the reference list we filter the bibliography by the citation keys in the in
     - The in-text citations are written in the format `#Author:Keyword` but are converted to the format `Author-Keyword`. 
   -->
   <xsl:template match="tei:biblStruct">
-    <xsl:if test="$citations/replace(@xml:id=substring(@corresp, 2), ':', '-')">
+    <xsl:if test="@xml:id = $citations/replace(substring(@corresp, 2), ':', '-')">
       <xsl:copy-of select="." />
     </xsl:if>
   </xsl:template>

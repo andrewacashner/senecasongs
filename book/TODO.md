@@ -1,4 +1,4 @@
-(Last updated 2022/08/15)
+(Last updated 2022/12/13)
 
 - (DONE) create Makefile
 
@@ -8,11 +8,13 @@
 - glossary
 - Seneca words pronounced on click
 - chapter titles vs section titles vs web-page titles
+- tables of contents on each page?
 
 # To TEI
 ## AAC namespace (TEIBIB)
 - (DONE) Create aac.xsd
-- Automatic table, figure reference numbers in TEI (and thence HTML)
+- (X, DONE in HTML) Automatic table, figure reference numbers in TEI (and thence HTML)
+    - Is it desirable to have the numbers hard-coded in the TEI?
 
 ## Bibliography (for HTML conversion only)
 - (DONE) convert biblatexml to TEI
@@ -21,7 +23,7 @@
 
 # To HTML
 - (DONE) cover image alt text and/or caption
-- colophon text: include from file rather than putting it directly in XSL
+- (X) colophon text: include from file rather than putting it directly in XSL
     - also, use it in LaTeX somewhere
 - footer citation: 
     - should be '"Page Name" in *Book Name*'
@@ -40,7 +42,7 @@
 
 ## Book
 - Create true internal references with labels?
-- frontmatter, mainmatter, backmatter
+- (DONE) frontmatter, mainmatter, backmatter
 - cover images 
 
 
