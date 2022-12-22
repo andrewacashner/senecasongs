@@ -306,7 +306,7 @@ The LaTeX is written for the local TeX classes and packages (in the tex/ directo
   </xsl:template>
 
   <!-- Cross references -->
-  <xsl:template match="tei:ref[not(@type='auto')]">
+  <xsl:template match="tei:ref[not(@type='auto') and not(@type='internal')]">
     <xsl:text>\href{</xsl:text>
     <xsl:value-of select="@target" />
     <xsl:text>}{</xsl:text>
@@ -315,7 +315,7 @@ The LaTeX is written for the local TeX classes and packages (in the tex/ directo
   </xsl:template>
 
   <!-- Make internal links point to website. TODO true internal references with labels? --> 
-  <xsl:template match="tei:ref[@type='internal']">
+  <xsl:template match="tei:ref[not(@type='auto') and @type='internal']">
     <xsl:text>\href{</xsl:text>
     <xsl:value-of select="concat('https://www.senecasongs.earth/', replace(@target, '.tei', '.html'))" />
     <xsl:text>}{</xsl:text>
