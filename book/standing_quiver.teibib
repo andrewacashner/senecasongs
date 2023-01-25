@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TEI version="4.4.0" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:base="standing_quiver.tei">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Songs at the Woods' Edge: Standing Quiver Dance</title>
+        <author>Bill Crouse, Sr., and Andrew A. Cashner</author>
+      </titleStmt>
+      <publicationStmt>
+        <pubPlace>Rochester, NY</pubPlace>
+        <publisher>Peacemaker Press</publisher>
+        <date when="2023" />
+        <availability>
+          <p>Copyright © 2023 Bill Crouse, Sr., and Andrew A. Cashner. All rights reserved.</p>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Born digital and published on the web at <ref target="https://www.senecasongs.earth/standing_quiver.tei">www.senecasongs.earth/standing_quiver.tei</ref>.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <titlePage>
+        <docTitle>
+          <titlePart type="main">Songs at the Woods' Edge</titlePart>
+          <titlePart type="sub">Ga’da:šot (Standing Quiver Dance)</titlePart>
+        </docTitle>
+        <docAuthor>Bill Crouse, Sr., and Andrew A. Cashner</docAuthor>
+        <!--
+        <figure type="cover" xml:id="TODO">
+          <graphic url="media/TODO.jpg" />
+          <figDesc>TODO</figDesc>
+        </figure>
+        -->
+      </titlePage>
+    </front>
+    <body>
+      <xi:include href="include/standing_quiver.teibib" />
+    </body>
+    <back>
+      <div1 id="references">
+        <head>References</head>
+        <listBibl type="auto" subtype="biblio" source="tex/indigenous.bib" />
+      </div1>
+    </back>
+  </text>
+</TEI>
+
+
+
