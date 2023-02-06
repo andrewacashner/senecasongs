@@ -1,0 +1,84 @@
+body {
+  max-width: 40em;
+  margin: auto;
+  font-family: 'Crimson', serif;
+  padding: 1em;
+}
+
+h1, h2 {
+  font-family: sans-serif;
+}
+header h1.title-site {
+  color: Gray;
+}
+
+header h1.title-page {
+}
+
+header h2.author {
+}
+
+header nav.site {
+  font-family: sans-serif;
+}
+
+header nav ul {
+  list-style: none;
+}
+
+main p {
+  text-align: justify;
+  hyphens: auto;
+  line-height: 1.6em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+main p + p {
+  text-indent: 2em;
+}
+
+figure {
+  width: 95%;
+  margin: auto;
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+figure video {
+  width: 100%;
+}
+
+figure audio {
+  width: 100%;
+}
+
+figure img {
+  width: 100%;
+}
+
+figCaption {
+  font-size: 90%;
+}
+
+em.seneca {
+}
+
+blockquote {
+  background: #e6ccff;
+  padding: 2em;
+}
+
+blockquote strong {
+  display: block;
+  font-size: 160%;
+  padding: 0.4em;
+  text-align: left;
+  hyphens: none;
+}
+
+footer {
+  margin-top: 4em;
+  text-align: center;
+}
