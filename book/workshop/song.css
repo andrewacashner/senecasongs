@@ -77,14 +77,14 @@ main p + p {
 }
 
 figure {
-  width: 95%;
+  width: 560px;
   margin: auto;
   text-align: center;
   padding-top: 1em;
   padding-bottom: 1em;
 }
 
-figure video {
+figure video { 
   width: 100%;
 }
 
