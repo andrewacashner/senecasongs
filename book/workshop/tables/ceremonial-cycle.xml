@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table id="tab:ceremonial-cycle">
+  <thead>The Annual Ceremonial Cycle</thead>
+  <!-- two columns: season, ceremony -->
+  <tr> 
+    <td>Winter</td>
+    <td>Midwinter Ceremonies</td>
+  </tr>
+  <tr>
+    <td />
+    <td>
+      <em class="seneca">Okhi:we’</em> (Remembrance of those who have died)
+    </td>
+  </tr>
+  <tr>
+    <td>Spring</td>
+    <td>Thunder Dance</td>
+  </tr>
+  <tr>
+    <td />
+    <td>False Faces (House-to-house cleansing)</td>
+  </tr>
+  <tr>
+    <td />
+    <td>Seed Dance</td>
+  </tr>
+  <tr>
+    <td>Summer</td>
+    <td>Strawberry Festival</td>
+  </tr>
+  <tr>
+    <td />
+    <td>Green Corn Ceremonies</td>
+  </tr>
+  <tr>
+    <td>Fall</td>
+    <td>Harvest Dance</td>
+  </tr>
+  <tr>
+    <td />
+    <td>False Faces (House-to-house cleansing)</td>
+  </tr>
+  <tr>
+    <td />  
+    <td>Thunder Dance</td>
+  </tr>
+  <tr>
+    <td />
+    <td>
+      <em class="seneca">Gaiwi:yo:h</em> (Code of Handsome Lake)
+    </td>
+  </tr>
+</table>

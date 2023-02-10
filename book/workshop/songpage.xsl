@@ -67,7 +67,9 @@
   <xsl:template match="aac:degree">
     <math>
       <mi>
-        <xsl:value-of select="@accid" />
+        <xsl:call-template name="accid">
+          <xsl:with-param name="accid" select="@accid" />
+        </xsl:call-template>
       </mi>
       <mover>
         <mi>
@@ -80,10 +82,56 @@
 
   <xsl:template match="aac:pitch">
     <xsl:value-of select="@pname" />
-    <xsl:value-of select="@accid" />
+    <xsl:call-template name="accid">
+      <xsl:with-param name="accid" select="@accid" />
+    </xsl:call-template>
     <sub>
       <xsl:value-of select="@oct" />
     </sub>
+  </xsl:template>
+
+  <xsl:template name="accid">
+    <xsl:param name="accid" />
+    <xsl:choose>
+      <xsl:when test="@accid='na'">
+        <xsl:text>♮</xsl:text>
+      </xsl:when>
+      <xsl:when test="@accid='fl'">
+        <xsl:text>♭</xsl:text>
+      </xsl:when>
+      <xsl:when test="@accid='sh'">
+        <xsl:text>♯</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="aac:na">
+    <xsl:text>♮</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:fl">
+    <xsl:text>♭</xsl:text>
+  </xsl:template>
+  
+  <xsl:template match="aac:sh">
+    <xsl:text>♯</xsl:text>
+  </xsl:template>
+
+  <!-- Automatic references -->
+  <xsl:template match="aac:bibref">
+    <xsl:text>(</xsl:text>
+    <a href="{@href}">
+      <strong><xsl:value-of select="substring(@href, 2)" /></strong>
+      <xsl:apply-templates />
+    </a>
+    <xsl:text>)</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:ref">
+    <a href="{@href}">
+      <xsl:apply-templates />
+      <!-- auto number TODO -->
+    </a>
   </xsl:template>
 
 
