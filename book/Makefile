@@ -39,7 +39,7 @@ media_out   = $(addprefix build/,$(media_in))
 fonts_in    = $(wildcard fonts/*.*)
 fonts_out   = $(addprefix build/,$(fonts_in))
 
-saxon       = java net.sf.saxon.Transform
+saxon       = java -cp ".:$(HOME)/saxon/saxon-he-12.0.jar" net.sf.saxon.Transform
 
 .PHONY: all tei pdf html clean
 
