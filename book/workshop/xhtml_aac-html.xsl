@@ -132,10 +132,24 @@
   <!-- Create a list of in-text citation keys in this document -->
   <xsl:variable name="citations" select="//aac:bibref" />
 
+  <!-- TODO sort alphabetically -->
+  <xsl:variable name="references">
+    <!-- TODO START here -->
+    <ul class="biblio">
+      <xsl:for-each select="$citations">
+        <xsl:apply-templates select="$bibfile//bltx:entry[@id=substring(@href, 2)]" />
+      </xsl:for-each>
+    </ul>
+  </xsl:variable>
+
   <!-- Generate the bibliography/reference list instead of the placeholder -->
   <xsl:template match="aac:bibliography">
-    <xsl:apply-templates select="$bibfile/bltx:entries" />
+    <section id="bibliography">
+      <h1>References</h1>
+      <xsl:value-of select="$references" />
+    </section>
   </xsl:template>
+
   <!-- TODO deal with colons in ids
     <xsl:if test="@id = $citations/replace(substring(@href, 2), ':', '-')">
   -->
@@ -144,7 +158,7 @@
   <xsl:template match="aac:bibref">
     <xsl:variable name="bibKey" select="substring(@href, 2)" />
     <xsl:variable name="pages" select="string()" />
-    <xsl:variable name="ref" select="$bibfile//bltx:entry[@id=$bibKey]" />
+    <xsl:variable name="ref" select="$references//bltx:entry[@id=$bibKey]" />
 
     <xsl:variable name="author-list">
       <xsl:variable name="authors">
@@ -180,142 +194,125 @@
     </a>
   </xsl:template>
   
-    <!-- TODO sort alphabetically -->
-  <!-- Convert the reference list -->
-  <xsl:template match="bltx:entries">
-    <section id="bibliography">
-      <h1>References</h1>
-      <ul class="biblio">
-        <xsl:apply-templates />
-      </ul>
-    </section>
-  </xsl:template>
-
   <!-- Convert bibliography entries
     - Select only those entries from the bibliography that have a matching key in the in-text citations.
     - The in-text citations are written in the format `#Author:Keyword` but are converted to the format `Author-Keyword`. TODO
   --> 
   <xsl:template match="bltx:entry[@entrytype='book']">
-    <xsl:if test="@id = $citations/substring(@href, 2)">
-      <xsl:variable name="authors">
-        <xsl:choose>
-          <xsl:when test="bltx:names[@type='author']">
-            <xsl:call-template name="name-list">
-              <xsl:with-param name="names" select="bltx:names[@type='author']" />
-              <xsl:with-param name="type">lastname-first</xsl:with-param>
-            </xsl:call-template>
-          </xsl:when>
-          <xsl:when test="bltx:names[@type='editor']">
-            <xsl:call-template name="name-list">
-              <xsl:with-param name="names" select="bltx:names[@type='editor']" />
-              <xsl:with-param name="type">lastname-first</xsl:with-param>
-            </xsl:call-template>
-            <xsl:choose>
-              <xsl:when test="count(bltx:names[@type='editor']/bltx:name) > 1">
-                <xsl:text>, eds</xsl:text>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:text>, ed</xsl:text>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:text>Anonymous</xsl:text>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
-      <li id="{@id}"> <!-- TODO colon -->
-        <xsl:value-of select="$authors" />
-        <xsl:if test="not(substring($authors, string-length($authors))='.')">
-          <xsl:text>.</xsl:text>
-        </xsl:if>
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="bltx:date" />
-        <xsl:text>. </xsl:text>
-        <cite><xsl:apply-templates select="bltx:title" /></cite>
+    <xsl:variable name="authors">
+      <xsl:choose>
+        <xsl:when test="bltx:names[@type='author']">
+          <xsl:call-template name="name-list">
+            <xsl:with-param name="names" select="bltx:names[@type='author']" />
+            <xsl:with-param name="type">lastname-first</xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:when test="bltx:names[@type='editor']">
+          <xsl:call-template name="name-list">
+            <xsl:with-param name="names" select="bltx:names[@type='editor']" />
+            <xsl:with-param name="type">lastname-first</xsl:with-param>
+          </xsl:call-template>
+          <xsl:choose>
+            <xsl:when test="count(bltx:names[@type='editor']/bltx:name) > 1">
+              <xsl:text>, eds</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>, ed</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>Anonymous</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <li id="{@id}"> <!-- TODO colon -->
+      <xsl:value-of select="$authors" />
+      <xsl:if test="not(substring($authors, string-length($authors))='.')">
         <xsl:text>.</xsl:text>
-        <xsl:apply-templates select="bltx:location" />
-        <xsl:apply-templates select="bltx:publisher" />
-        <xsl:apply-templates select="bltx:url" />
-      </li>
-    </xsl:if>
+      </xsl:if>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="bltx:date" />
+      <xsl:text>. </xsl:text>
+      <cite><xsl:apply-templates select="bltx:title" /></cite>
+      <xsl:text>.</xsl:text>
+      <xsl:apply-templates select="bltx:location" />
+      <xsl:apply-templates select="bltx:publisher" />
+      <xsl:apply-templates select="bltx:url" />
+    </li>
   </xsl:template>
 
   <xsl:template match="bltx:entry[@entrytype='article']">
-    <xsl:if test="@id = $citations/substring(@href, 2)">
-      <xsl:variable name="authors">
-        <xsl:call-template name="name-list">
-          <xsl:with-param name="names" select="bltx:names[@type='author']" />
-          <xsl:with-param name="type">lastname-first</xsl:with-param>
-        </xsl:call-template>
-      </xsl:variable>
-      <li id="{@id}">
-        <xsl:value-of select="$authors" />
-        <xsl:if test="not(substring($authors, string-length($authors))='.')">
-          <xsl:text>.</xsl:text>
-        </xsl:if>
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="bltx:date" />
-        <xsl:text>. </xsl:text>
-        <q>
-          <xsl:apply-templates select="bltx:title" />
-        </q>
-        <xsl:text>. </xsl:text>
-        <cite>
-          <xsl:apply-templates select="bltx:journaltitle" />
-        </cite>
-        <xsl:text> </xsl:text>
-        <xsl:if test="bltx:volume">
-          <xsl:value-of select="bltx:volume" />
-        </xsl:if>
-        <xsl:if test="bltx:number">
-          <xsl:text> (</xsl:text>
-          <xsl:value-of select="bltx:number" />
-          <xsl:text>)</xsl:text>
-        </xsl:if>
-        <xsl:text>: </xsl:text>
-        <xsl:apply-templates select="bltx:pages" />
+    <xsl:variable name="authors">
+      <xsl:call-template name="name-list">
+        <xsl:with-param name="names" select="bltx:names[@type='author']" />
+        <xsl:with-param name="type">lastname-first</xsl:with-param>
+      </xsl:call-template>
+    </xsl:variable>
+    <li id="{@id}">
+      <xsl:value-of select="$authors" />
+      <xsl:if test="not(substring($authors, string-length($authors))='.')">
         <xsl:text>.</xsl:text>
-        <xsl:apply-templates select="bltx:url" />
-      </li>
-    </xsl:if>
+      </xsl:if>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="bltx:date" />
+      <xsl:text>. </xsl:text>
+      <q>
+        <xsl:apply-templates select="bltx:title" />
+      </q>
+      <xsl:text>. </xsl:text>
+      <cite>
+        <xsl:apply-templates select="bltx:journaltitle" />
+      </cite>
+      <xsl:text> </xsl:text>
+      <xsl:if test="bltx:volume">
+        <xsl:value-of select="bltx:volume" />
+      </xsl:if>
+      <xsl:if test="bltx:number">
+        <xsl:text> (</xsl:text>
+        <xsl:value-of select="bltx:number" />
+        <xsl:text>)</xsl:text>
+      </xsl:if>
+      <xsl:text>: </xsl:text>
+      <xsl:apply-templates select="bltx:pages" />
+      <xsl:text>.</xsl:text>
+      <xsl:apply-templates select="bltx:url" />
+    </li>
   </xsl:template>
 
   <xsl:template match="bltx:entry[@entrytype='incollection']">
-    <xsl:if test="@id = $citations/substring(@href, 2)">
-      <xsl:variable name="authors">
-        <xsl:call-template name="name-list">
-          <xsl:with-param name="names" select="bltx:names[@type='author']" />
-        </xsl:call-template>
-      </xsl:variable>
-      <li id="{@id}">
-        <xsl:value-of select="$authors" />
-        <xsl:if test="not(substring($authors, string-length($authors))='.')">
-          <xsl:text>.</xsl:text>
-        </xsl:if>
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="bltx:date" />
-        <xsl:text>. </xsl:text>
-        <q>
-          <xsl:apply-templates select="bltx:title" />
-        </q>
-        <xsl:text>. In </xsl:text>
-        <cite>
-          <xsl:apply-templates select="bltx:booktitle" />
-        </cite>
-        <xsl:text>, edited by </xsl:text>
-        <xsl:call-template name="name-list">
-          <xsl:with-param name="names" select="bltx:names[@type='editor']" />
-          <xsl:with-param name="type">firstname-first</xsl:with-param>
-        </xsl:call-template>
-        <xsl:text>, </xsl:text>
-        <xsl:apply-templates select="bltx:pages" />
-        <xsl:text>. </xsl:text>
-        <xsl:apply-templates select="bltx:location" />
-        <xsl:apply-templates select="bltx:publisher" />
-        <xsl:apply-templates select="bltx:url" />
-      </li>
-    </xsl:if>
+    <xsl:variable name="authors">
+      <xsl:call-template name="name-list">
+        <xsl:with-param name="names" select="bltx:names[@type='author']" />
+      </xsl:call-template>
+    </xsl:variable>
+    <li id="{@id}">
+      <xsl:value-of select="$authors" />
+      <xsl:if test="not(substring($authors, string-length($authors))='.')">
+        <xsl:text>.</xsl:text>
+      </xsl:if>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="bltx:date" />
+      <xsl:text>. </xsl:text>
+      <q>
+        <xsl:apply-templates select="bltx:title" />
+      </q>
+      <xsl:text>. In </xsl:text>
+      <cite>
+        <xsl:apply-templates select="bltx:booktitle" />
+      </cite>
+      <xsl:text>, edited by </xsl:text>
+      <xsl:call-template name="name-list">
+        <xsl:with-param name="names" select="bltx:names[@type='editor']" />
+        <xsl:with-param name="type">firstname-first</xsl:with-param>
+      </xsl:call-template>
+      <xsl:text>, </xsl:text>
+      <xsl:apply-templates select="bltx:pages" />
+      <xsl:text>. </xsl:text>
+      <xsl:apply-templates select="bltx:location" />
+      <xsl:apply-templates select="bltx:publisher" />
+      <xsl:apply-templates select="bltx:url" />
+    </li>
   </xsl:template>
   
   <xsl:template match="bltx:entry" />
@@ -350,6 +347,7 @@
     </xsl:for-each>
   </xsl:template>
 
+  <!-- Process elements of bibliography entries -->
   <xsl:template match="bltx:title | bltx:journaltitle | bltx:booktitle">
     <xsl:apply-templates />
   </xsl:template>
