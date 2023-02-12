@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<table id="tab:ceremonial-cycle">
+<table xmlns="http://www.w3.org/1999/xhtml" id="tab:ceremonial-cycle">
   <thead>The Annual Ceremonial Cycle</thead>
   <!-- two columns: season, ceremony -->
   <tr> 

@@ -19,7 +19,7 @@ web_include_in  = $(wildcard web-include/*)
 web_include_out = $(addprefix build/,$(notdir $(web_include)))
 html_deps_out   = $(addprefix build/,$(html_deps_in)) $(web_include_out)
 
-saxon   	= java net.sf.saxon.Transform
+saxon   	= java -cp ".:$(HOME)/saxon/saxon-he-12.0.jar" net.sf.saxon.Transform
 
 .PHONY : all tei html pdf clean
 
