@@ -1,0 +1,63 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tex/senecasongs}[2022/07/29 Style for
+Seneca Songs book and website page PDFs]
+
+\RequirePackage[T1]{fontenc}
+
+\RequirePackage{venturis}
+\RequirePackage{crimson}
+
+\RequirePackage{sectsty}
+\allsectionsfont{\sffamily}
+
+\RequirePackage{microtype}
+
+\RequirePackage[
+    paperheight=8.5in, 
+    paperwidth=5.5in,
+    vmargin=1in
+]{geometry}
+
+\RequirePackage{semantic-markup}
+\RequirePackage{booktabs}
+\RequirePackage{enumitem}
+\setlist{noitemsep}
+
+\RequirePackage[authordate]{biblatex-chicago}
+
+\RequirePackage{graphicx}
+\graphicspath{{media}}
+
+\NewExpandableDocumentCommand{\@aacMainTitle}{}{}
+\NewExpandableDocumentCommand{\@aacSubTitle}{}{}
+\NewExpandableDocumentCommand{\@aacAuthor}{}{}
+\NewExpandableDocumentCommand{\@aacPublisher}{}{}
+\NewExpandableDocumentCommand{\@aacCopyright}{}{}
+\NewExpandableDocumentCommand{\@aacCoverImage}{}{}
+
+\NewDocumentCommand{\setMainTitle}{ m }{%
+    \RenewExpandableDocumentCommand{\@aacMainTitle}{}{#1}%
+}
+
+\NewDocumentCommand{\setSubTitle}{ m }{%
+    \RenewExpandableDocumentCommand{\@aacSubTitle}{}{#1}%
+}
+
+\NewDocumentCommand{\setAuthor}{ m }{%
+    \RenewExpandableDocumentCommand{\@aacAuthor}{}{#1}%
+}
+
+\NewDocumentCommand{\setPublisher}{ m }{%
+    \RenewExpandableDocumentCommand{\@aacPublisher}{}{#1}%
+}
+
+\NewDocumentCommand{\setCopyright}{ m }{%
+    \RenewExpandableDocumentCommand{\@aacCopyright}{}{#1}%
+}
+
+\NewDocumentCommand{\setCoverImage}{ m }{%
+    \RenewExpandableDocumentCommand{\@aacCoverImage}{}{#1}%
+}
+
+\RequirePackage{hyperref}
+\endinput

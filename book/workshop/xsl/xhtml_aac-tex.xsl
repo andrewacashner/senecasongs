@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet 
+  version="2.0" 
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:aac="https://www.senecasongs.earth">
+
+<!-- TODO
+  - book class for book version
+  - how to handle media?
+-->
+
+  <xsl:output method="text" encoding="utf-8" indent="no" />
+  
+  <xsl:strip-space elements="*" />
+
+  <!-- Convert newlines in XML input to spaces 
+    (avoid spurious paragraph breaks) -->
+  <xsl:template match="text()" priority="1">
+    <xsl:variable name="newline">
+      <xsl:value-of select="replace(., '&#10;', ' ')" />
+    </xsl:variable>
+    <xsl:variable name="space">
+      <xsl:value-of select="replace($newline, '  ', ' ')" />
+    </xsl:variable>
+    <xsl:value-of select="$space" />
+  </xsl:template>
+ 
+  <xsl:template match="comment()" priority="1" />
+
+  <xsl:template match="/">
+    <xsl:text>\documentclass{tex/senecasongs-article}&#xA;</xsl:text>
+    
+    <xsl:text>\addbibresource{</xsl:text>
+    <xsl:value-of select="//xhtml:head/xhtml:meta[@name='bibliography']/@content" />
+    <xsl:text>}&#xA;</xsl:text>
+
+    <xsl:text>\setMainTitle{</xsl:text>
+    <xsl:apply-templates select="//xhtml:body/xhtml:header/xhtml:h1[@class='title-site']" />
+    <xsl:text>}&#xA;</xsl:text>
+
+    <xsl:text>\setSubTitle{</xsl:text>
+    <xsl:apply-templates select="//xhtml:body/xhtml:header/xhtml:h1[@class='title-page']" />
+    <xsl:text>}&#xA;</xsl:text>
+
+    <xsl:text>\setAuthor{</xsl:text>
+    <xsl:apply-templates select="//xhtml:body/xhtml:header/xhtml:h2[@class='author']" />
+    <xsl:text>}&#xA;</xsl:text>
+
+    <!-- TODO publisher -->
+
+    <xsl:text>\setCopyright{</xsl:text>
+    <xsl:apply-templates select="//xhtml:head/xhtml:meta[@name='copyright']/@content" />
+    <xsl:text>}&#xA;</xsl:text>
+    <!-- TODO CC license -->
+
+    <!-- TODO cover image -->
+
+    <xsl:text>\begin{document}&#xA;</xsl:text>
+    
+    <xsl:text>\maketitle&#xA;</xsl:text>
+    <xsl:text>\tableofcontents&#xA;</xsl:text>
+
+    <xsl:apply-templates select="//xhtml:main" />
+
+    <xsl:if test="//xhtml:main/aac:bibliography">
+      <xsl:text>\printbibliography&#xA;</xsl:text>
+    </xsl:if>
+
+    <xsl:text>\end{document}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:section/xhtml:h1">
+    <xsl:text>&#xA;\section{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>} \label{</xsl:text>
+    <xsl:value-of select="../@id" />
+    <xsl:text>}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:section/xhtml:h2">
+    <xsl:text>\subsection{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>} \label{</xsl:text>
+    <xsl:value-of select="../@id" />
+    <xsl:text>}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:section/xhtml:h3">
+    <xsl:text>\subsubsection{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>} \label{</xsl:text>
+    <xsl:value-of select="../@id" />
+    <xsl:text>}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:section/xhtml:h4">
+    <xsl:text>\paragraph{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>} \label{</xsl:text>
+    <xsl:value-of select="../@id" />
+    <xsl:text>}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:p">
+    <xsl:text>&#xA;</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:em">
+    <xsl:text>\emph{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:cite">
+    <xsl:text>\wtitle{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+  
+  <xsl:template match="xhtml:q">
+    <xsl:text>\quoted{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:blockquote">
+    <xsl:text>\begin{quotation}&#xA;</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>\end{quotation}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:strong">
+    <xsl:text>\strong{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:strong[@class='TODO']">
+    <xsl:text>\XXX[</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>]</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:a">
+    <xsl:text>\href{</xsl:text>
+    <xsl:value-of select="@href" />
+    <xsl:text>}{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:ol">
+    <xsl:text>\begin{enumerate}&#xA;</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>\end{enumerate}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:ul">
+    <xsl:text>\begin{itemize}&#xA;</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>\end{itemize}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:li">
+    <xsl:text>\item{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}&#xA;</xsl:text>
+  </xsl:template>
+
+  <!-- CITATIONS -->
+  <xsl:template match="aac:citation">
+    <xsl:text>\autocite</xsl:text>
+    <xsl:call-template name="in-text-citation" />
+  </xsl:template>
+  
+  <xsl:template match="aac:citationList">
+    <xsl:text>\autocites</xsl:text>
+    <xsl:for-each select="aac:citation">
+      <xsl:call-template name="in-text-citation" />
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template name="in-text-citation">
+    <xsl:if test="@pages"> <!-- TODO what about node text -->
+      <xsl:text>[</xsl:text>
+      <xsl:value-of select="concat(@pages, string())" />
+      <xsl:text>]</xsl:text>
+    </xsl:if>
+    <xsl:text>{</xsl:text>
+    <xsl:value-of select="@key" />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+  
+  <!-- FLOATS -->
+  <xsl:template match="xhtml:figure">
+    <xsl:text>\begin{figure}&#xA;</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>\caption{</xsl:text>
+    <xsl:apply-templates select="xhtml:figCaption" />
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:text>\label{</xsl:text>
+    <xsl:value-of select="@id" />
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:text>\end{figure}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:img">
+    <!-- TODO make sure resources are available
+    <xsl:text>\includegraphics[width=\textwidth]{</xsl:text>
+    <xsl:value-of select="@src" />
+      <xsl:text>}&#xA;</xsl:text>
+    -->
+  </xsl:template>
+
+  <xsl:template match="xhtml:audio" /> <!-- TODO -->
+
+  <xsl:template match="xhtml:table">
+    <xsl:text>\begin{table}&#xA;</xsl:text>
+    <xsl:text>\caption{</xsl:text>
+    <xsl:apply-templates select="xhtml:caption" />
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:text>\label{</xsl:text>
+    <xsl:value-of select="@id" />
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:text>\begin{tabular}{</xsl:text>
+    <xsl:for-each select="xhtml:tr[1]/xhtml:td"><xsl:text>l</xsl:text></xsl:for-each>
+    <xsl:text>} \toprule&#xA;</xsl:text>
+    <xsl:apply-templates select="xhtml:thead | xhtml:tr" />
+    <xsl:text>\bottomrule&#xA;\end{tabular}&#xA;</xsl:text>
+    <xsl:text>\end{table}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:thead">
+    <xsl:apply-templates />
+    <xsl:text>\midrule</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:tr">
+    <xsl:apply-templates />
+    <xsl:text> \\&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:td">
+    <xsl:apply-templates />
+    <xsl:if test="not(position()=last())">
+      <xsl:text> &amp; </xsl:text>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="xhtml:video">
+    <xsl:text>\href}{</xsl:text>
+    <xsl:value-of select="@src" />
+    <xsl:text>}{(Video)}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:youtube">
+    <xsl:text>\href{http://www.youtube.com/</xsl:text>
+    <xsl:value-of select="@key" />
+    <xsl:text>}{(Video)}&#xA;</xsl:text>
+  </xsl:template>
+
+
+  <!-- CROSS-REFERENCES -->
+  <xsl:template match="aac:ref[@type='table']">
+    <xsl:apply-templates />
+    <xsl:text>\ref{</xsl:text>
+    <xsl:value-of select="substring(@href, 2)" />
+    <xsl:text>} </xsl:text>
+  </xsl:template>
+
+  <!-- SPECIAL CHARACTERS and FORMATTED EXPRESSIONS -->
+  <xsl:template match="aac:pcset">
+    <xsl:text>\code{/</xsl:text>
+    <xsl:value-of select="@n" />
+    <xsl:text>/} </xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:degree">
+    <xsl:call-template name="accid">
+      <xsl:with-param name="accid" select="@accid" />
+    </xsl:call-template>
+    <xsl:text>$\hat </xsl:text>
+    <xsl:value-of select="@n" />
+    <xsl:text>$ </xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:pitch">
+    <xsl:value-of select="@pname" />
+    <xsl:call-template name="accid">
+      <xsl:with-param name="accid" select="@accid" />
+    </xsl:call-template>
+    <xsl:text>\textsubscript{</xsl:text>
+    <xsl:value-of select="@oct" />
+    <xsl:text>} </xsl:text>
+  </xsl:template>
+
+  <xsl:template name="accid">
+    <xsl:param name="accid" />
+    <xsl:choose>
+      <xsl:when test="@accid='na'">
+        <xsl:text>\na</xsl:text>
+      </xsl:when>
+      <xsl:when test="@accid='fl'">
+        <xsl:text>\fl</xsl:text>
+      </xsl:when>
+      <xsl:when test="@accid='sh'">
+        <xsl:text>\sh</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="aac:na">
+    <xsl:text>\na</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:fl">
+    <xsl:text>\fl</xsl:text>
+  </xsl:template>
+  
+  <xsl:template match="aac:sh">
+    <xsl:text>\sh</xsl:text>
+  </xsl:template>
+
+</xsl:stylesheet>
+
+
+
+
+
+
+
+
+
