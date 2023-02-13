@@ -7,9 +7,15 @@
   xmlns:bltx="http://biblatex-biber.sourceforge.net/biblatexml"
   xmlns:aac="https://www.senecasongs.earth">
 
+<!-- TODO
+  - change position of end punctuation outside of bib tags? 
+-->
+
   <xsl:output method="html" version="5.0" encoding="utf-8" indent="yes" />
 
   <xsl:strip-space elements="*" />
+
+  <xsl:import href="bltxml_macros.xsl" />
 
   <xsl:template match="comment()" priority="1" />
 
@@ -20,8 +26,7 @@
   </xsl:template>
 
   <xsl:template match="xhtml:html">
-    <html lang="en">
-      <xsl:apply-templates />
+    <html lang="en"> <xsl:apply-templates />
     </html>
   </xsl:template>
 
@@ -32,17 +37,17 @@
     </head>
   </xsl:template>
 
-  <xsl:template match="xhtml:video[@class='youtube']">
+  <xsl:template match="aac:youtube">
     <iframe 
       width="560" height="315" 
-      src="https://www.youtube.com/embed/{@src}" 
+      src="https://www.youtube.com/embed/{@key}" 
       title="YouTube video player" 
       frameborder="0" 
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
       allowfullscreen="true"></iframe>
-</xsl:template>
+  </xsl:template>
 
-  <xsl:template match="xhtml:video[not(@class='youtube')]">
+  <xsl:template match="xhtml:video">
     <video width="560" height="315" controls="true">
       <source src="{@src}" />
     </video>
@@ -57,6 +62,7 @@
     </footer>
   </xsl:template>
 
+  <!-- SPECIAL CHARACTERS and FORMATTED EXPRESSIONS -->
   <xsl:template match="aac:pcset">
     <code>
       <xsl:text>/</xsl:text>
@@ -118,87 +124,81 @@
     <xsl:text>♯</xsl:text>
   </xsl:template>
 
-  <!-- Automatic references -->
-   <xsl:template match="aac:ref">
-    <a href="{@href}">
+  <!-- FLOATS AND CROSS-REFERENCES -->
+
+  <!-- Internal references with automatic numbers -->
+  <xsl:template match="aac:ref[@type='table']">
+    <xsl:variable name="target" select="substring(@href, 2)" />
+    <a class="internal" href="{@href}">
       <xsl:apply-templates />
-      <!-- auto number TODO -->
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="//xhtml:table[@id=$target]" mode="number" />
     </a>
   </xsl:template>
 
-  <!-- Bring in the XML bibliography file -->
-  <xsl:variable name="bibfile" select="document(concat(environment-variable('PWD'), '/biblio.bltxml'))" />
+  <xsl:template match="xhtml:table" mode="number">
+    <xsl:number count="//xhtml:table" level="any" />
+  </xsl:template>
 
-  <!-- Create a list of in-text citation keys in this document -->
-  <xsl:variable name="citations" select="//aac:bibref" />
+  <xsl:template match="xhtml:table/xhtml:caption">
+    <caption>
+      <xsl:text>Table </xsl:text>
+      <xsl:number count="xhtml:table" format="1. " level="any" />
+      <xsl:apply-templates />
+    </caption>
+  </xsl:template>
 
-  <!-- TODO sort alphabetically -->
+  <!-- CITATIONS AND BIBLIOGRAPHY -->
+
+  <!-- Bring in the XML bibliography file, which was derived from the BibTeX file
+    - Original BibTeX file must be set in metadata like so:
+      <head>
+        ...
+        <meta name="bibliography" content="biblio.bib" />
+      </head>
+  -->
+  <xsl:variable name="bibtexml-file">
+    <xsl:variable name="bibtex-file" select="//xhtml:meta[@name='bibliography']/@content" />
+    <xsl:value-of select="replace($bibtex-file, '.bib', '.bltxml')" />
+  </xsl:variable>
+ 
+  <xsl:variable name="bibfile" select="document(concat(environment-variable('PWD'), '/', $bibtexml-file))/bltx:entries" />
+
+  <!-- remove meta bibliography item -->
+  <xsl:template match="xhtml:meta[@name='bibliography']" />
+
+  <!-- REFERENCE LIST -->
+
+  <!-- Filter the BiblateXML bibliography tree to include only entries cited in the text -->
   <xsl:variable name="references">
-    <!-- TODO START here -->
-    <ul class="biblio">
+    <xsl:variable name="citations" select="//aac:citation/substring(@href, 2)" />
+    <bltx:entries>
       <xsl:for-each select="$citations">
-        <xsl:apply-templates select="$bibfile//bltx:entry[@id=substring(@href, 2)]" />
+        <xsl:copy-of select="$bibfile/bltx:entry[@id=current()]" />
       </xsl:for-each>
-    </ul>
+    </bltx:entries>
   </xsl:variable>
 
   <!-- Generate the bibliography/reference list instead of the placeholder -->
   <xsl:template match="aac:bibliography">
     <section id="bibliography">
       <h1>References</h1>
-      <xsl:value-of select="$references" />
+      <xsl:apply-templates select="$references" />
     </section>
   </xsl:template>
 
-  <!-- TODO deal with colons in ids
-    <xsl:if test="@id = $citations/replace(substring(@href, 2), ':', '-')">
-  -->
-
-  <!-- Create list of author-date pairs to put inside parenthetical citations -->
-  <xsl:template match="aac:bibref">
-    <xsl:variable name="bibKey" select="substring(@href, 2)" />
-    <xsl:variable name="pages" select="string()" />
-    <xsl:variable name="ref" select="$references//bltx:entry[@id=$bibKey]" />
-
-    <xsl:variable name="author-list">
-      <xsl:variable name="authors">
-        <xsl:value-of select="$ref//bltx:names[@type='author']/bltx:name/bltx:namepart[@type='family']" separator=" and " />
-        <!-- TODO spaces between name parts -->
-      </xsl:variable>
-
-      <xsl:choose>
-        <xsl:when test="$authors">
-          <xsl:value-of select="$authors" />
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$ref//bltx:names[@type='editor']/bltx:name/bltx:namepart[@type='family']" separator=" and " />
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-
-    <a class="citation" href="{@href}">
-      <xsl:choose>
-        <xsl:when test="$ref">
-          <xsl:value-of select="$author-list" />
-          <xsl:text> </xsl:text>
-          <xsl:value-of select="$ref//bltx:date" />
-          <xsl:if test="$pages">
-            <xsl:text>, </xsl:text>
-            <xsl:value-of select="$pages" />
-          </xsl:if>
-        </xsl:when>
-        <xsl:otherwise>
-          <strong><xsl:value-of select="$bibKey" /></strong>
-        </xsl:otherwise>
-      </xsl:choose>
-    </a>
+  <!-- Sort entries by first surname listed and date -->
+  <xsl:template match="bltx:entries">
+    <ul class="biblio">
+      <xsl:apply-templates>
+        <xsl:sort select="bltx:names[1]/bltx:name[1]/bltx:namepart[@type='family']" />
+        <xsl:sort select="bltx:date" />
+      </xsl:apply-templates>
+    </ul>
   </xsl:template>
-  
-  <!-- Convert bibliography entries
-    - Select only those entries from the bibliography that have a matching key in the in-text citations.
-    - The in-text citations are written in the format `#Author:Keyword` but are converted to the format `Author-Keyword`. TODO
-  --> 
-  <xsl:template match="bltx:entry[@entrytype='book']">
+
+  <!-- Convert bibliography entries --> 
+  <xsl:template match="bltx:entry[@entrytype='book'] | bltx:entry[@entrytype='collection']">
     <xsl:variable name="authors">
       <xsl:choose>
         <xsl:when test="bltx:names[@type='author']">
@@ -226,7 +226,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <li id="{@id}"> <!-- TODO colon -->
+    <li id="{@id}">
       <xsl:value-of select="$authors" />
       <xsl:if test="not(substring($authors, string-length($authors))='.')">
         <xsl:text>.</xsl:text>
@@ -315,8 +315,6 @@
     </li>
   </xsl:template>
   
-  <xsl:template match="bltx:entry" />
-
   <xsl:template name="name-list">
     <xsl:param name="names" />
     <xsl:param name="type" />
@@ -347,20 +345,19 @@
     </xsl:for-each>
   </xsl:template>
 
-  <!-- Process elements of bibliography entries -->
+  <!-- Process elements of bibliography entries
+    - Remove TeX macros
+  -->
   <xsl:template match="bltx:title | bltx:journaltitle | bltx:booktitle">
-    <xsl:apply-templates />
+    <xsl:call-template name="macros" />
   </xsl:template>
 
+  <!-- Names: bltx:namepart elements can be nested; insert space if there is another one after this -->
   <xsl:template match="bltx:namepart">
-    <xsl:choose>
-      <xsl:when test="bltx:namepart">
-        <xsl:value-of select="bltx:namepart" separator=" " />
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates />
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:apply-templates />
+    <xsl:if test="not(position()=last())">
+      <xsl:text> </xsl:text>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="bltx:location">
@@ -393,6 +390,75 @@
         <xsl:text>, </xsl:text>
       </xsl:if>
     </xsl:for-each>
+  </xsl:template>
+
+  <!-- IN-TEXT CITATIONS -->
+  <!-- Make a link for a single citation and enclose in parentheses -->
+  <xsl:template match="aac:citation">
+    <xsl:text>(</xsl:text>
+    <xsl:call-template name="in-text-citation" />
+    <xsl:text>)</xsl:text>
+  </xsl:template>
+
+  <!-- For multiple citations, make links in semicolon-separated list and enclose in parentheses -->
+  <xsl:template match="aac:citationList">
+    <xsl:text>(</xsl:text>
+    <xsl:for-each select="aac:citation">
+      <xsl:call-template name="in-text-citation" />
+      <xsl:if test="not(position()=last())">
+        <xsl:text>; </xsl:text>
+      </xsl:if>
+    </xsl:for-each>
+    <xsl:text>)</xsl:text>
+  </xsl:template>
+
+
+  <!-- Insert Author-Date text as link to reference-list entry -->
+  <xsl:template name="in-text-citation">
+    <xsl:variable name="bibKey" select="substring(@href, 2)" />
+    <xsl:variable name="pages" select="string()" />
+    <xsl:variable name="ref" select="$references/bltx:entries/bltx:entry[@id=$bibKey]" />
+
+    <xsl:variable name="author-list">
+      <xsl:choose>
+        <xsl:when test="$ref/bltx:names[@type='author']">
+          <xsl:for-each select="$ref/bltx:names[@type='author']/bltx:name/bltx:namepart[@type='family']">
+            <xsl:apply-templates />
+            <xsl:if test="not(position()=last())">
+              <xsl:text> and </xsl:text>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- TODO make this a separate template -->
+          <xsl:for-each select="$ref/bltx:names[@type='editor']/bltx:name/bltx:namepart[@type='family']">
+            <xsl:apply-templates />
+            <xsl:if test="not(position()=last())">
+              <xsl:text> and </xsl:text>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <a class="citation" href="{@href}">
+      <xsl:choose>
+        <xsl:when test="$ref">
+          <xsl:value-of select="$author-list" />
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="$ref/bltx:date" />
+        </xsl:when>
+        <xsl:otherwise>
+          <strong>
+            <xsl:value-of select="$bibKey" />
+          </strong>
+        </xsl:otherwise>
+      </xsl:choose>
+    </a>
+    <xsl:if test="$pages">
+      <xsl:text>, </xsl:text>
+      <xsl:apply-templates select="$pages" />
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
