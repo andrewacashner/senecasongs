@@ -38,21 +38,9 @@ body {
   font-size: 125%;
 }
 
-img.cover {
-  opacity: 0.4;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 360px;
-  min-width: 100%;
-  object-fit: cover;
-  object-position: 50%;
-}
-
 
 /* Header */
 header {
-  position: relative;
   height: 360px;
   margin-bottom: 1.5em;
 }
@@ -79,6 +67,19 @@ header h2.author {
   font-size: 140%;
   font-family: 'Crimson Pro', Georgia, serif;
 }
+
+header img.cover {
+  opacity: 0.4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 360px;
+  min-width: 100%;
+  object-fit: cover;
+  object-position: 50%;
+  z-index: -1;
+}
+
 
 /* Navigation links */
 header nav {

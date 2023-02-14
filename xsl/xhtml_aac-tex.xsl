@@ -5,11 +5,6 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:aac="https://www.senecasongs.earth">
 
-<!-- TODO
-  - book class for book version
-  - how to handle media?
--->
-
   <xsl:output method="text" encoding="utf-8" indent="no" />
   
   <xsl:strip-space elements="*" />
@@ -47,7 +42,9 @@
     <xsl:apply-templates select="//xhtml:body/xhtml:header/xhtml:h2[@class='author']" />
     <xsl:text>}&#xA;</xsl:text>
 
-    <!-- TODO publisher -->
+    <xsl:text>\setPublisher{</xsl:text>
+    <xsl:apply-templates select="//xhtml:head/xhtml:meta[@name='publisher']/@content" />
+    <xsl:text>}&#xA;</xsl:text>
 
     <xsl:text>\setCopyright{</xsl:text>
     <xsl:apply-templates select="//xhtml:head/xhtml:meta[@name='copyright']/@content" />
@@ -55,6 +52,9 @@
     <!-- TODO CC license -->
 
     <!-- TODO cover image -->
+    <xsl:text>\setCoverImage{</xsl:text>
+    <xsl:value-of select="//xhtml:header/xhtml:img[@class='cover']/@src" />
+    <xsl:text>}&#xA;</xsl:text>
 
     <xsl:text>\begin{document}&#xA;</xsl:text>
 
@@ -172,7 +172,7 @@
 
   <xsl:template match="xhtml:a">
     <xsl:text>\href{</xsl:text>
-    <xsl:value-of select="@href" />
+    <xsl:value-of select="replace(@href, '#', '\\#')" />
     <xsl:text>}{</xsl:text>
     <xsl:apply-templates />
     <xsl:text>}</xsl:text>
@@ -224,30 +224,27 @@
   <xsl:template match="xhtml:figure">
     <xsl:text>\begin{figure}&#xA;</xsl:text>
     <xsl:apply-templates />
-    <xsl:text>\caption{</xsl:text>
-    <xsl:apply-templates select="xhtml:figCaption" />
-    <xsl:text>}&#xA;</xsl:text>
     <xsl:text>\label{</xsl:text>
     <xsl:value-of select="@id" />
     <xsl:text>}&#xA;</xsl:text>
     <xsl:text>\end{figure}&#xA;</xsl:text>
   </xsl:template>
-
-  <xsl:template match="xhtml:img">
-    <!-- TODO make sure resources are available
+  
+  <xsl:template match="xhtml:img[not(@class='cover')]">
     <xsl:text>\includegraphics[width=\textwidth]{</xsl:text>
     <xsl:value-of select="@src" />
       <xsl:text>}&#xA;</xsl:text>
-    -->
   </xsl:template>
 
-  <xsl:template match="xhtml:audio" /> <!-- TODO -->
+  <xsl:template match="xhtml:caption | xhtml:figCaption">
+    <xsl:text>\caption{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}&#xA;</xsl:text>
+  </xsl:template>
 
   <xsl:template match="xhtml:table">
     <xsl:text>\begin{table}&#xA;</xsl:text>
-    <xsl:text>\caption{</xsl:text>
     <xsl:apply-templates select="xhtml:caption" />
-    <xsl:text>}&#xA;</xsl:text>
     <xsl:text>\label{</xsl:text>
     <xsl:value-of select="@id" />
     <xsl:text>}&#xA;</xsl:text>
@@ -274,18 +271,6 @@
     <xsl:if test="not(position()=last())">
       <xsl:text> &amp; </xsl:text>
     </xsl:if>
-  </xsl:template>
-
-  <xsl:template match="xhtml:video">
-    <xsl:text>\href}{</xsl:text>
-    <xsl:value-of select="@src" />
-    <xsl:text>}{(Video)}&#xA;</xsl:text>
-  </xsl:template>
-
-  <xsl:template match="aac:youtube">
-    <xsl:text>\href{http://www.youtube.com/</xsl:text>
-    <xsl:value-of select="@key" />
-    <xsl:text>}{(Video)}&#xA;</xsl:text>
   </xsl:template>
 
 
@@ -349,6 +334,16 @@
   <xsl:template match="aac:sh">
     <xsl:text>\sh</xsl:text>
   </xsl:template>
+
+  <!-- MODULAR DESIGN (web vs. print) -->
+  <xsl:template match="*[@data-medium='web']" />
+
+  <xsl:template match="xhtml:video" />
+
+  <xsl:template match="xhtml:audio" /> 
+
+  <xsl:template match="aac:youtube" />
+
 </xsl:stylesheet>
 
 

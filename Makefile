@@ -1,4 +1,4 @@
-dirs		= aux build build/css build/css/fonts
+dirs		= aux build build/css build/css/fonts build/media
 
 xhtml_in	= $(wildcard *.xhtml)
 xhtml_include	= $(wildcard include/*.xhtml)
@@ -8,24 +8,25 @@ bibtex		= $(wildcard *.bib)
 bibxml		= $(addprefix aux/,$(bibtex:%.bib=%.bltxml))
 biber_log	= aux/biber.blg
 
-latex		= book.xhtml # for now, only making PDF of whole book, not indiv. pages
-pdf_out		= build/book.pdf
+# For now, only making PDF of whole book, not indiv. pages
+latex		= aux/book.tex
+pdf_out		= $(addprefix build/,$(notdir $(latex:%.tex=%.pdf)))
 tex_lib		= $(wildcard tex/*)
 
-css_in		= $(wildcard css/* css/fonts/*)
-css_out		= $(addprefix build/,$(css_in))
+html_deps_in	= $(wildcard css/* css/fonts/* media/*)
+html_deps_out	= $(addprefix build/,$(html_deps_in))
 
 xsl		= $(wildcard xsl/*.xsl)
 
 saxon 		= java -cp ".:$(HOME)/saxon/saxon-he-12.0.jar" net.sf.saxon.Transform
 
-.SECONDARY : $(bibxml)
+.SECONDARY : $(bibxml) $(latex)
 
 .PHONY : all html pdf view view-pdf clean
 
 all : html pdf
 
-html : $(html_out) $(css_out)
+html : $(html_out) $(html_deps_out)
 
 pdf : $(pdf_out)
 

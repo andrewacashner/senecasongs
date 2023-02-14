@@ -11,8 +11,6 @@
   - change position of end punctuation outside of bib tags? 
   - tables of contents
   - nav
-  - photo banner header
-  - add link to download PDF of this page (?)
 -->
 
   <xsl:output method="html" version="5.0" encoding="utf-8" indent="yes" />
@@ -448,6 +446,10 @@
     </xsl:if>
     <xsl:apply-templates />
   </xsl:template>
+
+  <!-- MODULAR DESIGN (web vs. print) -->
+
+  <xsl:template match="*[@data-medium='print']" />
 
 </xsl:stylesheet>
 

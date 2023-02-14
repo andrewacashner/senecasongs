@@ -33,8 +33,10 @@
     - no period after titles ending with questions
 - docAuthor separated by commas after "Sr."
     - in TEI: one docAuthor field ("Author A and Author B") or two?
-- Add cover images to HTML in XHTML workflow
+- (DONE) Add cover images to HTML in XHTML workflow
 - Decide how to handle video, audio elements in book
+- cover image alt text vs. title (visible on hover) - where to put caption or
+  credit (footer?)
 
 ## CSS
 - (DONE) create CSS for HTML
@@ -50,8 +52,7 @@
 ## Book
 - Create true internal references with labels?
 - (DONE) frontmatter, mainmatter, backmatter
-- cover images 
-
+- cover images  (DONE for front cover)
 
 # Bibliography
 - Author names in parenthesis
@@ -64,3 +65,7 @@
   Chicago style)
 - page range: can we have free range like "1-4, 5, 19-20" or must everything
   use @start and @end? (free is ok, DONE 2023/02/14)
+
+# Media
+- Where to store media files if not in Git repository?
+- How to back them up?
