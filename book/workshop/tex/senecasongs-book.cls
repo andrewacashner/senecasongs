@@ -16,8 +16,8 @@
             \vspace*{4em}
             {\large \@aacAuthor}
 
-            \vspace{\fill}
-            \includegraphics[width=\textwidth]{\@aacCoverImage}
+%            \vspace{\fill}
+%            \includegraphics[width=\textwidth]{\@aacCoverImage}
 
             \vspace{\fill}
             {\large \@aacPublisher}

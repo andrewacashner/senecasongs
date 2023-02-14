@@ -8,8 +8,8 @@ bibtex		= $(wildcard *.bib)
 bibxml		= $(addprefix aux/,$(bibtex:%.bib=%.bltxml))
 biber_log	= aux/biber.blg
 
-latex		= $(addprefix aux/,$(xhtml_in:%.xhtml=%.tex))
-pdf_out		= $(addprefix build/,$(xhtml_in:%.xhtml=%.pdf))
+latex		= book.xhtml # for now, only making PDF of whole book, not indiv. pages
+pdf_out		= build/book.pdf
 tex_lib		= $(wildcard tex/*)
 
 css_in		= $(wildcard css/* css/fonts/*)

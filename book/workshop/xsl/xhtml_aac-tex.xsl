@@ -29,18 +29,18 @@
   <xsl:template match="comment()" priority="1" />
 
   <xsl:template match="/">
-    <xsl:text>\documentclass{tex/senecasongs-article}&#xA;</xsl:text>
+    <xsl:text>\documentclass{tex/senecasongs-book}&#xA;</xsl:text>
     
     <xsl:text>\addbibresource{</xsl:text>
     <xsl:value-of select="//xhtml:head/xhtml:meta[@name='bibliography']/@content" />
     <xsl:text>}&#xA;</xsl:text>
 
     <xsl:text>\setMainTitle{</xsl:text>
-    <xsl:apply-templates select="//xhtml:body/xhtml:header/xhtml:h1[@class='title-site']" />
+    <xsl:apply-templates select="//xhtml:body/xhtml:header/xhtml:h1[@class='maintitle']" />
     <xsl:text>}&#xA;</xsl:text>
 
     <xsl:text>\setSubTitle{</xsl:text>
-    <xsl:apply-templates select="//xhtml:body/xhtml:header/xhtml:h1[@class='title-page']" />
+    <xsl:apply-templates select="//xhtml:body/xhtml:header/xhtml:h1[@class='subtitle']" />
     <xsl:text>}&#xA;</xsl:text>
 
     <xsl:text>\setAuthor{</xsl:text>
@@ -57,20 +57,39 @@
     <!-- TODO cover image -->
 
     <xsl:text>\begin{document}&#xA;</xsl:text>
-    
-    <xsl:text>\maketitle&#xA;</xsl:text>
-    <xsl:text>\tableofcontents&#xA;</xsl:text>
 
+    <xsl:text>\frontmatter&#xA;</xsl:text>
+    <xsl:text>\maketitle&#xA;</xsl:text>
+
+    <xsl:if test="//aac:tableofcontents">
+      <xsl:text>\tableofcontents&#xA;</xsl:text>
+    </xsl:if>
+
+    <xsl:text>\mainmatter&#xA;</xsl:text>
     <xsl:apply-templates select="//xhtml:main" />
 
     <xsl:if test="//xhtml:main/aac:bibliography">
+      <xsl:text>\backmatter&#xA;</xsl:text>
       <xsl:text>\printbibliography&#xA;</xsl:text>
     </xsl:if>
 
     <xsl:text>\end{document}&#xA;</xsl:text>
   </xsl:template>
 
-  <xsl:template match="xhtml:section/xhtml:h1">
+  <!-- TODO we are not processing included sections correctly -->
+  <xsl:template match="xhtml:section">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="xhtml:section[@class='chapter']/xhtml:h1">
+    <xsl:text>&#xA;\chapter{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>} \label{</xsl:text>
+    <xsl:value-of select="../@id" />
+    <xsl:text>}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:section[not(@class='chapter')]/xhtml:h1">
     <xsl:text>&#xA;\section{</xsl:text>
     <xsl:apply-templates />
     <xsl:text>} \label{</xsl:text>
@@ -324,6 +343,9 @@
     <xsl:text>\sh</xsl:text>
   </xsl:template>
 
+  <!-- TABLE OF CONTENTS -->
+
+  <xsl:template match="aac:tableofcontents" /> <!-- TODO -->
 </xsl:stylesheet>
 
 
