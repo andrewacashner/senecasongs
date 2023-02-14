@@ -18,24 +18,28 @@
     </header>
     <main>
       <aac:tableofcontents />
-      <section class="chapter" id="chap:intro">
-        <h1>Introduction</h1>
-        <xi:include href="include/section-about.xhtml" />
+      <section class="part" id="part:intro">
+        <h1>Lay of the Land</h1>
+        <section class="chapter" id="chap:intro">
+          <h1>Introduction</h1>
+          <xi:include href="include/article-about.xhtml" />
+        </section>
+        <section class="chapter" id="chap:seneca">
+          <h1>The Seneca Nation</h1>
+          <xi:include href="include/article-seneca.xhtml" />
+        </section>
+        <section class="chapter" id="chap:songs">
+          <h1>Earth Songs</h1>
+          <xi:include href="include/article-songs.xhtml" />
+        </section>
       </section>
-      <!--
-      <section class="chapter" id="chap:seneca">
-        <h1>The Seneca Nation</h1>
-        <xi:include href="seneca.xhmtl" />
+      <section class="part" id="part:songs">
+        <h1>Songs and Dances in Depth</h1>
+        <section class="chapter" id="chap:quiver">
+          <h1><em class="seneca">Ga’da:šo:t</em> (Standing Quiver Dance)</h1>
+          <xi:include href="include/article-quiver.xhtml" />
+        </section>
       </section>
-      <section class="chapter" id="chap:songs">
-        <h1>The Songs</h1>
-        <xi:include href="songs.xhtml" />
-      </section>
-      <section class="chapter" id="chap:quiver">
-        <h1><em class="seneca">Ga’da:šo:t</em> (Standing Quiver Dance)</h1>
-        <xi:include href="quiver.xhtml" />
-      </section>
-      -->
       <aac:bibliography />
     </main>
   </body>

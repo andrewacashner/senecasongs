@@ -29,7 +29,7 @@
   <xsl:template match="comment()" priority="1" />
 
   <xsl:template match="/">
-    <xsl:text>\documentclass{tex/senecasongs-book}&#xA;</xsl:text>
+    <xsl:text>\documentclass{tex/senecasongs}&#xA;</xsl:text>
     
     <xsl:text>\addbibresource{</xsl:text>
     <xsl:value-of select="//xhtml:head/xhtml:meta[@name='bibliography']/@content" />
@@ -76,9 +76,16 @@
     <xsl:text>\end{document}&#xA;</xsl:text>
   </xsl:template>
 
-  <!-- TODO we are not processing included sections correctly -->
-  <xsl:template match="xhtml:section">
+  <xsl:template match="xhtml:article">
     <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="xhtml:section[@class='part']/xhtml:h1">
+    <xsl:text>&#xA;\part{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>} \label{</xsl:text>
+    <xsl:value-of select="../@id" />
+    <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
 
   <xsl:template match="xhtml:section[@class='chapter']/xhtml:h1">
@@ -89,7 +96,7 @@
     <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
 
-  <xsl:template match="xhtml:section[not(@class='chapter')]/xhtml:h1">
+  <xsl:template match="xhtml:section[not(@class='chapter') and not(@class='part')]/xhtml:h1">
     <xsl:text>&#xA;\section{</xsl:text>
     <xsl:apply-templates />
     <xsl:text>} \label{</xsl:text>
@@ -342,10 +349,6 @@
   <xsl:template match="aac:sh">
     <xsl:text>\sh</xsl:text>
   </xsl:template>
-
-  <!-- TABLE OF CONTENTS -->
-
-  <xsl:template match="aac:tableofcontents" /> <!-- TODO -->
 </xsl:stylesheet>
 
 

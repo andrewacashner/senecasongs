@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TEI version="4.4.0" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:base="foundations.tei">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Songs at the Woods' Edge: Foundations of Seneca Worldview</title>
+        <author>Bill Crouse, Sr., and Andrew A. Cashner</author>
+      </titleStmt>
+      <publicationStmt>
+        <pubPlace>Rochester, NY</pubPlace>
+        <publisher>Peacemaker Press</publisher>
+        <date when="2022" />
+        <availability>
+          <p>Copyright © 2022 Bill Crouse, Sr., and Andrew A. Cashner. All rights reserved.</p>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Born digital and published on the web at <ref target="http://www.senecasongs.earth/foundations.tei">www.senecasongs.earth/foundations.tei</ref>.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <titlePage>
+        <docTitle>
+          <titlePart type="main">Songs at the Woods' Edge</titlePart>
+          <titlePart type="sub">Foundations of Seneca Worldview</titlePart>
+        </docTitle>
+        <docAuthor>Bill Crouse, Sr., and Andrew A. Cashner</docAuthor>
+        <figure type="cover" xml:id="fig:ohiyo-salamanca">
+          <graphic url="media/Ohiyo-Salamanca.jpg" />
+          <figDesc><foreign xml:lang="see">Ohi:yo’</foreign> (<q>Beautiful River</q>, the Allegheny River), in Salamanca, NY (photograph by Andrew Cashner, September 2022).</figDesc>
+        </figure>
+      </titlePage>
+    </front>
+    <body>
+      <xi:include href="include/foundations.teibib" />
+    </body>
+    <back>
+      <div1 id="references">
+        <head>References</head>
+        <listBibl type="auto" subtype="biblio" source="tex/indigenous.bib" />
+      </div1>
+    </back>
+  </text>
+</TEI>
+
+
