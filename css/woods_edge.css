@@ -144,6 +144,10 @@ figure {
   padding-bottom: 1em;
 }
 
+figure.music {
+  width: 100%;
+}
+
 figure video { 
   width: 100%;
 }
