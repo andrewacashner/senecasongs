@@ -88,7 +88,7 @@
         </m:mi>
         <m:mi>&#x02c6;</m:mi>
       </m:mover>
-    </math>
+    </m:math>
   </xsl:template>
 
   <xsl:template match="aac:pitch">
@@ -151,6 +151,28 @@
       <xsl:apply-templates />
     </caption>
   </xsl:template>
+  
+  <xsl:template match="aac:ref[@type='diagram']">
+    <xsl:variable name="target" select="substring(@href, 2)" />
+    <a class="internal" href="{@href}">
+      <xsl:apply-templates />
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="//xhtml:figure[@class='diagram' and @id=$target]" mode="number" />
+    </a>
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='diagram']" mode="number">
+    <xsl:number count="//xhtml:figure[@class='diagram']" level="any" />
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='diagram']/xhtml:figCaption">
+    <figCaption>
+      <xsl:text>Diagram </xsl:text>
+      <xsl:number count="xhtml:figure[@class='diagram']" format="1. " level="any" />
+      <xsl:apply-templates />
+    </figCaption>
+  </xsl:template>
+
 
   <!-- CITATIONS AND BIBLIOGRAPHY -->
 

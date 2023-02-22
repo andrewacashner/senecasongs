@@ -6,6 +6,9 @@
 - Is accompaniment always *ga’sä:dö’*?
     - Is accompaniment the right term?
     - Who plays the drum? (Does it matter?)
+- Is number of repeats fixed?
+- How much of song order is fixed?
+- How does BC think of song structure (e.g., A, B, A)
 
 # To Do
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<figure xmlns="http://www.w3.org/1999/xhtml"
+       class="diagram"
+       data-medium="web" id="dia:quiver-lengths">
+  <figCaption>Phrase Lengths in <em class="seneca">Ga’da:šo:t</em></figCaption>
+
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+                ['Song', 'Length A + B', 'Total Length'],
+                [ '1',  4,  35],
+                [ '2', 12,  60],
+                [ '3', 18,  72],
+                [ '4', 20,  55],
+                [ '5', 15,  65],
+                [ '6',  9,  54],
+                [ '7', 21,  90],
+                [ '8', 21,  91],
+                [ '9', 22, 100],
+                ['10', 15,  75]
+              ]);
+          var options = {
+                vAxis: { title: 'Beats' },
+                hAxis: { title: 'Song' },
+                height: 400,
+                width: 700,
+                chartArea: { width: '60%' }
+              };
+
+          var chart = new google.visualization.ColumnChart(document.getElementById('dia:quiver-lengths:here'));
+
+          chart.draw(data, options);
+        }
+  </script>
+  <div id="dia:quiver-lengths:here" />
+</figure>
