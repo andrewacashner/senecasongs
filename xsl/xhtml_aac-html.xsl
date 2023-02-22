@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet 
-  version="2.0" 
+<xsl:stylesheet version="2.0" 
   xmlns="http://www.w3.org/1999/xhtml" 
   xmlns:xhtml="http://www.w3.org/1999/xhtml" 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:m="http://www.w3.org/1998/Math/MathML" 
   xmlns:bltx="http://biblatex-biber.sourceforge.net/biblatexml"
   xmlns:aac="https://www.senecasongs.earth">
 
@@ -76,18 +76,18 @@
   </xsl:template>
 
   <xsl:template match="aac:degree">
-    <math>
-      <mi>
+    <m:math>
+      <m:mi>
         <xsl:call-template name="accid">
           <xsl:with-param name="accid" select="@accid" />
         </xsl:call-template>
-      </mi>
-      <mover>
-        <mi>
+      </m:mi>
+      <m:mover>
+        <m:mi>
           <xsl:value-of select="@n" />
-        </mi>
-        <mi>&#x02c6;</mi>
-      </mover>
+        </m:mi>
+        <m:mi>&#x02c6;</m:mi>
+      </m:mover>
     </math>
   </xsl:template>
 
