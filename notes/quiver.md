@@ -28,3 +28,4 @@
 - `<aac:pitch pname="A" oct="4" />` vs. `A<aac:oct>4</aac:oct>` vs
   `A<sub>4</sub>` ?
 - Music font for accidentals, time signatures, etc. ?
+- Music examples: YouTube clip audio + SVG or just YouTube clip

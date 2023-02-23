@@ -473,6 +473,23 @@
 
   <xsl:template match="*[@data-medium='print']" />
 
+  <!-- TABLE OF CONTENTS -->
+  <xsl:template match="aac:tableofcontents">
+    <section class="toc">
+      <h1>Contents</h1>
+      <ol>
+        <xsl:for-each select="//xhtml:section/xhtml:h1">
+          <li>
+            <a href="#{../@id}">
+              <xsl:apply-templates />
+          </a>
+        </li>
+        </xsl:for-each>
+      </ol>
+    </section>
+  </xsl:template>
+
+
 </xsl:stylesheet>
 
 

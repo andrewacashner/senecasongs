@@ -311,5 +311,15 @@ footer a {
   color: dimgray;
 }
 
-
+/* Table of contents */
+section.toc {
+  font-family: 'VenturisSans ADF', Verdana, sans-serif;
+  font-size: 75%;
+  line-height: 1em;
+  float: right;
+}
+section.toc h1 {
+  font-family: 'VenturisSans ADF', Verdana, sans-serif;
+  font-size: 110%;
+}
 
