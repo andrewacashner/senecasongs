@@ -317,9 +317,15 @@ section.toc {
   font-size: 75%;
   line-height: 1em;
   float: right;
+  width: 18em;
+  margin-right: -20em;
+  position: sticky;
+  top: 0;
 }
 section.toc h1 {
   font-family: 'VenturisSans ADF', Verdana, sans-serif;
   font-size: 110%;
 }
-
+ul.toc {
+  list-style: none;
+}
