@@ -46,7 +46,7 @@ build/%.pdf : aux/%.pdf
 	cp -u $< $@
 
 aux/%.pdf : aux/%.tex $(bibtex) $(tex_lib)
-	latexmk -quiet -outdir=aux -pdf $<
+	latexmk -outdir=aux -pdf $<
 
 aux/%.tex : %.xhtml $(xhtml_include) $(xsl) | $(dirs)
 	$(saxon) -xi:on -xsl:xsl/xhtml_aac-tex.xsl -s:$< -o:$@

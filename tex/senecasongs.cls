@@ -4,6 +4,10 @@
 \LoadClass{book}
 \RequirePackage{tex/senecasongs}
 
+\RequirePackage{sectsty}
+\partfont{\VenturisGoth}
+\chapterfont{\VenturisGoth}
+
 \RenewDocumentCommand{\maketitle}{}{
     \begin{titlepage}
         \begin{center}

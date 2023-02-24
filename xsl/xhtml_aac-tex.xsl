@@ -229,10 +229,11 @@
     <xsl:text>}&#xA;</xsl:text>
     <xsl:text>\end{figure}&#xA;</xsl:text>
   </xsl:template>
-  
+
+  <!-- remove file extension for graphics files so web and pdf version can use different file types (e.g., svg for web and png or pdf for print) -->
   <xsl:template match="xhtml:img[not(@class='cover')]">
     <xsl:text>\includegraphics[width=\textwidth]{</xsl:text>
-    <xsl:value-of select="@src" />
+    <xsl:value-of select="substring-before(@src, '.')" />
       <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
 
@@ -248,17 +249,24 @@
     <xsl:text>\label{</xsl:text>
     <xsl:value-of select="@id" />
     <xsl:text>}&#xA;</xsl:text>
+    <xsl:text>\begin{center}&#xA;</xsl:text>
     <xsl:text>\begin{tabular}{</xsl:text>
-    <xsl:for-each select="xhtml:tr[1]/xhtml:td"><xsl:text>l</xsl:text></xsl:for-each>
+    <xsl:for-each select="xhtml:thead/xhtml:tr[1]/xhtml:th"><xsl:text>l</xsl:text></xsl:for-each>
     <xsl:text>} \toprule&#xA;</xsl:text>
-    <xsl:apply-templates select="xhtml:thead | xhtml:tr" />
+    <xsl:apply-templates select="xhtml:thead" />
+    <xsl:apply-templates select="xhtml:tbody" />
     <xsl:text>\bottomrule&#xA;\end{tabular}&#xA;</xsl:text>
+    <xsl:text>\end{center}&#xA;</xsl:text>
     <xsl:text>\end{table}&#xA;</xsl:text>
   </xsl:template>
 
   <xsl:template match="xhtml:thead">
     <xsl:apply-templates />
-    <xsl:text>\midrule</xsl:text>
+    <xsl:text>\midrule&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:tbody">
+    <xsl:apply-templates />
   </xsl:template>
 
   <xsl:template match="xhtml:tr">
@@ -266,12 +274,36 @@
     <xsl:text> \\&#xA;</xsl:text>
   </xsl:template>
 
-  <xsl:template match="xhtml:td">
+  <xsl:template match="xhtml:td | xhtml:th">
     <xsl:apply-templates />
     <xsl:if test="not(position()=last())">
       <xsl:text> &amp; </xsl:text>
     </xsl:if>
   </xsl:template>
+
+  <xsl:template match="xhtml:table[@class='pitch_matrix']">
+    <xsl:text>\begin{table}&#xA;</xsl:text>
+    <xsl:apply-templates select="xhtml:caption" />
+    <xsl:text>\label{</xsl:text>
+    <xsl:value-of select="@id" />
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:text>\footnotesize&#xA;</xsl:text>
+    <xsl:text>\begin{center}&#xA;</xsl:text>
+    <xsl:text>\begin{tabular}{r*{12}{c}}&#xA;</xsl:text>
+    <xsl:apply-templates select="xhtml:thead" />
+    <xsl:apply-templates select="xhtml:tbody" />
+    <xsl:text>\end{tabular}&#xA;</xsl:text>
+    <xsl:text>\end{center}&#xA;</xsl:text>
+    <xsl:text>\end{table}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:table[@class='pitch_matrix']//xhtml:td[@class='true']">
+    <xsl:text>$\blacksquare$</xsl:text>
+    <xsl:if test="not(position()=last())">
+      <xsl:text> &amp; </xsl:text>
+    </xsl:if>
+  </xsl:template>
+
 
 
   <!-- CROSS-REFERENCES -->
