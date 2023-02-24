@@ -276,9 +276,10 @@ table caption {
 }
 
 table.pitch_matrix td, table.pitch_matrix th {
-  height: 25px;
-  width: 25px;
+  height: 40px;
+  width: 40px;
 }
+
 table.pitch_matrix td.false {
   background: darkgray;
 }
