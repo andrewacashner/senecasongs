@@ -40,6 +40,18 @@
     </head>
   </xsl:template>
 
+  <xsl:template match="xhtml:header">
+    <header>
+      <xsl:apply-templates />
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </header>
+  </xsl:template>
+
   <xsl:template match="aac:youtube">
     <iframe 
       width="560" height="315" 
@@ -479,6 +491,7 @@
       <h1>Contents</h1>
       <ul>
         <xsl:apply-templates select="//xhtml:section" mode="toc" />
+        <xsl:apply-templates select="../aac:bibliography" mode="toc" />
       </ul>
     </section>
   </xsl:template>
@@ -502,6 +515,10 @@
 
   <xsl:template match="xhtml:h2" mode="toc">
     <li><a href="#{../@id}"><xsl:apply-templates /></a></li>
+  </xsl:template>
+
+  <xsl:template match="aac:bibliography" mode="toc">
+    <li><a href="#bibliography">References</a></li>
   </xsl:template>
 
 </xsl:stylesheet>
