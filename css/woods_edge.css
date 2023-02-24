@@ -103,13 +103,21 @@ h1, h2, h3 {
   font-weight: normal;
 }
 
+h1 {
+  font-size: 170%;
+}
+
+h2 {
+  font-size: 140%;
+}
+
 h3 {
   margin-left: 1em;
-  font-size: 125%;
+  font-size: 120%;
 }
 
 h4 {
-  font-size: 115%;
+  font-size: 110%;
 }
  
 h5 {
@@ -316,16 +324,7 @@ section.toc {
   font-family: 'VenturisSans ADF', Verdana, sans-serif;
   font-size: 75%;
   line-height: 1em;
-  float: right;
-  width: 18em;
-  margin-right: -20em;
-  position: sticky;
-  top: 0;
 }
-section.toc h1 {
-  font-family: 'VenturisSans ADF', Verdana, sans-serif;
-  font-size: 110%;
-}
-ul.toc {
+section.toc ul { 
   list-style: none;
 }

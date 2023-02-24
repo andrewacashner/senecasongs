@@ -477,33 +477,31 @@
   <xsl:template match="aac:tableofcontents">
     <section class="toc">
       <h1>Contents</h1>
-      <xsl:call-template name="maketoc">
-        <xsl:with-param name="sec" select="//xhtml:section[not(@class='unnumbered')]" />
-      </xsl:call-template>
+      <ul>
+        <xsl:apply-templates select="//xhtml:section" mode="toc" />
+      </ul>
     </section>
   </xsl:template>
 
-  <xsl:template name="maketoc">
-    <xsl:param name="sec" />
-    <xsl:if test="$sec">
-      <xsl:if test="$sec/xhtml:h1 | $sec/xhtml:h2">
-        <ul class="toc">
-          <xsl:for-each select="$sec/xhtml:h1 | $sec/xhtml:h2">
-            <li><a href="#{../@id}">
-                <xsl:number 
-                format="1. " 
-                count="xhtml:section[not(@class='unnumbered')]" 
-                level="multiple" />
-                <xsl:apply-templates />
-              </a>
-              <xsl:call-template name="maketoc">
-                <xsl:with-param name="sec" select="xhtml:section[not(@class='unnumbered')]" />
-              </xsl:call-template>
-            </li>
-          </xsl:for-each>
+  <xsl:template match="xhtml:section" mode="toc">
+    <xsl:if test="xhtml:h1">
+    <li>
+      <xsl:apply-templates select="xhtml:h1" mode="toc" />
+      <xsl:if test="xhtml:section">
+        <ul>
+          <xsl:apply-templates select="xhtml:section/xhtml:h2" mode="toc" />
         </ul>
       </xsl:if>
+    </li>
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="xhtml:h1" mode="toc">
+    <a href="#{../@id}"><xsl:apply-templates /></a>
+  </xsl:template>
+
+  <xsl:template match="xhtml:h2" mode="toc">
+    <li><a href="#{../@id}"><xsl:apply-templates /></a></li>
   </xsl:template>
 
 </xsl:stylesheet>
