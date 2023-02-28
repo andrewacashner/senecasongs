@@ -52,9 +52,9 @@
     </header>
   </xsl:template>
 
+  <!-- iframe width="560" height="315"  -->
   <xsl:template match="aac:youtube">
     <iframe 
-      width="560" height="315" 
       src="https://www.youtube.com/embed/{@key}" 
       title="YouTube video player" 
       frameborder="0" 

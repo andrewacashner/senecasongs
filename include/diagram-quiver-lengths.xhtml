@@ -26,11 +26,10 @@
           var options = {
                 vAxis: { title: 'Beats' },
                 hAxis: { title: 'Song' },
-                height: 400,
-                width: 700,
-                chartArea: { width: '60%' }
+                height: 300,
+                width: 400,
+                legend: { position: 'bottom' }
               };
-
           var chart = new google.visualization.ColumnChart(document.getElementById('dia:quiver-lengths:here'));
 
           chart.draw(data, options);
