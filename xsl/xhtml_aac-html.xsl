@@ -163,6 +163,13 @@
       <xsl:apply-templates />
     </caption>
   </xsl:template>
+
+  <xsl:template match="xhtml:table[@class='pitch_matrix']/xhtml:tbody//xhtml:td[@class='true']">
+    <xsl:copy>
+      <xsl:apply-templates select="@*" />
+      <xsl:text>■</xsl:text> <!-- U+25A0 -->
+    </xsl:copy>
+  </xsl:template>
   
   <xsl:template match="aac:ref[@type='diagram']">
     <xsl:variable name="target" select="substring(@href, 2)" />

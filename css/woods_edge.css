@@ -1,4 +1,4 @@
-:root {
+:root { /* Global variables */
   --serif-font: 'Crimson Pro', Georgia, serif;
   --sans-font: 'VenturisSans ADF', Verdana, sans-serif;
   --title-font: 'Venturis ADF Goth Titling', Verdana, sans-serif; 
@@ -6,7 +6,8 @@
   --textwidth-max: 40em;
   --height-iframe-rel-textwidth-default: calc(var(--textwidth-default)/1.7777778);
   --height-iframe-rel-textwidth-max: calc(var(--textwidth-max)/1.7777778);
-
+  --color-wampum-purple-light: #e6ccff;
+  --color-wampum-purple-dark: #58267b;
 }
 
 @font-face {
@@ -206,7 +207,7 @@ em.seneca {
 }
 
 blockquote {
-  background: #e6ccff;
+  background: var(--color-wampum-purple-light);
   padding: 1em;
 }
 
@@ -313,7 +314,8 @@ table.pitch_matrix td.false {
   background: darkgray;
 }
 table.pitch_matrix td.true {
-  background: darkblue;
+  background: var(--color-wampum-purple-dark);
+  color: var(--color-wampum-purple-dark);
 }
 
 /* FOOTER */

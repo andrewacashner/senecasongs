@@ -9,6 +9,11 @@
 - Is number of repeats fixed?
 - How much of song order is fixed?
 - How does BC think of song structure (e.g., A, B, A)
+- Why did BC choose this selection? Why the differences in song 1?
+- Is it coincidence that response on Crouse song 3 = call on Dowdy song 6?
+- What is Seneca language in these songs (including Jake version)?
+- Thoughts on diff. singing/vocal styles vs. Kyle, Jake?
+- Thoughts on degrees of variation, phonemics/phonetics of tunes and vocables
 
 # To Do
 
