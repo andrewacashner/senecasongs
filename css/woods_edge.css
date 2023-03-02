@@ -310,10 +310,11 @@ table.pitch_matrix {
   table-layout: fixed;
 }
 
-table.pitch_matrix td.false {
+table.pitch_matrix td.pitch_false {
   background: darkgray;
 }
-table.pitch_matrix td.true {
+
+table.pitch_matrix td.pitch_true {
   background: var(--color-wampum-purple-dark);
   color: var(--color-wampum-purple-dark);
 }

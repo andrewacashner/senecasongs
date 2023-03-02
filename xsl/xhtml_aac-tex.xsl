@@ -290,20 +290,69 @@
     <xsl:text>\footnotesize&#xA;</xsl:text>
     <xsl:text>\begin{center}&#xA;</xsl:text>
     <xsl:text>\begin{tabular}{r*{12}{c}}&#xA;</xsl:text>
-    <xsl:apply-templates select="xhtml:thead" />
-    <xsl:apply-templates select="xhtml:tbody" />
+    <xsl:apply-templates select="aac:pitch_matrix" />
     <xsl:text>\end{tabular}&#xA;</xsl:text>
     <xsl:text>\end{center}&#xA;</xsl:text>
     <xsl:text>\end{table}&#xA;</xsl:text>
   </xsl:template>
 
-  <xsl:template match="xhtml:table[@class='pitch_matrix']//xhtml:td[@class='true']">
-    <xsl:text>$\blacksquare$</xsl:text>
+  <xsl:template match="aac:pitch_matrix">
+    <xsl:text> &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp; 8 &amp; 9 &amp; 10 &amp; 11 \\&#xA;</xsl:text>
+    <xsl:for-each select="tokenize(@gamut, '\s+')">
+      <xsl:call-template name="accidental-replace" />
+      <xsl:text> &amp; </xsl:text>
+    </xsl:for-each>
+    <xsl:text>\\ \midrule&#xA;</xsl:text>
+    <xsl:apply-templates select="aac:mrow" />
+  </xsl:template>
+
+  <xsl:template name="accidental-replace">
+    <xsl:variable name="flat" select="replace(., '♭', '\\fl{}')" />
+    <xsl:variable name="sharp" select="replace($flat, '♯', '\\sh{}')" />
+    <xsl:variable name="natural" select="replace($sharp, '♮', '\\na{}')" />
+    <xsl:value-of select="$natural" />
+  </xsl:template>
+
+  <xsl:variable name="pitch_matrix_template">
+    <td data-n="0" class="pitch_false" />
+    <td data-n="1" class="pitch_false" />
+    <td data-n="2" class="pitch_false" />
+    <td data-n="3" class="pitch_false" />
+    <td data-n="4" class="pitch_false" />
+    <td data-n="5" class="pitch_false" />
+    <td data-n="6" class="pitch_false" />
+    <td data-n="7" class="pitch_false" />
+    <td data-n="8" class="pitch_false" />
+    <td data-n="9" class="pitch_false" />
+    <td data-n="10" class="pitch_false"  />
+    <td data-n="11" class="pitch_false"  />
+  </xsl:variable>
+
+  <xsl:template match="aac:mrow">
+    <xsl:value-of select="@n" />
+    <xsl:text> &amp;</xsl:text>
+    <!-- TODO this doesn't work, is treating this as "/"
+      can we just do this for numbers 0-11??
+    -->
+    <xsl:apply-templates select="$pitch_matrix_template">
+      <xsl:with-param name="pcset" select="tokenize(@pcset, '\s+')" />
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="xhtml:td[@class='pitch_false']">
+    <xsl:param name="pcset" />
+    <xsl:choose>
+      <xsl:when test="@n = $pcset">
+        <xsl:text>$\blacksquare$</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy-of select="." />
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:if test="not(position()=last())">
       <xsl:text> &amp; </xsl:text>
     </xsl:if>
   </xsl:template>
-
 
 
   <!-- CROSS-REFERENCES -->

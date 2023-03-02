@@ -164,13 +164,7 @@
     </caption>
   </xsl:template>
 
-  <xsl:template match="xhtml:table[@class='pitch_matrix']/xhtml:tbody//xhtml:td[@class='true']">
-    <xsl:copy>
-      <xsl:apply-templates select="@*" />
-      <xsl:text>■</xsl:text> <!-- U+25A0 -->
-    </xsl:copy>
-  </xsl:template>
-  
+ 
   <xsl:template match="aac:ref[@type='diagram']">
     <xsl:variable name="target" select="substring(@href, 2)" />
     <a class="internal" href="{@href}">
@@ -526,6 +520,71 @@
 
   <xsl:template match="aac:bibliography" mode="toc">
     <li><a href="#bibliography">References</a></li>
+  </xsl:template>
+
+  <xsl:template match="aac:pitch_matrix">
+    <thead>
+      <tr>
+        <th></th>
+        <th>0</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+        <th>10</th>
+        <th>11</th>
+      </tr>
+      <tr>
+        <th></th>
+        <xsl:for-each select="tokenize(@gamut, '\s+')">
+          <th><xsl:value-of select="." /></th>
+        </xsl:for-each>
+      </tr>
+    </thead>
+    <tbody>
+      <xsl:apply-templates select="aac:mrow" />
+    </tbody>
+  </xsl:template>
+
+  <xsl:variable name="pitch_matrix_template">
+    <td data-n="0" class="pitch_false"></td>
+    <td data-n="1" class="pitch_false"></td>
+    <td data-n="2" class="pitch_false"></td>
+    <td data-n="3" class="pitch_false"></td>
+    <td data-n="4" class="pitch_false"></td>
+    <td data-n="5" class="pitch_false"></td>
+    <td data-n="6" class="pitch_false"></td>
+    <td data-n="7" class="pitch_false"></td>
+    <td data-n="8" class="pitch_false"></td>
+    <td data-n="9" class="pitch_false"></td>
+    <td data-n="10" class="pitch_false"></td>
+    <td data-n="11" class="pitch_false"></td>
+  </xsl:variable>
+
+  <xsl:template match="aac:mrow">
+    <tr data-n="{@n}">
+      <th scope="row"><xsl:value-of select="@n" /></th>
+      <xsl:apply-templates select="$pitch_matrix_template">
+        <xsl:with-param name="pcset" select="tokenize(@pcset, '\s+')" />
+      </xsl:apply-templates>
+    </tr>
+  </xsl:template>
+
+  <xsl:template match="xhtml:td[@class='pitch_false']">
+    <xsl:param name="pcset" />
+    <xsl:choose>
+      <xsl:when test="@data-n = $pcset">
+        <td data-n="{@data-n}" class="pitch_true">■</td>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy-of select="." />
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
 </xsl:stylesheet>
