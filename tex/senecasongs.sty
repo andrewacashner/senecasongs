@@ -65,5 +65,34 @@ Seneca Songs book and website page PDFs]
     \RenewExpandableDocumentCommand{\@aacCoverImage}{}{#1}%
 }
 
+
+\NewDocumentEnvironment{pitchMatrix}{ m }{%
+    \begin{tabular}{ r *{12}c }
+        & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
+        & \tabularize{#1} \\
+}{%
+    \end{tabular}
+}
+
+\NewDocumentCommand{\pcset}{ m m }{%
+    #1 & \tabularize{#2} \\
+    % TODO put $\blacksquare$ if n is in arg #2, blank otherwise
+}
+
+\ExplSyntaxOn
+\NewDocumentCommand{\tabularize}{ m }{%
+    \aac_tabularize:n { #1 }
+}
+
+\tl_new:N \l__aac_tabularize_text_tl
+
+\cs_new_protected:Nn \aac_tabularize:n
+{
+    \tl_set:Nx \l__aac_tabularize_text_tl { #1 }
+    \tl_replace_all:Nnn \l__aac_tabularize_text_tl { , } { & }
+    \tl_use:N \l__aac_tabularize_text_tl
+}
+\ExplSyntaxOff
+
 \RequirePackage{hyperref}
 \endinput
