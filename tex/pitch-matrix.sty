@@ -1,0 +1,78 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tex/pitch-matrix}[2023/03/03 Create table showing which pitches
+in set are included, from sparse-matrix input notation]
+
+\RequirePackage{listofitems}
+\RequirePackage{MnSymbol} % for \blacksquare
+
+% #1 Comma-separated list of pitches corresponding to the pnums 0-11
+\NewDocumentEnvironment{pitchMatrix}{ m }{%
+    \begin{tabular}{ r *{12}c }
+        & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
+        & \tabularize{#1} \\
+}{%
+    \end{tabular}
+}
+
+% Setup for processing each \pcset row
+\NewDocumentCommand{\matrixTrue}{}{$\blacksquare$}
+
+\newcounter{pnum}
+\newif\ifpitchfound
+
+\newtoks\@tabtoks
+\NewDocumentCommand{\addtabtoks}{ m }{\@tabtoks\expandafter{\the\@tabtoks#1}}
+\NewDocumentCommand{\resettabtoks}{}{\@tabtoks{}}
+\NewDocumentCommand{\printtabtoks}{}{\the\@tabtoks}
+
+% Create a table row for the pitch matrix in which there is a mark under each
+% column that is present in the pcset list
+%  #1 row number
+%  #2 comma-separated list of pnums
+\NewDocumentCommand{\pcset}{ m m }{%
+    % Parse the list (#2)
+    \setsepchar{,}%
+    \readlist*\pcsetnums{#2}%
+    % Set up the token list
+    \resettabtoks
+    \addtabtoks{#1 & }%
+    % Loop through 0-11, for each check if it is in pcset list
+    % If so, add mark to table, otherwise blank
+    \setcounter{pnum}{0}%
+    \loop
+    \pitchfoundfalse
+    \foreachitem\pcsetnum\in\pcsetnums{%
+        \ifnum\pcsetnum=\value{pnum}%
+            \pitchfoundtrue
+        \fi
+    }%
+    \ifpitchfound
+        \addtabtoks{\matrixTrue\ }%
+    \fi
+    % If this is not the last item in set, add a separator (&)
+    \stepcounter{pnum}%
+    \ifnum\value{pnum} < 11
+        \addtabtoks{ & }%
+    \fi
+    \ifnum\value{pnum} < 12
+    \repeat
+    \printtabtoks \\
+}
+
+% Replace the separators in a comma-delimited list with tabular separators (&)
+\ExplSyntaxOn
+\NewDocumentCommand{\tabularize}{ m }{%
+    \aac_tabularize:n { #1 }
+}
+
+\tl_new:N \l__aac_tabularize_text_tl
+
+\cs_new_protected:Nn \aac_tabularize:n
+{
+    \tl_set:Nx \l__aac_tabularize_text_tl { #1 }
+    \tl_replace_all:Nnn \l__aac_tabularize_text_tl { , } { & }
+    \tl_use:N \l__aac_tabularize_text_tl
+}
+\ExplSyntaxOff
+
+\endinput

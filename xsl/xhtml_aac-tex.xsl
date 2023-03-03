@@ -310,7 +310,6 @@
     <xsl:value-of select="$natural" />
   </xsl:function>
 
-
   <xsl:template match="aac:mrow">
     <xsl:text>\pcset{</xsl:text>
     <xsl:value-of select="@n" />
