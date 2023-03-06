@@ -176,10 +176,6 @@ figure video {
   width: 100%;
 }
 
-figure audio {
-  width: 100%;
-}
-
 figure img {
   width: 100%;
 }
@@ -394,7 +390,7 @@ div.dialogue span.speaker {
   figure {
     float: right;
   }
-  figure, figure iframe, figure video, figure audio,  figure img {
+  figure, figure iframe, figure video, figure img {
     max-width: 45vw;
   }
   table, figure.diagram {
