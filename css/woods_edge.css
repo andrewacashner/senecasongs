@@ -39,6 +39,7 @@ html {
   width: 100%;
 }
 
+
 body {
   margin: 0;
   padding: 0;
@@ -49,7 +50,6 @@ body {
   font-family: var(--serif-font);
 /*  font-size: 125%; */
 }
-
 
 /* Header */
 header {
@@ -147,9 +147,6 @@ p {
   hyphens: auto;
   margin-top: 0;
   margin-bottom: 0;
-}
-
-main p {
   text-indent: 2em;
 }
 
@@ -364,3 +361,62 @@ section.toc ul li {
   text-indent: -1em;
   padding-top: 1ex;
 }
+
+/* Dialogue */
+
+div.dialogue {
+  margin-left: 1em;
+  margin-right: 1em;
+  padding: 1em;
+  background: var(--color-wampum-purple-light);
+}
+
+div.dialogue p {
+  text-indent: 0;
+  margin-bottom: 1ex;
+}
+
+div.dialogue span.speaker {
+  text-transform: uppercase;
+}
+
+/* Wide screen */
+@media only screen and (min-width: 1200px) {
+  body {
+    width: 95vw;
+    max-width: 95vw;
+  }
+  body p {
+    width: 45vw;
+    margin: 0;
+    padding: 0;
+  }
+  figure {
+    float: right;
+  }
+  figure, figure iframe, figure video, figure audio,  figure img {
+    max-width: 45vw;
+  }
+  table, figure.diagram {
+    float: none;
+  }
+  blockquote, div.dialogue {
+    width: 40vw;
+    max-width: 40vw;
+    margin-left: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 1em;
+  }
+  blockquote p, div.dialogue p {
+    width: 40vw;
+    max-width: 40vw;
+  }
+
+ section {
+   clear: right;
+  }
+}
+
+
+

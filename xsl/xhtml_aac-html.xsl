@@ -143,10 +143,105 @@
   <!-- FLOATS AND CROSS-REFERENCES -->
 
   <!-- Internal references with automatic numbers -->
+  <xsl:template match="aac:ref[@type='image']">
+    <xsl:variable name="target" select="substring(@href, 2)" />
+    <a class="internal" href="{@href}">
+      <xsl:choose>
+        <xsl:when test="string()">
+          <xsl:apply-templates />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>figure</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="//xhtml:figure[@class='image' and @id=$target]" mode="number" />
+    </a>
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='image']" mode="number">
+    <xsl:number count="//xhtml:figure[@class='image']" level="any" />
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='image']/xhtml:figCaption">
+    <figCaption>
+      <xsl:text>Figure </xsl:text>
+      <xsl:number count="xhtml:figure[@class='image']" format="1. " level="any" />
+      <xsl:apply-templates />
+    </figCaption>
+  </xsl:template>
+
+
+  <!-- Video -->
+  <xsl:template match="aac:ref[@type='video']">
+    <xsl:variable name="target" select="substring(@href, 2)" />
+    <a class="internal" href="{@href}">
+      <xsl:choose>
+        <xsl:when test="string()">
+          <xsl:apply-templates />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>video</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="//xhtml:figure[@class='video' and @id=$target]" mode="number" />
+    </a>
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='video']" mode="number">
+    <xsl:number count="//xhtml:figure[@class='video']" level="any" />
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='video']/xhtml:figCaption">
+    <figCaption>
+      <xsl:text>Video </xsl:text>
+      <xsl:number count="xhtml:figure[@class='video']" format="1. " level="any" />
+      <xsl:apply-templates />
+    </figCaption>
+  </xsl:template>
+
+  <!-- Audio -->
+  <xsl:template match="aac:ref[@type='audio']">
+    <xsl:variable name="target" select="substring(@href, 2)" />
+    <a class="internal" href="{@href}">
+      <xsl:choose>
+        <xsl:when test="string()">
+          <xsl:apply-templates />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>audio</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="//xhtml:figure[@class='audio' and @id=$target]" mode="number" />
+    </a>
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='audio']" mode="number">
+    <xsl:number count="//xhtml:figure[@class='audio']" level="any" />
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='audio']/xhtml:figCaption">
+    <figCaption>
+      <xsl:text>Audio </xsl:text>
+      <xsl:number count="xhtml:figure[@class='audio']" format="1. " level="any" />
+      <xsl:apply-templates />
+    </figCaption>
+  </xsl:template>
+
+  <!-- Table -->
   <xsl:template match="aac:ref[@type='table']">
     <xsl:variable name="target" select="substring(@href, 2)" />
     <a class="internal" href="{@href}">
-      <xsl:apply-templates />
+      <xsl:choose>
+        <xsl:when test="string()">
+          <xsl:apply-templates />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>table</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:text> </xsl:text>
       <xsl:apply-templates select="//xhtml:table[@id=$target]" mode="number" />
     </a>
@@ -164,11 +259,18 @@
     </caption>
   </xsl:template>
 
- 
+  <!-- Diagram -->
   <xsl:template match="aac:ref[@type='diagram']">
     <xsl:variable name="target" select="substring(@href, 2)" />
     <a class="internal" href="{@href}">
-      <xsl:apply-templates />
+      <xsl:choose>
+        <xsl:when test="string()">
+          <xsl:apply-templates />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>diagram</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:text> </xsl:text>
       <xsl:apply-templates select="//xhtml:figure[@class='diagram' and @id=$target]" mode="number" />
     </a>

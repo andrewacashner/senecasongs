@@ -221,6 +221,50 @@
   </xsl:template>
   
   <!-- FLOATS -->
+
+
+  <xsl:template match="aac:ref[@type='video']">
+    <xsl:variable name="this-page-url" select="ancestor::*/@data-html-equiv" />
+    <xsl:variable name="target" select="substring(@href, 2)" />
+    <xsl:text>\href{</xsl:text>
+    <xsl:value-of select="$this-page-url" />
+    <xsl:text>/</xsl:text>
+    <xsl:value-of select="replace(@href, '#', '\\#')" />
+    <xsl:text>}{</xsl:text>
+    <xsl:text>online video </xsl:text>
+    <xsl:apply-templates select="//xhtml:figure[@class='video' and @id=$target]" mode="number" />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='video']" mode="number">
+    <xsl:number count="//xhtml:figure[@class='video']" level="any" />
+  </xsl:template>
+  
+  <xsl:template match="aac:ref[@type='audio']">
+    <xsl:variable name="this-page-url" select="ancestor::*/@data-html-equiv" />
+    <xsl:variable name="target" select="substring(@href, 2)" />
+    <xsl:text>\href{</xsl:text>
+    <xsl:value-of select="$this-page-url" />
+    <xsl:text>/</xsl:text>
+    <xsl:value-of select="replace(@href, '#', '\\#')" />
+    <xsl:text>}{</xsl:text>
+    <xsl:text>online audio </xsl:text>
+    <xsl:apply-templates select="//xhtml:figure[@class='audio' and @id=$target]" mode="number" />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+ 
+  <xsl:template match="xhtml:figure[@class='audio']" mode="number">
+    <xsl:number count="//xhtml:figure[@class='audio']" level="any" />
+  </xsl:template>
+  
+
+  <xsl:template match="xhtml:figure[@class='video'] | xhtml:figure[@class='audio']">
+  </xsl:template>
+
+  <xsl:template match="aac:ref[@class='audio']" />
+
+
+  <!-- TODO diagram -->
   <xsl:template match="xhtml:figure">
     <xsl:text>\begin{figure}&#xA;</xsl:text>
     <xsl:apply-templates />
@@ -387,6 +431,26 @@
   <xsl:template match="xhtml:audio" /> 
 
   <xsl:template match="aac:youtube" />
+
+  <xsl:template match="xhtml:div[@class='dialogue']">
+    <xsl:text>\begin{dialogue}&#xA;</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>\end{dialogue}&#xA;</xsl:text>
+  </xsl:template>
+
+  <!--
+  <xsl:template match="xhtml:div[@class='dialogue']/xhtml:p">
+    <xsl:text>\speech{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}&#xA;</xsl:text>
+    </xsl:template>
+  -->
+
+    <xsl:template match="xhtml:div[@class='dialogue']//xhtml:span[@class='speaker']">
+    <xsl:text>\speaker{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>} </xsl:text>
+  </xsl:template>
 
 </xsl:stylesheet>
 

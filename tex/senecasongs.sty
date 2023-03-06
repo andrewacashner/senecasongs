@@ -66,5 +66,13 @@ Seneca Songs book and website page PDFs]
 
 \RequirePackage{tex/pitch-matrix}
 
+\NewDocumentEnvironment{dialogue}{}
+{\begin{quote}}
+{\end{quote}}
+
+\NewDocumentCommand{\speaker}{ m }{%
+    \uppercase{#1}%
+}
+
 \RequirePackage{hyperref}
 \endinput

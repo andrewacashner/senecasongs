@@ -34,3 +34,4 @@
   `A<sub>4</sub>` ?
 - Music font for accidentals, time signatures, etc. ?
 - Music examples: YouTube clip audio + SVG or just YouTube clip
+- How much text from video teaching to include on website vs. book?
