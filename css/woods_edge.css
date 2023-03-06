@@ -363,6 +363,7 @@ section.toc ul li {
 div.dialogue {
   margin-left: 1em;
   margin-right: 1em;
+  margin-bottom: 1em;
   padding: 1em;
   background: var(--color-wampum-purple-light);
 }

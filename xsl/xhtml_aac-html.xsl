@@ -201,7 +201,42 @@
     </figCaption>
   </xsl:template>
 
+  <!-- Music example -->
+  <xsl:template match="aac:ref[@type='music']">
+    <xsl:variable name="target" select="substring(@href, 2)" />
+    <a class="internal" href="{@href}">
+      <xsl:choose>
+        <xsl:when test="string()">
+          <xsl:apply-templates />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>music example</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="//xhtml:figure[@class='music' and @id=$target]" mode="number" />
+    </a>
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='music']" mode="number">
+    <xsl:number count="//xhtml:figure[@class='music']" level="any" />
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='music']/xhtml:figCaption">
+    <figCaption>
+      <xsl:text>Music example </xsl:text>
+      <xsl:number count="xhtml:figure[@class='music']" format="1. " level="any" />
+      <xsl:apply-templates />
+    </figCaption>
+  </xsl:template>
+
   <!-- Audio -->
+  <xsl:template match="xhtml:audio">
+    <audio controls="true">
+      <xsl:apply-templates />
+    </audio>
+  </xsl:template>
+
   <xsl:template match="aac:ref[@type='audio']">
     <xsl:variable name="target" select="substring(@href, 2)" />
     <a class="internal" href="{@href}">
@@ -587,6 +622,8 @@
   <!-- MODULAR DESIGN (web vs. print) -->
 
   <xsl:template match="*[@data-medium='print']" />
+
+  <xsl:template match="@data-medium" />
 
   <!-- TABLE OF CONTENTS -->
   <xsl:template match="aac:tableofcontents">

@@ -261,11 +261,25 @@
   <xsl:template match="xhtml:figure[@class='video'] | xhtml:figure[@class='audio']">
   </xsl:template>
 
-  <xsl:template match="aac:ref[@class='audio']" />
+  <xsl:template match="xhtml:figure[@class='music']">
+    <xsl:text>\begin{example}&#xA;</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>\label{</xsl:text>
+    <xsl:value-of select="@id" />
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:text>\end{example}&#xA;</xsl:text>
+  </xsl:template>
 
+  <xsl:template match="xhtml:figure[@class='diagram']">
+    <xsl:text>\begin{diagram}&#xA;</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>\label{</xsl:text>
+    <xsl:value-of select="@id" />
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:text>\end{diagram}&#xA;</xsl:text>
+  </xsl:template>
 
-  <!-- TODO diagram -->
-  <xsl:template match="xhtml:figure">
+  <xsl:template match="xhtml:figure[@class='image']">
     <xsl:text>\begin{figure}&#xA;</xsl:text>
     <xsl:apply-templates />
     <xsl:text>\label{</xsl:text>
@@ -364,8 +378,57 @@
 
   <!-- CROSS-REFERENCES -->
   <xsl:template match="aac:ref[@type='table']">
-    <xsl:apply-templates />
-    <xsl:text>\ref{</xsl:text>
+    <xsl:choose>
+      <xsl:when test="string()">
+        <xsl:apply-templates />
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>table</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text> \ref{</xsl:text>
+    <xsl:value-of select="substring(@href, 2)" />
+    <xsl:text>} </xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:ref[@type='figure']">
+    <xsl:choose>
+      <xsl:when test="string()">
+        <xsl:apply-templates />
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>figure</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text> \ref{</xsl:text>
+    <xsl:value-of select="substring(@href, 2)" />
+    <xsl:text>} </xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:ref[@type='music']">
+    <xsl:choose>
+      <xsl:when test="string()">
+        <xsl:apply-templates />
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>example</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text> \ref{</xsl:text>
+    <xsl:value-of select="substring(@href, 2)" />
+    <xsl:text>} </xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:ref[@type='diagram']">
+    <xsl:choose>
+      <xsl:when test="string()">
+        <xsl:apply-templates />
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>diagram</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text> \ref{</xsl:text>
     <xsl:value-of select="substring(@href, 2)" />
     <xsl:text>} </xsl:text>
   </xsl:template>

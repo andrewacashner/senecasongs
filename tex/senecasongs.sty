@@ -74,5 +74,25 @@ Seneca Songs book and website page PDFs]
     \uppercase{#1}%
 }
 
+% FLOATS
+\RequirePackage{newfloat}
+
+\DeclareFloatingEnvironment[
+    name =      {Example},
+    listname =  {List of Music Examples},
+    fileext =   {ex},
+    placement = {t!}
+]{example}
+
+\DeclareFloatingEnvironment[
+    name =      {Diagram},
+    listname =  {List of Diagrams},
+    fileext =   {dia},
+    placement = {t!}
+]{diagram}
+
+\RequirePackage{floatrow}
+
+
 \RequirePackage{hyperref}
 \endinput
