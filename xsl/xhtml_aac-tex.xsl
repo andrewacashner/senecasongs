@@ -487,7 +487,7 @@
   </xsl:template>
 
   <!-- MODULAR DESIGN (web vs. print) -->
-  <xsl:template match="*[@data-medium='web']" />
+  <xsl:template match="*[@data-medium='web']" priority="1" />
 
   <xsl:template match="xhtml:video" />
 
