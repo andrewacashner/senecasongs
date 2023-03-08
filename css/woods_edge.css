@@ -51,6 +51,10 @@ body {
 /*  font-size: 125%; */
 }
 
+section {
+  clear: right;
+}
+
 /* Header */
 header {
   height: 360px;
