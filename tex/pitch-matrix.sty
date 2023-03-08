@@ -20,13 +20,6 @@ in set are included, from sparse-matrix input notation]
     \aac_tabularize:n { #1 }
 }
 
-\cs_new:Nn \aac_tabularize:n
-{
-    \tl_set:Nx \l__aac_tabrow_text_tl { #1 }
-    \tl_replace_all:Nnn \l__aac_tabrow_text_tl { , } { & }
-    \tl_use:N \l__aac_tabrow_text_tl
-}
-
 % Create a table row for the pitch matrix in which there is a mark under each
 % column that is present in the pcset list
 %  #1 row number
@@ -35,24 +28,28 @@ in set are included, from sparse-matrix input notation]
     \aac_pcset:nn { #1 }{ #2 }%
 }
 
-\tl_new:N \l__aac_tabrow_text_tl
-\int_new:N \l__aac_pnum_int
-\clist_new:N \l__aac_pnums_clist
+\tl_new:N \l__aac_tabrow_tl
 
-\cs_new:Nn \aac_matrix_true: {$\blacksquare$\ }
+\cs_new:Nn \aac_tabularize:n
+{
+    \tl_set:Nx \l__aac_tabrow_tl { #1 }
+    \tl_replace_all:Nnn \l__aac_tabrow_tl { , } { & }
+    \tl_use:N \l__aac_tabrow_tl
+}
+
+\cs_new:Nn \aac_matrix_true_sign: {$\blacksquare$\ }
 
 \cs_new:Nn \aac_pcset:nn
 {
-    \tl_set:Nx \l__aac_tabrow_text_tl {#1}
-    \clist_set:Nn \l__aac_pnums_clist {#2}
+    \tl_set:Nx \l__aac_tabrow_tl {#1}
 
     \int_step_inline:nnn {0} {11}
     {   
-        \clist_if_in:NnTF \l__aac_pnums_clist {##1}
-        { \tl_put_right:Nn \l__aac_tabrow_text_tl {& \aac_matrix_true:} }
-        { \tl_put_right:Nn \l__aac_tabrow_text_tl {& } }
+        \clist_if_in:nnTF {#2} {##1}
+        { \tl_put_right:Nn \l__aac_tabrow_tl {& \aac_matrix_true_sign: } }
+        { \tl_put_right:Nn \l__aac_tabrow_tl {& } }
     }
-    \tl_use:N \l__aac_tabrow_text_tl \\
+    \tl_use:N \l__aac_tabrow_tl \\
 }
 
 \ExplSyntaxOff
