@@ -360,20 +360,22 @@ section.toc ul li {
 
 /* Dialogue */
 
-div.dialogue {
+/*
+blockquote.dialogue {
   margin-left: 1em;
   margin-right: 1em;
   margin-bottom: 1em;
   padding: 1em;
   background: var(--color-wampum-purple-light);
 }
+*/
 
-div.dialogue p {
+blockquote.dialogue p {
   text-indent: 0;
   margin-bottom: 1ex;
 }
 
-div.dialogue span.speaker {
+blockquote.dialogue span.speaker {
   text-transform: uppercase;
 }
 
@@ -388,16 +390,13 @@ div.dialogue span.speaker {
     margin: 0;
     padding: 0;
   }
-  figure {
+  figure, table {
     float: right;
   }
   figure, figure iframe, figure video, figure img {
     max-width: 45vw;
   }
-  table, figure.diagram {
-    float: none;
-  }
-  blockquote, div.dialogue {
+  blockquote {
     width: 40vw;
     max-width: 40vw;
     margin-left: 1em;

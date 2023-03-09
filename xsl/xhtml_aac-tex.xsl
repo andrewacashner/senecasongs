@@ -495,21 +495,13 @@
 
   <xsl:template match="aac:youtube" />
 
-  <xsl:template match="xhtml:div[@class='dialogue']">
+  <xsl:template match="xhtml:blockquote[@class='dialogue']">
     <xsl:text>\begin{dialogue}&#xA;</xsl:text>
     <xsl:apply-templates />
     <xsl:text>\end{dialogue}&#xA;</xsl:text>
   </xsl:template>
 
-  <!--
-  <xsl:template match="xhtml:div[@class='dialogue']/xhtml:p">
-    <xsl:text>\speech{</xsl:text>
-    <xsl:apply-templates />
-    <xsl:text>}&#xA;</xsl:text>
-    </xsl:template>
-  -->
-
-    <xsl:template match="xhtml:div[@class='dialogue']//xhtml:span[@class='speaker']">
+    <xsl:template match="xhtml:blockquote[@class='dialogue']//xhtml:span[@class='speaker']">
     <xsl:text>\speaker{</xsl:text>
     <xsl:apply-templates />
     <xsl:text>} </xsl:text>
