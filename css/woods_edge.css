@@ -24,7 +24,6 @@
   font-style: italic;
 }
 
-
 @font-face {
   font-family: "Venturis ADF Goth Titling";
   src: url("fonts/VenturisADFGothTitling.otf");
@@ -43,6 +42,26 @@
   font-family: "VenturisSans ADF";
   src: url("fonts/VenturisSansADF-Regular.otf");
   font-weight: normal;
+}
+
+@font-face {
+  font-family: "VenturisSans ADF";
+  src: url("fonts/VenturisSansADF-Regular.otf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "VenturisSans ADF";
+  src: url("fonts/VenturisSansADF-Regular.otf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "VenturisSans ADF";
+  src: url("fonts/VenturisSansADF-Regular.otf");
+  font-weight: bold;
+  font-style: italic;
 }
 
 @font-face {
