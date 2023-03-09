@@ -1,19 +1,19 @@
 # Questions about Standing Quiver
 
-- Is pitch level significant?
+- X Is pitch level significant?
     - Are some songs always sung at a high or low pitch level?
     - Does it matter if it varies within a dance or even within a song?
-- Is accompaniment always *ga’sä:dö’*?
+- X Is accompaniment always *ga’sä:dö’*?
     - Is accompaniment the right term?
     - Who plays the drum? (Does it matter?)
-- Is number of repeats fixed?
-- How much of song order is fixed?
-- How does BC think of song structure (e.g., A, B, A)
-- Why did BC choose this selection? Why the differences in song 1?
+- X Is number of repeats fixed?
+- X How much of song order is fixed?
+- X How does BC think of song structure (e.g., A, B, A)
+- X Why did BC choose this selection? Why the differences in song 1?
 - Is it coincidence that response on Crouse song 3 = call on Dowdy song 6?
-- What is Seneca language in these songs (including Jake version)?
-- Thoughts on diff. singing/vocal styles vs. Kyle, Jake?
-- Thoughts on degrees of variation, phonemics/phonetics of tunes and vocables
+- X What is Seneca language in these songs (including Jake version)?
+- X Thoughts on diff. singing/vocal styles vs. Kyle, Jake?
+- X Thoughts on degrees of variation, phonemics/phonetics of tunes and vocables
 
 # To Do
 

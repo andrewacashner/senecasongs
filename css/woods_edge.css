@@ -154,6 +154,9 @@ h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p {
   text-indent: 0;
 }
 
+p.noindent {
+  text-indent: 0;
+}
 figure {
   padding-top: 1em;
   padding-bottom: 1em;
@@ -390,6 +393,9 @@ blockquote.dialogue span.speaker {
     margin: 0;
     padding: 0;
   }
+  footer p, body ol, body ul {
+    width: 43vw;
+  }
   figure, table {
     float: right;
   }
@@ -408,8 +414,10 @@ blockquote.dialogue span.speaker {
     width: 40vw;
     max-width: 40vw;
   }
-
- section {
+  section.toc {
+    width: 30em;
+  }
+  section {
    clear: right;
   }
 }
