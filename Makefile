@@ -22,7 +22,7 @@ saxon 		= java -cp ".:$(HOME)/saxon/saxon-he-12.0.jar" net.sf.saxon.Transform
 
 .SECONDARY : $(bibxml) $(latex)
 
-.PHONY : all html pdf view view-pdf clean
+.PHONY : all html pdf view view-pdf deploy clean
 
 all : html pdf
 
@@ -59,6 +59,9 @@ view : html
 
 view-pdf : pdf
 	evince $(pdf_out)
+
+deploy : html
+	cp -ur build/* $(HOME)/Websites/senecasongs.earth/www/
 
 clean :
 	rm -rf $(dirs)
