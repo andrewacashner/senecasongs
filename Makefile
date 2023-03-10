@@ -10,7 +10,7 @@ biber_log	= aux/biber.blg
 
 # For now, only making PDF of whole book, not indiv. pages
 latex		= aux/book.tex
-pdf_out		= $(addprefix build/,$(notdir $(latex:%.tex=%.pdf)))
+pdf_out		= $(addprefix build/media/,$(notdir $(latex:%.tex=%.pdf)))
 tex_lib		= $(wildcard tex/*)
 
 html_deps_in	= $(wildcard css/* css/fonts/* media/*)
