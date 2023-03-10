@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet version="2.0" 
+<xsl:stylesheet 
+  version="2.0" 
   xmlns="http://www.w3.org/1999/xhtml" 
   xmlns:xhtml="http://www.w3.org/1999/xhtml" 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:m="http://www.w3.org/1998/Math/MathML" 
   xmlns:bltx="http://biblatex-biber.sourceforge.net/biblatexml"
-  xmlns:aac="https://www.senecasongs.earth">
+  xmlns:aac="https://www.senecasongs.earth"
+  exclude-result-prefixes="aac bltx">
 
 <!-- TODO
   - change position of end punctuation outside of bib tags? 
@@ -22,7 +24,7 @@
   <xsl:template match="comment()" priority="1" />
 
   <xsl:template match="@* | node()">
-    <xsl:copy>
+    <xsl:copy copy-namespaces="no">
       <xsl:apply-templates select="@* | node()" />
     </xsl:copy>
   </xsl:template>
