@@ -34,12 +34,24 @@
       <xsl:apply-templates />
     </html>
   </xsl:template>
+  
+  <!-- Google tag (gtag.js) -->
+  <xsl:variable name="google-tag">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-NX6RE0S740"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NX6RE0S740');
+    </script>
+  </xsl:variable>
 
   <xsl:template match="xhtml:head">
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <xsl:apply-templates />
     </head>
+    <xsl:copy-of select="$google-tag" />
   </xsl:template>
 
   <xsl:template match="xhtml:header">
