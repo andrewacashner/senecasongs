@@ -9,18 +9,14 @@ Do a basic replacement of these TeX macros , e.g., \makebibemph{} or {Title text
 <xsl:stylesheet
   version="2.0"
   xmlns="http://www.w3.org/1999/xhtml" 
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:aac="https://www.senecasongs.earth">
 
   <!-- replace TeX macros everywhere 
         (no promise of support for complex or nested TeX constructions) -->
   <xsl:template name="macros">
-    <xsl:variable name="string">
-      <xsl:value-of select="string()" />
-    </xsl:variable>
     <xsl:variable name="lettered">
-      <xsl:call-template name="expand-tex-letter-macros">
-        <xsl:with-param name="string" select="$string" />
-      </xsl:call-template>
+      <xsl:value-of select="aac:tex-letter-macros(string())" />
     </xsl:variable>
     <xsl:variable name="quoted">
       <xsl:call-template name="expand-mkbibquote">
@@ -51,19 +47,25 @@ Do a basic replacement of these TeX macros , e.g., \makebibemph{} or {Title text
   </xsl:template>
 
   <!-- TeX letter macros: apostrophe, dashes -->
-  <xsl:template name="expand-tex-letter-macros">
+  <xsl:function name="aac:tex-letter-macros">
     <xsl:param name="string" />
-    <xsl:variable name="em-dashes">
-      <xsl:value-of select="replace($string, '---', '—')" />
-    </xsl:variable>
-    <xsl:variable name="en-dashes">
-      <xsl:value-of select="replace($em-dashes, '--', '–')" />
-    </xsl:variable>
-    <xsl:variable name="apostrophes">
-      <xsl:value-of select="replace($en-dashes, '''', '’')" />
-    </xsl:variable>
-    <xsl:value-of select="$apostrophes" />
-  </xsl:template>
+    <xsl:value-of select="aac:tex-em-dashes(aac:tex-en-dashes(aac:tex-apostrophes($string)))" />
+  </xsl:function>
+
+  <xsl:function name="aac:tex-apostrophes">
+    <xsl:param name="string" />
+    <xsl:value-of select="replace($string, '''', '’')" />
+  </xsl:function>
+
+  <xsl:function name="aac:tex-en-dashes">
+    <xsl:param name="string" />
+    <xsl:value-of select="replace($string, '--', '–')" />
+  </xsl:function>
+
+  <xsl:function name="aac:tex-em-dashes">
+    <xsl:param name="string" />
+    <xsl:value-of select="replace($string, '---', '—')" />
+  </xsl:function>
 
   <!-- regular expression for TeX argument delimited by curly-braces -->
   <xsl:variable name="within-braces">\{([^\}]*)\}</xsl:variable>
