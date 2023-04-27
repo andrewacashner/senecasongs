@@ -18,7 +18,7 @@ html_deps_out	= $(addprefix build/,$(html_deps_in))
 
 xsl		= $(wildcard xsl/*.xsl)
 
-saxon 		= java -cp ".:$(HOME)/saxon/saxon-he-12.0.jar" net.sf.saxon.Transform
+saxon 		= java -cp ".:/opt/local/saxon/saxon-he-12.1.jar" net.sf.saxon.Transform
 
 .SECONDARY : $(bibxml) $(latex)
 
