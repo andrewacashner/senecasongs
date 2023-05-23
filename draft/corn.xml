@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TEI version="4.0.0" xmlns="http://www.tei-c.org/ns/1.0">
-	<teiHead>
-		<docTitle>Songs at the Woods' Edge: Corn Dance</docTitle>
-	</teiHead>
-	<text>
-		<titlePage>
-			<title>Onëö' oënö' (Corn Dance)</title>
-			<author>Bill Crouse, Sr., and Andrew A. Cashner</author>
-		</titlePage>
-		<body>
-			<div1 xml:id="corn-background">
-				<head>Background</head>
-				<p>
-				Corn Dance is somewhat controversial because some Seneca people consider it to be a ceremonial dance.
-				Bill's teachers told him that all of the social dances at one time were ceremonial, but over time they lost their ceremonial functions.
-				In his view, Corn Dance is just one of the dances to change its function more recently.
-				Like other social dances, this one is used in connection with ceremonies but it can also be sung at other times.
-				At <foreign xml:lang="see">Ohi:yo'</foreign> (the Allegany Territory of the Seneca Nation), Corn Dance is considered one of the Earth Songs, and is appropriate for sharing with the public as we are doing here.
-				</p>
-				<p>
-				Whether as part of ceremony or not, Corn Dance has always been connected to the growing of corn (maize), a food first domesticated by indigenous Americans in ancient times, and now a major part of the whole planet's food supply.
-				There is archeological evidence of domesticated maize in Seneca territory as early as ten thousand years ago. <!-- TODO ? -->
-				Corn was and is cultivated as one of the Three Sisters, <foreign xml:lang="see">Ha'denö:dë:nö:dë' johehgöh</foreign> (Our Life Sustainers); the others are beans and squash.
-				The three plants grow in such a way that each complements the other.
-				</p>
-				<p>
-				Charred remnants from the inside of clay cooking pots from about two thousand years ago indicate that people in this region were cooking corn in ways that would still be recognizable to Seneca people today.
-				Two of the most common traditional ways of preparing corn are <foreign xml:lang="see">Onohgwa:'</foreign> (corn soup) and cornbread. <!-- TODO words -->
-				Both recipes start by soaking corn in water with ash, an indigenous invention (called <term>nixtamalization</term> after the Náhuatl term for it) that greatly enhances the nutritional value of corn.
-				</p>
-				<p>
-				Some form of the Corn Dance have probably accompanied these traditions of growing and preparing corn since they were discovered so many centuries ago.
-				There is archeological evidence of Haudenosaunee instruments and ceremonial tools (including turtle-shell rattles) from two thousand years ago, suggesting long continuity and interrelationship among these practices.
-				</p>
-				<!-- sound, structure -->
-				<!-- the dance -->
-			</div1>
-		</body>			
-	</text>
-</TEI>
+  <teiHead>
+    <docTitle>Songs at the Woods' Edge: Corn Dance</docTitle>
+  </teiHead>
+  <text>
+    <titlePage>
+      <title>Onëö' oënö' (Corn Dance)</title>
+      <author>Bill Crouse, Sr., and Andrew A. Cashner</author>
+    </titlePage>
+    <body>
+      <div1 xml:id="corn-background">
+        <head>Background</head>
+        <p>
+            Corn Dance is somewhat controversial because some Seneca people consider it to be a ceremonial dance.
+            Bill's teachers told him that all of the social dances at one time were ceremonial, but over time they lost their ceremonial functions.
+            In his view, Corn Dance is just one of the dances to change its function more recently.
+            Like other social dances, this one is used in connection with ceremonies but it can also be sung at other times.
+            At <foreign xml:lang="see">Ohi:yo'</foreign> (the Allegany Territory of the Seneca Nation), Corn Dance is considered one of the Earth Songs, and is appropriate for sharing with the public as we are doing here.
+          </p>
+          <p>
+              Whether as part of ceremony or not, Corn Dance has always been connected to the growing of corn (maize), a food first domesticated by indigenous Americans in ancient times, and now a major part of the whole planet's food supply.
+              There is archeological evidence of domesticated maize in Seneca territory as early as ten thousand years ago. <!-- TODO ? -->
+              Corn was and is cultivated as one of the Three Sisters, <foreign xml:lang="see">Ha'denö:dë:nö:dë' johehgöh</foreign> (Our Life Sustainers); the others are beans and squash.
+                The three plants grow in such a way that each complements the other.
+            </p>
+            <p>
+                Charred remnants from the inside of clay cooking pots from about two thousand years ago indicate that people in this region were cooking corn in ways that would still be recognizable to Seneca people today.
+                Two of the most common traditional ways of preparing corn are <foreign xml:lang="see">Onohgwa:'</foreign> (corn soup) and cornbread. <!-- TODO words -->
+                  Both recipes start by soaking corn in water with ash, an indigenous invention (called <term>nixtamalization</term> after the Náhuatl term for it) that greatly enhances the nutritional value of corn.
+                </p>
+                <p>
+                    Some form of the Corn Dance have probably accompanied these traditions of growing and preparing corn since they were discovered so many centuries ago.
+                    There is archeological evidence of Haudenosaunee instruments and ceremonial tools (including turtle-shell rattles) from two thousand years ago, suggesting long continuity and interrelationship among these practices.
+                </p>
+                <!-- sound, structure -->
+                <!-- the dance -->
+              </div1>
+            </body>			
+          </text>
+        </TEI>
