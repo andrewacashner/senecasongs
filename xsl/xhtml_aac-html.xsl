@@ -588,14 +588,14 @@
   <!-- IN-TEXT CITATIONS -->
   <!-- Make a link for a single citation and enclose in parentheses -->
   <xsl:template match="aac:citation">
-    <xsl:text>(</xsl:text>
+    <xsl:text> (</xsl:text>
     <xsl:call-template name="in-text-citation" />
     <xsl:text>)</xsl:text>
   </xsl:template>
 
   <!-- For multiple citations, make links in semicolon-separated list and enclose in parentheses -->
   <xsl:template match="aac:citationList">
-    <xsl:text>(</xsl:text>
+    <xsl:text> (</xsl:text>
     <xsl:for-each select="aac:citation">
       <xsl:call-template name="in-text-citation" />
       <xsl:if test="not(position()=last())">
