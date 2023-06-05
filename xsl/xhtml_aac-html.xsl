@@ -75,6 +75,15 @@
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
       allowfullscreen="true"></iframe>
   </xsl:template>
+  
+  <xsl:template match="xhtml:iframe">
+    <xsl:copy copy-namespaces="no">
+      <xsl:copy-of select="@*" />
+      <xsl:attribute name="frameborder">0</xsl:attribute>
+      <xsl:attribute name="allowfullscreen">true</xsl:attribute>
+      <xsl:apply-templates select="*" />
+    </xsl:copy>
+  </xsl:template>
 
   <xsl:template match="xhtml:video">
     <video width="560" height="315" controls="true">

@@ -205,12 +205,14 @@ figure {
   clear: both;
 }
 
-figure iframe {
+figure iframe:not(.manual-size) {
   width: var(--textwidth-default);
   max-width: var(--textwidth-max);
   height: var(--height-iframe-rel-textwidth-default);
   max-height: var(--height-iframe-rel-textwidth-max);
 }
+
+iframe.manual-size {};
 
 figure.music {
   width: 100%;
