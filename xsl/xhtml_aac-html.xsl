@@ -516,18 +516,21 @@
       <xsl:apply-templates select="bltx:url" />
     </li>
   </xsl:template>
-  
+
   <xsl:template name="name-list">
     <xsl:param name="names" />
     <xsl:param name="type" />
     <xsl:variable name="nameCount" select="count($names/bltx:name)" />
     <xsl:for-each select="$names/bltx:name">
-      <xsl:if test="$nameCount > 2 and not(position()=1) and not(position()=last())">
-        <xsl:text>, </xsl:text>
-      </xsl:if>
-      <xsl:if test="$nameCount > 1 and position()=last()">
-        <xsl:text>, and </xsl:text>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="$nameCount > 2 and not(position()=1) and not(position()=last())">
+          <xsl:text>, </xsl:text>
+        </xsl:when>
+        <xsl:when test="$nameCount > 1 and position()=last()">
+          <xsl:text>, and </xsl:text>
+        </xsl:when>
+        <xsl:otherwise />
+      </xsl:choose>
       <xsl:choose>
         <xsl:when test="not($type='firstname-first') and position()=1">
           <xsl:apply-templates select="bltx:namepart[@type='family']" />
@@ -545,8 +548,10 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
+    <xsl:if test="$names/@morenames='1'">
+      <xsl:text>, et al.</xsl:text>
+    </xsl:if>
   </xsl:template>
-
   <!-- Process elements of bibliography entries
     - Remove TeX macros
   -->
@@ -627,6 +632,9 @@
               <xsl:text> and </xsl:text>
             </xsl:if>
           </xsl:for-each>
+          <xsl:if test="$ref/bltx:names[@type='author']/@morenames='1'">
+            <xsl:text>, et al.</xsl:text>
+          </xsl:if>
           <xsl:text> </xsl:text>
           <xsl:value-of select="$ref/bltx:date" />
         </xsl:when>
