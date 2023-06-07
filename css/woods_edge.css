@@ -46,20 +46,20 @@
 
 @font-face {
   font-family: "VenturisSans ADF";
-  src: url("fonts/VenturisSansADF-Regular.otf");
+  src: url("fonts/VenturisSansADF-Bold.otf");
   font-weight: bold;
 }
 
 @font-face {
   font-family: "VenturisSans ADF";
-  src: url("fonts/VenturisSansADF-Regular.otf");
+  src: url("fonts/VenturisSansADF-Italic.otf");
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: "VenturisSans ADF";
-  src: url("fonts/VenturisSansADF-Regular.otf");
+  src: url("fonts/VenturisSansADF-BoldItalic.otf");
   font-weight: bold;
   font-style: italic;
 }
@@ -232,17 +232,9 @@ figure.diagram {
   margin-left: 1em;
 }
 
-caption em, caption cite, figCaption em, figCaption cite {
-  font-style: normal;
-}
-
-
 figCaption {
   font-size: 90%;
   font-style: italic;
-}
-
-em.seneca {
 }
 
 blockquote {
@@ -339,9 +331,19 @@ table td {
   padding-right: 1ex;
 }
 
-table caption {
+table.pitch_matrix caption {
   font-style: italic;
 }
+
+table.pitch_matrix th {
+  font-weight: normal;
+}
+
+caption em, caption cite, figCaption em, figCaption cite {
+  font-style: normal;
+}
+
+
 
 table.pitch_matrix {
   width: 20em;
