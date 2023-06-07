@@ -272,7 +272,7 @@ q {
   quotes : "“" "”" "‘" "’"
 }
 
-strong.alert {
+strong.alert, strong.TODO {
   color: red;
   border: 1px solid red;
 }

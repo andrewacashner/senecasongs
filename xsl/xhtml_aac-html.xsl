@@ -503,13 +503,17 @@
       <q><xsl:apply-templates select="bltx:title" /></q>
       <xsl:text>. In </xsl:text>
       <cite><xsl:apply-templates select="bltx:booktitle" /></cite>
-      <xsl:text>, edited by </xsl:text>
-      <xsl:call-template name="name-list">
-        <xsl:with-param name="names" select="bltx:names[@type='editor']" />
-        <xsl:with-param name="type">firstname-first</xsl:with-param>
-      </xsl:call-template>
-      <xsl:text>, </xsl:text>
-      <xsl:apply-templates select="bltx:pages" />
+      <xsl:if test="bltx:names[@type='editor']">
+        <xsl:text>, edited by </xsl:text>
+        <xsl:call-template name="name-list">
+          <xsl:with-param name="names" select="bltx:names[@type='editor']" />
+          <xsl:with-param name="type">firstname-first</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
+      <xsl:if test="bltx:pages">
+        <xsl:text>, </xsl:text>
+        <xsl:apply-templates select="bltx:pages" />
+      </xsl:if>
       <xsl:text>. </xsl:text>
       <xsl:apply-templates select="bltx:location" />
       <xsl:apply-templates select="bltx:publisher" />

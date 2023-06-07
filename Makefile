@@ -18,7 +18,7 @@ html_deps_out	= $(addprefix build/,$(html_deps_in))
 
 xsl		= $(wildcard xsl/*.xsl)
 
-saxon 		= $(HOME)/bin/saxon 
+saxon 		= $(HOME)/bin/saxon
 
 .SECONDARY : $(bibxml) $(latex)
 
