@@ -95,6 +95,13 @@ Seneca Songs book and website page PDFs]
 
 \RequirePackage{floatrow}
 
+\NewDocumentCommand{\inlinegraphics}{ m }{%
+    \raisebox{1ex-0.5\height}{%
+        \strut\includegraphics[height=2\baselineskip]{#1}%
+    }\thinspace%
+}
 
 \RequirePackage{hyperref}
+
+
 \endinput

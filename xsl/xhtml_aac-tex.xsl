@@ -288,12 +288,24 @@
     <xsl:text>\end{figure}&#xA;</xsl:text>
   </xsl:template>
 
+  <xsl:function name="aac:media-filename">
+    <xsl:param name="filename" />
+    <xsl:value-of select="substring-after(substring-before($filename, '.'), 'media/')" />
+  </xsl:function>
+
   <!-- remove file extension for graphics files so web and pdf version can use different file types (e.g., svg for web and png or pdf for print) -->
-  <xsl:template match="xhtml:img[not(@class='cover')]">
+  <xsl:template match="xhtml:img[not(@class='cover') and not(@class='inline')]">
     <xsl:text>\includegraphics[width=\textwidth]{</xsl:text>
-    <xsl:value-of select="substring-before(@src, '.')" />
+    <xsl:value-of select="aac:media-filename(@src)" />
       <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
+
+  <xsl:template match="xhtml:img[@class='inline']">
+    <xsl:text>\inlinegraphics{</xsl:text>
+    <xsl:value-of select="aac:media-filename(@src)" />
+      <xsl:text>}&#xA;</xsl:text>
+  </xsl:template>
+
 
   <xsl:template match="xhtml:caption | xhtml:figCaption">
     <xsl:text>\caption{</xsl:text>
@@ -507,6 +519,9 @@
     <xsl:text>} </xsl:text>
   </xsl:template>
 
+  <xsl:template match="aac:usd">
+    <xsl:text>\$</xsl:text>
+  </xsl:template>
 </xsl:stylesheet>
 
 

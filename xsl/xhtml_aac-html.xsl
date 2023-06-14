@@ -761,6 +761,10 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="aac:usd">
+    <xsl:text>$</xsl:text>
+  </xsl:template>
+
 </xsl:stylesheet>
 
 

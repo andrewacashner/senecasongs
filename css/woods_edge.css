@@ -226,6 +226,12 @@ figure img {
   width: 100%;
 }
 
+img.inline {
+  height: 2em;
+  vertical-align: middle;
+  padding-right: 0.5ex;
+}
+
 figure.diagram {
   float: right;
   max-width: var(--textwidth-default);
