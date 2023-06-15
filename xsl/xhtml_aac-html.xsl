@@ -305,6 +305,9 @@
     </a>
   </xsl:template>
 
+  <!-- TODO use optional data-cols attribute to set alignment/format of columns (e.g., data-cols="lcr") -->
+  <xsl:template match="@data-cols" />
+
   <xsl:template match="xhtml:table" mode="number">
     <xsl:number count="//xhtml:table" level="any" />
   </xsl:template>

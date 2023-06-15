@@ -227,9 +227,9 @@ figure img {
 }
 
 img.inline {
-  height: 2em;
+  height: 3em;
   vertical-align: middle;
-  padding-right: 0.5ex;
+  padding-right: 0.5ch;
 }
 
 figure.diagram {
@@ -307,6 +307,7 @@ header nav a {
 
 /* TABLES */
 table {
+  line-height: 1em;
   float: right;
   border: 1px black solid;
   margin-left: 1.5em;
@@ -332,9 +333,10 @@ table.inline {
 }
 
 
-table td {
+table th, table td {
   padding-left: 1ex;
   padding-right: 1ex;
+  padding-bottom: 1ex;
 }
 
 table.pitch_matrix caption {
@@ -343,6 +345,11 @@ table.pitch_matrix caption {
 
 table.pitch_matrix th {
   font-weight: normal;
+}
+
+caption {
+  font-style: italic;
+  padding-bottom: 1ex;
 }
 
 caption em, caption cite, figCaption em, figCaption cite {

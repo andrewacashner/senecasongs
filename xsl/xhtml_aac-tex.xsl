@@ -300,8 +300,16 @@
       <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
 
+  <!-- This allows you to override the default style with a CSS @style attribute, but all it does is convert the colons to equals signs (so 'height: 3em' becomes 'height=3em'). If you're trying to do anything fancier it won't work. TODO replace with regex or something to sanitize input.
+  -->
   <xsl:template match="xhtml:img[@class='inline']">
-    <xsl:text>\inlinegraphics{</xsl:text>
+    <xsl:text>\inlinegraphics</xsl:text>
+    <xsl:if test="@style">
+      <xsl:text>[</xsl:text>
+      <xsl:value-of select="replace(@style, ': ', '=')" />
+      <xsl:text>]</xsl:text>
+    </xsl:if>
+    <xsl:text>{</xsl:text>
     <xsl:value-of select="aac:media-filename(@src)" />
       <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
@@ -313,19 +321,60 @@
     <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
 
+  <!-- you can use @data-cols="lll" (for example) to specify TeX tabular columns or it will automatically create a column specification from the table header row (all left aligned) -->
   <xsl:template match="xhtml:table">
+
+    <xsl:variable name="colspec">
+      <xsl:text>{</xsl:text>
+      <xsl:choose>
+        <xsl:when test="@data-cols">
+          <xsl:value-of select="@data-cols" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:for-each select="xhtml:thead/xhtml:tr[1]/xhtml:th">
+            <xsl:text>l</xsl:text>
+          </xsl:for-each>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text>}</xsl:text>
+    </xsl:variable>
+
+    <xsl:variable name="tabular-begin-env">
+      <xsl:choose>
+        <xsl:when test="contains(@data-cols, 'X')">
+          <xsl:text>\begin{tabularx}{\textwidth}</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>\begin{tabular}</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <xsl:variable name="tabular-end-env">
+      <xsl:choose>
+        <xsl:when test="contains(@data-cols, 'X')">
+          <xsl:text>\end{tabularx}&#xA;</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>\end{tabular}&#xA;</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+
     <xsl:text>\begin{table}&#xA;</xsl:text>
     <xsl:apply-templates select="xhtml:caption" />
     <xsl:text>\label{</xsl:text>
     <xsl:value-of select="@id" />
     <xsl:text>}&#xA;</xsl:text>
     <xsl:text>\begin{center}&#xA;</xsl:text>
-    <xsl:text>\begin{tabular}{</xsl:text>
-    <xsl:for-each select="xhtml:thead/xhtml:tr[1]/xhtml:th"><xsl:text>l</xsl:text></xsl:for-each>
-    <xsl:text>} \toprule&#xA;</xsl:text>
+    <xsl:copy-of select="$tabular-begin-env" />
+    <xsl:copy-of select="$colspec" />
+    <xsl:text>\toprule&#xA;</xsl:text>
     <xsl:apply-templates select="xhtml:thead" />
     <xsl:apply-templates select="xhtml:tbody" />
-    <xsl:text>\bottomrule&#xA;\end{tabular}&#xA;</xsl:text>
+    <xsl:text>\bottomrule&#xA;</xsl:text>
+    <xsl:copy-of select="$tabular-end-env" />
     <xsl:text>\end{center}&#xA;</xsl:text>
     <xsl:text>\end{table}&#xA;</xsl:text>
   </xsl:template>
@@ -400,7 +449,7 @@
     </xsl:choose>
     <xsl:text> \ref{</xsl:text>
     <xsl:value-of select="substring(@href, 2)" />
-    <xsl:text>} </xsl:text>
+    <xsl:text>}</xsl:text>
   </xsl:template>
 
   <xsl:template match="aac:ref[@type='figure']">

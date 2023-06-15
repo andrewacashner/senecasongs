@@ -14,6 +14,7 @@ Seneca Songs book and website page PDFs]
 
 \RequirePackage{microtype}
 \linespread{1.08}
+\AtBeginEnvironment{table}{\linespread{1}}
 
 \RequirePackage[
     paperheight=8.5in, 
@@ -26,7 +27,7 @@ Seneca Songs book and website page PDFs]
 \RequirePackage{semantic-markup}
 \RequirePackage{musicography}
 
-\RequirePackage{booktabs}
+
 \RequirePackage{enumitem}
 \setlist{noitemsep}
 
@@ -95,11 +96,25 @@ Seneca Songs book and website page PDFs]
 
 \RequirePackage{floatrow}
 
-\NewDocumentCommand{\inlinegraphics}{ m }{%
-    \raisebox{1ex-0.5\height}{%
-        \strut\includegraphics[height=2\baselineskip]{#1}%
-    }\thinspace%
+\RequirePackage{booktabs}
+\RequirePackage[nomath]{cellspace}
+\RequirePackage{tabularx}
+\RequirePackage{adjustbox}
+
+% cellspace package enables you to prepend S to a column spec and it will be
+% padded vertically according to these amounts
+% To use, specify columns using @data-cols attribute, e.g., data-cols="X X Sl"
+\setlength{\cellspacetoplimit}{1ex}
+\setlength{\cellspacebottomlimit}{1ex}
+
+% valign from adjustbox centers image vertically
+\NewDocumentCommand{\inlinegraphics}{ O{height=3em} m }{%
+    \strut\adjincludegraphics[#1, valign=m]{#2}%
 }
+
+\NewDocumentCommand{\tablesize}{}{\small}
+\AtBeginEnvironment{tabular}{\tablesize}
+\AtBeginEnvironment{tabularx}{\tablesize}
 
 \RequirePackage{hyperref}
 
