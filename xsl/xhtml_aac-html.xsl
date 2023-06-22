@@ -768,6 +768,21 @@
     <xsl:text>$</xsl:text>
   </xsl:template>
 
+  <xsl:template match="aac:inlineMusic">
+    <xsl:variable name="scale-factor">
+      <xsl:choose>
+        <xsl:when test="@type='staff' or @type='rhythm-threelines'">3</xsl:when>
+        <xsl:when test="@type='rhythm-lyrics' or @type='rhythm-twolines'">2</xsl:when>
+        <xsl:otherwise>1</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <img class="inline" src="{@src}" type="image/svg+xml" alt="Music notation">
+      <xsl:attribute name="data-scale">
+        <xsl:value-of select="$scale-factor" />
+      </xsl:attribute>
+    </img>
+  </xsl:template>
+
 </xsl:stylesheet>
 
 

@@ -8,6 +8,7 @@
   --height-iframe-rel-textwidth-max: calc(var(--textwidth-max)/1.7777778);
   --color-wampum-purple-light: #e6ccff;
   --color-wampum-purple-dark: #58267b;
+  --inline-music-height: 1em;
 }
 
 @font-face {
@@ -227,9 +228,17 @@ figure img {
 }
 
 img.inline {
-  height: 3em;
+  height: var(--inline-music-height);
   vertical-align: middle;
   padding-right: 0.5ch;
+}
+
+img.inline[data-scale="2"] {
+  height: calc(var(--inline-music-height)*2);
+}
+
+img.inline[data-scale="3"] {
+  height: calc(var(--inline-music-height)*3);
 }
 
 figure.diagram {
@@ -317,6 +326,19 @@ table {
   font-size: 80%;
   background-color: LightGray;
   clear: both;
+}
+
+table table.simple {
+  float: none;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+  font-size: 100%;
+}
+
+table td {
+  vertical-align: baseline;
 }
 
 table.inline {

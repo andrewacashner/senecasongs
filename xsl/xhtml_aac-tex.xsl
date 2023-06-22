@@ -300,18 +300,29 @@
       <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
 
-  <!-- This allows you to override the default style with a CSS @style attribute, but all it does is convert the colons to equals signs (so 'height: 3em' becomes 'height=3em'). If you're trying to do anything fancier it won't work. TODO replace with regex or something to sanitize input.
-  -->
   <xsl:template match="xhtml:img[@class='inline']">
+    <xsl:text>\inlinegraphics{</xsl:text>
+    <xsl:value-of select="aac:media-filename(@src)" />
+    <xsl:text>}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:inlineMusic">
+    <xsl:variable name="scale-factor">
+      <xsl:choose>
+        <xsl:when test="@type='staff' or @type='rhythm-threelines'">3</xsl:when>
+        <xsl:when test="@type='rhythm-lyrics' or @type='rhythm-twolines'">2</xsl:when>
+        <xsl:otherwise>1</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:text>\inlinegraphics</xsl:text>
-    <xsl:if test="@style">
+    <xsl:if test="not($scale-factor=1)">
       <xsl:text>[</xsl:text>
-      <xsl:value-of select="replace(@style, ': ', '=')" />
+      <xsl:value-of select="$scale-factor" />
       <xsl:text>]</xsl:text>
     </xsl:if>
     <xsl:text>{</xsl:text>
     <xsl:value-of select="aac:media-filename(@src)" />
-      <xsl:text>}&#xA;</xsl:text>
+    <xsl:text>}</xsl:text>
   </xsl:template>
 
 
@@ -322,7 +333,7 @@
   </xsl:template>
 
   <!-- you can use @data-cols="lll" (for example) to specify TeX tabular columns or it will automatically create a column specification from the table header row (all left aligned) -->
-  <xsl:template match="xhtml:table">
+  <xsl:template match="xhtml:table[not(@class='simple' or @class='pitch_matrix')]">
 
     <xsl:variable name="colspec">
       <xsl:text>{</xsl:text>
@@ -395,10 +406,19 @@
 
   <xsl:template match="xhtml:td | xhtml:th">
     <xsl:apply-templates />
-    <xsl:if test="not(position()=last())">
+    <xsl:if test="following-sibling::*">
       <xsl:text> &amp; </xsl:text>
     </xsl:if>
   </xsl:template>
+
+  <xsl:template match="xhtml:table[@class='simple']">
+    <xsl:text>\begin{tabular}[t]{</xsl:text>
+    <xsl:value-of select="@data-cols" />
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>\end{tabular}&#xA;</xsl:text>
+  </xsl:template>
+
 
   <xsl:template match="xhtml:table[@class='pitch_matrix']">
     <xsl:text>\begin{table}&#xA;</xsl:text>

@@ -1,0 +1,12 @@
+\version "2.22"
+\include "music-fragment.ly"
+{
+    \clef "treble_8"
+    \time 9/4
+    d'4 d'4. b8 e'4 e'16[\NB e'16 d'8]~ d'16[ d'16 b16. a32] b8 r8\endNB g4 g4
+}
+\addlyrics {
+    Yo: -- ho: -- oh yo: -- ha -- wi -- ya:h 
+    we -- nö’ -- o -- yeh
+    he: -- ya:
+}

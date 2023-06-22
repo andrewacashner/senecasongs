@@ -107,9 +107,11 @@ Seneca Songs book and website page PDFs]
 \setlength{\cellspacetoplimit}{1ex}
 \setlength{\cellspacebottomlimit}{1ex}
 
+\newlength{\inlineMusicHeight}
+\setlength{\inlineMusicHeight}{1em}
 % valign from adjustbox centers image vertically
-\NewDocumentCommand{\inlinegraphics}{ O{height=3em} m }{%
-    \strut\adjincludegraphics[#1, valign=m]{#2}%
+\NewDocumentCommand{\inlinegraphics}{ O{} m }{%
+    \strut\adjincludegraphics[height=#1\inlineMusicHeight, valign=m]{#2}%
 }
 
 \NewDocumentCommand{\tablesize}{}{\small}
