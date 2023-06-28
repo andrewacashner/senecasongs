@@ -77,6 +77,13 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: "Linux Libertine O";
+  src: url("fonts/LinLibertine_R.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
   height: 100%;
   width: 100%;
@@ -326,6 +333,7 @@ table {
   font-size: 80%;
   background-color: LightGray;
   clear: both;
+  border-collapse: collapse;
 }
 
 table table.simple {
@@ -339,6 +347,12 @@ table table.simple {
 
 table td {
   vertical-align: baseline;
+}
+
+table tr.line-above td, 
+table tr.line-above th {
+  padding-top: 1ex;
+  border-top: 1px solid black;
 }
 
 table.inline {
@@ -460,6 +474,11 @@ blockquote.dialogue p {
 
 blockquote.dialogue span.speaker {
   text-transform: uppercase;
+}
+
+/* Special characters */
+span.ipa {
+  font-family: "Linux Libertine O", Georgia, serif;
 }
 
 /* Wide screen */
