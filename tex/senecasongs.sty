@@ -2,12 +2,22 @@
 \ProvidesPackage{tex/senecasongs}[2022/07/29 Style for
 Seneca Songs book and website page PDFs]
 
-\RequirePackage[T1]{fontenc}
+\RequirePackage{fontspec}
+\setmainfont{Crimson Pro}
+\setsansfont{VenturisSansADF}[
+    Path=/home/andrewacashner/.local/share/fonts/VenturisSansADF/,
+    Extension=.otf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+]
+\setmonofont{Latin Modern Mono}
 
-\RequirePackage{venturis}
-\NewDocumentCommand{\VenturisGoth}{}{\fontfamily{yvod}\selectfont}
+\newfontfamily{\symbolfont}{Linux Libertine O}
+\newfontfamily{\titlingfont}{Venturis ADF Goth Titling}
 
-\RequirePackage{crimson}
+\NewDocumentCommand{\ipa}{ m }{{\symbolfont #1}}
 
 \RequirePackage{sectsty}
 \allsectionsfont{\sffamily}

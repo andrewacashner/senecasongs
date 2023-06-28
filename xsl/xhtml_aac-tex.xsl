@@ -591,6 +591,13 @@
   <xsl:template match="aac:usd">
     <xsl:text>\$</xsl:text>
   </xsl:template>
+
+  <xsl:template match="xhtml:span[@class='ipa']">
+    <xsl:text>\ipa{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+
 </xsl:stylesheet>
 
 

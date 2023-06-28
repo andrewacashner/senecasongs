@@ -5,8 +5,8 @@
 \RequirePackage{tex/senecasongs}
 
 \RequirePackage{sectsty}
-\partfont{\VenturisGoth}
-\chapterfont{\VenturisGoth}
+\partfont{\titlingfont}
+\chapterfont{\titlingfont}
 
 \RenewDocumentCommand{\maketitle}{}{
     \begin{titlepage}
