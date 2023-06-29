@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{tex/senecasongs}
+\usepackage{lipsum}
+
+\NewDocumentCommand{\sample}{}{%
+    According to Bill Crouse, Sr., the Earth Songs of the \emph{Onöndowa’ga:’} (Seneca) Nation include
+    dances like \emph{Gayó:waga:yöh} and \emph{Ga’da:šo:t}.
+    A\fl, A\sh, B\na--\pitch{C}[\sh]{4}.
+    Old Moccasin Dance begins \quoted{Wehanayögeh}.
+}
+
+\NewDocumentCommand{\testpage}{ m }{%
+    \setmainfont[Scale=MatchLowercase]{#1}
+    \section{#1}
+    \lipsum[1-3]
+    \newpage
+}
+
+\NewDocumentCommand{\testpar}{ m }{%
+    \setmainfont[Scale=MatchLowercase]{#1}
+    \textbf{#1}
+
+    \noindent\sample\par\bigskip
+}
+
+
+\begin{document}
+
+\testpage{EB Garamond}
+\testpar{EB Garamond Medium}
+\testpage{ETbb}
+\testpage{Crimson}
+\testpage{Crimson Pro}
+\testpage{Sabon LT Pro}
+\testpage{Adobe Jenson Pro}
+\testpage{Plantin MT Pro}
+\testpage{Baskervaldx}
+\testpage{Linux Libertine O}
+\testpage{Adobe Caslon Pro}
+
+\clearpage
+\testpar{EB Garamond}
+\testpar{EB Garamond Medium}
+\testpar{ETbb}
+\testpar{Crimson}
+\testpar{Crimson Pro}
+\testpar{Sabon LT Pro}
+\testpar{Adobe Jenson Pro}
+\testpar{Plantin MT Pro}
+\testpar{Baskervaldx}
+\testpar{Linux Libertine O}
+\testpar{Adobe Caslon Pro}
+
+\end{document}

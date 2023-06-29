@@ -3,16 +3,12 @@
 Seneca Songs book and website page PDFs]
 
 \RequirePackage{fontspec}
-\setmainfont{Crimson Pro}
-\setsansfont{VenturisSansADF}[
-    Path=/home/andrewacashner/.local/share/fonts/VenturisSansADF/,
-    Extension=.otf,
-    UprightFont=*-Regular,
-    BoldFont=*-Bold,
-    ItalicFont=*-Italic,
-    BoldItalicFont=*-BoldItalic
-]
-\setmonofont{Latin Modern Mono}
+
+\setmainfont{EB Garamond}
+
+\setsansfont[Scale=MatchLowercase]{VenturisSans ADF}
+
+\setmonofont[Scale=MatchLowercase]{Latin Modern Mono}
 
 \newfontfamily{\symbolfont}{Linux Libertine O}
 \newfontfamily{\titlingfont}{Venturis ADF Goth Titling}
@@ -23,7 +19,7 @@ Seneca Songs book and website page PDFs]
 \allsectionsfont{\sffamily}
 
 \RequirePackage{microtype}
-\linespread{1.08}
+%\linespread{1.1}
 \AtBeginEnvironment{table}{\linespread{1}}
 
 \RequirePackage[
@@ -36,7 +32,7 @@ Seneca Songs book and website page PDFs]
 
 \RequirePackage{semantic-markup}
 \RequirePackage{musicography}
-
+\RequirePackage{octave}
 
 \RequirePackage{enumitem}
 \setlist{noitemsep}

@@ -3,7 +3,7 @@
 %% just use -dcrop
 % #(ly:set-option 'crop #t)
 
-\include "font-crimson.ly"
+\include "font.ly"
 \include "analysis-brackets.ly"
 
 \header { 

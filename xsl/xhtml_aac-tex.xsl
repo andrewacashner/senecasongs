@@ -341,11 +341,16 @@
         <xsl:when test="@data-cols">
           <xsl:value-of select="@data-cols" />
         </xsl:when>
-        <xsl:otherwise>
-          <xsl:for-each select="xhtml:thead/xhtml:tr[1]/xhtml:th">
+        <xsl:when test="xhtml:thead/xhtml:tr/xhtml:th[@scope='col']">
+          <xsl:for-each select="xhtml:thead/xhtml:tr[1]/xhtml:th[@scope='col']">
             <xsl:text>l</xsl:text>
           </xsl:for-each>
-        </xsl:otherwise>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:for-each select="xhtml:tbody/xhtml:tr[1]/xhtml:td | xhtml:tbody/xhtml:tr[1]/xhtml:th">
+            <xsl:text>l</xsl:text>
+          </xsl:for-each>
+      </xsl:otherwise>
       </xsl:choose>
       <xsl:text>}</xsl:text>
     </xsl:variable>
@@ -531,11 +536,16 @@
   </xsl:template>
 
   <xsl:template match="aac:pitch">
+    <xsl:text>\pitch{</xsl:text>
     <xsl:value-of select="@pname" />
-    <xsl:call-template name="accid">
-      <xsl:with-param name="accid" select="@accid" />
-    </xsl:call-template>
-    <xsl:text>\textsubscript{</xsl:text>
+    <xsl:text>}</xsl:text>
+    <xsl:if test="@accid">
+      <xsl:text>[</xsl:text>
+      <xsl:call-template name="accid">
+        <xsl:with-param name="accid" select="@accid" />
+      </xsl:call-template>
+    </xsl:if>
+    <xsl:text>{</xsl:text>
     <xsl:value-of select="@oct" />
     <xsl:text>} </xsl:text>
   </xsl:template>

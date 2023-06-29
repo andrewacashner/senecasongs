@@ -12,10 +12,10 @@
     \begin{titlepage}
         \begin{center}
             \vspace*{1em}
-            {\huge \MakeUppercase{\@aacMainTitle}}
+            {\titlingfont \Huge \MakeUppercase{\@aacMainTitle}}
 
             \vspace{2em}
-            {\huge \emph{\@aacSubTitle}}
+            {\huge \@aacSubTitle}
 
             \vspace*{4em}
             {\large \@aacAuthor}

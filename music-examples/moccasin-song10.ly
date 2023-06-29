@@ -1,5 +1,5 @@
 \version "2.22"
-\include "font-crimson.ly"
+\include "font.ly"
 \include "analysis-brackets.ly"
 
 Song = {

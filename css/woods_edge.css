@@ -1,5 +1,5 @@
 :root { /* Global variables */
-  --serif-font: 'Crimson Pro', Georgia, serif;
+  --serif-font: "EB Garamond", Georgia, serif;
   --sans-font: 'VenturisSans ADF', Verdana, sans-serif;
   --title-font: 'Venturis ADF Goth Titling', Verdana, sans-serif; 
   --textwidth-default: 90vw;
@@ -66,15 +66,29 @@
 }
 
 @font-face {
-  font-family: "Crimson Pro";
-  src: url("fonts/CrimsonPro-VariableFont_wght.ttf");
+  font-family: "EB Garamond";
+  src: url("fonts/EBGaramond-Medium.otf");
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Crimson Pro";
-  src: url("fonts/CrimsonPro-Italic-VariableFont_wght.ttf");
+  font-family: "EB Garamond";
+  src: url("fonts/EBGaramond-MediumItalic.otf");
   font-style: italic;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("fonts/EBGaramond-Bold.otf");
+  font-style: normal;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("fonts/EBGaramond-BoldItalic.otf");
+  font-style: italic;
+  font-weight: bold;
 }
 
 @font-face {

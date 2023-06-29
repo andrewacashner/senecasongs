@@ -3,7 +3,7 @@
 in set are included, from sparse-matrix input notation]
 
 \RequirePackage{listofitems}
-\RequirePackage{MnSymbol} % for \blacksquare
+\NewDocumentCommand{\blacksquare}{}{{\symbolfont ■}} % U+25A0
 
 % #1 Comma-separated list of pitches corresponding to the pnums 0-11
 \NewDocumentEnvironment{pitchMatrix}{ m }{%
@@ -37,7 +37,7 @@ in set are included, from sparse-matrix input notation]
     \tl_use:N \l__aac_tabrow_tl
 }
 
-\cs_new:Nn \aac_matrix_true_sign: {$\blacksquare$\ }
+\cs_new:Nn \aac_matrix_true_sign: {\blacksquare\ }
 
 \cs_new:Nn \aac_pcset:nn
 {
