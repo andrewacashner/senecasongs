@@ -393,6 +393,9 @@ table th, table td {
   padding-bottom: 1ex;
 }
 
+table.pitch_matrix {
+  border-collapse: separate;
+}
 table.pitch_matrix caption {
   font-style: italic;
 }
@@ -534,7 +537,7 @@ span.ipa {
   section.toc {
     width: 30em;
   }
-  section {
+  article > section {
    clear: right;
   }
 }

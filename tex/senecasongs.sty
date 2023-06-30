@@ -18,19 +18,19 @@ Seneca Songs book and website page PDFs]
 \RequirePackage{sectsty}
 \allsectionsfont{\sffamily}
 
-\RequirePackage{microtype}
-\linespread{1.16} % was 1.08
-\frenchspacing
-
-\AtBeginEnvironment{table}{\linespread{1}}
-
 \RequirePackage[
     paperheight=8.5in, 
     paperwidth=5.5in,
     vmargin=1in
 ]{geometry}
 
+\RequirePackage{microtype}
+% \frenchspacing
 \raggedbottom
+\sloppy
+
+\linespread{1.16} % was 1.08
+\AtBeginEnvironment{table}{\linespread{1}}
 
 \RequirePackage{semantic-markup}
 \RequirePackage{musicography}
