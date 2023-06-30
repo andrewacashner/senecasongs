@@ -198,12 +198,12 @@
 
   <!-- CITATIONS -->
   <xsl:template match="aac:citation">
-    <xsl:text>\autocite</xsl:text>
+    <xsl:text> \autocite</xsl:text>
     <xsl:call-template name="in-text-citation" />
   </xsl:template>
   
   <xsl:template match="aac:citationList">
-    <xsl:text>\autocites</xsl:text>
+    <xsl:text> \autocites</xsl:text>
     <xsl:for-each select="aac:citation">
       <xsl:call-template name="in-text-citation" />
     </xsl:for-each>
@@ -295,9 +295,16 @@
 
   <!-- remove file extension for graphics files so web and pdf version can use different file types (e.g., svg for web and png or pdf for print) -->
   <xsl:template match="xhtml:img[not(@class='cover') and not(@class='inline')]">
-    <xsl:text>\includegraphics[width=\textwidth]{</xsl:text>
+    <xsl:choose>
+      <xsl:when test="@data-width='narrow'">
+        <xsl:text>\includegraphics[width=\NarrowImageWidth]{</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>\includegraphics[width=\textwidth]{</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:value-of select="aac:media-filename(@src)" />
-      <xsl:text>}&#xA;</xsl:text>
+    <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
 
   <xsl:template match="xhtml:img[@class='inline']">
@@ -477,7 +484,7 @@
     <xsl:text>}</xsl:text>
   </xsl:template>
 
-  <xsl:template match="aac:ref[@type='figure']">
+  <xsl:template match="aac:ref[@type='image']">
     <xsl:choose>
       <xsl:when test="string()">
         <xsl:apply-templates />
@@ -488,7 +495,7 @@
     </xsl:choose>
     <xsl:text> \ref{</xsl:text>
     <xsl:value-of select="substring(@href, 2)" />
-    <xsl:text>} </xsl:text>
+    <xsl:text>}</xsl:text>
   </xsl:template>
 
   <xsl:template match="aac:ref[@type='music']">

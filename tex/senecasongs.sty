@@ -19,7 +19,9 @@ Seneca Songs book and website page PDFs]
 \allsectionsfont{\sffamily}
 
 \RequirePackage{microtype}
-%\linespread{1.1}
+\linespread{1.16} % was 1.08
+\frenchspacing
+
 \AtBeginEnvironment{table}{\linespread{1}}
 
 \RequirePackage[
@@ -119,6 +121,9 @@ Seneca Songs book and website page PDFs]
 \NewDocumentCommand{\inlinegraphics}{ O{} m }{%
     \strut\adjincludegraphics[height=#1\inlineMusicHeight, valign=m]{#2}%
 }
+
+\newlength{\NarrowImageWidth}
+\setlength{\NarrowImageWidth}{0.3\textwidth}
 
 \NewDocumentCommand{\tablesize}{}{\small}
 \AtBeginEnvironment{tabular}{\tablesize}

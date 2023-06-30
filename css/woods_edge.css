@@ -248,6 +248,10 @@ figure img {
   width: 100%;
 }
 
+img[data-width='narrow'] {
+  width: 30%;
+}
+
 img.inline {
   height: var(--inline-music-height);
   vertical-align: middle;
