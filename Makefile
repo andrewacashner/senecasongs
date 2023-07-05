@@ -1,8 +1,8 @@
 dirs		= aux build build/css build/css/fonts build/media
 
-xhtml_in	= $(wildcard include/*.xhtml)
+xhtml_in	= $(wildcard src/*.xhtml)
 html_out	= $(addprefix build/,$(notdir $(xhtml_in:%.xhtml=%.html)))
-xhtml_include	= $(wildcard include/articles/*.xhtml include/tables/*.xhtml)
+xhtml_include	= $(wildcard src/articles/*.xhtml src/tables/*.xhtml)
 
 bibtex		= $(wildcard *.bib)
 bibxml		= $(addprefix aux/,$(bibtex:%.bib=%.bltxml))
@@ -42,7 +42,7 @@ ly : $(music_out)
 build/% : %
 	cp -ur $< $@
 
-build/%.html : include/%.xhtml $(xhtml_include) $(bibxml) $(xsl) $(music_svg_out) $(dirs)
+build/%.html : src/%.xhtml $(xhtml_include) $(bibxml) $(xsl) $(music_svg_out) $(dirs)
 	$(saxon) -xi:on -xsl:xsl/xhtml_aac-html.xsl -s:$< -o:$@
 
 aux/%.bltxml : %.bib | $(dirs)
@@ -57,7 +57,7 @@ build/%.pdf : aux/%.pdf
 aux/%.pdf : aux/%.tex $(bibtex) $(tex_lib) $(music_pdf_out)
 	latexmk -outdir=aux -pdfxe $<
 
-aux/%.tex : include/%.xhtml $(xhtml_include) $(xsl) | $(dirs)
+aux/%.tex : src/%.xhtml $(xhtml_include) $(xsl) | $(dirs)
 	$(saxon) -xi:on -xsl:xsl/xhtml_aac-tex.xsl -s:$< -o:$@
 
 build/media/%.svg : aux/%.cropped.svg
