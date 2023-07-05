@@ -14,7 +14,7 @@ pdf_out		= $(addprefix build/,$(notdir $(latex:%.tex=%.pdf)))
 tex_lib		= $(wildcard lib/tex/*)
 
 media_in	= $(wildcard media/*)
-css_in		= $(wildcard lib/css/*)
+css_in		= $(wildcard lib/css/* lib/css/fonts/*)
 html_deps_out	= $(addprefix build/,$(media_in) $(css_in:lib/%=%))
 
 music_in	= $(wildcard src/music-examples/*.ly)
