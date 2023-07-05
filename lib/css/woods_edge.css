@@ -436,6 +436,7 @@ footer {
   font-size: 80%;
   margin-top: 3em;
   margin-bottom: 1em;
+  clear: both;
 }
 
 footer p {
