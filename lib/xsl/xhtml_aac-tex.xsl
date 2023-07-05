@@ -24,7 +24,7 @@
   <xsl:template match="comment()" priority="1" />
 
   <xsl:template match="/">
-    <xsl:text>\documentclass{tex/senecasongs}&#xA;</xsl:text>
+    <xsl:text>\documentclass{lib/tex/senecasongs}&#xA;</xsl:text>
     
     <xsl:text>\addbibresource{</xsl:text>
     <xsl:value-of select="//xhtml:head/xhtml:meta[@name='bibliography']/@content" />

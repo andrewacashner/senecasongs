@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{tex/senecasongs}[2022/05/10 Seneca Songs book]
+\ProvidesClass{lib/tex/senecasongs}[2022/05/10 Seneca Songs book]
 
 \LoadClass{book}
-\RequirePackage{tex/senecasongs}
+\RequirePackage{lib/tex/senecasongs}
 
 \RequirePackage{sectsty}
 \partfont{\titlingfont}

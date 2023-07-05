@@ -11,21 +11,27 @@ biber_log	= aux/biber.blg
 # For now, only making PDF of whole book, not indiv. pages
 latex		= aux/book.tex
 pdf_out		= $(addprefix build/,$(notdir $(latex:%.tex=%.pdf)))
-tex_lib		= $(wildcard tex/*)
+tex_lib		= $(wildcard lib/tex/*)
 
-html_deps_in	= $(wildcard css/* css/fonts/* media/*)
-html_deps_out	= $(addprefix build/,$(html_deps_in))
+media_in	= $(wildcard media/*)
+css_in		= $(wildcard lib/css/*)
+html_deps_out	= $(addprefix build/,$(media_in) $(css_in:lib/%=%))
 
-music_in	= $(wildcard music-examples/*.ly)
+music_in	= $(wildcard src/music-examples/*.ly)
+ly_lib		= $(wildcard lib/ly/*.ly)
 music_svg_out	= $(addprefix build/media/,$(notdir $(music_in:%.ly=%.svg)))
 music_pdf_out   = $(addprefix aux/,$(notdir $(music_in:%.ly=%.pdf)))
 music_out 	= $(music_svg_out) $(music_pdf_out)
 
-xsl		= $(wildcard xsl/*.xsl)
+xsl		= $(wildcard lib/xsl/*.xsl)
 
 saxon 		= $(HOME)/bin/saxon
 
-lilypond	= lilypond -I $(PWD)/ly -dcrop -o aux/
+lilypond	= lilypond -I $(PWD)/lib/ly -dcrop -o aux/
+
+define copy
+cp -ur $< $@
+endef
 
 .SECONDARY : $(bibxml) $(latex) $(music_svg_out) $(music_pdf_out)
 
@@ -39,11 +45,15 @@ pdf : $(pdf_out)
 
 ly : $(music_out)
 
-build/% : %
-	cp -ur $< $@
+
+build/% : % 
+	$(copy)
+
+build/% : lib/% 
+	$(copy)
 
 build/%.html : src/%.xhtml $(xhtml_include) $(bibxml) $(xsl) $(music_svg_out) $(dirs)
-	$(saxon) -xi:on -xsl:xsl/xhtml_aac-html.xsl -s:$< -o:$@
+	$(saxon) -xi:on -xsl:lib/xsl/xhtml_aac-html.xsl -s:$< -o:$@
 
 aux/%.bltxml : %.bib | $(dirs)
 	biber --tool --quiet --output-format=biblatexml \
@@ -52,24 +62,24 @@ aux/%.bltxml : %.bib | $(dirs)
 		-O $@ $<
 
 build/%.pdf : aux/%.pdf
-	cp -u $< $@
+	$(copy)
 
 aux/%.pdf : aux/%.tex $(bibtex) $(tex_lib) $(music_pdf_out)
 	latexmk -outdir=aux -pdfxe $<
 
 aux/%.tex : src/%.xhtml $(xhtml_include) $(xsl) | $(dirs)
-	$(saxon) -xi:on -xsl:xsl/xhtml_aac-tex.xsl -s:$< -o:$@
+	$(saxon) -xi:on -xsl:lib/xsl/xhtml_aac-tex.xsl -s:$< -o:$@
 
-build/media/%.svg : aux/%.cropped.svg
-	cp -u $< $@
+build/media/%.svg : aux/%.cropped.svg 
+	$(copy)
 
 aux/%.pdf : aux/%.cropped.pdf
 	mv $< $@
 
-aux/%.cropped.svg : music-examples/%.ly | $(dirs)
+aux/%.cropped.svg : src/music-examples/%.ly $(ly_lib) | $(dirs)
 	$(lilypond) --svg $<
 
-aux/%.cropped.pdf : music-examples/%.ly | $(dirs)
+aux/%.cropped.pdf : src/music-examples/%.ly | $(dirs)
 	$(lilypond) $<
 
 $(dirs) : 
