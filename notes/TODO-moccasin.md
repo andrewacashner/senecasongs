@@ -11,6 +11,10 @@
 - significance of "old" in the name?
 - is there anything about the dance that is especially related to moccasins?
 - video comparing Charleston and Gayowagayoh steps
+- more info on Nichols recording, including where and tribal affiliation
+- Bill's response to Nichols recording?
+- Bill's thoughts on "Kayuwa" recording
+- Bill on "dance around the fire"?
 
 ## Areas to be explored in other parts of the project
 

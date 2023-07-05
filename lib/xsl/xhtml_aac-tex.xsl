@@ -269,7 +269,7 @@
     <xsl:text>}&#xA;</xsl:text>
     <xsl:text>\end{example}&#xA;</xsl:text>
   </xsl:template>
-
+  
   <xsl:template match="xhtml:figure[@class='diagram']">
     <xsl:text>\begin{diagram}&#xA;</xsl:text>
     <xsl:apply-templates />
@@ -412,6 +412,9 @@
   </xsl:template>
 
   <xsl:template match="xhtml:tr">
+    <xsl:if test="@class='line-above'">
+      <xsl:text>\midrule </xsl:text>
+    </xsl:if>
     <xsl:apply-templates />
     <xsl:text> \\&#xA;</xsl:text>
   </xsl:template>
@@ -422,6 +425,16 @@
       <xsl:text> &amp; </xsl:text>
     </xsl:if>
   </xsl:template>
+
+  <xsl:template match="xhtml:th[@scope='row']">
+    <xsl:text>\strong{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>} </xsl:text>
+    <xsl:if test="following-sibling::*">
+      <xsl:text>&amp; </xsl:text>
+    </xsl:if>
+  </xsl:template>
+
 
   <xsl:template match="xhtml:table[@class='simple']">
     <xsl:text>\begin{tabular}[t]{</xsl:text>
