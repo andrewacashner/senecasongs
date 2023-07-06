@@ -337,6 +337,30 @@
     <xsl:text>}</xsl:text>
   </xsl:template>
 
+  <xsl:template match="xhtml:figure[@class='cover']">
+    <xsl:text>\begin{coverImage}&#xA;</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>\end{coverImage}&#xA;&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='cover']/xhtml:img">
+    <xsl:text>\includeCoverImage{</xsl:text>
+    <xsl:value-of select="@src" />
+    <xsl:text>}&#xA;&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='cover']/xhtml:figCaption">
+    <xsl:text>\coverImageCaption{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}&#xA;</xsl:text>
+  </xsl:template>
+
+  <!-- no indent after chapter cover image -->
+  <xsl:template match="xhtml:article[preceding-sibling::xhtml:figure[@class='cover']]/xhtml:section[1]/xhtml:p[1]">
+    <xsl:text>\noindent </xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>&#xA;&#xA;</xsl:text>
+  </xsl:template>
 
   <xsl:template match="xhtml:caption | xhtml:figCaption">
     <xsl:text>\caption{</xsl:text>

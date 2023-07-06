@@ -4,7 +4,7 @@ Seneca Songs book and website page PDFs]
 
 \RequirePackage{fontspec}
 
-\setmainfont{EB Garamond}
+\setmainfont{EB Garamond}[Numbers=OldStyle]
 
 \setsansfont[Scale=MatchLowercase]{VenturisSans ADF}
 
@@ -134,6 +134,22 @@ Seneca Songs book and website page PDFs]
 \NewDocumentEnvironment{figureGroup}{}
 {\newpage}
 {}
+
+\NewDocumentEnvironment{coverImage}{}
+{\begin{center}}
+{\end{center}}
+
+\NewDocumentCommand{\includeCoverImage}{ m }{%
+    \includegraphics[
+        width=\textwidth, 
+        height=0.4\textheight, 
+        keepaspectratio
+    ]{#1}%
+}
+
+\NewDocumentCommand{\coverImageCaption}{ m }{%
+    {\small\emph{#1}}%
+}
 
 \RequirePackage{hyperref}
 

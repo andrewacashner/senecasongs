@@ -4,6 +4,7 @@
 \LoadClass{book}
 \RequirePackage{lib/tex/senecasongs}
 
+
 \RequirePackage{sectsty}
 \partfont{\titlingfont}
 \chapterfont{\titlingfont}
@@ -12,10 +13,10 @@
     \begin{titlepage}
         \begin{center}
             \vspace*{1em}
-            {\titlingfont \Huge \MakeUppercase{\@aacMainTitle}}
+            {\LARGE \MakeUppercase{\@aacMainTitle}}
 
             \vspace{2em}
-            {\huge \@aacSubTitle}
+            {\Large \@aacSubTitle}
 
             \vspace*{4em}
             {\large \@aacAuthor}
@@ -37,6 +38,17 @@
     \vspace*{\fill}
     \clearpage
 }
+
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\chaptermark}[1]{%
+    \markboth{\emph{#1}}{}%
+}
+\fancyhf{}
+\fancyhead[LE]{\textsc{\@aacMainTitle}}
+\fancyhead[RO]{\leftmark}
+\fancyfoot[C]{\thepage}
 
 \endinput
 

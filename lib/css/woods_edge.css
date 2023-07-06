@@ -1,3 +1,5 @@
+@import "woods_edge-fonts.css";
+
 :root { /* Global variables */
   --serif-font: "EB Garamond", Georgia, serif;
   --sans-font: 'VenturisSans ADF', Verdana, sans-serif;
@@ -11,92 +13,6 @@
   --inline-music-height: 1.5em;
 }
 
-@font-face {
-  font-family: "Venturis ADF Goth Titling";
-  src: url("fonts/VenturisADFGothTitling.otf");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Venturis ADF Goth Titling";
-  src: url("fonts/VenturisADFGothTitling.otf");
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Venturis ADF Goth Titling";
-  src: url("fonts/VenturisADFGothTitling.otf");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Venturis ADF Goth Titling";
-  src: url("fonts/VenturisADFGothTitling.otf");
-  font-weight: bold;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "VenturisSans ADF";
-  src: url("fonts/VenturisSansADF-Regular.otf");
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: "VenturisSans ADF";
-  src: url("fonts/VenturisSansADF-Bold.otf");
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: "VenturisSans ADF";
-  src: url("fonts/VenturisSansADF-Italic.otf");
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "VenturisSans ADF";
-  src: url("fonts/VenturisSansADF-BoldItalic.otf");
-  font-weight: bold;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "EB Garamond";
-  src: url("fonts/EBGaramond-Medium.otf");
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "EB Garamond";
-  src: url("fonts/EBGaramond-MediumItalic.otf");
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "EB Garamond";
-  src: url("fonts/EBGaramond-Bold.otf");
-  font-style: normal;
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: "EB Garamond";
-  src: url("fonts/EBGaramond-BoldItalic.otf");
-  font-style: italic;
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: "Linux Libertine O";
-  src: url("fonts/LinLibertine_R.otf");
-  font-weight: normal;
-  font-style: normal;
-}
 
 html {
   height: 100%;
@@ -176,7 +92,6 @@ header nav ul li {
 
 h1, h2, h3 {
   font-family: var(--title-font);
-  
 }
 
 h1 {
