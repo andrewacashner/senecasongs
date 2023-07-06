@@ -638,7 +638,10 @@
   <!-- Insert Author-Date text as link to reference-list entry -->
   <xsl:template name="in-text-citation">
     <xsl:variable name="ref" select="$references/bltx:entries/bltx:entry[@id=current()/@key]" />
-
+    <xsl:if test="@pre">
+      <xsl:value-of select="@pre" />
+      <xsl:text> </xsl:text>
+    </xsl:if>
     <a class="citation" href="#{@key}">
       <xsl:choose>
         <xsl:when test="$ref">
@@ -677,7 +680,7 @@
     <section class="toc">
       <h1>Contents</h1>
       <ul>
-        <xsl:apply-templates select="//xhtml:section" mode="toc" />
+        <xsl:apply-templates select="//xhtml:section[not(@class='toc')]" mode="toc" />
         <xsl:apply-templates select="../aac:bibliography" mode="toc" />
       </ul>
     </section>
@@ -793,7 +796,7 @@
   </xsl:template>
 
   <!-- Move trailing punctuation inside quotation marks -->
-  <xsl:template match="xhtml:q[following-sibling::text()[1][starts-with(., ',') or starts-with(., '.')]]">
+  <xsl:template match="xhtml:q[following-sibling::node()[1][self::text()[starts-with(., ',') or starts-with(., '.')]]]">
     <q>
       <xsl:apply-templates />
       <xsl:value-of select="substring(following-sibling::text()[1], 1, 1)" />

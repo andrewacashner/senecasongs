@@ -210,6 +210,11 @@
   </xsl:template>
 
   <xsl:template name="in-text-citation">
+    <xsl:if test="@pre">
+      <xsl:text>[</xsl:text>
+      <xsl:value-of select="@pre" />
+      <xsl:text>]</xsl:text>
+    </xsl:if>
     <xsl:if test="@pages"> <!-- TODO what about node text -->
       <xsl:text>[</xsl:text>
       <xsl:value-of select="concat(@pages, string())" />
@@ -522,7 +527,7 @@
     </xsl:choose>
     <xsl:text> \ref{</xsl:text>
     <xsl:value-of select="substring(@href, 2)" />
-    <xsl:text>} </xsl:text>
+    <xsl:text>}</xsl:text>
   </xsl:template>
 
   <xsl:template match="aac:ref[@type='diagram']">
@@ -627,6 +632,38 @@
     <xsl:apply-templates />
     <xsl:text>}</xsl:text>
   </xsl:template>
+
+    <xsl:template match="xhtml:div[@class='figure-group']">
+    <xsl:text>\begin{figureGroup}</xsl:text>
+    <xsl:apply-templates select="xhtml:figure[1]/xhtml:figCaption" mode="figuregroup" />
+    <xsl:apply-templates select="xhtml:figure" mode="figuregroup"/>
+    <xsl:text>\end{figureGroup}</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure[@class='image']/xhtml:figCaption" mode="figuregroup">
+    <xsl:text>\captionof{figure}{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}</xsl:text>
+    <xsl:text>\label{</xsl:text>
+    <xsl:value-of select="../@id" />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+
+
+  <xsl:template match="xhtml:figure[@class='music']/xhtml:figCaption" mode="figuregroup">
+    <xsl:text>\captionof{example}{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}</xsl:text>
+    <xsl:text>\label{</xsl:text>
+    <xsl:value-of select="../@id" />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:figure" mode="figuregroup">
+    <xsl:apply-templates select="xhtml:img" />
+    <xsl:text>&#xA;</xsl:text>
+  </xsl:template>
+
 
 </xsl:stylesheet>
 

@@ -92,14 +92,14 @@ Seneca Songs book and website page PDFs]
     name =      {Example},
     listname =  {List of Music Examples},
     fileext =   {ex},
-    placement = {t!}
+    placement = {t}
 ]{example}
 
 \DeclareFloatingEnvironment[
     name =      {Diagram},
     listname =  {List of Diagrams},
     fileext =   {dia},
-    placement = {t!}
+    placement = {t}
 ]{diagram}
 
 \RequirePackage{floatrow}
@@ -128,6 +128,12 @@ Seneca Songs book and website page PDFs]
 \NewDocumentCommand{\tablesize}{}{\small}
 \AtBeginEnvironment{tabular}{\tablesize}
 \AtBeginEnvironment{tabularx}{\tablesize}
+
+\RequirePackage{caption}
+
+\NewDocumentEnvironment{figureGroup}{}
+{\newpage}
+{}
 
 \RequirePackage{hyperref}
 
