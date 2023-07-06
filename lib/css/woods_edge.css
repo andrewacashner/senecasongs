@@ -520,6 +520,7 @@ span.ipa {
   figure, table {
     float: right;
   }
+
   figure, figure iframe, figure video, figure img {
     max-width: 45vw;
   }
@@ -538,10 +539,14 @@ span.ipa {
   section.toc {
     width: 30em;
   }
+/* 
   article > section {
    clear: right;
   }
+  */
+  section[id="bibliography"] { 
+    clear: right; 
+  }
 }
-
 
 

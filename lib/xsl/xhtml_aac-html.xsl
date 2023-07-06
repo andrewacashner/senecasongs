@@ -467,8 +467,11 @@
       <xsl:text> </xsl:text>
       <xsl:value-of select="bltx:date" />
       <xsl:text>. </xsl:text>
-      <q><xsl:apply-templates select="bltx:title" /></q>
-      <xsl:text>. </xsl:text>
+      <q>
+        <xsl:apply-templates select="bltx:title" />
+        <xsl:text>.</xsl:text>
+      </q>
+      <xsl:text> </xsl:text>
       <cite><xsl:apply-templates select="bltx:journaltitle" /></cite>
       <xsl:if test="bltx:volume">
         <xsl:text> </xsl:text>
@@ -503,8 +506,11 @@
       <xsl:text> </xsl:text>
       <xsl:value-of select="bltx:date" />
       <xsl:text>. </xsl:text>
-      <q><xsl:apply-templates select="bltx:title" /></q>
-      <xsl:text>. In </xsl:text>
+      <q>
+        <xsl:apply-templates select="bltx:title" />
+        <xsl:text>.</xsl:text>
+      </q>
+      <xsl:text> In </xsl:text>
       <cite><xsl:apply-templates select="bltx:booktitle" /></cite>
       <xsl:if test="bltx:names[@type='editor']">
         <xsl:text>, edited by </xsl:text>
@@ -781,6 +787,18 @@
         <xsl:value-of select="$scale-factor" />
       </xsl:attribute>
     </img>
+  </xsl:template>
+
+  <!-- Move trailing punctuation inside quotation marks -->
+  <xsl:template match="xhtml:q[following-sibling::text()[1][starts-with(., ',') or starts-with(., '.')]]">
+    <q>
+      <xsl:apply-templates />
+      <xsl:value-of select="substring(following-sibling::text()[1], 1, 1)" />
+    </q>
+  </xsl:template>
+
+  <xsl:template match="text()[preceding-sibling::node()[1][self::xhtml:q] and (starts-with(., ',') or starts-with(., '.'))]">
+    <xsl:value-of select="substring(., 2)" />
   </xsl:template>
 
 </xsl:stylesheet>
