@@ -217,7 +217,7 @@ h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p {
   text-indent: 0;
 }
 
-p.noindent {
+p.continue {
   text-indent: 0;
 }
 figure {
@@ -459,6 +459,7 @@ section.toc {
   font-size: 75%;
   line-height: 1em;
   float: right;
+  clear: right;
   width: 16em;
   padding-left: 1em;
   margin-left: 1.5em;

@@ -536,15 +536,6 @@
     <xsl:variable name="nameCount" select="count($names/bltx:name)" />
     <xsl:for-each select="$names/bltx:name">
       <xsl:choose>
-        <xsl:when test="$nameCount > 2 and not(position()=1) and not(position()=last())">
-          <xsl:text>, </xsl:text>
-        </xsl:when>
-        <xsl:when test="$nameCount > 1 and position()=last()">
-          <xsl:text>, and </xsl:text>
-        </xsl:when>
-        <xsl:otherwise />
-      </xsl:choose>
-      <xsl:choose>
         <xsl:when test="not($type='firstname-first') and position()=1">
           <xsl:apply-templates select="bltx:namepart[@type='family']" />
           <xsl:if test="bltx:namepart[@type='given']">
@@ -559,6 +550,18 @@
           </xsl:if>
           <xsl:apply-templates select="bltx:namepart[@type='family']" />
         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:choose>
+        <xsl:when test="$nameCount > 2 and not(position()=1) and not(position()=last())">
+          <xsl:text>, </xsl:text>
+        </xsl:when>
+        <xsl:when test="$nameCount > 2 and position()=last()">
+          <xsl:text>, and </xsl:text>
+        </xsl:when>
+        <xsl:when test="$nameCount = 2 and not(position()=last())">
+          <xsl:text> and </xsl:text>
+        </xsl:when>
+        <xsl:otherwise />
       </xsl:choose>
     </xsl:for-each>
     <xsl:if test="$names/@morenames='1'">
