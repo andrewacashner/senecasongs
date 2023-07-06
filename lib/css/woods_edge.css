@@ -3,6 +3,7 @@
 :root { /* Global variables */
   --serif-font: "EB Garamond", Georgia, serif;
   --sans-font: 'VenturisSans ADF', Verdana, sans-serif;
+  --sans-font-tables: Arial, sans-serif;
   --title-font: 'Venturis ADF Goth Titling', Verdana, sans-serif; 
   --textwidth-default: 90vw;
   --textwidth-max: 40em;
@@ -309,14 +310,33 @@ table th, table td {
 }
 
 table.pitch_matrix {
+  width: 22em;
+  max-width: 100vw;
+  table-layout: fixed;
   border-collapse: separate;
 }
+
+table.pitch_matrix td.pitch_false {
+  background: darkgray;
+}
+
+table.pitch_matrix td.pitch_true {
+  background: var(--color-wampum-purple-dark);
+  color: var(--color-wampum-purple-dark);
+}
+
 table.pitch_matrix caption {
   font-style: italic;
 }
 
 table.pitch_matrix th {
   font-weight: normal;
+  font-family: var(--sans-font-tables);
+  font-size: 80%;
+}
+
+table.pitch_matrix th[scope='row'] {
+  text-align: right;
 }
 
 caption {
@@ -329,21 +349,6 @@ caption em, caption cite, figCaption em, figCaption cite {
 }
 
 
-
-table.pitch_matrix {
-  width: 20em;
-  max-width: 100vw;
-  table-layout: fixed;
-}
-
-table.pitch_matrix td.pitch_false {
-  background: darkgray;
-}
-
-table.pitch_matrix td.pitch_true {
-  background: var(--color-wampum-purple-dark);
-  color: var(--color-wampum-purple-dark);
-}
 
 /* FOOTER */
 footer {
