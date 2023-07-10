@@ -172,7 +172,7 @@
 
   <xsl:template match="xhtml:a">
     <xsl:text>\href{</xsl:text>
-    <xsl:value-of select="replace(@href, '#', '\\#')" />
+    <xsl:value-of select="replace(replace(@href, '#', '\\#'), '%', '\\%')" />
     <xsl:text>}{</xsl:text>
     <xsl:apply-templates />
     <xsl:text>}</xsl:text>
@@ -337,19 +337,19 @@
     <xsl:text>}</xsl:text>
   </xsl:template>
 
-  <xsl:template match="xhtml:figure[@class='cover']">
+  <xsl:template match="xhtml:figure[@class='chapter-cover']">
     <xsl:text>\begin{coverImage}&#xA;</xsl:text>
-    <xsl:apply-templates />
+    <xsl:apply-templates mode="chapter-cover"/>
     <xsl:text>\end{coverImage}&#xA;&#xA;</xsl:text>
   </xsl:template>
 
-  <xsl:template match="xhtml:figure[@class='cover']/xhtml:img">
+  <xsl:template match="xhtml:figure[@class='chapter-cover']/xhtml:img" mode="chapter-cover">
     <xsl:text>\includeCoverImage{</xsl:text>
     <xsl:value-of select="@src" />
     <xsl:text>}&#xA;&#xA;</xsl:text>
   </xsl:template>
 
-  <xsl:template match="xhtml:figure[@class='cover']/xhtml:figCaption">
+  <xsl:template match="xhtml:figure[@class='chapter-cover']/xhtml:figCaption" mode="chapter-cover">
     <xsl:text>\coverImageCaption{</xsl:text>
     <xsl:apply-templates />
     <xsl:text>}&#xA;</xsl:text>
