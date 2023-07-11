@@ -236,7 +236,14 @@
     <xsl:text>/</xsl:text>
     <xsl:value-of select="replace(@href, '#', '\\#')" />
     <xsl:text>}{</xsl:text>
-    <xsl:text>online video </xsl:text>
+    <xsl:choose>
+      <xsl:when test="string()">
+        <xsl:apply-templates />
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>online video </xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:apply-templates select="//xhtml:figure[@class='video' and @id=$target]" mode="number" />
     <xsl:text>}</xsl:text>
   </xsl:template>

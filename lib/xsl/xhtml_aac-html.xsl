@@ -394,7 +394,7 @@
     <ul class="biblio">
       <xsl:apply-templates>
         <xsl:sort select="bltx:names[1]/bltx:name[1]/bltx:namepart[@type='family']" />
-        <xsl:sort select="bltx:date" />
+        <xsl:sort select="bltx:date[not(@type)]" />
       </xsl:apply-templates>
     </ul>
   </xsl:template>
@@ -412,7 +412,8 @@
         <xsl:text>.</xsl:text>
       </xsl:if>
       <xsl:text> </xsl:text>
-      <xsl:value-of select="bltx:date" />
+      <xsl:value-of select="bltx:date[not(@type)]" />
+      <xsl:apply-templates select="bltx:date[@type='orig']" />
       <xsl:text>. </xsl:text>
       <cite><xsl:apply-templates select="bltx:title" /></cite>
       <xsl:text>.</xsl:text>
@@ -420,6 +421,12 @@
       <xsl:apply-templates select="bltx:publisher" />
       <xsl:apply-templates select="bltx:url" />
     </li>
+  </xsl:template>
+
+  <xsl:template match="bltx:date[@type='orig']">
+    <xsl:text> (</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>)</xsl:text>
   </xsl:template>
 
   <!-- List of authors or editors of a book or collection -->
@@ -655,7 +662,7 @@
             <xsl:text>, et al.</xsl:text>
           </xsl:if>
           <xsl:text> </xsl:text>
-          <xsl:value-of select="$ref/bltx:date" />
+          <xsl:value-of select="$ref/bltx:date[not(@type)]" />
         </xsl:when>
         <xsl:otherwise>
           <strong><xsl:value-of select="@key" /></strong>
