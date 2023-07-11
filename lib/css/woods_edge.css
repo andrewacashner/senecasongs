@@ -5,6 +5,7 @@
   --sans-font: 'VenturisSans ADF', Verdana, sans-serif;
   --sans-font-tables: Arial, sans-serif;
   --title-font: 'Venturis ADF Goth Titling', Verdana, sans-serif; 
+  --symbol-font: 'Linux Libertine O', Georgia, serif;
   --textwidth-default: 90vw;
   --textwidth-max: 40em;
   --height-iframe-rel-textwidth-default: calc(var(--textwidth-default)/1.7777778);
@@ -13,6 +14,7 @@
   --color-wampum-purple-dark: #58267b;
   --inline-music-height: 1.5em;
 }
+
 
 
 html {
@@ -119,6 +121,10 @@ h5 {
 
 main {
   line-height: 1.5em;
+}
+
+article {
+  clear: both;
 }
 
 p {
@@ -421,7 +427,11 @@ blockquote.dialogue span.speaker {
 
 /* Special characters */
 span.ipa {
-  font-family: "Linux Libertine O", Georgia, serif;
+  font-family: var(--symbol-font), Georgia, serif;
+}
+
+math {
+  font-family: var(--serif-font), var(--symbol-font), Georgia, serif;
 }
 
 /* Wide screen */

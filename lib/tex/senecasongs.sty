@@ -2,18 +2,25 @@
 \ProvidesPackage{lib/tex/senecasongs}[2022/07/29 Style for
 Seneca Songs book and website page PDFs]
 
-\RequirePackage{fontspec}
+\RequirePackage[no-math]{fontspec}
 
 \setmainfont{EB Garamond}[Numbers=OldStyle]
-
 \setsansfont[Scale=MatchLowercase]{VenturisSans ADF}
 
 \setmonofont[Scale=MatchLowercase]{Latin Modern Mono}
 
-\newfontfamily{\symbolfont}{Linux Libertine O}
 \newfontfamily{\titlingfont}{Venturis ADF Goth Titling}
 
+\newfontfamily{\symbolfont}{Linux Libertine O}
 \NewDocumentCommand{\ipa}{ m }{{\symbolfont #1}}
+
+\RequirePackage{mathspec}
+\setmathsfont(Digits){EB Garamond}
+
+\RequirePackage{fontawesome}
+\NewDocumentCommand{\WebEquivIcon}{}{\faExternalLink}
+\NewDocumentCommand{\VideoIcon}{}{\faFilm}
+\NewDocumentCommand{\AudioIcon}{}{\faHeadphones}
 
 \RequirePackage{sectsty}
 \allsectionsfont{\sffamily}
@@ -21,7 +28,9 @@ Seneca Songs book and website page PDFs]
 \RequirePackage[
     paperheight=8.5in, 
     paperwidth=5.5in,
-    vmargin=1in
+    vmargin=1in,
+    marginparwidth=0.5in,
+    marginparsep=1em
 ]{geometry}
 
 \RequirePackage{microtype}
@@ -129,7 +138,7 @@ Seneca Songs book and website page PDFs]
 \AtBeginEnvironment{tabular}{\tablesize}
 \AtBeginEnvironment{tabularx}{\tablesize}
 
-\RequirePackage{caption}
+\RequirePackage[labelsep=period]{caption}
 
 \NewDocumentEnvironment{figureGroup}{}
 {\newpage}

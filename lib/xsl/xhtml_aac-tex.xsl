@@ -11,7 +11,7 @@
 
   <!-- Convert newlines in XML input to spaces 
     (avoid spurious paragraph breaks) -->
-  <xsl:template match="text()" priority="1">
+  <xsl:template match="text()">
     <xsl:variable name="newline">
       <xsl:value-of select="replace(., '&#10;', ' ')" />
     </xsl:variable>
@@ -94,6 +94,11 @@
     <xsl:text>} \label{</xsl:text>
     <xsl:value-of select="../@id" />
     <xsl:text>}&#xA;</xsl:text>
+    <xsl:if test="../@data-html-equiv">
+      <xsl:call-template name="web-equiv-link">
+        <xsl:with-param name="url" select="../@data-html-equiv" />
+      </xsl:call-template>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="xhtml:section[not(@class='chapter') and not(@class='part')]/xhtml:h1">
@@ -102,6 +107,20 @@
     <xsl:text>} \label{</xsl:text>
     <xsl:value-of select="../@id" />
     <xsl:text>}&#xA;</xsl:text>
+    <xsl:if test="../@data-html-equiv">
+      <xsl:call-template name="web-equiv-link">
+        <xsl:with-param name="url" select="../@data-html-equiv" />
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="web-equiv-link">
+    <xsl:param name="url" />
+    <xsl:text>\marginpar{\href{</xsl:text>
+    <xsl:value-of select="$url" />
+    <xsl:text>}{</xsl:text>
+    <xsl:text>\WebEquivIcon</xsl:text>
+    <xsl:text>}}</xsl:text>
   </xsl:template>
 
   <xsl:template match="xhtml:section/xhtml:h2">
@@ -227,48 +246,63 @@
   
   <!-- FLOATS -->
 
-
   <xsl:template match="aac:ref[@type='video']">
-    <xsl:variable name="this-page-url" select="ancestor::*/@data-html-equiv" />
+    <xsl:variable name="this-page-url" select="ancestor::xhtml:section[@data-html-equiv][1]/@data-html-equiv" />
     <xsl:variable name="target" select="substring(@href, 2)" />
-    <xsl:text>\href{</xsl:text>
-    <xsl:value-of select="$this-page-url" />
-    <xsl:text>/</xsl:text>
-    <xsl:value-of select="replace(@href, '#', '\\#')" />
-    <xsl:text>}{</xsl:text>
-    <xsl:choose>
-      <xsl:when test="string()">
-        <xsl:apply-templates />
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>online video </xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:apply-templates select="//xhtml:figure[@class='video' and @id=$target]" mode="number" />
+    <xsl:variable name="link">
+      <xsl:text>\href{</xsl:text>
+      <xsl:value-of select="$this-page-url" />
+      <xsl:value-of select="replace(@href, '#', '\\#')" />
+      <xsl:text>}{</xsl:text>
+      <xsl:text>\VideoIcon\ </xsl:text>
+      <xsl:apply-templates select="//xhtml:figure[@class='video' and @id=$target]" mode="number" />
+      <xsl:text>}</xsl:text>
+    </xsl:variable>
+    <xsl:text>\marginpar{</xsl:text>
+    <xsl:copy-of select="$link" />
     <xsl:text>}</xsl:text>
+  </xsl:template>
+
+  <!-- Remove parentheses in text around video or audio references (also remove trailing space before or after the parentheses-->
+  <xsl:template match="text()[following-sibling::node()[1][self::aac:ref[@type='video' or @type='audio']] and ends-with(., '(')]">
+    <xsl:value-of select="replace(substring(., 1, string-length(.) - 2), '\s+$', '')" />
+  </xsl:template>
+
+  <xsl:template match="text()[preceding-sibling::node()[1][self::aac:ref[@type='audio' or @type='video']] and starts-with(., ')')]">
+    <xsl:value-of select="replace(substring(., 2), '$\s+', '')" />
   </xsl:template>
 
   <xsl:template match="xhtml:figure[@class='video']" mode="number">
-    <xsl:number count="//xhtml:figure[@class='video']" level="any" />
+    <!--
+      <xsl:number count="//xhtml:section[@class='chapter']" level="any"/>
+      <xsl:text>.</xsl:text>
+    -->
+    <xsl:number count="//xhtml:figure[@class='video']" from="xhtml:article" level="any" />
   </xsl:template>
   
   <xsl:template match="aac:ref[@type='audio']">
-    <xsl:variable name="this-page-url" select="ancestor::*/@data-html-equiv" />
+    <xsl:variable name="this-page-url" select="ancestor::xhtml:section[@data-html-equiv][1]/@data-html-equiv" />
     <xsl:variable name="target" select="substring(@href, 2)" />
+    <xsl:text>\marginpar{</xsl:text>
     <xsl:text>\href{</xsl:text>
     <xsl:value-of select="$this-page-url" />
-    <xsl:text>/</xsl:text>
     <xsl:value-of select="replace(@href, '#', '\\#')" />
     <xsl:text>}{</xsl:text>
-    <xsl:text>online audio </xsl:text>
+    <xsl:text>\AudioIcon\ </xsl:text>
+    <!--
+      <xsl:text>online audio </xsl:text>
+    -->
     <xsl:apply-templates select="//xhtml:figure[@class='audio' and @id=$target]" mode="number" />
     <xsl:text>}</xsl:text>
+    <xsl:text>}</xsl:text>
   </xsl:template>
- 
+
   <xsl:template match="xhtml:figure[@class='audio']" mode="number">
-    <xsl:number count="//xhtml:figure[@class='audio']" level="any" />
+    <!-- <xsl:number count="//xhtml:section[@class='chapter']" level="any"/>
+      <xsl:text>.</xsl:text>
+      -->
+    <xsl:number count="//xhtml:figure[@class='audio']" from="xhtml:article" level="any" />
   </xsl:template>
-  
 
   <xsl:template match="xhtml:figure[@class='video'] | xhtml:figure[@class='audio']">
   </xsl:template>
@@ -588,7 +622,7 @@
     </xsl:call-template>
     <xsl:text>$\hat </xsl:text>
     <xsl:value-of select="@n" />
-    <xsl:text>$ </xsl:text>
+    <xsl:text>$</xsl:text>
   </xsl:template>
 
   <xsl:template match="aac:pitch">
@@ -694,7 +728,7 @@
     <xsl:apply-templates select="xhtml:img" />
     <xsl:text>&#xA;</xsl:text>
   </xsl:template>
-
+  
 
 </xsl:stylesheet>
 

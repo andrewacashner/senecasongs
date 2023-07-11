@@ -112,11 +112,13 @@
 
   <xsl:template match="aac:degree">
     <m:math>
-      <m:mi>
-        <xsl:call-template name="accid">
-          <xsl:with-param name="accid" select="@accid" />
-        </xsl:call-template>
-      </m:mi>
+      <xsl:if test="@accid">
+        <m:mi>
+          <xsl:call-template name="accid">
+            <xsl:with-param name="accid" select="@accid" />
+          </xsl:call-template>
+        </m:mi>
+      </xsl:if>
       <m:mover>
         <m:mi>
           <xsl:value-of select="@n" />
@@ -213,13 +215,18 @@
   </xsl:template>
 
   <xsl:template match="xhtml:figure[@class='video']" mode="number">
-    <xsl:number count="//xhtml:figure[@class='video']" level="any" />
+    <xsl:if test="ancestor::xhtml:section[@class='chapter']">
+      <xsl:number count="//xhtml:section[@class='chapter']" level="any"/>
+      <xsl:text>.</xsl:text>
+    </xsl:if>
+    <xsl:number count="//xhtml:figure[@class='video']" from="xhtml:article" level="any" />
   </xsl:template>
 
   <xsl:template match="xhtml:figure[@class='video']/xhtml:figCaption">
     <figCaption>
       <xsl:text>Video </xsl:text>
-      <xsl:number count="xhtml:figure[@class='video']" format="1. " level="any" />
+      <xsl:apply-templates select=".." mode="number" />
+      <xsl:text>. </xsl:text>
       <xsl:apply-templates />
     </figCaption>
   </xsl:template>
@@ -811,6 +818,7 @@
   </xsl:template>
 
   <xsl:template match="text()[preceding-sibling::node()[1][self::xhtml:q] and (starts-with(., ',') or starts-with(., '.'))]">
+    <xsl:text>BADGER</xsl:text>
     <xsl:value-of select="substring(., 2)" />
   </xsl:template>
 
