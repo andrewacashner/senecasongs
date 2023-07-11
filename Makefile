@@ -19,9 +19,9 @@ html_deps_out	= $(addprefix build/,$(media_in) $(css_in:lib/%=%))
 
 music_in	= $(wildcard src/music-examples/*.ly)
 ly_lib		= $(wildcard lib/ly/*.ly)
-music_svg_out	= $(addprefix build/media/,$(notdir $(music_in:%.ly=%.svg)))
+music_png_out	= $(addprefix build/media/,$(notdir $(music_in:%.ly=%.png)))
 music_pdf_out   = $(addprefix aux/,$(notdir $(music_in:%.ly=%.pdf)))
-music_out 	= $(music_svg_out) $(music_pdf_out)
+music_out 	= $(music_png_out) $(music_pdf_out)
 
 xsl		= $(wildcard lib/xsl/*.xsl)
 
@@ -33,7 +33,7 @@ define copy
 cp -ur $< $@
 endef
 
-.SECONDARY : $(bibxml) $(latex) $(music_svg_out) $(music_pdf_out)
+.SECONDARY : $(bibxml) $(latex) $(music_png_out) $(music_pdf_out)
 
 .PHONY : all html pdf ly view view-pdf deploy clean ly
 
@@ -52,7 +52,7 @@ build/% : %
 build/% : lib/% 
 	$(copy)
 
-build/%.html : src/%.xhtml $(xhtml_include) $(bibxml) $(xsl) $(music_svg_out) $(dirs)
+build/%.html : src/%.xhtml $(xhtml_include) $(bibxml) $(xsl) $(music_png_out) $(dirs)
 	$(saxon) -xi:on -xsl:lib/xsl/xhtml_aac-html.xsl -s:$< -o:$@
 
 aux/%.bltxml : %.bib | $(dirs)
@@ -70,14 +70,14 @@ aux/%.pdf : aux/%.tex $(bibtex) $(tex_lib) $(music_pdf_out)
 aux/%.tex : src/%.xhtml $(xhtml_include) $(xsl) | $(dirs)
 	$(saxon) -xi:on -xsl:lib/xsl/xhtml_aac-tex.xsl -s:$< -o:$@
 
-build/media/%.svg : aux/%.cropped.svg 
-	$(copy)
+build/media/%.png: aux/%.cropped.png
+	convert $< -transparent white $@
 
 aux/%.pdf : aux/%.cropped.pdf
 	mv $< $@
 
-aux/%.cropped.svg : src/music-examples/%.ly $(ly_lib) | $(dirs)
-	$(lilypond) --svg $<
+aux/%.cropped.png: src/music-examples/%.ly $(ly_lib) | $(dirs)
+	$(lilypond) --png -dresolution=300 $<
 
 aux/%.cropped.pdf : src/music-examples/%.ly | $(dirs)
 	$(lilypond) $<

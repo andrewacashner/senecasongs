@@ -802,7 +802,7 @@
         <xsl:otherwise>1</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <img class="inline" src="{@src}" type="image/svg+xml" alt="Music notation">
+    <img class="inline" src="{@src}" type="image/png" alt="Music notation">
       <xsl:attribute name="data-scale">
         <xsl:value-of select="$scale-factor" />
       </xsl:attribute>
