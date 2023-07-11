@@ -272,6 +272,12 @@
     <xsl:value-of select="replace(substring(., 2), '$\s+', '')" />
   </xsl:template>
 
+  <!-- And if there is a ref on both sides of the text node? yuck -->
+  <xsl:template match="text()[preceding-sibling::node()[1][self::aac:ref[@type='audio' or @type='video']] and starts-with(., ')') and
+  following-sibling::node()[1][self::aac:ref[@type='video' or @type='audio']] and ends-with(., '(')]">
+    <xsl:value-of select="replace(replace(substring(., 2, string-length(.) - 3), '\s+$', ''), '$\s+', '')" />
+  </xsl:template>
+
   <xsl:template match="xhtml:figure[@class='video']" mode="number">
     <!--
       <xsl:number count="//xhtml:section[@class='chapter']" level="any"/>
