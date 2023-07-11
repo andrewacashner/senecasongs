@@ -818,7 +818,6 @@
   </xsl:template>
 
   <xsl:template match="text()[preceding-sibling::node()[1][self::xhtml:q] and (starts-with(., ',') or starts-with(., '.'))]">
-    <xsl:text>BADGER</xsl:text>
     <xsl:value-of select="substring(., 2)" />
   </xsl:template>
 
