@@ -9,6 +9,21 @@
 - Johehgoh songs sung in Green Corn?
 - what can I say about Green Corn, Changing Rib, Bear Dance?
 
+## Expansion/Revision
+
+- Cite Nettl or other for similar pattern of songs as gift
+- Cite on reciprocity and relationship with non-animal beings
+- Quotes on Condolence Council, protocol as gift
+
+## Revise media
+
+- Score comparison, song 5 alignment 
+
+## Media needed
+
+- Rhythm of syncopated songs, melody vs shaker?
+- Dance and/or dance step video
+
 ## Cut Images
 
 - we were using this image but only available as iframe

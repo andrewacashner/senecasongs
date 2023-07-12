@@ -116,11 +116,11 @@
 
   <xsl:template name="web-equiv-link">
     <xsl:param name="url" />
-    <xsl:text>\marginpar{\href{</xsl:text>
+    <xsl:text>\MediaCallout{</xsl:text>
     <xsl:value-of select="$url" />
     <xsl:text>}{</xsl:text>
     <xsl:text>\WebEquivIcon</xsl:text>
-    <xsl:text>}}</xsl:text>
+    <xsl:text>}</xsl:text>
   </xsl:template>
 
   <xsl:template match="xhtml:section/xhtml:h2">
@@ -234,9 +234,14 @@
       <xsl:value-of select="@pre" />
       <xsl:text>]</xsl:text>
     </xsl:if>
-    <xsl:if test="@pages"> <!-- TODO what about node text -->
+    <xsl:if test="@pages or string()"> 
       <xsl:text>[</xsl:text>
-      <xsl:value-of select="concat(@pages, string())" />
+      <xsl:if test="@pages"> 
+        <xsl:value-of select="@pages" />
+      </xsl:if>
+      <xsl:if test="string()">
+        <xsl:apply-templates />
+      </xsl:if>
       <xsl:text>]</xsl:text>
     </xsl:if>
     <xsl:text>{</xsl:text>
@@ -254,19 +259,14 @@
     <!--
       <xsl:variable name="this-page-url" select="ancestor::xhtml:section[@data-html-equiv][1]/@data-html-equiv" />
     -->
-    <xsl:variable name="target" select="substring(@href, 2)" />
-    <xsl:variable name="link">
-      <xsl:text>\href{</xsl:text>
+      <xsl:variable name="target" select="substring(@href, 2)" />
+      <xsl:text>\MediaCallout{</xsl:text>
       <xsl:value-of select="$book-media-url" />
       <xsl:value-of select="replace(@href, '#', '\\#')" />
       <xsl:text>}{</xsl:text>
       <xsl:text>\VideoIcon\ </xsl:text>
       <xsl:apply-templates select="//xhtml:figure[@class='video' and @id=$target and not(@data-medium='no-book')]" mode="number" />
       <xsl:text>}</xsl:text>
-    </xsl:variable>
-    <xsl:text>\marginpar{</xsl:text>
-    <xsl:copy-of select="$link" />
-    <xsl:text>}</xsl:text>
   </xsl:template>
 
   <!-- Remove parentheses in text around video or audio references (also remove trailing space before or after the parentheses-->
@@ -295,17 +295,12 @@
     <xsl:variable name="this-page-url" select="ancestor::xhtml:section[@data-html-equiv][1]/@data-html-equiv" />
     -->
     <xsl:variable name="target" select="substring(@href, 2)" />
-    <xsl:text>\marginpar{</xsl:text>
-    <xsl:text>\href{</xsl:text>
+    <xsl:text>\MediaCallout{</xsl:text>
     <xsl:value-of select="$book-media-url" />
     <xsl:value-of select="replace(@href, '#', '\\#')" />
     <xsl:text>}{</xsl:text>
     <xsl:text>\AudioIcon\ </xsl:text>
-    <!--
-      <xsl:text>online audio </xsl:text>
-    -->
     <xsl:apply-templates select="//xhtml:figure[@class='audio' and @id=$target]" mode="number" />
-    <xsl:text>}</xsl:text>
     <xsl:text>}</xsl:text>
   </xsl:template>
 
@@ -742,6 +737,12 @@
   
 
   <xsl:template match="*[@data-medium='no-book']" />
+
+
+  <xsl:template match="aac:prime">
+    <xsl:text>$'$</xsl:text>
+  </xsl:template>
+
 </xsl:stylesheet>
 
 

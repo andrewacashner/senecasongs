@@ -275,6 +275,9 @@ table {
   clear: both;
   border-collapse: collapse;
 }
+table caption, figure figCaption {
+  font-family: var(--sans-font);
+}
 
 table table.simple {
   float: none;

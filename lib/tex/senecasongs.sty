@@ -34,7 +34,7 @@ Seneca Songs book and website page PDFs]
 ]{geometry}
 
 \RequirePackage{microtype}
-% \frenchspacing
+\frenchspacing
 \raggedbottom
 \sloppy
 
@@ -138,7 +138,7 @@ Seneca Songs book and website page PDFs]
 \AtBeginEnvironment{tabular}{\tablesize}
 \AtBeginEnvironment{tabularx}{\tablesize}
 
-\RequirePackage[labelsep=period]{caption}
+\RequirePackage[labelsep=period, font=sf]{caption}
 
 \NewDocumentEnvironment{figureGroup}{}
 {\newpage}
@@ -157,8 +157,15 @@ Seneca Songs book and website page PDFs]
 }
 
 \NewDocumentCommand{\coverImageCaption}{ m }{%
-    {\small\emph{#1}}%
+    {\textsf{\small\emph{#1}}}%
 }
+
+\NewDocumentCommand{\MediaCallout}{ m m }{%
+    \marginpar{\href{#1}{\sffamily#2}}%
+}
+
+\AtBeginEnvironment{tabular}{\addfontfeature{Numbers=Lining}}
+\AtBeginEnvironment{tabularx}{\addfontfeature{Numbers=Lining}}
 
 \RequirePackage{hyperref}
 

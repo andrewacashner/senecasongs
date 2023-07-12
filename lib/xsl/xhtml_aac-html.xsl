@@ -679,7 +679,10 @@
       <xsl:text>, </xsl:text>
       <xsl:value-of select="@pages" />
     </xsl:if>
-    <xsl:apply-templates />
+    <xsl:if test="string()">
+      <xsl:text>, </xsl:text>
+      <xsl:apply-templates />
+    </xsl:if>
   </xsl:template>
 
   <!-- MODULAR DESIGN (web vs. print) -->
@@ -819,6 +822,11 @@
   <xsl:template match="text()[preceding-sibling::node()[1][self::xhtml:q] and (starts-with(., ',') or starts-with(., '.'))]">
     <xsl:value-of select="substring(., 2)" />
   </xsl:template>
+
+  <xsl:template match="aac:prime">
+    <xsl:text>′</xsl:text> <!-- U+2302 -->
+  </xsl:template>
+
 
 </xsl:stylesheet>
 
