@@ -1,0 +1,25 @@
+@import "woods_edge-fonts.css";
+@import "woods_edge.css";
+
+@media only screen and (min-width: 1200px) {
+  body {
+    width: var(--textwidth-default);
+    max-width: var(--textwidth-max);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  figure {
+    float: none;
+    display: block;
+  }
+  figure iframe:not(.manual-size) {
+    width: var(--textwidth-default);
+    max-width: var(--textwidth-max);
+    height: var(--height-iframe-rel-textwidth-default);
+    max-height: var(--height-iframe-rel-textwidth-max);
+  }
+
+iframe.manual-size {};
+
+
+}

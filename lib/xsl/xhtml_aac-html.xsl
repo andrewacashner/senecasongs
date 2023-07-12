@@ -10,7 +10,6 @@
   exclude-result-prefixes="aac bltx">
 
 <!-- TODO
-  - change position of end punctuation outside of bib tags? 
   - tables of contents
   - nav
 -->

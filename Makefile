@@ -11,6 +11,8 @@ biber_log	= aux/biber.blg
 # For now, only making PDF of whole book, not indiv. pages
 latex		= aux/book.tex
 pdf_out		= $(addprefix build/,$(notdir $(latex:%.tex=%.pdf)))
+# Separate web page just with media for book
+book_media_out  = build/book-media.html
 tex_lib		= $(wildcard lib/tex/*)
 
 media_in	= $(wildcard media/*)
@@ -41,7 +43,7 @@ all : html pdf
 
 html : $(html_out) $(html_deps_out)
 
-pdf : $(pdf_out)
+pdf : $(pdf_out) $(book_media_out)
 
 ly : $(music_out)
 
@@ -52,7 +54,7 @@ build/% : %
 build/% : lib/% 
 	$(copy)
 
-build/%.html : src/%.xhtml $(xhtml_include) $(bibxml) $(xsl) $(music_png_out) $(dirs)
+build/%.html : src/%.xhtml $(xhtml_include) $(bibxml) $(xsl) $(music_png_out) | $(dirs)
 	$(saxon) -xi:on -xsl:lib/xsl/xhtml_aac-html.xsl -s:$< -o:$@
 
 aux/%.bltxml : %.bib | $(dirs)
@@ -81,6 +83,9 @@ aux/%.cropped.png: src/music-examples/%.ly $(ly_lib) | $(dirs)
 
 aux/%.cropped.pdf : src/music-examples/%.ly | $(dirs)
 	$(lilypond) $<
+
+$(book_media_out) : src/book.xhtml $(xhtml_include) lib/xsl/xhtml_aac-html-book_media.xsl | $(dirs)
+	$(saxon) -xi:on -xsl:lib/xsl/xhtml_aac-html-book_media.xsl -s:$< -o:$@	
 
 $(dirs) : 
 	mkdir -p $(dirs)

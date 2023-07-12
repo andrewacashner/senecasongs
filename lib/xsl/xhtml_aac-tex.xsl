@@ -246,16 +246,22 @@
   
   <!-- FLOATS -->
 
+  <xsl:variable name="book-media-url">
+    <xsl:text>https://www.senecasongs.earth/book-media.html</xsl:text>
+  </xsl:variable>
+  
   <xsl:template match="aac:ref[@type='video']">
-    <xsl:variable name="this-page-url" select="ancestor::xhtml:section[@data-html-equiv][1]/@data-html-equiv" />
+    <!--
+      <xsl:variable name="this-page-url" select="ancestor::xhtml:section[@data-html-equiv][1]/@data-html-equiv" />
+    -->
     <xsl:variable name="target" select="substring(@href, 2)" />
     <xsl:variable name="link">
       <xsl:text>\href{</xsl:text>
-      <xsl:value-of select="$this-page-url" />
+      <xsl:value-of select="$book-media-url" />
       <xsl:value-of select="replace(@href, '#', '\\#')" />
       <xsl:text>}{</xsl:text>
       <xsl:text>\VideoIcon\ </xsl:text>
-      <xsl:apply-templates select="//xhtml:figure[@class='video' and @id=$target]" mode="number" />
+      <xsl:apply-templates select="//xhtml:figure[@class='video' and @id=$target and not(@data-medium='no-book')]" mode="number" />
       <xsl:text>}</xsl:text>
     </xsl:variable>
     <xsl:text>\marginpar{</xsl:text>
@@ -279,19 +285,19 @@
   </xsl:template>
 
   <xsl:template match="xhtml:figure[@class='video']" mode="number">
-    <!--
-      <xsl:number count="//xhtml:section[@class='chapter']" level="any"/>
-      <xsl:text>.</xsl:text>
-    -->
+    <xsl:number count="//xhtml:section[@class='chapter']" level="any"/>
+    <xsl:text>.</xsl:text>
     <xsl:number count="//xhtml:figure[@class='video']" from="xhtml:article" level="any" />
   </xsl:template>
   
   <xsl:template match="aac:ref[@type='audio']">
+    <!--
     <xsl:variable name="this-page-url" select="ancestor::xhtml:section[@data-html-equiv][1]/@data-html-equiv" />
+    -->
     <xsl:variable name="target" select="substring(@href, 2)" />
     <xsl:text>\marginpar{</xsl:text>
     <xsl:text>\href{</xsl:text>
-    <xsl:value-of select="$this-page-url" />
+    <xsl:value-of select="$book-media-url" />
     <xsl:value-of select="replace(@href, '#', '\\#')" />
     <xsl:text>}{</xsl:text>
     <xsl:text>\AudioIcon\ </xsl:text>
@@ -304,9 +310,8 @@
   </xsl:template>
 
   <xsl:template match="xhtml:figure[@class='audio']" mode="number">
-    <!-- <xsl:number count="//xhtml:section[@class='chapter']" level="any"/>
-      <xsl:text>.</xsl:text>
-      -->
+    <xsl:number count="//xhtml:section[@class='chapter']" level="any"/>
+    <xsl:text>.</xsl:text>
     <xsl:number count="//xhtml:figure[@class='audio']" from="xhtml:article" level="any" />
   </xsl:template>
 
@@ -736,6 +741,7 @@
   </xsl:template>
   
 
+  <xsl:template match="*[@data-medium='no-book']" />
 </xsl:stylesheet>
 
 
