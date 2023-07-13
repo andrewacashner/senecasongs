@@ -8,8 +8,13 @@
 
 - Apple Books font rendering issue
 - EB Garamond Medium necessary in music?
+
+# Music
+
 - lilyglyphs?
 - lyluatex?
+- Dorico narrower page width for examples
+
 
 # Title and frontmatter
 

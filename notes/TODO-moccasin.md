@@ -2,12 +2,12 @@
 
 ## Areas for further inquiry, revision (for this page)
 
+- women as artisans making moccasins
 - song 6: should it be wë:nowiye: instead of wënoye:?
 - details (at least confirm and get page numbers) on playing Indian in 1920s
   from Deloria
 - longevity of moccasin-making and -wearing in north america
 - health benefits?
-- made by women?
 - significance of "old" in the name?
 - is there anything about the dance that is especially related to moccasins?
 - video comparing Charleston and Gayowagayoh steps
