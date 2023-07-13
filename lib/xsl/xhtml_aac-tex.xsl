@@ -37,21 +37,36 @@
     <xsl:text>\setSubTitle{</xsl:text>
     <xsl:apply-templates select="//xhtml:body/xhtml:header/xhtml:h1[@class='subtitle']" />
     <xsl:text>}&#xA;</xsl:text>
+    
+    <xsl:if test="//xhtml:meta[@name='availability' and @content='draft']">
+      <xsl:text>\drafttrue&#xA;</xsl:text>
+    </xsl:if>
 
     <xsl:text>\setAuthor{</xsl:text>
     <xsl:apply-templates select="//xhtml:body/xhtml:header/xhtml:h2[@class='author']" />
     <xsl:text>}&#xA;</xsl:text>
 
+    <xsl:text>\setLocation{</xsl:text>
+    <xsl:apply-templates select="//xhtml:head/xhtml:meta[@name='location']/@content" />
+    <xsl:text>}&#xA;</xsl:text>
+ 
     <xsl:text>\setPublisher{</xsl:text>
     <xsl:apply-templates select="//xhtml:head/xhtml:meta[@name='publisher']/@content" />
     <xsl:text>}&#xA;</xsl:text>
 
-    <xsl:text>\setCopyright{</xsl:text>
-    <xsl:apply-templates select="//xhtml:head/xhtml:meta[@name='copyright']/@content" />
+    <xsl:text>\setYear{</xsl:text>
+    <xsl:apply-templates select="//xhtml:head/xhtml:meta[@name='year']/@content" />
     <xsl:text>}&#xA;</xsl:text>
-    <!-- TODO CC license -->
 
-    <!-- TODO cover image -->
+    <xsl:text>\setCopyright{</xsl:text>
+    <xsl:apply-templates select="//xhtml:head/xhtml:meta[@name='version']" />
+    <xsl:apply-templates select="//xhtml:head/xhtml:meta[@name='copyright']/@content" />
+    <xsl:if test="//xhtml:meta[@name='license' and @content='CC-BY-NC-ND']">
+      <xsl:text>\CClicense</xsl:text>
+    </xsl:if>
+    <xsl:text>}&#xA;</xsl:text>
+
+
     <xsl:text>\setCoverImage{</xsl:text>
     <xsl:value-of select="//xhtml:header/xhtml:img[@class='cover']/@src" />
     <xsl:text>}&#xA;</xsl:text>
@@ -70,10 +85,22 @@
 
     <xsl:if test="//xhtml:main/aac:bibliography">
       <xsl:text>\backmatter&#xA;</xsl:text>
-      <xsl:text>\printbibliography&#xA;</xsl:text>
+      <xsl:text>\aacReferences&#xA;</xsl:text>
     </xsl:if>
 
     <xsl:text>\end{document}&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:meta[@name='version']">
+    <xsl:text>\begin{center}</xsl:text>
+    <xsl:text>Version </xsl:text>
+    <xsl:value-of select="@content" />
+    <xsl:if test="//xhtml:meta[@name='updated']">
+      <xsl:text> (</xsl:text>
+      <xsl:value-of select="//xhtml:meta[@name='updated']/@content" />
+      <xsl:text>)</xsl:text>
+    </xsl:if>
+    <xsl:text>\end{center}\vspace{2em}</xsl:text>
   </xsl:template>
 
   <xsl:template match="xhtml:article">

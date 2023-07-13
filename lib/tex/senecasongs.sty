@@ -24,6 +24,7 @@ Seneca Songs book and website page PDFs]
 
 \RequirePackage{sectsty}
 \allsectionsfont{\sffamily}
+\setcounter{secnumdepth}{1}
 
 \RequirePackage[
     paperheight=8.5in, 
@@ -56,7 +57,9 @@ Seneca Songs book and website page PDFs]
 \NewExpandableDocumentCommand{\@aacMainTitle}{}{}
 \NewExpandableDocumentCommand{\@aacSubTitle}{}{}
 \NewExpandableDocumentCommand{\@aacAuthor}{}{}
+\NewExpandableDocumentCommand{\@aacLocation}{}{}
 \NewExpandableDocumentCommand{\@aacPublisher}{}{}
+\NewExpandableDocumentCommand{\@aacYear}{}{}
 \NewExpandableDocumentCommand{\@aacCopyright}{}{}
 \NewExpandableDocumentCommand{\@aacCoverImage}{}{}
 
@@ -72,9 +75,18 @@ Seneca Songs book and website page PDFs]
     \RenewExpandableDocumentCommand{\@aacAuthor}{}{#1}%
 }
 
+\NewDocumentCommand{\setLocation}{ m }{%
+    \RenewExpandableDocumentCommand{\@aacLocation}{}{#1}%
+}
+
 \NewDocumentCommand{\setPublisher}{ m }{%
     \RenewExpandableDocumentCommand{\@aacPublisher}{}{#1}%
 }
+
+\NewDocumentCommand{\setYear}{ m }{%
+    \RenewExpandableDocumentCommand{\@aacYear}{}{#1}%
+}
+
 
 \NewDocumentCommand{\setCopyright}{ m }{%
     \RenewExpandableDocumentCommand{\@aacCopyright}{}{#1}%
@@ -167,6 +179,9 @@ Seneca Songs book and website page PDFs]
 \AtBeginEnvironment{tabular}{\addfontfeature{Numbers=Lining}}
 \AtBeginEnvironment{tabularx}{\addfontfeature{Numbers=Lining}}
 
+\NewDocumentCommand{\aacReferences}{}{%
+    \printbibliography[heading=bibintoc, title={References}]
+}
 \RequirePackage{hyperref}
 
 

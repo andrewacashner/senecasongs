@@ -4,6 +4,18 @@
 
 - version number and plan
 
+# Font
+
+- Apple Books font rendering issue
+- EB Garamond Medium necessary in music?
+- lilyglyphs?
+- lyluatex?
+
+# Title and frontmatter
+
+- PDF title page fonts confirm
+- Copyright page better code, layout
+
 # Content
 - glossary
 - Seneca words pronounced on click
