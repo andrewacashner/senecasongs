@@ -7,7 +7,8 @@
 - Conception of rhythm on last song (syncopated vs. mixed meters?)
 - significance of gender division? (cf. robin couples seen in spring, significance of spring/mating?)
 - Johehgoh songs sung in Green Corn?
-- what can I say about Green Corn, Changing Rib, Bear Dance?
+- section in drafts/robin-reciprocity-ceremony.xhtml:
+    - what can I say about Green Corn, Changing Rib, Bear Dance?
 
 ## Expansion/Revision
 
