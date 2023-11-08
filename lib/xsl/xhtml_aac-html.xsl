@@ -21,6 +21,7 @@
   <xsl:import href="bltxml_macros.xsl" />
 
   <xsl:template match="comment()" priority="1" />
+  <xsl:template match="aac:comment" />
 
   <xsl:template match="@* | node()">
     <xsl:copy copy-namespaces="no">
@@ -389,10 +390,12 @@
 
   <!-- Generate the bibliography/reference list instead of the placeholder -->
   <xsl:template match="aac:bibliography">
-    <section id="bibliography">
-      <h1>References</h1>
-      <xsl:apply-templates select="$references" />
-    </section>
+    <xsl:if test="//aac:citation">
+      <section id="bibliography">
+        <h1>References</h1>
+        <xsl:apply-templates select="$references" />
+      </section>
+    </xsl:if>
   </xsl:template>
 
   <!-- Sort entries by first surname listed and date -->
@@ -581,11 +584,42 @@
       <xsl:text>, et al.</xsl:text>
     </xsl:if>
   </xsl:template>
+
+  <!-- Unpublished: Thesis, Interview, Personal communication, etc. -->
+  <xsl:template match="bltx:entry[@entrytype='unpublished' or @entrytype='misc']">
+    <xsl:variable name="authors">
+      <xsl:call-template name="book-authors" />
+    </xsl:variable>
+    <li id="{@id}">
+      <xsl:value-of select="$authors" />
+      <xsl:if test="not(substring($authors, string-length($authors))='.')">
+        <xsl:text>.</xsl:text>
+      </xsl:if>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="bltx:date[not(@type)]" />
+      <xsl:apply-templates select="bltx:date[@type='orig']" />
+      <xsl:text>. </xsl:text>
+      <xsl:apply-templates select="bltx:title" mode="quoted"/>
+      <xsl:apply-templates select="bltx:note" />
+    </li>
+  </xsl:template>
+
+
   <!-- Process elements of bibliography entries
     - Remove TeX macros
   -->
   <xsl:template match="bltx:title | bltx:journaltitle | bltx:booktitle">
     <xsl:call-template name="macros" />
+  </xsl:template>
+
+  <xsl:template match="bltx:title" mode="quoted">
+    <q><xsl:call-template name="macros" /></q>
+    <xsl:text>.</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="bltx:note">
+    <xsl:apply-templates />
+    <xsl:text>.</xsl:text>
   </xsl:template>
 
   <!-- Names: bltx:namepart elements can be nested; insert space if there is another one after this -->
@@ -696,7 +730,7 @@
     <section class="toc">
       <h1>Contents</h1>
       <ul>
-        <xsl:apply-templates select="//xhtml:section[not(@class='toc')]" mode="toc" />
+        <xsl:apply-templates select="//xhtml:section[not(@class='toc') and not(ancestor::aac:comment)]" mode="toc" />
         <xsl:apply-templates select="../aac:bibliography" mode="toc" />
       </ul>
     </section>
@@ -724,7 +758,9 @@
   </xsl:template>
 
   <xsl:template match="aac:bibliography" mode="toc">
-    <li><a href="#bibliography">References</a></li>
+    <xsl:if test="//aac:citation">
+      <li><a href="#bibliography">References</a></li>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="aac:pitch_matrix">

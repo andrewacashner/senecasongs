@@ -22,6 +22,7 @@
   </xsl:template>
  
   <xsl:template match="comment()" priority="1" />
+  <xsl:template match="aac:comment" />
 
   <xsl:template match="/">
     <xsl:text>\documentclass{lib/tex/senecasongs}&#xA;</xsl:text>
