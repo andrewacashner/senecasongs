@@ -6,6 +6,7 @@
   --sans-font-tables: Arial, sans-serif;
   --title-font: 'Venturis ADF Goth Titling', Verdana, sans-serif; 
   --symbol-font: 'Linux Libertine O', Georgia, serif;
+  --music-font: 'Bravura Text', Georgia, serif;
   --textwidth-default: 90vw;
   --textwidth-max: 40em;
   --height-iframe-rel-textwidth-default: calc(var(--textwidth-default)/1.7777778);
@@ -429,12 +430,19 @@ blockquote.dialogue span.speaker {
 }
 
 /* Special characters */
-span.ipa {
-  font-family: var(--symbol-font), Georgia, serif;
+span.ipa, span.symbol {
+  font-family: var(--symbol-font);
+  font-size: 120%;
 }
 
 math {
-  font-family: var(--serif-font), var(--symbol-font), Georgia, serif;
+  font-family: var(--serif-font), var(--symbol-font);
+}
+
+span.music {
+  font-family: var(--music-font);
+  font-size: 85%;
+  padding-left: 0.1em;
 }
 
 /* Wide screen */

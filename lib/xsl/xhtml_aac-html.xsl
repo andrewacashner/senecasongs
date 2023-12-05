@@ -123,7 +123,7 @@
         <m:mi>
           <xsl:value-of select="@n" />
         </m:mi>
-        <m:mi>&#x02c6;</m:mi>
+        <m:mi><span class="symbol">&#x02c6;</span></m:mi>
       </m:mover>
     </m:math>
   </xsl:template>
@@ -142,27 +142,27 @@
     <xsl:param name="accid" />
     <xsl:choose>
       <xsl:when test="@accid='na'">
-        <xsl:text>♮</xsl:text>
+        <xsl:call-template name="natural" />
       </xsl:when>
       <xsl:when test="@accid='fl'">
-        <xsl:text>♭</xsl:text>
+        <xsl:call-template name="flat" />
       </xsl:when>
       <xsl:when test="@accid='sh'">
-        <xsl:text>♯</xsl:text>
+        <xsl:call-template name="sharp" />
       </xsl:when>
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="aac:na">
-    <xsl:text>♮</xsl:text>
+  <xsl:template name="natural" match="aac:na">
+    <span class="music">♮</span>
   </xsl:template>
 
-  <xsl:template match="aac:fl">
-    <xsl:text>♭</xsl:text>
+  <xsl:template name="flat" match="aac:fl">
+    <span class="music">♭</span>
   </xsl:template>
   
-  <xsl:template match="aac:sh">
-    <xsl:text>♯</xsl:text>
+  <xsl:template name="sharp" match="aac:sh">
+    <span class="music">♯</span>
   </xsl:template>
 
   <!-- FLOATS AND CROSS-REFERENCES -->
