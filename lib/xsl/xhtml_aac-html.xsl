@@ -4,10 +4,9 @@
   xmlns="http://www.w3.org/1999/xhtml" 
   xmlns:xhtml="http://www.w3.org/1999/xhtml" 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:m="http://www.w3.org/1998/Math/MathML" 
   xmlns:bltx="http://biblatex-biber.sourceforge.net/biblatexml"
   xmlns:aac="https://www.senecasongs.earth"
-  exclude-result-prefixes="aac bltx">
+  exclude-result-prefixes="aac bltx xhtml">
 
 <!-- TODO
   - tables of contents
@@ -111,21 +110,19 @@
   </xsl:template>
 
   <xsl:template match="aac:degree">
-    <m:math>
-      <xsl:if test="@accid">
-        <m:mi>
-          <xsl:call-template name="accid">
-            <xsl:with-param name="accid" select="@accid" />
-          </xsl:call-template>
-        </m:mi>
-      </xsl:if>
-      <m:mover>
-        <m:mi>
-          <xsl:value-of select="@n" />
-        </m:mi>
-        <m:mi><span class="symbol">&#x02c6;</span></m:mi>
-      </m:mover>
-    </m:math>
+    <xsl:if test="@accid">
+      <xsl:call-template name="accid">
+        <xsl:with-param name="accid" select="@accid" />
+      </xsl:call-template>
+    </xsl:if>
+    <span class="scale-degree">
+      <span class="symbol">
+        <xsl:text>&#770;</xsl:text>
+      </span>
+      <span class="degree">
+        <xsl:value-of select="@n" />
+      </span>
+    </span>
   </xsl:template>
 
   <xsl:template match="aac:pitch">
@@ -763,6 +760,7 @@
     </xsl:if>
   </xsl:template>
 
+  <!-- TODO use real accidentals in music font in matrix header -->
   <xsl:template match="aac:pitch_matrix">
     <thead>
       <tr>
