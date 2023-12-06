@@ -116,8 +116,8 @@
       </xsl:call-template>
     </xsl:if>
     <span class="scale-degree">
-      <span class="symbol">
-        <xsl:text>&#770;</xsl:text>
+      <span class="hat">
+        <span class="symbol">&#770;</span>
       </span>
       <span class="degree">
         <xsl:value-of select="@n" />
@@ -858,8 +858,15 @@
   </xsl:template>
 
   <xsl:template match="aac:prime">
-    <xsl:text>′</xsl:text> <!-- U+2302 -->
+    <span class="symbol">′</span> <!-- U+2302 -->
   </xsl:template>
+
+  <xsl:template match="aac:repeat">
+    <span class="music"></span> <!-- U+E040, start repeat -->
+    <xsl:apply-templates />
+    <span class="music"></span> <!-- U+E041, end repeat -->
+  </xsl:template>
+  <!-- NB U+E042 is the end+start repeat sign -->
 
 
 </xsl:stylesheet>

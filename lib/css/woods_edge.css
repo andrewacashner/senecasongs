@@ -361,9 +361,9 @@ caption em, caption cite, figCaption em, figCaption cite {
 span.scale-degree{
 }
 
-span.scale-degree span.symbol {
+span.scale-degree span.hat {
   position: relative;
-  left: 0.35em;
+  left: 0.4em;
 }
 
 span.scale-degree span.degree {
