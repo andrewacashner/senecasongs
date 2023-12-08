@@ -678,27 +678,27 @@
     <xsl:param name="accid" />
     <xsl:choose>
       <xsl:when test="@accid='na'">
-        <xsl:text>\na</xsl:text>
+        <xsl:call-template name="natural" />
       </xsl:when>
       <xsl:when test="@accid='fl'">
-        <xsl:text>\fl</xsl:text>
+        <xsl:call-template name="flat" />
       </xsl:when>
       <xsl:when test="@accid='sh'">
-        <xsl:text>\sh</xsl:text>
+        <xsl:call-template name="sharp" />
       </xsl:when>
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="aac:na">
-    <xsl:text>\na</xsl:text>
+  <xsl:template name="natural" match="aac:na">
+    <xsl:text>\na{}</xsl:text>
   </xsl:template>
 
-  <xsl:template match="aac:fl">
-    <xsl:text>\fl</xsl:text>
+  <xsl:template name="flat" match="aac:fl">
+    <xsl:text>\fl{}</xsl:text>
   </xsl:template>
   
-  <xsl:template match="aac:sh">
-    <xsl:text>\sh</xsl:text>
+  <xsl:template name="sharp" match="aac:sh">
+    <xsl:text>\sh{}</xsl:text>
   </xsl:template>
 
   <!-- MODULAR DESIGN (web vs. print) -->
@@ -769,6 +769,12 @@
 
   <xsl:template match="aac:prime">
     <xsl:text>$'$</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:repeat">
+    <xsl:text>\music{}</xsl:text> <!-- U+E040, start repeat -->
+    <xsl:apply-templates />
+    <xsl:text>\music{}</xsl:text> <!-- U+E041, end repeat -->
   </xsl:template>
 
 </xsl:stylesheet>
