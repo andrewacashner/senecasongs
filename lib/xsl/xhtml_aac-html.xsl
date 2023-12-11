@@ -763,8 +763,9 @@
   <!-- TODO use real accidentals in music font in matrix header -->
   <xsl:template match="aac:pitch_matrix">
     <thead>
-      <tr>
+      <tr class="pitch-number-head">
         <th></th>
+        <th scope="row" class="pitch-head">Pitch</th>
         <th>0</th>
         <th>1</th>
         <th>2</th>
@@ -780,8 +781,23 @@
       </tr>
       <tr>
         <th></th>
+        <th></th>
         <xsl:for-each select="tokenize(@gamut, '\s+')">
-          <th><xsl:value-of select="." /></th>
+          <th>
+            <xsl:choose>
+              <xsl:when test="contains(., '♭')">
+                <xsl:value-of select="replace(., '♭', '')" />
+                <xsl:call-template name="flat" />
+              </xsl:when>
+              <xsl:when test="contains(., '♯')">
+                <xsl:value-of select="replace(., '♯', '')" />
+                <xsl:call-template name="sharp" />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="." />
+              </xsl:otherwise>
+            </xsl:choose>
+          </th>
         </xsl:for-each>
       </tr>
     </thead>
@@ -789,6 +805,7 @@
       <xsl:apply-templates select="aac:mrow" />
     </tbody>
   </xsl:template>
+
 
   <xsl:variable name="pitch_matrix_template">
     <td data-n="0" class="pitch_false"></td>
@@ -807,6 +824,14 @@
 
   <xsl:template match="aac:mrow">
     <tr data-n="{@n}">
+    <xsl:choose>
+      <xsl:when test="position()=1">
+        <th class="song-head">Song</th>
+      </xsl:when>
+      <xsl:otherwise>
+        <th></th>
+      </xsl:otherwise>
+    </xsl:choose>
       <th scope="row"><xsl:value-of select="@n" /></th>
       <xsl:apply-templates select="$pitch_matrix_template">
         <xsl:with-param name="pcset" select="tokenize(@pcset, '\s+')" />
