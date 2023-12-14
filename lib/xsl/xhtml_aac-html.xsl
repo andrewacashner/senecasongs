@@ -902,6 +902,12 @@
   </xsl:template>
   <!-- NB U+E042 is the end+start repeat sign -->
 
+  <xsl:template match="aac:math">
+    <span class="math">
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
 
 </xsl:stylesheet>
 

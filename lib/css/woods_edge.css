@@ -478,7 +478,7 @@ span.ipa, span.symbol {
   font-size: 120%;
 }
 
-math {
+math, span.math {
   font-family: var(--serif-font), var(--symbol-font);
 }
 
