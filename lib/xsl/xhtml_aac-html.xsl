@@ -309,8 +309,17 @@
     </a>
   </xsl:template>
 
-  <!-- TODO use optional data-cols attribute to set alignment/format of columns (e.g., data-cols="lcr") -->
   <xsl:template match="@data-cols" />
+
+  <xsl:template match="xhtml:td[not(@class) and ancestor::xhtml:table/@data-cols]">
+    <td>
+      <xsl:attribute name="class">
+        <xsl:value-of select="substring(ancestor::xhtml:table/@data-cols, position(), 1)" />
+      </xsl:attribute>
+      <xsl:apply-templates />
+    </td>
+  </xsl:template>
+
 
   <xsl:template match="xhtml:table" mode="number">
     <xsl:number count="//xhtml:table" level="any" />

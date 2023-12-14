@@ -322,6 +322,19 @@ table th, table td {
   padding-bottom: 1ex;
 }
 
+td.l, td.X, td.S { 
+  text-align: left;
+}
+
+td.r {
+  text-align: right;
+}
+
+td.c {
+  text-align: center;
+}
+
+
 table.pitch_matrix {
   width: 22em;
   max-width: 100vw;
