@@ -297,33 +297,6 @@
       <xsl:text>}</xsl:text>
   </xsl:template>
 
-  <!-- Remove parentheses in text around video or audio references (also remove trailing space before or after the parentheses-->
-  <xsl:template match="text()[
-  following-sibling::node()[1][self::aac:ref[@type='video' or @type='audio']] 
-  and ends-with(., '(')
-  and not(preceding-sibling::node()[1][self::aac:ref[@type='audio' or @type='video']])
-  ]">
-    <xsl:value-of select="replace(substring(., 1, string-length(.) - 2), '\s+$', '')" />
-  </xsl:template>
-
-  <!-- And if there is a ref on both sides of the text node? yuck -->
-  <xsl:template match="text()[
-  preceding-sibling::node()[1][self::aac:ref[@type='audio' or @type='video']] 
-  and starts-with(., ')') 
-  and following-sibling::node()[1][self::aac:ref[@type='video' or @type='audio']] 
-  and ends-with(., '(')
-  ]">
-    <xsl:value-of select="replace(replace(substring(., 2, string-length(.) - 3), '\s+$', ''), '$\s+', '')" />
-  </xsl:template>
-
-  <xsl:template match="text()[
-  preceding-sibling::node()[1][self::aac:ref[@type='audio' or @type='video']] 
-  and starts-with(., ')') 
-  and not(following-sibling::node()[1][self::aac:ref[@type='video' or @type='audio']])]">
-    <xsl:value-of select="replace(substring(., 2), '$\s+', '')" />
-  </xsl:template>
-
-
   <xsl:template match="xhtml:figure[@class='video']" mode="number">
     <xsl:number count="//xhtml:section[@class='chapter']" level="any"/>
     <xsl:text>.</xsl:text>
@@ -786,6 +759,32 @@
     <xsl:apply-templates />
     <xsl:text>\music{}</xsl:text> <!-- U+E041, end repeat -->
   </xsl:template>
+
+
+  <!-- Optional markup for parentheses, usable anywhere, but parentheses will be omitted if the contents are audio/video refs (since these are omitted from body text in the book) -->
+  <xsl:template match="aac:paren">
+    <xsl:choose>
+      <xsl:when test="descendant::aac:ref[@type='audio' or @type='video']">
+        <xsl:apply-templates />
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>(</xsl:text>
+        <xsl:apply-templates />
+        <xsl:text>)</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- Remove trailing space before removed audio-visual refs -->
+  <xsl:function name="aac:trim-trailing-space">
+    <xsl:param name="str" />
+    <xsl:value-of select="replace(substring($str, 1, string-length($str) - 1), '\s+ $', '')" />
+  </xsl:function>
+
+  <xsl:template match="text()[following-sibling::aac:paren[descendant::aac:ref[@type='video' or @type='audio']]]">
+    <xsl:value-of select="aac:trim-trailing-space(.)" />
+  </xsl:template>
+
 
 </xsl:stylesheet>
 

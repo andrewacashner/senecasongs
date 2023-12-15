@@ -55,7 +55,7 @@ build/% : lib/%
 	$(copy)
 
 build/%.html : src/%.xhtml $(xhtml_include) $(bibxml) $(xsl) $(music_png_out) | $(dirs)
-	$(saxon) -xi:on -xsl:lib/xsl/xhtml_aac-html.xsl -s:$< -o:$@
+	$(saxon) -xi:on -xsl:lib/xsl/html.xsl -s:$< -o:$@
 
 aux/%.bltxml : %.bib | $(dirs)
 	biber --tool --quiet --output-format=biblatexml \
@@ -70,7 +70,7 @@ aux/%.pdf : aux/%.tex $(bibtex) $(tex_lib) $(music_pdf_out)
 	latexmk -outdir=aux -pdfxe $<
 
 aux/%.tex : src/%.xhtml $(xhtml_include) $(xsl) | $(dirs)
-	$(saxon) -xi:on -xsl:lib/xsl/xhtml_aac-tex.xsl -s:$< -o:$@
+	$(saxon) -xi:on -xsl:lib/xsl/latex.xsl -s:$< -o:$@
 
 build/media/%.png: aux/%.cropped.png
 	convert $< -transparent white $@
@@ -84,8 +84,8 @@ aux/%.cropped.png: src/music-examples/%.ly $(ly_lib) | $(dirs)
 aux/%.cropped.pdf : src/music-examples/%.ly | $(dirs)
 	$(lilypond) $<
 
-$(book_media_out) : src/book.xhtml $(xhtml_include) lib/xsl/xhtml_aac-html-book_media.xsl | $(dirs)
-	$(saxon) -xi:on -xsl:lib/xsl/xhtml_aac-html-book_media.xsl -s:$< -o:$@	
+$(book_media_out) : src/book.xhtml $(xhtml_include) lib/xsl/html-book_media.xsl | $(dirs)
+	$(saxon) -xi:on -xsl:lib/xsl/html-book_media.xsl -s:$< -o:$@	
 
 $(dirs) : 
 	mkdir -p $(dirs)
