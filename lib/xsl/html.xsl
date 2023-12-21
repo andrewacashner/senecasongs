@@ -914,6 +914,11 @@
     <xsl:text>)</xsl:text>
   </xsl:template>
 
+  <xsl:template match="aac:dots">
+    <xsl:text>[...]</xsl:text>
+  </xsl:template>
+
+
 
 
 </xsl:stylesheet>

@@ -785,14 +785,9 @@
     <xsl:value-of select="aac:trim-trailing-space(.)" />
   </xsl:template>
 
+  <xsl:template match="aac:dots">
+    <xsl:text>\Dots{}</xsl:text>
+  </xsl:template>
 
 </xsl:stylesheet>
-
-
-
-
-
-
-
-
 
