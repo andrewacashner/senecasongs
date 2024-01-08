@@ -669,8 +669,14 @@
   </xsl:template>
 
   <!-- IN-TEXT CITATIONS -->
+
+  <!-- Make a link for a single citation without parentheses -->
+  <xsl:template match="aac:citation[@type='plain']">
+    <xsl:call-template name="in-text-citation" />
+  </xsl:template>
+
   <!-- Make a link for a single citation and enclose in parentheses -->
-  <xsl:template match="aac:citation">
+  <xsl:template match="aac:citation[not(@type='plain')]">
     <xsl:text> (</xsl:text>
     <xsl:call-template name="in-text-citation" />
     <xsl:text>)</xsl:text>
