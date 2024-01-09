@@ -518,6 +518,7 @@
     <xsl:variable name="authors">
       <xsl:call-template name="name-list">
         <xsl:with-param name="names" select="bltx:names[@type='author']" />
+        <xsl:with-param name="type">lastname-first</xsl:with-param>
       </xsl:call-template>
     </xsl:variable>
     <li id="{@id}">
@@ -573,22 +574,31 @@
           <xsl:apply-templates select="bltx:namepart[@type='family']" />
         </xsl:otherwise>
       </xsl:choose>
-      <xsl:choose>
-        <xsl:when test="$nameCount > 2 and not(position()=1) and not(position()=last())">
-          <xsl:text>, </xsl:text>
-        </xsl:when>
-        <xsl:when test="$nameCount > 2 and position()=last()">
-          <xsl:text>, and </xsl:text>
-        </xsl:when>
-        <xsl:when test="$nameCount = 2 and not(position()=last())">
-          <xsl:text> and </xsl:text>
-        </xsl:when>
-        <xsl:otherwise />
-      </xsl:choose>
+      <xsl:call-template name="and-list">
+        <xsl:with-param name="nameCount" select="$nameCount" />
+        <xsl:with-param name="position" select="position()" />
+      </xsl:call-template>
     </xsl:for-each>
     <xsl:if test="$names/@morenames='1'">
       <xsl:text>, et al.</xsl:text>
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="and-list">
+    <xsl:param name="nameCount" />
+    <xsl:param name="position" />
+    <xsl:choose>
+      <xsl:when test="$nameCount > 2 and $position &lt; $nameCount - 1">
+        <xsl:text>, </xsl:text>
+      </xsl:when>
+      <xsl:when test="$nameCount > 2 and $position = $nameCount - 1">
+        <xsl:text>, and </xsl:text>
+      </xsl:when>
+      <xsl:when test="$nameCount = 2 and $position = 1">
+        <xsl:text> and </xsl:text>
+      </xsl:when>
+      <xsl:otherwise />
+    </xsl:choose>
   </xsl:template>
 
   <!-- Unpublished: Thesis, Interview, Personal communication, etc. -->
@@ -704,14 +714,16 @@
     <a class="citation" href="#{@key}">
       <xsl:choose>
         <xsl:when test="$ref">
-          <xsl:for-each select="$ref/bltx:names[1]/bltx:name/bltx:namepart[@type='family']">
+          <xsl:variable name="names" select="$ref/bltx:names[1]/bltx:name" />
+          <xsl:for-each select="$names/bltx:namepart[@type='family']">
             <xsl:apply-templates />
-            <xsl:if test="not(position()=last())">
-              <xsl:text> and </xsl:text>
-            </xsl:if>
+            <xsl:call-template name="and-list">
+              <xsl:with-param name="nameCount" select="count($names)" />
+              <xsl:with-param name="position" select="position()" />
+            </xsl:call-template>
           </xsl:for-each>
           <xsl:if test="$ref/bltx:names[@type='author']/@morenames='1'">
-            <xsl:text>, et al.</xsl:text>
+            <xsl:text> et al.</xsl:text>
           </xsl:if>
           <xsl:text> </xsl:text>
           <xsl:value-of select="$ref/bltx:date[not(@type)]" />
