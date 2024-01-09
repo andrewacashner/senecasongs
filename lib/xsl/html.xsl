@@ -692,15 +692,20 @@
     <xsl:text>)</xsl:text>
   </xsl:template>
 
-  <!-- For multiple citations, make links in semicolon-separated list and enclose in parentheses -->
-  <xsl:template match="aac:citationList">
-    <xsl:text> (</xsl:text>
+  <!-- For multiple citations, make links in semicolon-separated list -->
+  <xsl:template name="citation-list" match="aac:citationList[@type='plain']">
     <xsl:for-each select="aac:citation">
       <xsl:call-template name="in-text-citation" />
       <xsl:if test="not(position()=last())">
         <xsl:text>; </xsl:text>
       </xsl:if>
     </xsl:for-each>
+  </xsl:template>
+  
+  <!-- For multiple citations, make links in semicolon-separated list and enclose in parentheses -->
+  <xsl:template match="aac:citationList[not(@type='plain')]">
+    <xsl:text> (</xsl:text>
+    <xsl:call-template name="citation-list" />
     <xsl:text>)</xsl:text>
   </xsl:template>
 
