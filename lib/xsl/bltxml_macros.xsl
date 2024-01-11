@@ -15,8 +15,9 @@ Do a basic replacement of these TeX macros , e.g., \makebibemph{} or {Title text
   <!-- replace TeX macros everywhere 
         (no promise of support for complex or nested TeX constructions) -->
   <xsl:template name="macros">
+    <xsl:param name="input" />
     <xsl:variable name="lettered">
-      <xsl:value-of select="aac:tex-letter-macros(string())" />
+      <xsl:value-of select="aac:tex-letter-macros(string($input))" />
     </xsl:variable>
     <xsl:variable name="quoted">
       <xsl:call-template name="expand-mkbibquote">

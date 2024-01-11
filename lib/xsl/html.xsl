@@ -432,8 +432,10 @@
       <xsl:text>. </xsl:text>
       <cite><xsl:apply-templates select="bltx:title" /></cite>
       <xsl:text>.</xsl:text>
-      <xsl:apply-templates select="bltx:location" />
-      <xsl:apply-templates select="bltx:publisher" />
+      <xsl:call-template name="imprint">
+        <xsl:with-param name="location" select="bltx:location" />
+        <xsl:with-param name="publisher" select="bltx:url" />
+      </xsl:call-template>
       <xsl:apply-templates select="bltx:url" />
     </li>
   </xsl:template>
@@ -547,8 +549,10 @@
         <xsl:apply-templates select="bltx:pages" />
       </xsl:if>
       <xsl:text>. </xsl:text>
-      <xsl:apply-templates select="bltx:location" />
-      <xsl:apply-templates select="bltx:publisher" />
+      <xsl:call-template name="imprint">
+        <xsl:with-param name="location" select="bltx:location" />
+        <xsl:with-param name="publisher" select="bltx:url" />
+      </xsl:call-template>
       <xsl:apply-templates select="bltx:url" />
     </li>
   </xsl:template>
@@ -625,11 +629,17 @@
     - Remove TeX macros
   -->
   <xsl:template match="bltx:title | bltx:journaltitle | bltx:booktitle">
-    <xsl:call-template name="macros" />
+    <xsl:call-template name="macros">
+      <xsl:with-param name="input" select="." />
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="bltx:title" mode="quoted">
-    <q><xsl:call-template name="macros" /></q>
+    <q>
+      <xsl:call-template name="macros">
+        <xsl:with-param name="input" select="." />
+      </xsl:call-template>
+    </q>
     <xsl:text>.</xsl:text>
   </xsl:template>
 
@@ -646,14 +656,19 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="bltx:location">
+  <xsl:template name="imprint">
+    <xsl:param name="location" />
+    <xsl:param name="publisher" />
     <xsl:text> </xsl:text>
-    <xsl:call-template name="macros" />
-    <xsl:text>: </xsl:text>
-  </xsl:template>
-
-  <xsl:template match="bltx:publisher">
-    <xsl:call-template name="macros" />
+    <xsl:call-template name="macros">
+      <xsl:with-param name="input" select="$location" />
+    </xsl:call-template>
+    <xsl:if test="$publisher">
+      <xsl:text>: </xsl:text>
+      <xsl:call-template name="macros">
+        <xsl:with-param name="input" select="$location" />
+      </xsl:call-template>
+    </xsl:if>
     <xsl:text>.</xsl:text>
   </xsl:template>
 
