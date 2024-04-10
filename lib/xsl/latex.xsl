@@ -182,7 +182,7 @@
   </xsl:template>
 
   <xsl:template match="xhtml:em">
-    <xsl:text>\emph{</xsl:text>
+    <xsl:text> \emph{</xsl:text>
     <xsl:apply-templates />
     <xsl:text>}</xsl:text>
   </xsl:template>
