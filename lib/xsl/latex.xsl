@@ -686,6 +686,10 @@
     <xsl:text>\sh{}</xsl:text>
   </xsl:template>
 
+  <xsl:template match="aac:ampersand">
+    <xsl:text>\&amp;{}</xsl:text>
+  </xsl:template>
+
   <!-- MODULAR DESIGN (web vs. print) -->
   <xsl:template match="*[@data-medium='web']" priority="1" />
 

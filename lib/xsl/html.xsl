@@ -125,6 +125,10 @@
     </span>
   </xsl:template>
 
+  <xsl:template match="aac:ampersand">
+    <xsl:text>&amp;</xsl:text>
+  </xsl:template>
+
   <xsl:template match="aac:pitch">
     <xsl:value-of select="@pname" />
     <xsl:call-template name="accid">
