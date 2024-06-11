@@ -492,6 +492,22 @@ sub, span.scale-degree {
   line-height: 100%;
 }
 
+/* Editing */
+span.TODO {
+  background: yellow;
+}
+
+span.TODO span.tooltip {
+  float: right;
+  width: 5em;
+  margin-right: -6em;
+  border: 2px solid black;
+  text-indent: 0;
+  text-align: left;
+  padding: 2pt;
+  background-color: orange;
+}
+
 /* Wide screen */
 @media only screen and (min-width: 1200px) {
   body {

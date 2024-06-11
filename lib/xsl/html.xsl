@@ -961,6 +961,18 @@
   </xsl:template>
 
 
+  <xsl:template match="aac:TODO">
+    <span class="TODO">
+      <xsl:apply-templates select="@*" />
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
+  <xsl:template match="@note">
+    <span class="tooltip">
+      <xsl:value-of select="." />
+    </span>
+  </xsl:template>
 
 
 </xsl:stylesheet>

@@ -793,5 +793,18 @@
     <xsl:text>\Dots{}</xsl:text>
   </xsl:template>
 
+  <xsl:template match="aac:TODO">
+    <xsl:text>\texthl{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}</xsl:text>
+    <xsl:apply-templates select="@*" />
+  </xsl:template>
+
+  <xsl:template match="@note">
+    <xsl:text>\todo{</xsl:text>
+    <xsl:value-of select="." />
+    <xsl:text>} </xsl:text>
+  </xsl:template>
+
 </xsl:stylesheet>
 
