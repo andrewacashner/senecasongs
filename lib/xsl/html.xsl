@@ -438,7 +438,7 @@
       <xsl:text>.</xsl:text>
       <xsl:call-template name="imprint">
         <xsl:with-param name="location" select="bltx:location" />
-        <xsl:with-param name="publisher" select="bltx:url" />
+        <xsl:with-param name="publisher" select="bltx:publisher" />
       </xsl:call-template>
       <xsl:apply-templates select="bltx:url" />
     </li>
@@ -478,6 +478,31 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+  <!-- Manuscript: Like book but in quotes -->
+  <xsl:template match="bltx:entry[@entrytype='report']">
+    <xsl:variable name="authors">
+      <xsl:call-template name="book-authors" />
+    </xsl:variable>
+    <li id="{@id}">
+      <xsl:value-of select="$authors" />
+      <xsl:if test="not(substring($authors, string-length($authors))='.')">
+        <xsl:text>.</xsl:text>
+      </xsl:if>
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="bltx:date[not(@type)]" />
+      <xsl:apply-templates select="bltx:date[@type='orig']" />
+      <xsl:text>. </xsl:text>
+      <q><xsl:apply-templates select="bltx:title" /></q>
+      <xsl:text>.</xsl:text>
+      <xsl:call-template name="imprint">
+        <xsl:with-param name="location" select="bltx:location" />
+        <xsl:with-param name="publisher" select="bltx:institution" />
+      </xsl:call-template>
+      <xsl:apply-templates select="bltx:url" />
+    </li>
+  </xsl:template>
+
 
   <!-- Article -->
   <xsl:template match="bltx:entry[@entrytype='article']">
@@ -555,7 +580,7 @@
       <xsl:text>. </xsl:text>
       <xsl:call-template name="imprint">
         <xsl:with-param name="location" select="bltx:location" />
-        <xsl:with-param name="publisher" select="bltx:url" />
+        <xsl:with-param name="publisher" select="bltx:publisher" />
       </xsl:call-template>
       <xsl:apply-templates select="bltx:url" />
     </li>
@@ -670,7 +695,7 @@
     <xsl:if test="$publisher">
       <xsl:text>: </xsl:text>
       <xsl:call-template name="macros">
-        <xsl:with-param name="input" select="$location" />
+        <xsl:with-param name="input" select="$publisher" />
       </xsl:call-template>
     </xsl:if>
     <xsl:text>.</xsl:text>

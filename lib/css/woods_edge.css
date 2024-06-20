@@ -472,6 +472,27 @@ blockquote.dialogue span.speaker {
   text-transform: uppercase;
 }
 
+table tr.two-row {
+  display: table;
+  margin: 1ex;
+}
+
+table tr.two-row td {
+  display: table-row;
+}
+
+td span {
+  display: table-cell;
+}
+
+td span + span {
+  padding-left: 1em;
+}
+
+td.seneca span {
+  font-weight: bold;
+}
+
 /* Special characters */
 span.ipa, span.symbol {
   font-family: var(--symbol-font);
