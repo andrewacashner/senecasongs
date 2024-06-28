@@ -211,7 +211,7 @@ blockquote {
 blockquote p {
 }
 
-blockquote strong {
+blockquote strong.callout {
   display: block;
   font-size: 160%;
   padding: 0.4em;
