@@ -571,6 +571,35 @@
     <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
 
+  <xsl:template match="xhtml:tr[@class='two-row']">
+    <xsl:text>\begin{tabular}{</xsl:text>
+    <xsl:for-each select="xhtml:td[@class='seneca']/xhtml:span">
+      <xsl:text>l</xsl:text>
+    </xsl:for-each>
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:for-each select="xhtml:td[@class='seneca']">
+      <xsl:for-each select="xhtml:span">
+        <xsl:text>\strong{</xsl:text>
+        <xsl:apply-templates />
+        <xsl:text>}</xsl:text>
+        <xsl:if test="not(position() = last())">
+          <xsl:text> &amp; </xsl:text>
+        </xsl:if>
+      </xsl:for-each>
+      <xsl:text> \\&#xA;</xsl:text>
+    </xsl:for-each>
+    <xsl:for-each select="xhtml:td[@class='english']">
+      <xsl:for-each select="xhtml:span">
+        <xsl:apply-templates />
+        <xsl:if test="not(position() = last())">
+          <xsl:text> &amp; </xsl:text>
+        </xsl:if>
+      </xsl:for-each>
+      <xsl:text> \\[1ex]&#xA;</xsl:text>
+    </xsl:for-each>
+    <xsl:text>\end{tabular} \\&#xA;</xsl:text>
+  </xsl:template>
+
   <!-- CROSS-REFERENCES -->
   <xsl:template match="aac:ref[@type='table']">
     <xsl:choose>
@@ -805,6 +834,7 @@
     <xsl:value-of select="." />
     <xsl:text>} </xsl:text>
   </xsl:template>
+
 
 </xsl:stylesheet>
 
