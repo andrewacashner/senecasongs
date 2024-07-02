@@ -520,13 +520,15 @@ span.TODO {
 
 span.TODO span.tooltip {
   float: right;
-  width: 5em;
-  margin-right: -6em;
+  width: 8em;
+  margin-right: -10em;
+  line-height: 1.1em;
   border: 2px solid black;
   text-indent: 0;
   text-align: left;
   padding: 2pt;
   background-color: orange;
+  font-size: 80%;
 }
 
 /* Wide screen */
