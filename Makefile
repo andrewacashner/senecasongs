@@ -2,7 +2,7 @@ dirs		= aux build build/css build/css/fonts build/media
 
 xhtml_in	= $(wildcard src/*.xhtml)
 html_out	= $(filter-out build/book.html,$(addprefix build/,$(notdir $(xhtml_in:%.xhtml=%.html))))
-xhtml_include	= $(wildcard src/articles/*.xhtml src/tables/*.xhtml)
+xhtml_include	= $(wildcard src/articles/*.xhtml src/*/*.xhtml)
 
 bibtex		= $(wildcard *.bib)
 bibxml		= $(addprefix aux/,$(bibtex:%.bib=%.bltxml))
