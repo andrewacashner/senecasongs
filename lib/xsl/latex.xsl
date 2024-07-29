@@ -177,6 +177,9 @@
 
   <xsl:template match="xhtml:p">
     <xsl:text>&#xA;</xsl:text>
+    <xsl:if test="@class='continue'">
+      <xsl:text>\noindent </xsl:text>
+    </xsl:if>
     <xsl:apply-templates />
     <xsl:text>&#xA;</xsl:text>
   </xsl:template>
