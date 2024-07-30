@@ -67,29 +67,30 @@
     </xsl:if>
     <xsl:text>}&#xA;</xsl:text>
 
-
     <xsl:text>\setCoverImage{</xsl:text>
     <xsl:value-of select="//xhtml:header/xhtml:img[@class='cover']/@src" />
     <xsl:text>}&#xA;</xsl:text>
 
     <xsl:text>\begin{document}&#xA;</xsl:text>
 
-    <xsl:text>\frontmatter&#xA;</xsl:text>
-    <xsl:text>\maketitle&#xA;</xsl:text>
-
-    <xsl:if test="//aac:tableofcontents">
-      <xsl:text>\tableofcontents&#xA;</xsl:text>
-    </xsl:if>
-
-    <xsl:text>\mainmatter&#xA;</xsl:text>
     <xsl:apply-templates select="//xhtml:main" />
 
-    <xsl:if test="//xhtml:main/aac:bibliography">
-      <xsl:text>\backmatter&#xA;</xsl:text>
-      <xsl:text>\aacReferences&#xA;</xsl:text>
-    </xsl:if>
 
     <xsl:text>\end{document}&#xA;</xsl:text>
+  </xsl:template>
+  
+  <xsl:template match="xhtml:section[@class='frontmatter']">
+      <xsl:text>\frontmatter&#xA;</xsl:text>
+      <xsl:apply-templates />
+      <xsl:text>\mainmatter&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:titlepages">
+    <xsl:text>\maketitle&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:tableofcontents">
+    <xsl:text>\tableofcontents&#xA;</xsl:text>
   </xsl:template>
 
   <xsl:template match="xhtml:meta[@name='version']">
@@ -140,6 +141,15 @@
         <xsl:with-param name="url" select="../@data-html-equiv" />
       </xsl:call-template>
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="xhtml:section[@class='backmatter']">
+    <xsl:text>\backmatter&#xA;</xsl:text>
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="aac:bibliography">
+    <xsl:text>\aacReferences&#xA;</xsl:text>
   </xsl:template>
 
   <xsl:template name="web-equiv-link">

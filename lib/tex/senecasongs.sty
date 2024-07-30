@@ -186,12 +186,9 @@ Seneca Songs book and website page PDFs]
     \printbibliography[heading=bibintoc, title={References}]
 }
 
-\RequirePackage{todonotes}
-\NewDocumentCommand{\texthl}{ m }{{\color{red}#1}}
-\NewDocumentCommand{\todoFlag}{}{\texthl}
-\NewDocumentCommand{\todoNote}{ m }{{\linespread{0.8}\todo{\scriptsize #1}}}
-
-\RequirePackage{hyperref}
+\setcounter{secnumdepth}{0}
+\RequirePackage[hidelinks]{hyperref}
+\hypersetup{pdfborderstyle={/S/U/W 1}}
 
 
 \endinput
