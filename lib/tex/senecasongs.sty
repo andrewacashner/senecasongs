@@ -185,7 +185,18 @@ Seneca Songs book and website page PDFs]
 \NewDocumentCommand{\aacReferences}{}{%
     \printbibliography[heading=bibintoc, title={References}]
 }
-\RequirePackage{hyperref}
+
+\RequirePackage[all]{nowidow}
+
+\setcounter{secnumdepth}{0}
+\RequirePackage[hidelinks]{hyperref}
+\hypersetup{pdfborderstyle={/S/U/W 1},
+pdftitle={Songs at the Woods’ Edge: The Earth Songs of the Seneca Nation},
+pdfauthor={Bill Crouse, Sr., and Andrew A. Cashner},
+pdfsubject={Native American music and dance, the Onöndowa’ga:’ (Seneca) Nation,
+Haudeonosaunee (Iroquois) people, ethnomusicology, oral tradition}
+}
+
 
 
 \endinput

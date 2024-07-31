@@ -15,10 +15,10 @@
     \begin{titlepage}
         \begin{center}
             \vspace*{1em}
-            {\titlingfont\Huge\MakeUppercase{\@aacMainTitle}}%\MakeUppercase{\@aacMainTitle}}
+            {\titlingfont\Huge\MakeUppercase{\@aacMainTitle}}
 
             \vspace{2em}
-            {\Large\textbf{\@aacSubTitle}}
+            {\Large\@aacSubTitle}
 
             \ifdraft
                 \vspace{1em}
@@ -35,9 +35,9 @@
 
             \vspace{\fill}
             {\begin{tabular}{c}
-                \large\@aacLocation \\
-                \large\@aacPublisher \\
-                \large\addfontfeatures{Numbers=OldStyle}{\@aacYear}
+                \large\textsc{\@aacPublisher} \\ [1ex]
+                \@aacLocation \\
+%                \addfontfeatures{Numbers=OldStyle}{\@aacYear}
             \end{tabular}}
         \end{center}
     \end{titlepage}
@@ -79,6 +79,20 @@
 % Use empty pagestyle instead of plain -> result, no page numbers for part or
 % chapter first pages
 \fancypagestyle{plain}{\pagestyle{empty}}
+
+\addtocontents{toc}{\protect{\pdfbookmark[0]{\contentsname}{toc}}}
+
+\ifdraft
+\RequirePackage{todonotes}
+\NewDocumentCommand{\texthl}{ m }{{\color{red}#1}}
+\NewDocumentCommand{\todoFlag}{}{\texthl}
+\NewDocumentCommand{\todoNote}{ m }{{\linespread{0.8}\todo{\scriptsize #1}}}
+\else
+\NewDocumentCommand{\texthl}{}{}
+\NewDocumentCommand{\todoFlag}{}{}
+\NewDocumentCommand{\todoNote}{}{}
+\fi
+
 
 \endinput
 

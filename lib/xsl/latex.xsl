@@ -67,29 +67,30 @@
     </xsl:if>
     <xsl:text>}&#xA;</xsl:text>
 
-
     <xsl:text>\setCoverImage{</xsl:text>
     <xsl:value-of select="//xhtml:header/xhtml:img[@class='cover']/@src" />
     <xsl:text>}&#xA;</xsl:text>
 
     <xsl:text>\begin{document}&#xA;</xsl:text>
 
-    <xsl:text>\frontmatter&#xA;</xsl:text>
-    <xsl:text>\maketitle&#xA;</xsl:text>
-
-    <xsl:if test="//aac:tableofcontents">
-      <xsl:text>\tableofcontents&#xA;</xsl:text>
-    </xsl:if>
-
-    <xsl:text>\mainmatter&#xA;</xsl:text>
     <xsl:apply-templates select="//xhtml:main" />
 
-    <xsl:if test="//xhtml:main/aac:bibliography">
-      <xsl:text>\backmatter&#xA;</xsl:text>
-      <xsl:text>\aacReferences&#xA;</xsl:text>
-    </xsl:if>
 
     <xsl:text>\end{document}&#xA;</xsl:text>
+  </xsl:template>
+  
+  <xsl:template match="xhtml:section[@class='frontmatter']">
+      <xsl:text>\frontmatter&#xA;</xsl:text>
+      <xsl:apply-templates />
+      <xsl:text>\mainmatter&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:titlepages">
+    <xsl:text>\maketitle&#xA;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:tableofcontents">
+    <xsl:text>\tableofcontents&#xA;</xsl:text>
   </xsl:template>
 
   <xsl:template match="xhtml:meta[@name='version']">
@@ -142,6 +143,15 @@
     </xsl:if>
   </xsl:template>
 
+  <xsl:template match="xhtml:section[@class='backmatter']">
+    <xsl:text>\backmatter&#xA;</xsl:text>
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="aac:bibliography">
+    <xsl:text>\aacReferences&#xA;</xsl:text>
+  </xsl:template>
+
   <xsl:template name="web-equiv-link">
     <xsl:param name="url" />
     <xsl:text>\MediaCallout{</xsl:text>
@@ -177,12 +187,15 @@
 
   <xsl:template match="xhtml:p">
     <xsl:text>&#xA;</xsl:text>
+    <xsl:if test="@class='continue'">
+      <xsl:text>\noindent </xsl:text>
+    </xsl:if>
     <xsl:apply-templates />
     <xsl:text>&#xA;</xsl:text>
   </xsl:template>
 
   <xsl:template match="xhtml:em">
-    <xsl:text> \emph{</xsl:text>
+    <xsl:text>\emph{</xsl:text>
     <xsl:apply-templates />
     <xsl:text>}</xsl:text>
   </xsl:template>
@@ -205,10 +218,9 @@
     <xsl:text>\end{quotation}&#xA;</xsl:text>
   </xsl:template>
 
+  <!-- TODO keep any bold in print version? -->
   <xsl:template match="xhtml:strong">
-    <xsl:text>\strong{</xsl:text>
     <xsl:apply-templates />
-    <xsl:text>}</xsl:text>
   </xsl:template>
 
   <xsl:template match="xhtml:strong[@class='TODO']">
@@ -571,6 +583,35 @@
     <xsl:text>}&#xA;</xsl:text>
   </xsl:template>
 
+  <xsl:template match="xhtml:tr[@class='two-row']">
+    <xsl:text>\begin{tabular}{</xsl:text>
+    <xsl:for-each select="xhtml:td[@class='seneca']/xhtml:span">
+      <xsl:text>l</xsl:text>
+    </xsl:for-each>
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:for-each select="xhtml:td[@class='seneca']">
+      <xsl:for-each select="xhtml:span">
+        <xsl:text>\strong{</xsl:text>
+        <xsl:apply-templates />
+        <xsl:text>}</xsl:text>
+        <xsl:if test="not(position() = last())">
+          <xsl:text> &amp; </xsl:text>
+        </xsl:if>
+      </xsl:for-each>
+      <xsl:text> \\&#xA;</xsl:text>
+    </xsl:for-each>
+    <xsl:for-each select="xhtml:td[@class='english']">
+      <xsl:for-each select="xhtml:span">
+        <xsl:apply-templates />
+        <xsl:if test="not(position() = last())">
+          <xsl:text> &amp; </xsl:text>
+        </xsl:if>
+      </xsl:for-each>
+      <xsl:text> \\[1ex]&#xA;</xsl:text>
+    </xsl:for-each>
+    <xsl:text>\end{tabular} \\&#xA;</xsl:text>
+  </xsl:template>
+
   <!-- CROSS-REFERENCES -->
   <xsl:template match="aac:ref[@type='table']">
     <xsl:choose>
@@ -656,7 +697,7 @@
     </xsl:if>
     <xsl:text>{</xsl:text>
     <xsl:value-of select="@oct" />
-    <xsl:text>} </xsl:text>
+    <xsl:text>}</xsl:text>
   </xsl:template>
 
   <xsl:template name="accid">
@@ -684,6 +725,10 @@
   
   <xsl:template name="sharp" match="aac:sh">
     <xsl:text>\sh{}</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="aac:ampersand">
+    <xsl:text>\&amp;{}</xsl:text>
   </xsl:template>
 
   <!-- MODULAR DESIGN (web vs. print) -->
@@ -788,6 +833,24 @@
   <xsl:template match="aac:dots">
     <xsl:text>\Dots{}</xsl:text>
   </xsl:template>
+
+  <xsl:template match="aac:TODO">
+    <xsl:text>\todoFlag{</xsl:text>
+    <xsl:apply-templates />
+    <xsl:text>}</xsl:text>
+    <xsl:apply-templates select="@*" />
+  </xsl:template>
+
+  <xsl:template match="@note">
+    <xsl:text>\todoNote{</xsl:text>
+    <xsl:value-of select="." />
+    <xsl:text>} </xsl:text>
+  </xsl:template>
+
+  <xsl:template match="xhtml:br">
+    <xsl:text>\\ &#xA;</xsl:text>
+  </xsl:template>
+
 
 </xsl:stylesheet>
 
