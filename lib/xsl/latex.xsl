@@ -218,10 +218,9 @@
     <xsl:text>\end{quotation}&#xA;</xsl:text>
   </xsl:template>
 
+  <!-- TODO keep any bold in print version? -->
   <xsl:template match="xhtml:strong">
-    <xsl:text>\strong{</xsl:text>
     <xsl:apply-templates />
-    <xsl:text>}</xsl:text>
   </xsl:template>
 
   <xsl:template match="xhtml:strong[@class='TODO']">
@@ -698,7 +697,7 @@
     </xsl:if>
     <xsl:text>{</xsl:text>
     <xsl:value-of select="@oct" />
-    <xsl:text>} </xsl:text>
+    <xsl:text>}</xsl:text>
   </xsl:template>
 
   <xsl:template name="accid">
