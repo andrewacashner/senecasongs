@@ -848,6 +848,10 @@
     <xsl:text>} </xsl:text>
   </xsl:template>
 
+  <xsl:template match="xhtml:br">
+    <xsl:text>\\ &#xA;</xsl:text>
+  </xsl:template>
+
 
 </xsl:stylesheet>
 

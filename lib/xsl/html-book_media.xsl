@@ -29,7 +29,7 @@ Produce an HTML page with all the audio and video examples from the book
         <title>Songs at the Woods’ Edge: Media</title>
         <link rel="stylesheet" href="css/book-media.css" />
         <meta name="author" content="Bill Crouse, Sr., and Andrew A. Cashner" />
-        <meta name="copyright" content="Copyright © 2023 Bill Crouse, Sr., and Andrew A. Cashner" />
+        <meta name="copyright" content="Copyright © 2024 Bill Crouse, Sr., and Andrew A. Cashner" />
         <meta name="publisher" content="Rochester, NY: Peacemaker Press, 2023" />
       </head>
       <body>
@@ -55,7 +55,7 @@ Produce an HTML page with all the audio and video examples from the book
         </main>
         <footer>
           <p>
-            Copyright © 2023 Bill Crouse, Sr., and Andrew A. Cashner.
+            Copyright © 2024 Bill Crouse, Sr., and Andrew A. Cashner.
           </p>
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
         </footer>
