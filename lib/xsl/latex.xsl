@@ -60,8 +60,13 @@
     <xsl:text>}&#xA;</xsl:text>
 
     <xsl:text>\setCopyright{</xsl:text>
-    <xsl:apply-templates select="//xhtml:head/xhtml:meta[@name='version']" />
-    <xsl:apply-templates select="//xhtml:head/xhtml:meta[@name='copyright']/@content" />
+    <xsl:variable name="version" select="//xhtml:meta[@name='version']/@content" />
+    <xsl:if test="$version">
+      <xsl:value-of select="$version" />
+      <xsl:text>.\\</xsl:text>
+    </xsl:if>
+    <xsl:value-of select="//xhtml:head/xhtml:meta[@name='copyright']/@content" />
+    <xsl:text>. </xsl:text>
     <xsl:if test="//xhtml:meta[@name='license' and @content='CC-BY-NC-ND']">
       <xsl:text>\CClicense</xsl:text>
     </xsl:if>

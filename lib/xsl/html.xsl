@@ -91,12 +91,18 @@
   </xsl:template>
 
   <xsl:template match="xhtml:footer">
+    <xsl:variable name="version" select="//xhtml:meta[@name='version']/@content" />
     <footer>
       <xsl:apply-templates />
       <p>
-      Copyright © 2024 Bill Crouse, Sr., and Andrew A. Cashner.
-      </p>
-      <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+      <xsl:if test="$version">
+          <xsl:value-of select="$version" />
+          <xsl:text>. </xsl:text>
+      </xsl:if>
+      <xsl:value-of select="//xhtml:meta[@name='copyright']/@content" />
+      <xsl:text>.</xsl:text>
+    </p>
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
     </footer>
   </xsl:template>
 
@@ -493,11 +499,13 @@
       <xsl:value-of select="bltx:date[not(@type)]" />
       <xsl:apply-templates select="bltx:date[@type='orig']" />
       <xsl:text>. </xsl:text>
-      <q><xsl:apply-templates select="bltx:title" /></q>
-      <xsl:text>.</xsl:text>
+      <q>
+        <xsl:apply-templates select="bltx:title" />
+        <xsl:text>.</xsl:text>
+      </q>
       <xsl:call-template name="imprint">
         <xsl:with-param name="location" select="bltx:location" />
-        <xsl:with-param name="publisher" select="bltx:institution" />
+        <xsl:with-param name="publisher" select="bltx:institution/bltx:list/bltx:item" />
       </xsl:call-template>
       <xsl:apply-templates select="bltx:url" />
     </li>
@@ -692,8 +700,10 @@
     <xsl:call-template name="macros">
       <xsl:with-param name="input" select="$location" />
     </xsl:call-template>
-    <xsl:if test="$publisher">
+    <xsl:if test="$location and $publisher">
       <xsl:text>: </xsl:text>
+    </xsl:if>
+    <xsl:if test="$publisher">
       <xsl:call-template name="macros">
         <xsl:with-param name="input" select="$publisher" />
       </xsl:call-template>
