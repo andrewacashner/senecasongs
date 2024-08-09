@@ -1,10 +1,10 @@
 # Songs at the Woods' Edge: The Earth Songs of the Seneca Nation
 
 Website and book by 
-Bill Crouse, Sr. <seneca.artz@gmail.com>, 
-and Andrew A. Cashner, <andrew.cashner@rochester.edu>
+Bill Crouse, Sr. <crouse@senecasongs.earth>
+and Andrew A. Cashner, <cashner@senecasongs.earth>
 
-Copyright © 2023 Bill Crouse, Sr., and Andrew A. Cashner. All rights reserved.
+Copyright © 2024 Bill Crouse, Sr., and Andrew A. Cashner. All rights reserved.
 
 From input files in XHTML with custom extensions, this system generates a book
 in PDF format and a website in HTML5.
