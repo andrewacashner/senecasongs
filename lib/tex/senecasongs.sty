@@ -129,7 +129,13 @@ Seneca Songs book and website page PDFs]
 \RequirePackage{floatrow}
 
 \RequirePackage{booktabs}
+
 \RequirePackage[nomath]{cellspace}
+% NB added for TeXLive 2025 to fix cellspace bug
+\makeatletter
+\let\@startpbox@action\@startpbox
+\makeatother
+
 \RequirePackage{tabularx}
 \RequirePackage{adjustbox}
 
